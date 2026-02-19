@@ -1,61 +1,48 @@
 import Foundation
+import SwiftData
 
-class NoteStore: ObservableObject {
-    @Published var notes: [Note] = []
+@Observable
+@MainActor
+class NoteStore {
+    var notes: [Note] = []
 
-    private let savePath: URL
+    private var modelContext: ModelContext
 
-    init() {
-        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-            ?? FileManager.default.temporaryDirectory
-        savePath = documentsDirectory.appendingPathComponent("notes.json")
+    init(modelContext: ModelContext) {
+        self.modelContext = modelContext
         loadNotes()
     }
 
     func addNote() -> Note {
         let note = Note()
-        notes.insert(note, at: 0)
-        saveNotes()
+        modelContext.insert(note)
+        saveAndReload()
         return note
     }
 
     func deleteNote(_ note: Note) {
-        notes.removeAll { $0.id == note.id }
-        saveNotes()
+        modelContext.delete(note)
+        saveAndReload()
     }
 
     func deleteNote(at offsets: IndexSet) {
-        notes.remove(atOffsets: offsets)
-        saveNotes()
+        for index in offsets {
+            modelContext.delete(notes[index])
+        }
+        saveAndReload()
     }
 
     func updateNote(_ note: Note) {
-        if let index = notes.firstIndex(where: { $0.id == note.id }) {
-            notes[index] = note
-            saveNotes()
-        }
+        saveAndReload()
     }
 
-    private func loadNotes() {
-        guard FileManager.default.fileExists(atPath: savePath.path) else { return }
-        do {
-            let data = try Data(contentsOf: savePath)
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .iso8601
-            notes = try decoder.decode([Note].self, from: data)
-        } catch {
-            print("Failed to load notes: \(error.localizedDescription)")
-        }
+    func loadNotes() {
+        let descriptor = FetchDescriptor<Note>(sortBy: [SortDescriptor(\.createdAt, order: .reverse)])
+        notes = (try? modelContext.fetch(descriptor)) ?? []
     }
 
-    private func saveNotes() {
-        do {
-            let encoder = JSONEncoder()
-            encoder.dateEncodingStrategy = .iso8601
-            let data = try encoder.encode(notes)
-            try data.write(to: savePath, options: [.atomic])
-        } catch {
-            print("Failed to save notes: \(error.localizedDescription)")
-        }
+    private func saveAndReload() {
+        try? modelContext.save()
+        loadNotes()
     }
 }

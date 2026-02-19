@@ -1,4 +1,5 @@
 import XCTest
+import SwiftData
 @testable import SimpleTextNotes
 
 final class NoteTests: XCTestCase {
@@ -22,44 +23,39 @@ final class NoteTests: XCTestCase {
         let date = Date()
         let note1 = Note(id: id, title: "A", content: "B", createdAt: date)
         let note2 = Note(id: id, title: "A", content: "B", createdAt: date)
-        XCTAssertEqual(note1, note2)
-    }
-
-    func testNoteCodable() throws {
-        let note = Note(title: "Coded", content: "Some content")
-        let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .iso8601
-        let data = try encoder.encode(note)
-
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
-        let decoded = try decoder.decode(Note.self, from: data)
-
-        XCTAssertEqual(note, decoded)
+        XCTAssertEqual(note1.id, note2.id)
+        XCTAssertEqual(note1.title, note2.title)
+        XCTAssertEqual(note1.content, note2.content)
     }
 }
 
+@MainActor
 final class NoteStoreTests: XCTestCase {
 
-    func testAddNote() {
-        let store = NoteStore()
-        let initialCount = store.notes.count
+    private func makeStore() throws -> NoteStore {
+        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+        let container = try ModelContainer(for: Note.self, configurations: config)
+        return NoteStore(modelContext: container.mainContext)
+    }
+
+    func testAddNote() throws {
+        let store = try makeStore()
+        XCTAssertEqual(store.notes.count, 0)
         _ = store.addNote()
-        XCTAssertEqual(store.notes.count, initialCount + 1)
+        XCTAssertEqual(store.notes.count, 1)
     }
 
-    func testDeleteNote() {
-        let store = NoteStore()
+    func testDeleteNote() throws {
+        let store = try makeStore()
         let note = store.addNote()
-        let countAfterAdd = store.notes.count
+        XCTAssertEqual(store.notes.count, 1)
         store.deleteNote(note)
-        XCTAssertEqual(store.notes.count, countAfterAdd - 1)
-        XCTAssertFalse(store.notes.contains(where: { $0.id == note.id }))
+        XCTAssertEqual(store.notes.count, 0)
     }
 
-    func testUpdateNote() {
-        let store = NoteStore()
-        var note = store.addNote()
+    func testUpdateNote() throws {
+        let store = try makeStore()
+        let note = store.addNote()
         note.title = "Updated Title"
         note.content = "Updated Content"
         store.updateNote(note)
@@ -69,12 +65,8 @@ final class NoteStoreTests: XCTestCase {
         XCTAssertEqual(updated?.content, "Updated Content")
     }
 
-    func testDeleteNoteAtOffsets() {
-        let store = NoteStore()
-        // Clear any existing notes by deleting them
-        while !store.notes.isEmpty {
-            store.deleteNote(at: IndexSet(integer: 0))
-        }
+    func testDeleteNoteAtOffsets() throws {
+        let store = try makeStore()
 
         _ = store.addNote()
         _ = store.addNote()
@@ -85,11 +77,8 @@ final class NoteStoreTests: XCTestCase {
         XCTAssertEqual(store.notes.count, 2)
     }
 
-    func testNewNoteInsertedAtTop() {
-        let store = NoteStore()
-        while !store.notes.isEmpty {
-            store.deleteNote(at: IndexSet(integer: 0))
-        }
+    func testNewNoteInsertedAtTop() throws {
+        let store = try makeStore()
 
         let first = store.addNote()
         let second = store.addNote()
