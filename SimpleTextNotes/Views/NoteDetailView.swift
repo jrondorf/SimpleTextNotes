@@ -12,6 +12,7 @@ struct NoteDetailView: View {
 
     @State private var title: String = ""
     @State private var content: String = ""
+    @State private var showPasteConfirmation: Bool = false
 
     private var note: Note? {
         store.notes.first { $0.id == noteID }
@@ -45,7 +46,7 @@ struct NoteDetailView: View {
             .toolbar {
                 ToolbarItemGroup(placement: .primaryAction) {
                     Button {
-                        pasteFromClipboard()
+                        showPasteConfirmation = true
                     } label: {
                         Label("Paste", systemImage: "doc.on.clipboard")
                     }
@@ -71,6 +72,14 @@ struct NoteDetailView: View {
             }
             .onChange(of: noteID) {
                 loadNote()
+            }
+            .alert("Paste from Clipboard", isPresented: $showPasteConfirmation) {
+                Button("Paste", role: .destructive) {
+                    pasteFromClipboard()
+                }
+                Button("Cancel", role: .cancel) { }
+            } message: {
+                Text("This will replace the current note content with the clipboard text.")
             }
         } else {
             ContentUnavailableView("No Note Selected", systemImage: "note.text", description: Text("Select a note from the list or create a new one."))

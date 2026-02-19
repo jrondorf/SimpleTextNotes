@@ -6,7 +6,8 @@ class NoteStore: ObservableObject {
     private let savePath: URL
 
     init() {
-        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+            ?? FileManager.default.temporaryDirectory
         savePath = documentsDirectory.appendingPathComponent("notes.json")
         loadNotes()
     }
