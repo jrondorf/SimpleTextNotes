@@ -38,11 +38,19 @@ class NoteStore {
 
     func loadNotes() {
         let descriptor = FetchDescriptor<Note>(sortBy: [SortDescriptor(\.createdAt, order: .reverse)])
-        notes = (try? modelContext.fetch(descriptor)) ?? []
+        do {
+            notes = try modelContext.fetch(descriptor)
+        } catch {
+            print("Failed to load notes: \(error.localizedDescription)")
+        }
     }
 
     private func saveAndReload() {
-        try? modelContext.save()
+        do {
+            try modelContext.save()
+        } catch {
+            print("Failed to save notes: \(error.localizedDescription)")
+        }
         loadNotes()
     }
 }
