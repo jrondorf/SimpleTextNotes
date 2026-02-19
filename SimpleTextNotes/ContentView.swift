@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var store = NoteStore()
+    var store: NoteStore
     @State private var selectedNoteID: UUID?
 
     var body: some View {

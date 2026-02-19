@@ -6,7 +6,7 @@ import AppKit
 #endif
 
 struct NoteDetailView: View {
-    @ObservedObject var store: NoteStore
+    var store: NoteStore
     @Binding var selectedNoteID: UUID?
     let noteID: UUID
 

@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct NoteListView: View {
-    @ObservedObject var store: NoteStore
+    var store: NoteStore
     @Binding var selectedNoteID: UUID?
 
     private let dateFormatter: DateFormatter = {
