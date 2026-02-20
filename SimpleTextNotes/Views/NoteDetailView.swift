@@ -93,7 +93,7 @@ struct NoteDetailView: View {
     }
 
     private func saveChanges() {
-        guard var note = note else { return }
+        guard let note = note else { return }
         note.title = title
         note.content = content
         store.updateNote(note)
