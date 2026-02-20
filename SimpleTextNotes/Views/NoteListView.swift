@@ -43,6 +43,7 @@ struct NoteListView: View {
                 } label: {
                     Label("New Note", systemImage: "square.and.pencil")
                 }
+                .keyboardShortcut("n", modifiers: .command)
             }
         }
     }
