@@ -5,6 +5,7 @@ struct NoteListView: View {
     @Query(sort: \Note.createdAt, order: .reverse) private var notes: [Note]
     @Environment(\.modelContext) private var modelContext
     @Binding var selectedNoteID: UUID?
+    @State private var lastSyncDate: Date? = nil
 
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -39,6 +40,9 @@ struct NoteListView: View {
             }
         }
         .navigationTitle("Notes")
+        .refreshable {
+            await refreshNotes()
+        }
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button {
@@ -51,5 +55,11 @@ struct NoteListView: View {
                 .keyboardShortcut("n", modifiers: .command)
             }
         }
+    }
+
+    @MainActor private func refreshNotes() async {
+        try? modelContext.save()
+        try? await Task.sleep(nanoseconds: 1_000_000_000)
+        lastSyncDate = Date()
     }
 }
