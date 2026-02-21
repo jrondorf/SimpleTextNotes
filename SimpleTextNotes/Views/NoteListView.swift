@@ -1,7 +1,9 @@
 import SwiftUI
+import SwiftData
 
 struct NoteListView: View {
-    var store: NoteStore
+    @Query(sort: \Note.createdAt, order: .reverse) private var notes: [Note]
+    @Environment(\.modelContext) private var modelContext
     @Binding var selectedNoteID: UUID?
 
     private let dateFormatter: DateFormatter = {
@@ -13,7 +15,7 @@ struct NoteListView: View {
 
     var body: some View {
         List(selection: $selectedNoteID) {
-            ForEach(store.notes) { note in
+            ForEach(notes) { note in
                 NavigationLink(value: note.id) {
                     VStack(alignment: .leading, spacing: 4) {
                         Text(note.title.isEmpty ? "Untitled" : note.title)
@@ -27,18 +29,21 @@ struct NoteListView: View {
                 }
             }
             .onDelete { offsets in
-                let deletedIDs = offsets.map { store.notes[$0].id }
+                let deletedIDs = offsets.map { notes[$0].id }
                 if let selected = selectedNoteID, deletedIDs.contains(selected) {
                     selectedNoteID = nil
                 }
-                store.deleteNote(at: offsets)
+                for index in offsets {
+                    modelContext.delete(notes[index])
+                }
             }
         }
         .navigationTitle("Notes")
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button {
-                    let note = store.addNote()
+                    let note = Note()
+                    modelContext.insert(note)
                     selectedNoteID = note.id
                 } label: {
                     Label("New Note", systemImage: "square.and.pencil")

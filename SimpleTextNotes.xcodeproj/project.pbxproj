@@ -10,7 +10,6 @@
 		AA000001001 /* SimpleTextNotesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000002001 /* SimpleTextNotesApp.swift */; };
 		AA000001002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000002002 /* ContentView.swift */; };
 		AA000001003 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000002003 /* Note.swift */; };
-		AA000001004 /* NoteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000002004 /* NoteStore.swift */; };
 		AA000001005 /* NoteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000002005 /* NoteListView.swift */; };
 		AA000001006 /* NoteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000002006 /* NoteDetailView.swift */; };
 		AA000001007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA000002007 /* Assets.xcassets */; };
@@ -32,7 +31,6 @@
 		AA000002001 /* SimpleTextNotesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTextNotesApp.swift; sourceTree = "<group>"; };
 		AA000002002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AA000002003 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
-		AA000002004 /* NoteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteStore.swift; sourceTree = "<group>"; };
 		AA000002005 /* NoteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListView.swift; sourceTree = "<group>"; };
 		AA000002006 /* NoteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailView.swift; sourceTree = "<group>"; };
 		AA000002007 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -76,7 +74,6 @@
 				AA000002001 /* SimpleTextNotesApp.swift */,
 				AA000002002 /* ContentView.swift */,
 				AA000003004 /* Models */,
-				AA000003005 /* ViewModels */,
 				AA000003006 /* Views */,
 				AA000002007 /* Assets.xcassets */,
 				AA000002011 /* SimpleTextNotes.entitlements */,
@@ -99,14 +96,6 @@
 				AA000002003 /* Note.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		AA000003005 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				AA000002004 /* NoteStore.swift */,
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		AA000003006 /* Views */ = {
@@ -220,7 +209,6 @@
 				AA000001001 /* SimpleTextNotesApp.swift in Sources */,
 				AA000001002 /* ContentView.swift in Sources */,
 				AA000001003 /* Note.swift in Sources */,
-				AA000001004 /* NoteStore.swift in Sources */,
 				AA000001005 /* NoteListView.swift in Sources */,
 				AA000001006 /* NoteDetailView.swift in Sources */,
 			);

@@ -10,7 +10,7 @@ A simple plain text note-taking app built with SwiftUI for iOS, iPadOS, and macO
 - **Swipe to Delete** — Swipe a note in the list to delete it.
 - **Delete from Detail** — Delete the current note using the toolbar trash button.
 - **Copy & Paste** — Toolbar buttons to copy note text to clipboard or paste clipboard contents into the note.
-- **Persistence** — Notes are saved as JSON to the app's Documents directory.
+- **Persistence** — Notes are stored using SwiftData with automatic iCloud sync via CloudKit.
 
 ## Requirements
 
@@ -28,8 +28,6 @@ SimpleTextNotes/
 │   ├── ContentView.swift            # Main NavigationSplitView
 │   ├── Models/
 │   │   └── Note.swift               # Note data model
-│   ├── ViewModels/
-│   │   └── NoteStore.swift          # Note persistence & management
 │   ├── Views/
 │   │   ├── NoteListView.swift       # Master list view
 │   │   └── NoteDetailView.swift     # Detail editor view

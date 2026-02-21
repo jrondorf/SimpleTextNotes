@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 #if canImport(UIKit)
 import UIKit
 #elseif canImport(AppKit)
@@ -6,118 +7,78 @@ import AppKit
 #endif
 
 struct NoteDetailView: View {
-    var store: NoteStore
+    @Bindable var note: Note
     @Binding var selectedNoteID: UUID?
-    let noteID: UUID
-
-    @State private var title: String = ""
-    @State private var content: String = ""
+    @Environment(\.modelContext) private var modelContext
     @State private var showPasteConfirmation: Bool = false
 
-    private var note: Note? {
-        store.notes.first { $0.id == noteID }
-    }
-
     var body: some View {
-        if note != nil {
-            VStack(spacing: 0) {
-                TextField("Title", text: $title)
-                    .font(.title2.bold())
-                    .textFieldStyle(.plain)
-                    .padding()
-                    .onChange(of: title) {
-                        saveChanges()
-                    }
+        VStack(spacing: 0) {
+            TextField("Title", text: $note.title)
+                .font(.title2.bold())
+                .textFieldStyle(.plain)
+                .padding()
 
-                Divider()
+            Divider()
 
-                TextEditor(text: $content)
-                    .font(.body)
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 8)
-                    .onChange(of: content) {
-                        saveChanges()
-                    }
-            }
-            .navigationTitle(title.isEmpty ? "Untitled" : title)
-            #if os(iOS)
-            .navigationBarTitleDisplayMode(.inline)
-            #endif
-            .toolbar {
-                ToolbarItemGroup(placement: .primaryAction) {
-                    Button {
-                        showPasteConfirmation = true
-                    } label: {
-                        Label("Paste", systemImage: "doc.on.clipboard")
-                    }
-
-                    Button {
-                        copyToClipboard()
-                    } label: {
-                        Label("Copy", systemImage: "doc.on.doc")
-                    }
-
-                    Button(role: .destructive) {
-                        if let note = note {
-                            selectedNoteID = nil
-                            store.deleteNote(note)
-                        }
-                    } label: {
-                        Label("Delete", systemImage: "trash")
-                    }
-                }
-            }
-            .onAppear {
-                loadNote()
-            }
-            .onChange(of: noteID) {
-                loadNote()
-            }
-            .alert("Paste from Clipboard", isPresented: $showPasteConfirmation) {
-                Button("Paste", role: .destructive) {
-                    pasteFromClipboard()
-                }
-                Button("Cancel", role: .cancel) { }
-            } message: {
-                Text("This will replace the current note content with the clipboard text.")
-            }
-        } else {
-            ContentUnavailableView("No Note Selected", systemImage: "note.text", description: Text("Select a note from the list or create a new one."))
+            TextEditor(text: $note.content)
+                .font(.body)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 8)
         }
-    }
+        .navigationTitle(note.title.isEmpty ? "Untitled" : note.title)
+        #if os(iOS)
+        .navigationBarTitleDisplayMode(.inline)
+        #endif
+        .toolbar {
+            ToolbarItemGroup(placement: .primaryAction) {
+                Button {
+                    showPasteConfirmation = true
+                } label: {
+                    Label("Paste", systemImage: "doc.on.clipboard")
+                }
 
-    private func loadNote() {
-        guard let note = note else { return }
-        title = note.title
-        content = note.content
-    }
+                Button {
+                    copyToClipboard()
+                } label: {
+                    Label("Copy", systemImage: "doc.on.doc")
+                }
 
-    private func saveChanges() {
-        guard let note = note else { return }
-        note.title = title
-        note.content = content
-        store.updateNote(note)
+                Button(role: .destructive) {
+                    selectedNoteID = nil
+                    modelContext.delete(note)
+                } label: {
+                    Label("Delete", systemImage: "trash")
+                }
+            }
+        }
+        .alert("Paste from Clipboard", isPresented: $showPasteConfirmation) {
+            Button("Paste", role: .destructive) {
+                pasteFromClipboard()
+            }
+            Button("Cancel", role: .cancel) { }
+        } message: {
+            Text("This will replace the current note content with the clipboard text.")
+        }
     }
 
     private func copyToClipboard() {
         #if canImport(UIKit)
-        UIPasteboard.general.string = content
+        UIPasteboard.general.string = note.content
         #elseif canImport(AppKit)
         NSPasteboard.general.clearContents()
-        NSPasteboard.general.setString(content, forType: .string)
+        NSPasteboard.general.setString(note.content, forType: .string)
         #endif
     }
 
     private func pasteFromClipboard() {
         #if canImport(UIKit)
         if let text = UIPasteboard.general.string {
-            content = text
-            saveChanges()
+            note.content = text
         }
         #elseif canImport(AppKit)
         if let text = NSPasteboard.general.string(forType: .string) {
-            content = text
-            saveChanges()
+            note.content = text
         }
         #endif
     }
