@@ -4,15 +4,12 @@ import SwiftData
 @main
 struct SimpleTextNotesApp: App {
     let modelContainer: ModelContainer
-    @State private var noteStore: NoteStore
 
     init() {
         let schema = Schema([Note.self])
         let modelConfiguration = ModelConfiguration(schema: schema, cloudKitDatabase: .automatic)
         do {
-            let container = try ModelContainer(for: schema, configurations: [modelConfiguration])
-            self.modelContainer = container
-            self._noteStore = State(initialValue: NoteStore(modelContext: container.mainContext))
+            self.modelContainer = try ModelContainer(for: schema, configurations: [modelConfiguration])
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
         }
@@ -20,7 +17,7 @@ struct SimpleTextNotesApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView(store: noteStore)
+            ContentView()
         }
         .modelContainer(modelContainer)
     }

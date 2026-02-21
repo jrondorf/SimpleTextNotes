@@ -27,63 +27,58 @@ final class NoteTests: XCTestCase {
         XCTAssertEqual(note1.title, note2.title)
         XCTAssertEqual(note1.content, note2.content)
     }
-}
 
-@MainActor
-final class NoteStoreTests: XCTestCase {
-
-    private func makeStore() throws -> NoteStore {
+    @MainActor
+    func testInsertAndFetchNote() throws {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
         let container = try ModelContainer(for: Note.self, configurations: config)
-        return NoteStore(modelContext: container.mainContext)
+        let context = container.mainContext
+
+        let note = Note(title: "SwiftData Test", content: "Content")
+        context.insert(note)
+        try context.save()
+
+        let descriptor = FetchDescriptor<Note>(sortBy: [SortDescriptor(\.createdAt, order: .reverse)])
+        let notes = try context.fetch(descriptor)
+        XCTAssertEqual(notes.count, 1)
+        XCTAssertEqual(notes.first?.title, "SwiftData Test")
     }
 
-    func testAddNote() throws {
-        let store = try makeStore()
-        XCTAssertEqual(store.notes.count, 0)
-        _ = store.addNote()
-        XCTAssertEqual(store.notes.count, 1)
-    }
-
+    @MainActor
     func testDeleteNote() throws {
-        let store = try makeStore()
-        let note = store.addNote()
-        XCTAssertEqual(store.notes.count, 1)
-        store.deleteNote(note)
-        XCTAssertEqual(store.notes.count, 0)
+        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+        let container = try ModelContainer(for: Note.self, configurations: config)
+        let context = container.mainContext
+
+        let note = Note(title: "To Delete", content: "Content")
+        context.insert(note)
+        try context.save()
+
+        context.delete(note)
+        try context.save()
+
+        let descriptor = FetchDescriptor<Note>()
+        let notes = try context.fetch(descriptor)
+        XCTAssertEqual(notes.count, 0)
     }
 
+    @MainActor
     func testUpdateNote() throws {
-        let store = try makeStore()
-        let note = store.addNote()
+        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+        let container = try ModelContainer(for: Note.self, configurations: config)
+        let context = container.mainContext
+
+        let note = Note(title: "Original", content: "Content")
+        context.insert(note)
+        try context.save()
+
         note.title = "Updated Title"
         note.content = "Updated Content"
-        store.updateNote(note)
+        try context.save()
 
-        let updated = store.notes.first { $0.id == note.id }
-        XCTAssertEqual(updated?.title, "Updated Title")
-        XCTAssertEqual(updated?.content, "Updated Content")
-    }
-
-    func testDeleteNoteAtOffsets() throws {
-        let store = try makeStore()
-
-        _ = store.addNote()
-        _ = store.addNote()
-        _ = store.addNote()
-
-        XCTAssertEqual(store.notes.count, 3)
-        store.deleteNote(at: IndexSet(integer: 1))
-        XCTAssertEqual(store.notes.count, 2)
-    }
-
-    func testNewNoteInsertedAtTop() throws {
-        let store = try makeStore()
-
-        let first = store.addNote()
-        let second = store.addNote()
-
-        XCTAssertEqual(store.notes.first?.id, second.id)
-        XCTAssertEqual(store.notes.last?.id, first.id)
+        let descriptor = FetchDescriptor<Note>()
+        let notes = try context.fetch(descriptor)
+        XCTAssertEqual(notes.first?.title, "Updated Title")
+        XCTAssertEqual(notes.first?.content, "Updated Content")
     }
 }
