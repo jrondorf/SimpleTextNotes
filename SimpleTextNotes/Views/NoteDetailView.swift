@@ -33,16 +33,18 @@ struct NoteDetailView: View {
         .toolbar {
             ToolbarItemGroup(placement: .primaryAction) {
                 Button {
-                    showPasteConfirmation = true
-                } label: {
-                    Label("Paste", systemImage: "doc.on.clipboard")
-                }
-
-                Button {
                     copyToClipboard()
                 } label: {
                     Label("Copy", systemImage: "doc.on.doc")
                 }
+                .help("Copy")
+
+                Button {
+                    showPasteConfirmation = true
+                } label: {
+                    Label("Paste", systemImage: "doc.on.clipboard")
+                }
+                .help("Paste")
 
                 Button(role: .destructive) {
                     selectedNoteID = nil
@@ -50,6 +52,7 @@ struct NoteDetailView: View {
                 } label: {
                     Label("Delete", systemImage: "trash")
                 }
+                .help("Delete")
             }
         }
         .alert("Paste from Clipboard", isPresented: $showPasteConfirmation) {
