@@ -10,6 +10,8 @@ final class NoteTests: XCTestCase {
         XCTAssertEqual(note.content, "Hello")
         XCTAssertNotNil(note.id)
         XCTAssertNotNil(note.createdAt)
+        XCTAssertNotNil(note.updatedAt)
+        XCTAssertEqual(note.createdAt, note.updatedAt)
     }
 
     func testNoteDefaultValues() {
@@ -63,22 +65,26 @@ final class NoteTests: XCTestCase {
     }
 
     @MainActor
-    func testUpdateNote() throws {
+    func testUpdateNoteUpdatesTimestamp() throws {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
         let container = try ModelContainer(for: Note.self, configurations: config)
         let context = container.mainContext
 
-        let note = Note(title: "Original", content: "Content")
+        let createdAt = Date(timeIntervalSinceNow: -60)
+        let note = Note(title: "Original", content: "Content", createdAt: createdAt)
         context.insert(note)
         try context.save()
 
+        let updatedAt = Date()
         note.title = "Updated Title"
-        note.content = "Updated Content"
+        note.updatedAt = updatedAt
         try context.save()
 
         let descriptor = FetchDescriptor<Note>()
         let notes = try context.fetch(descriptor)
-        XCTAssertEqual(notes.first?.title, "Updated Title")
-        XCTAssertEqual(notes.first?.content, "Updated Content")
+        let fetched = try XCTUnwrap(notes.first)
+        XCTAssertEqual(fetched.title, "Updated Title")
+        XCTAssertEqual(fetched.createdAt, createdAt)
+        XCTAssertGreaterThanOrEqual(fetched.updatedAt, updatedAt)
     }
 }

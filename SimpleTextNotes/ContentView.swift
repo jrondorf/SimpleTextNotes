@@ -2,7 +2,7 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @Query(sort: \Note.createdAt, order: .reverse) private var notes: [Note]
+    @Query(sort: \Note.updatedAt, order: .reverse) private var notes: [Note]
     @State private var selectedNoteID: UUID?
 
     var body: some View {

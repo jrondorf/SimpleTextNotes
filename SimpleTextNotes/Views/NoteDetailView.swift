@@ -30,6 +30,8 @@ struct NoteDetailView: View {
         #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
         #endif
+        .onChange(of: note.title) { note.updatedAt = Date() }
+        .onChange(of: note.content) { note.updatedAt = Date() }
         .toolbar {
             ToolbarItemGroup(placement: .primaryAction) {
                 Button {

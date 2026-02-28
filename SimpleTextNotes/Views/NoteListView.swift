@@ -2,10 +2,9 @@ import SwiftUI
 import SwiftData
 
 struct NoteListView: View {
-    @Query(sort: \Note.createdAt, order: .reverse) private var notes: [Note]
+    @Query(sort: \Note.updatedAt, order: .reverse) private var notes: [Note]
     @Environment(\.modelContext) private var modelContext
     @Binding var selectedNoteID: UUID?
-    @State private var lastSyncDate: Date? = nil
     @State private var searchText: String = ""
 
     private var filteredNotes: [Note] {
@@ -16,7 +15,7 @@ struct NoteListView: View {
         }
     }
 
-    private let dateFormatter: DateFormatter = {
+    private static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
@@ -31,7 +30,7 @@ struct NoteListView: View {
                         Text(note.title.isEmpty ? "Untitled" : note.title)
                             .font(.headline)
                             .lineLimit(1)
-                        Text(dateFormatter.string(from: note.createdAt))
+                        Text(Self.dateFormatter.string(from: note.updatedAt))
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }
@@ -51,7 +50,7 @@ struct NoteListView: View {
         .navigationTitle("Notes")
         .searchable(text: $searchText, prompt: "Search notes")
         .refreshable {
-            await refreshNotes()
+            try? modelContext.save()
         }
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
@@ -66,11 +65,5 @@ struct NoteListView: View {
                 .keyboardShortcut("n", modifiers: .command)
             }
         }
-    }
-
-    @MainActor private func refreshNotes() async {
-        try? modelContext.save()
-        try? await Task.sleep(nanoseconds: 1_000_000_000)
-        lastSyncDate = Date()
     }
 }
