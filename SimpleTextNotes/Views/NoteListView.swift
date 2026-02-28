@@ -6,6 +6,15 @@ struct NoteListView: View {
     @Environment(\.modelContext) private var modelContext
     @Binding var selectedNoteID: UUID?
     @State private var lastSyncDate: Date? = nil
+    @State private var searchText: String = ""
+
+    private var filteredNotes: [Note] {
+        guard !searchText.isEmpty else { return notes }
+        return notes.filter {
+            $0.title.localizedCaseInsensitiveContains(searchText) ||
+            $0.content.localizedCaseInsensitiveContains(searchText)
+        }
+    }
 
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -16,7 +25,7 @@ struct NoteListView: View {
 
     var body: some View {
         List(selection: $selectedNoteID) {
-            ForEach(notes) { note in
+            ForEach(filteredNotes) { note in
                 NavigationLink(value: note.id) {
                     VStack(alignment: .leading, spacing: 4) {
                         Text(note.title.isEmpty ? "Untitled" : note.title)
@@ -30,16 +39,17 @@ struct NoteListView: View {
                 }
             }
             .onDelete { offsets in
-                let deletedIDs = offsets.map { notes[$0].id }
+                let deletedIDs = offsets.map { filteredNotes[$0].id }
                 if let selected = selectedNoteID, deletedIDs.contains(selected) {
                     selectedNoteID = nil
                 }
-                for index in offsets {
-                    modelContext.delete(notes[index])
+                for index in offsets.sorted().reversed() {
+                    modelContext.delete(filteredNotes[index])
                 }
             }
         }
         .navigationTitle("Notes")
+        .searchable(text: $searchText, prompt: "Search notes")
         .refreshable {
             await refreshNotes()
         }
