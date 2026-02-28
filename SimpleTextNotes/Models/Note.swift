@@ -3,7 +3,7 @@ import SwiftData
 
 @Model
 class Note {
-    @Attribute(.unique) var id: UUID = UUID()
+    var id: UUID = UUID()
     var title: String = ""
     var content: String = ""
     var createdAt: Date = Date()

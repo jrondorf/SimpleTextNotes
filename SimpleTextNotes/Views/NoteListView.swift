@@ -48,7 +48,7 @@ struct NoteListView: View {
             }
         }
         .navigationTitle("Notes")
-        .searchable(text: $searchText, prompt: "Search notes")
+        .searchable(text: $searchText, placement: .toolbar, prompt: "Search notes")
         .refreshable {
             try? modelContext.save()
         }
