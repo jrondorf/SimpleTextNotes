@@ -3,10 +3,11 @@ import SwiftData
 
 @Model
 class Note {
-    var id: UUID = UUID()
+    @Attribute(.unique) var id: UUID = UUID()
     var title: String = ""
     var content: String = ""
     var createdAt: Date = Date()
+    var updatedAt: Date = Date()
 
     init(
         id: UUID = UUID(),
@@ -18,5 +19,6 @@ class Note {
         self.title = title
         self.content = content
         self.createdAt = createdAt
+        self.updatedAt = createdAt
     }
 }
