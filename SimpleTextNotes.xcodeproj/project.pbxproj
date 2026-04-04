@@ -27,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F3FE7972F814880005FB085 /* SimpleTextNotesRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SimpleTextNotesRelease.entitlements; sourceTree = "<group>"; };
 		1F97346D2F48EB2200789962 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AA000002001 /* SimpleTextNotesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTextNotesApp.swift; sourceTree = "<group>"; };
 		AA000002002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -70,6 +71,7 @@
 		AA000003002 /* SimpleTextNotes */ = {
 			isa = PBXGroup;
 			children = (
+				1F3FE7972F814880005FB085 /* SimpleTextNotesRelease.entitlements */,
 				1F97346D2F48EB2200789962 /* Info.plist */,
 				AA000002001 /* SimpleTextNotesApp.swift */,
 				AA000002002 /* ContentView.swift */,
@@ -397,7 +399,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = SimpleTextNotes/SimpleTextNotes.entitlements;
+				CODE_SIGN_ENTITLEMENTS = SimpleTextNotes/SimpleTextNotesRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
