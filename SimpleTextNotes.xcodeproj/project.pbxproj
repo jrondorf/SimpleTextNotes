@@ -27,7 +27,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1F3FE7972F814880005FB085 /* SimpleTextNotesRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SimpleTextNotesRelease.entitlements; sourceTree = "<group>"; };
 		1F97346D2F48EB2200789962 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AA000002001 /* SimpleTextNotesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTextNotesApp.swift; sourceTree = "<group>"; };
 		AA000002002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -71,7 +70,6 @@
 		AA000003002 /* SimpleTextNotes */ = {
 			isa = PBXGroup;
 			children = (
-				1F3FE7972F814880005FB085 /* SimpleTextNotesRelease.entitlements */,
 				1F97346D2F48EB2200789962 /* Info.plist */,
 				AA000002001 /* SimpleTextNotesApp.swift */,
 				AA000002002 /* ContentView.swift */,
@@ -368,7 +366,7 @@
 				DEVELOPMENT_TEAM = BHQVWR45JX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SimpleTextNotes/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Simple Text Notes";
+				INFOPLIST_KEY_CFBundleDisplayName = "Simple Text Notes 2";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -383,8 +381,8 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.3.2;
-				PRODUCT_BUNDLE_IDENTIFIER = de.futural.simpletextnotes;
+				MARKETING_VERSION = 2.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.futural.simpletextnotes.v2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -409,7 +407,7 @@
 				DEVELOPMENT_TEAM = BHQVWR45JX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SimpleTextNotes/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Simple Text Notes";
+				INFOPLIST_KEY_CFBundleDisplayName = "Simple Text Notes 2";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -424,8 +422,8 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.3.2;
-				PRODUCT_BUNDLE_IDENTIFIER = de.futural.simpletextnotes;
+				MARKETING_VERSION = 2.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.futural.simpletextnotes.v2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
