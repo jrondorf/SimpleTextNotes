@@ -7,7 +7,9 @@ struct SimpleTextNotesApp: App {
 
     init() {
         let schema = Schema([Note.self])
-        let modelConfiguration = ModelConfiguration(schema: schema, cloudKitDatabase: .automatic)
+        //let modelConfiguration = ModelConfiguration(schema: schema, cloudKitDatabase: .automatic)
+        let modelConfiguration = ModelConfiguration(schema: schema, cloudKitDatabase: .private("iCloud.de.futural.simpletextnotes.v2"))
+
         do {
             self.modelContainer = try ModelContainer(for: schema, configurations: [modelConfiguration])
         } catch {
