@@ -14,6 +14,8 @@
 		AA000001006 /* NoteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000002006 /* NoteDetailView.swift */; };
 		AA000001007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA000002007 /* Assets.xcassets */; };
 		AA000001008 /* SimpleTextNotesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000002008 /* SimpleTextNotesTests.swift */; };
+		AA000001009 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000002012 /* SettingsView.swift */; };
+		AA000001010 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AA000002013 /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,8 @@
 		AA000002009 /* SimpleTextNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleTextNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA000002010 /* SimpleTextNotesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleTextNotesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA000002011 /* SimpleTextNotes.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SimpleTextNotes.entitlements; sourceTree = "<group>"; };
+		AA000002012 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		AA000002013 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,7 @@
 				AA000003006 /* Views */,
 				AA000002007 /* Assets.xcassets */,
 				AA000002011 /* SimpleTextNotes.entitlements */,
+				AA000002013 /* Settings.bundle */,
 			);
 			path = SimpleTextNotes;
 			sourceTree = "<group>";
@@ -103,6 +108,7 @@
 			children = (
 				AA000002005 /* NoteListView.swift */,
 				AA000002006 /* NoteDetailView.swift */,
+				AA000002012 /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -196,6 +202,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA000001007 /* Assets.xcassets in Resources */,
+				AA000001010 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,6 +218,7 @@
 				AA000001003 /* Note.swift in Sources */,
 				AA000001005 /* NoteListView.swift in Sources */,
 				AA000001006 /* NoteDetailView.swift in Sources */,
+				AA000001009 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,7 +374,7 @@
 				DEVELOPMENT_TEAM = BHQVWR45JX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SimpleTextNotes/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Simple Text Notes 2";
+				INFOPLIST_KEY_CFBundleDisplayName = "Simple Text Notes";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -381,7 +389,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.3.4;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = de.futural.simpletextnotes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -407,7 +415,7 @@
 				DEVELOPMENT_TEAM = BHQVWR45JX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SimpleTextNotes/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Simple Text Notes 2";
+				INFOPLIST_KEY_CFBundleDisplayName = "Simple Text Notes";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -422,7 +430,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.3.4;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = de.futural.simpletextnotes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -11,6 +11,16 @@ struct NoteDetailView: View {
     @Binding var selectedNoteID: UUID?
     @Environment(\.modelContext) private var modelContext
     @State private var showPasteConfirmation: Bool = false
+    @AppStorage("editorFontName") private var editorFontName: String = "system"
+    @AppStorage("editorFontSize") private var editorFontSize: Double = 16.0
+
+    private var editorFont: Font {
+        switch editorFontName {
+        case "monospaced": return .system(size: editorFontSize, design: .monospaced)
+        case "serif": return .system(size: editorFontSize, design: .serif)
+        default: return .system(size: editorFontSize)
+        }
+    }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -22,7 +32,7 @@ struct NoteDetailView: View {
             Divider()
 
             TextEditor(text: $note.content)
-                .font(.body)
+                .font(editorFont)
                 .padding(.horizontal, 12)
                 .padding(.vertical, 8)
         }
