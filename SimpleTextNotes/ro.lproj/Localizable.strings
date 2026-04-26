@@ -1,0 +1,77 @@
+/* Fallback title for notes with no title */
+"untitled_note" = "Fără titlu";
+
+/* Navigation title for the notes list */
+"notes_navigation_title" = "Note";
+
+/* Placeholder text for the search field */
+"search_notes_prompt" = "Caută note";
+
+/* Label and help text for the new note button */
+"new_note_button" = "Notă nouă";
+
+/* Placeholder text for the note title field */
+"note_title_placeholder" = "Titlu";
+
+/* Label and help text for the copy button */
+"copy_button" = "Copiază";
+
+/* Label and help text for the paste button */
+"paste_button" = "Lipește";
+
+/* Label and help text for the delete button */
+"delete_button" = "Șterge";
+
+/* Title of the paste-from-clipboard confirmation alert */
+"paste_from_clipboard_alert_title" = "Lipire din clipboard";
+
+/* Action button in the paste confirmation alert */
+"paste_alert_action" = "Lipește";
+
+/* Cancel button */
+"cancel_button" = "Anulează";
+
+/* Body text of the paste confirmation alert */
+"paste_clipboard_message" = "Conținutul actual al notei va fi înlocuit cu textul din clipboard.";
+
+/* Title shown when no note is selected */
+"no_note_selected_title" = "Nicio notă selectată";
+
+/* Description shown when no note is selected */
+"no_note_selected_description" = "Selectează o notă din listă sau creează una nouă.";
+
+/* Label and help text for the settings button */
+"settings_button" = "Setări";
+
+/* Done/dismiss button */
+"done_button" = "Gata";
+
+/* Label for the font style picker */
+"font_style_picker" = "Stil font";
+
+/* System font option */
+"system_font_option" = "Sistem";
+
+/* Monospaced font option */
+"monospaced_font_option" = "Monospațiat";
+
+/* Serif font option */
+"serif_font_option" = "Cu serife";
+
+/* Label for the font size picker */
+"font_size_picker" = "Dimensiune font";
+
+/* Small font size option */
+"font_size_small" = "Mic (14)";
+
+/* Medium font size option */
+"font_size_medium" = "Mediu (16)";
+
+/* Large font size option */
+"font_size_large" = "Mare (18)";
+
+/* Extra large font size option */
+"font_size_extra_large" = "Foarte mare (20)";
+
+/* Navigation title for the editor font settings screen */
+"editor_font_navigation_title" = "Font editor";

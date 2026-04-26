@@ -1,0 +1,77 @@
+/* Fallback title for notes with no title */
+"untitled_note" = "Bez názvu";
+
+/* Navigation title for the notes list */
+"notes_navigation_title" = "Poznámky";
+
+/* Placeholder text for the search field */
+"search_notes_prompt" = "Hledat poznámky";
+
+/* Label and help text for the new note button */
+"new_note_button" = "Nová poznámka";
+
+/* Placeholder text for the note title field */
+"note_title_placeholder" = "Název";
+
+/* Label and help text for the copy button */
+"copy_button" = "Kopírovat";
+
+/* Label and help text for the paste button */
+"paste_button" = "Vložit";
+
+/* Label and help text for the delete button */
+"delete_button" = "Smazat";
+
+/* Title of the paste-from-clipboard confirmation alert */
+"paste_from_clipboard_alert_title" = "Vložit ze schránky";
+
+/* Action button in the paste confirmation alert */
+"paste_alert_action" = "Vložit";
+
+/* Cancel button */
+"cancel_button" = "Zrušit";
+
+/* Body text of the paste confirmation alert */
+"paste_clipboard_message" = "Aktuální obsah poznámky bude nahrazen textem ze schránky.";
+
+/* Title shown when no note is selected */
+"no_note_selected_title" = "Nebyla vybrána žádná poznámka";
+
+/* Description shown when no note is selected */
+"no_note_selected_description" = "Vyberte poznámku ze seznamu nebo vytvořte novou.";
+
+/* Label and help text for the settings button */
+"settings_button" = "Nastavení";
+
+/* Done/dismiss button */
+"done_button" = "Hotovo";
+
+/* Label for the font style picker */
+"font_style_picker" = "Styl písma";
+
+/* System font option */
+"system_font_option" = "Systémové";
+
+/* Monospaced font option */
+"monospaced_font_option" = "Neproporcionální";
+
+/* Serif font option */
+"serif_font_option" = "Serifové";
+
+/* Label for the font size picker */
+"font_size_picker" = "Velikost písma";
+
+/* Small font size option */
+"font_size_small" = "Malé (14)";
+
+/* Medium font size option */
+"font_size_medium" = "Střední (16)";
+
+/* Large font size option */
+"font_size_large" = "Velké (18)";
+
+/* Extra large font size option */
+"font_size_extra_large" = "Velmi velké (20)";
+
+/* Navigation title for the editor font settings screen */
+"editor_font_navigation_title" = "Písmo editoru";

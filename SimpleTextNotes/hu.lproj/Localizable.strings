@@ -1,0 +1,77 @@
+/* Fallback title for notes with no title */
+"untitled_note" = "Cím nélkül";
+
+/* Navigation title for the notes list */
+"notes_navigation_title" = "Jegyzetek";
+
+/* Placeholder text for the search field */
+"search_notes_prompt" = "Keresés a jegyzetek között";
+
+/* Label and help text for the new note button */
+"new_note_button" = "Új jegyzet";
+
+/* Placeholder text for the note title field */
+"note_title_placeholder" = "Cím";
+
+/* Label and help text for the copy button */
+"copy_button" = "Másolás";
+
+/* Label and help text for the paste button */
+"paste_button" = "Beillesztés";
+
+/* Label and help text for the delete button */
+"delete_button" = "Törlés";
+
+/* Title of the paste-from-clipboard confirmation alert */
+"paste_from_clipboard_alert_title" = "Beillesztés a vágólapról";
+
+/* Action button in the paste confirmation alert */
+"paste_alert_action" = "Beillesztés";
+
+/* Cancel button */
+"cancel_button" = "Mégse";
+
+/* Body text of the paste confirmation alert */
+"paste_clipboard_message" = "A jelenlegi jegyzet tartalma felülíródik a vágólapon lévő szöveggel.";
+
+/* Title shown when no note is selected */
+"no_note_selected_title" = "Nincs kiválasztott jegyzet";
+
+/* Description shown when no note is selected */
+"no_note_selected_description" = "Válasszon egy jegyzetet a listából, vagy hozzon létre egy újat.";
+
+/* Label and help text for the settings button */
+"settings_button" = "Beállítások";
+
+/* Done/dismiss button */
+"done_button" = "Kész";
+
+/* Label for the font style picker */
+"font_style_picker" = "Betűstílus";
+
+/* System font option */
+"system_font_option" = "Rendszer";
+
+/* Monospaced font option */
+"monospaced_font_option" = "Rögzített szélességű";
+
+/* Serif font option */
+"serif_font_option" = "Talpas";
+
+/* Label for the font size picker */
+"font_size_picker" = "Betűméret";
+
+/* Small font size option */
+"font_size_small" = "Kis (14)";
+
+/* Medium font size option */
+"font_size_medium" = "Közepes (16)";
+
+/* Large font size option */
+"font_size_large" = "Nagy (18)";
+
+/* Extra large font size option */
+"font_size_extra_large" = "Nagyon nagy (20)";
+
+/* Navigation title for the editor font settings screen */
+"editor_font_navigation_title" = "Szerkesztő betűtípusa";

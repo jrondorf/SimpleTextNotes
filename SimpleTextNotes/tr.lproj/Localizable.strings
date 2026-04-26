@@ -1,0 +1,77 @@
+/* Fallback title for notes with no title */
+"untitled_note" = "Başlıksız";
+
+/* Navigation title for the notes list */
+"notes_navigation_title" = "Notlar";
+
+/* Placeholder text for the search field */
+"search_notes_prompt" = "Notlarda ara";
+
+/* Label and help text for the new note button */
+"new_note_button" = "Yeni Not";
+
+/* Placeholder text for the note title field */
+"note_title_placeholder" = "Başlık";
+
+/* Label and help text for the copy button */
+"copy_button" = "Kopyala";
+
+/* Label and help text for the paste button */
+"paste_button" = "Yapıştır";
+
+/* Label and help text for the delete button */
+"delete_button" = "Sil";
+
+/* Title of the paste-from-clipboard confirmation alert */
+"paste_from_clipboard_alert_title" = "Panodan Yapıştır";
+
+/* Action button in the paste confirmation alert */
+"paste_alert_action" = "Yapıştır";
+
+/* Cancel button */
+"cancel_button" = "İptal";
+
+/* Body text of the paste confirmation alert */
+"paste_clipboard_message" = "Bu işlem, mevcut not içeriğini panodaki metinle değiştirecektir.";
+
+/* Title shown when no note is selected */
+"no_note_selected_title" = "Not Seçilmedi";
+
+/* Description shown when no note is selected */
+"no_note_selected_description" = "Listeden bir not seçin veya yeni bir tane oluşturun.";
+
+/* Label and help text for the settings button */
+"settings_button" = "Ayarlar";
+
+/* Done/dismiss button */
+"done_button" = "Tamam";
+
+/* Label for the font style picker */
+"font_style_picker" = "Yazı Tipi Stili";
+
+/* System font option */
+"system_font_option" = "Sistem";
+
+/* Monospaced font option */
+"monospaced_font_option" = "Eşaralıklı";
+
+/* Serif font option */
+"serif_font_option" = "Serili";
+
+/* Label for the font size picker */
+"font_size_picker" = "Yazı Tipi Boyutu";
+
+/* Small font size option */
+"font_size_small" = "Küçük (14)";
+
+/* Medium font size option */
+"font_size_medium" = "Orta (16)";
+
+/* Large font size option */
+"font_size_large" = "Büyük (18)";
+
+/* Extra large font size option */
+"font_size_extra_large" = "Çok Büyük (20)";
+
+/* Navigation title for the editor font settings screen */
+"editor_font_navigation_title" = "Editör Yazı Tipi";

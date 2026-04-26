@@ -1,0 +1,77 @@
+/* Fallback title for notes with no title */
+"untitled_note" = "Bez tytułu";
+
+/* Navigation title for the notes list */
+"notes_navigation_title" = "Notatki";
+
+/* Placeholder text for the search field */
+"search_notes_prompt" = "Szukaj notatek";
+
+/* Label and help text for the new note button */
+"new_note_button" = "Nowa notatka";
+
+/* Placeholder text for the note title field */
+"note_title_placeholder" = "Tytuł";
+
+/* Label and help text for the copy button */
+"copy_button" = "Kopiuj";
+
+/* Label and help text for the paste button */
+"paste_button" = "Wklej";
+
+/* Label and help text for the delete button */
+"delete_button" = "Usuń";
+
+/* Title of the paste-from-clipboard confirmation alert */
+"paste_from_clipboard_alert_title" = "Wklej ze schowka";
+
+/* Action button in the paste confirmation alert */
+"paste_alert_action" = "Wklej";
+
+/* Cancel button */
+"cancel_button" = "Anuluj";
+
+/* Body text of the paste confirmation alert */
+"paste_clipboard_message" = "Bieżąca zawartość notatki zostanie zastąpiona tekstem ze schowka.";
+
+/* Title shown when no note is selected */
+"no_note_selected_title" = "Nie wybrano notatki";
+
+/* Description shown when no note is selected */
+"no_note_selected_description" = "Wybierz notatkę z listy lub utwórz nową.";
+
+/* Label and help text for the settings button */
+"settings_button" = "Ustawienia";
+
+/* Done/dismiss button */
+"done_button" = "Gotowe";
+
+/* Label for the font style picker */
+"font_style_picker" = "Styl czcionki";
+
+/* System font option */
+"system_font_option" = "Systemowa";
+
+/* Monospaced font option */
+"monospaced_font_option" = "Stałoszerokościowa";
+
+/* Serif font option */
+"serif_font_option" = "Szeryfowa";
+
+/* Label for the font size picker */
+"font_size_picker" = "Rozmiar czcionki";
+
+/* Small font size option */
+"font_size_small" = "Mały (14)";
+
+/* Medium font size option */
+"font_size_medium" = "Średni (16)";
+
+/* Large font size option */
+"font_size_large" = "Duży (18)";
+
+/* Extra large font size option */
+"font_size_extra_large" = "Bardzo duży (20)";
+
+/* Navigation title for the editor font settings screen */
+"editor_font_navigation_title" = "Czcionka edytora";
