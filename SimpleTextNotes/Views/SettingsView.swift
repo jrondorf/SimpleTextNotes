@@ -6,20 +6,20 @@ struct SettingsView: View {
 
     var body: some View {
         Form {
-            Picker("Font Style", selection: $editorFontName) {
-                Text("System").tag("system")
-                Text("Monospaced").tag("monospaced")
-                Text("Serif").tag("serif")
+            Picker("font_style_picker", selection: $editorFontName) {
+                Text("system_font_option").tag("system")
+                Text("monospaced_font_option").tag("monospaced")
+                Text("serif_font_option").tag("serif")
             }
-            Picker("Font Size", selection: $editorFontSize) {
-                Text("Small (14)").tag(14.0)
-                Text("Medium (16)").tag(16.0)
-                Text("Large (18)").tag(18.0)
-                Text("Extra Large (20)").tag(20.0)
+            Picker("font_size_picker", selection: $editorFontSize) {
+                Text("font_size_small").tag(14.0)
+                Text("font_size_medium").tag(16.0)
+                Text("font_size_large").tag(18.0)
+                Text("font_size_extra_large").tag(20.0)
             }
         }
         .formStyle(.grouped)
         .frame(width: 320)
-        .navigationTitle("Editor Font")
+        .navigationTitle("editor_font_navigation_title")
     }
 }

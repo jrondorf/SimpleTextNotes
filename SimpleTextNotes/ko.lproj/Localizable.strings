@@ -1,0 +1,77 @@
+/* Fallback title for notes with no title */
+"untitled_note" = "제목 없음";
+
+/* Navigation title for the notes list */
+"notes_navigation_title" = "메모";
+
+/* Placeholder text for the search field */
+"search_notes_prompt" = "메모 검색";
+
+/* Label and help text for the new note button */
+"new_note_button" = "새 메모";
+
+/* Placeholder text for the note title field */
+"note_title_placeholder" = "제목";
+
+/* Label and help text for the copy button */
+"copy_button" = "복사";
+
+/* Label and help text for the paste button */
+"paste_button" = "붙여넣기";
+
+/* Label and help text for the delete button */
+"delete_button" = "삭제";
+
+/* Title of the paste-from-clipboard confirmation alert */
+"paste_from_clipboard_alert_title" = "클립보드에서 붙여넣기";
+
+/* Action button in the paste confirmation alert */
+"paste_alert_action" = "붙여넣기";
+
+/* Cancel button */
+"cancel_button" = "취소";
+
+/* Body text of the paste confirmation alert */
+"paste_clipboard_message" = "현재 메모 내용이 클립보드의 텍스트로 교체됩니다.";
+
+/* Title shown when no note is selected */
+"no_note_selected_title" = "선택된 메모 없음";
+
+/* Description shown when no note is selected */
+"no_note_selected_description" = "목록에서 메모를 선택하거나 새로 만드세요.";
+
+/* Label and help text for the settings button */
+"settings_button" = "설정";
+
+/* Done/dismiss button */
+"done_button" = "완료";
+
+/* Label for the font style picker */
+"font_style_picker" = "글꼴 스타일";
+
+/* System font option */
+"system_font_option" = "시스템";
+
+/* Monospaced font option */
+"monospaced_font_option" = "고정폭";
+
+/* Serif font option */
+"serif_font_option" = "세리프";
+
+/* Label for the font size picker */
+"font_size_picker" = "글꼴 크기";
+
+/* Small font size option */
+"font_size_small" = "작게 (14)";
+
+/* Medium font size option */
+"font_size_medium" = "보통 (16)";
+
+/* Large font size option */
+"font_size_large" = "크게 (18)";
+
+/* Extra large font size option */
+"font_size_extra_large" = "매우 크게 (20)";
+
+/* Navigation title for the editor font settings screen */
+"editor_font_navigation_title" = "편집기 글꼴";
