@@ -1,0 +1,77 @@
+/* Fallback title for notes with no title */
+"untitled_note" = "Χωρίς τίτλο";
+
+/* Navigation title for the notes list */
+"notes_navigation_title" = "Σημειώσεις";
+
+/* Placeholder text for the search field */
+"search_notes_prompt" = "Αναζήτηση σημειώσεων";
+
+/* Label and help text for the new note button */
+"new_note_button" = "Νέα σημείωση";
+
+/* Placeholder text for the note title field */
+"note_title_placeholder" = "Τίτλος";
+
+/* Label and help text for the copy button */
+"copy_button" = "Αντιγραφή";
+
+/* Label and help text for the paste button */
+"paste_button" = "Επικόλληση";
+
+/* Label and help text for the delete button */
+"delete_button" = "Διαγραφή";
+
+/* Title of the paste-from-clipboard confirmation alert */
+"paste_from_clipboard_alert_title" = "Επικόλληση από το πρόχειρο";
+
+/* Action button in the paste confirmation alert */
+"paste_alert_action" = "Επικόλληση";
+
+/* Cancel button */
+"cancel_button" = "Ακύρωση";
+
+/* Body text of the paste confirmation alert */
+"paste_clipboard_message" = "Το τρέχον περιεχόμενο της σημείωσης θα αντικατασταθεί με το κείμενο από το πρόχειρο.";
+
+/* Title shown when no note is selected */
+"no_note_selected_title" = "Δεν επιλέχθηκε σημείωση";
+
+/* Description shown when no note is selected */
+"no_note_selected_description" = "Επιλέξτε μια σημείωση από τη λίστα ή δημιουργήστε μια νέα.";
+
+/* Label and help text for the settings button */
+"settings_button" = "Ρυθμίσεις";
+
+/* Done/dismiss button */
+"done_button" = "Τέλος";
+
+/* Label for the font style picker */
+"font_style_picker" = "Στυλ γραμματοσειράς";
+
+/* System font option */
+"system_font_option" = "Σύστημα";
+
+/* Monospaced font option */
+"monospaced_font_option" = "Μονόχωρη";
+
+/* Serif font option */
+"serif_font_option" = "Με πατούρες";
+
+/* Label for the font size picker */
+"font_size_picker" = "Μέγεθος γραμματοσειράς";
+
+/* Small font size option */
+"font_size_small" = "Μικρό (14)";
+
+/* Medium font size option */
+"font_size_medium" = "Μεσαίο (16)";
+
+/* Large font size option */
+"font_size_large" = "Μεγάλο (18)";
+
+/* Extra large font size option */
+"font_size_extra_large" = "Πολύ μεγάλο (20)";
+
+/* Navigation title for the editor font settings screen */
+"editor_font_navigation_title" = "Γραμματοσειρά επεξεργαστή";

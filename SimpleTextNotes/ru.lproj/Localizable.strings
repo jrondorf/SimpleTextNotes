@@ -1,0 +1,77 @@
+/* Fallback title for notes with no title */
+"untitled_note" = "Без названия";
+
+/* Navigation title for the notes list */
+"notes_navigation_title" = "Заметки";
+
+/* Placeholder text for the search field */
+"search_notes_prompt" = "Поиск заметок";
+
+/* Label and help text for the new note button */
+"new_note_button" = "Новая заметка";
+
+/* Placeholder text for the note title field */
+"note_title_placeholder" = "Заголовок";
+
+/* Label and help text for the copy button */
+"copy_button" = "Копировать";
+
+/* Label and help text for the paste button */
+"paste_button" = "Вставить";
+
+/* Label and help text for the delete button */
+"delete_button" = "Удалить";
+
+/* Title of the paste-from-clipboard confirmation alert */
+"paste_from_clipboard_alert_title" = "Вставить из буфера обмена";
+
+/* Action button in the paste confirmation alert */
+"paste_alert_action" = "Вставить";
+
+/* Cancel button */
+"cancel_button" = "Отмена";
+
+/* Body text of the paste confirmation alert */
+"paste_clipboard_message" = "Текущее содержимое заметки будет заменено текстом из буфера обмена.";
+
+/* Title shown when no note is selected */
+"no_note_selected_title" = "Заметка не выбрана";
+
+/* Description shown when no note is selected */
+"no_note_selected_description" = "Выберите заметку из списка или создайте новую.";
+
+/* Label and help text for the settings button */
+"settings_button" = "Настройки";
+
+/* Done/dismiss button */
+"done_button" = "Готово";
+
+/* Label for the font style picker */
+"font_style_picker" = "Стиль шрифта";
+
+/* System font option */
+"system_font_option" = "Системный";
+
+/* Monospaced font option */
+"monospaced_font_option" = "Моноширинный";
+
+/* Serif font option */
+"serif_font_option" = "С засечками";
+
+/* Label for the font size picker */
+"font_size_picker" = "Размер шрифта";
+
+/* Small font size option */
+"font_size_small" = "Маленький (14)";
+
+/* Medium font size option */
+"font_size_medium" = "Средний (16)";
+
+/* Large font size option */
+"font_size_large" = "Большой (18)";
+
+/* Extra large font size option */
+"font_size_extra_large" = "Очень большой (20)";
+
+/* Navigation title for the editor font settings screen */
+"editor_font_navigation_title" = "Шрифт редактора";

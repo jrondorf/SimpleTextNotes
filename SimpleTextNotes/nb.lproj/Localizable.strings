@@ -1,0 +1,77 @@
+/* Fallback title for notes with no title */
+"untitled_note" = "Uten tittel";
+
+/* Navigation title for the notes list */
+"notes_navigation_title" = "Notater";
+
+/* Placeholder text for the search field */
+"search_notes_prompt" = "Søk i notater";
+
+/* Label and help text for the new note button */
+"new_note_button" = "Nytt notat";
+
+/* Placeholder text for the note title field */
+"note_title_placeholder" = "Tittel";
+
+/* Label and help text for the copy button */
+"copy_button" = "Kopier";
+
+/* Label and help text for the paste button */
+"paste_button" = "Lim inn";
+
+/* Label and help text for the delete button */
+"delete_button" = "Slett";
+
+/* Title of the paste-from-clipboard confirmation alert */
+"paste_from_clipboard_alert_title" = "Lim inn fra utklippstavle";
+
+/* Action button in the paste confirmation alert */
+"paste_alert_action" = "Lim inn";
+
+/* Cancel button */
+"cancel_button" = "Avbryt";
+
+/* Body text of the paste confirmation alert */
+"paste_clipboard_message" = "Det gjeldende innholdet i notatet erstattes med teksten fra utklippstavlen.";
+
+/* Title shown when no note is selected */
+"no_note_selected_title" = "Ingen notat valgt";
+
+/* Description shown when no note is selected */
+"no_note_selected_description" = "Velg et notat fra listen eller opprett et nytt.";
+
+/* Label and help text for the settings button */
+"settings_button" = "Innstillinger";
+
+/* Done/dismiss button */
+"done_button" = "Ferdig";
+
+/* Label for the font style picker */
+"font_style_picker" = "Skriftstil";
+
+/* System font option */
+"system_font_option" = "System";
+
+/* Monospaced font option */
+"monospaced_font_option" = "Monospace";
+
+/* Serif font option */
+"serif_font_option" = "Serif";
+
+/* Label for the font size picker */
+"font_size_picker" = "Skriftstørrelse";
+
+/* Small font size option */
+"font_size_small" = "Liten (14)";
+
+/* Medium font size option */
+"font_size_medium" = "Middels (16)";
+
+/* Large font size option */
+"font_size_large" = "Stor (18)";
+
+/* Extra large font size option */
+"font_size_extra_large" = "Ekstra stor (20)";
+
+/* Navigation title for the editor font settings screen */
+"editor_font_navigation_title" = "Editorskrift";

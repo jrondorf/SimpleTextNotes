@@ -1,0 +1,77 @@
+/* Fallback title for notes with no title */
+"untitled_note" = "Senza titolo";
+
+/* Navigation title for the notes list */
+"notes_navigation_title" = "Note";
+
+/* Placeholder text for the search field */
+"search_notes_prompt" = "Cerca note";
+
+/* Label and help text for the new note button */
+"new_note_button" = "Nuova nota";
+
+/* Placeholder text for the note title field */
+"note_title_placeholder" = "Titolo";
+
+/* Label and help text for the copy button */
+"copy_button" = "Copia";
+
+/* Label and help text for the paste button */
+"paste_button" = "Incolla";
+
+/* Label and help text for the delete button */
+"delete_button" = "Elimina";
+
+/* Title of the paste-from-clipboard confirmation alert */
+"paste_from_clipboard_alert_title" = "Incolla dagli appunti";
+
+/* Action button in the paste confirmation alert */
+"paste_alert_action" = "Incolla";
+
+/* Cancel button */
+"cancel_button" = "Annulla";
+
+/* Body text of the paste confirmation alert */
+"paste_clipboard_message" = "Il contenuto attuale della nota verrà sostituito con il testo negli appunti.";
+
+/* Title shown when no note is selected */
+"no_note_selected_title" = "Nessuna nota selezionata";
+
+/* Description shown when no note is selected */
+"no_note_selected_description" = "Seleziona una nota dall'elenco o creane una nuova.";
+
+/* Label and help text for the settings button */
+"settings_button" = "Impostazioni";
+
+/* Done/dismiss button */
+"done_button" = "Fine";
+
+/* Label for the font style picker */
+"font_style_picker" = "Stile carattere";
+
+/* System font option */
+"system_font_option" = "Sistema";
+
+/* Monospaced font option */
+"monospaced_font_option" = "Monospazio";
+
+/* Serif font option */
+"serif_font_option" = "Con grazie";
+
+/* Label for the font size picker */
+"font_size_picker" = "Dimensione carattere";
+
+/* Small font size option */
+"font_size_small" = "Piccolo (14)";
+
+/* Medium font size option */
+"font_size_medium" = "Medio (16)";
+
+/* Large font size option */
+"font_size_large" = "Grande (18)";
+
+/* Extra large font size option */
+"font_size_extra_large" = "Extra grande (20)";
+
+/* Navigation title for the editor font settings screen */
+"editor_font_navigation_title" = "Carattere editor";

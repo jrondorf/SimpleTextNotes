@@ -1,0 +1,77 @@
+/* Fallback title for notes with no title */
+"untitled_note" = "Без назви";
+
+/* Navigation title for the notes list */
+"notes_navigation_title" = "Нотатки";
+
+/* Placeholder text for the search field */
+"search_notes_prompt" = "Пошук нотаток";
+
+/* Label and help text for the new note button */
+"new_note_button" = "Нова нотатка";
+
+/* Placeholder text for the note title field */
+"note_title_placeholder" = "Заголовок";
+
+/* Label and help text for the copy button */
+"copy_button" = "Копіювати";
+
+/* Label and help text for the paste button */
+"paste_button" = "Вставити";
+
+/* Label and help text for the delete button */
+"delete_button" = "Видалити";
+
+/* Title of the paste-from-clipboard confirmation alert */
+"paste_from_clipboard_alert_title" = "Вставити з буфера обміну";
+
+/* Action button in the paste confirmation alert */
+"paste_alert_action" = "Вставити";
+
+/* Cancel button */
+"cancel_button" = "Скасувати";
+
+/* Body text of the paste confirmation alert */
+"paste_clipboard_message" = "Поточний вміст нотатки буде замінено текстом з буфера обміну.";
+
+/* Title shown when no note is selected */
+"no_note_selected_title" = "Нотатку не вибрано";
+
+/* Description shown when no note is selected */
+"no_note_selected_description" = "Виберіть нотатку зі списку або створіть нову.";
+
+/* Label and help text for the settings button */
+"settings_button" = "Налаштування";
+
+/* Done/dismiss button */
+"done_button" = "Готово";
+
+/* Label for the font style picker */
+"font_style_picker" = "Стиль шрифту";
+
+/* System font option */
+"system_font_option" = "Системний";
+
+/* Monospaced font option */
+"monospaced_font_option" = "Моноширинний";
+
+/* Serif font option */
+"serif_font_option" = "Із засічками";
+
+/* Label for the font size picker */
+"font_size_picker" = "Розмір шрифту";
+
+/* Small font size option */
+"font_size_small" = "Малий (14)";
+
+/* Medium font size option */
+"font_size_medium" = "Середній (16)";
+
+/* Large font size option */
+"font_size_large" = "Великий (18)";
+
+/* Extra large font size option */
+"font_size_extra_large" = "Дуже великий (20)";
+
+/* Navigation title for the editor font settings screen */
+"editor_font_navigation_title" = "Шрифт редактора";

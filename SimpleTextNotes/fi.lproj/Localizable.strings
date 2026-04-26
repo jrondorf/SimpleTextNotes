@@ -1,0 +1,77 @@
+/* Fallback title for notes with no title */
+"untitled_note" = "Nimetön";
+
+/* Navigation title for the notes list */
+"notes_navigation_title" = "Muistiinpanot";
+
+/* Placeholder text for the search field */
+"search_notes_prompt" = "Hae muistiinpanoja";
+
+/* Label and help text for the new note button */
+"new_note_button" = "Uusi muistiinpano";
+
+/* Placeholder text for the note title field */
+"note_title_placeholder" = "Otsikko";
+
+/* Label and help text for the copy button */
+"copy_button" = "Kopioi";
+
+/* Label and help text for the paste button */
+"paste_button" = "Liitä";
+
+/* Label and help text for the delete button */
+"delete_button" = "Poista";
+
+/* Title of the paste-from-clipboard confirmation alert */
+"paste_from_clipboard_alert_title" = "Liitä leikepöydältä";
+
+/* Action button in the paste confirmation alert */
+"paste_alert_action" = "Liitä";
+
+/* Cancel button */
+"cancel_button" = "Peruuta";
+
+/* Body text of the paste confirmation alert */
+"paste_clipboard_message" = "Muistiinpanon nykyinen sisältö korvataan leikepöydän tekstillä.";
+
+/* Title shown when no note is selected */
+"no_note_selected_title" = "Muistiinpanoa ei valittu";
+
+/* Description shown when no note is selected */
+"no_note_selected_description" = "Valitse muistiinpano luettelosta tai luo uusi.";
+
+/* Label and help text for the settings button */
+"settings_button" = "Asetukset";
+
+/* Done/dismiss button */
+"done_button" = "Valmis";
+
+/* Label for the font style picker */
+"font_style_picker" = "Fonttityyli";
+
+/* System font option */
+"system_font_option" = "Järjestelmä";
+
+/* Monospaced font option */
+"monospaced_font_option" = "Tasalevyinen";
+
+/* Serif font option */
+"serif_font_option" = "Serif";
+
+/* Label for the font size picker */
+"font_size_picker" = "Fonttikoko";
+
+/* Small font size option */
+"font_size_small" = "Pieni (14)";
+
+/* Medium font size option */
+"font_size_medium" = "Keskikokoinen (16)";
+
+/* Large font size option */
+"font_size_large" = "Suuri (18)";
+
+/* Extra large font size option */
+"font_size_extra_large" = "Erittäin suuri (20)";
+
+/* Navigation title for the editor font settings screen */
+"editor_font_navigation_title" = "Editorin fontti";

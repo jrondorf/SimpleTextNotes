@@ -1,0 +1,77 @@
+/* Fallback title for notes with no title */
+"untitled_note" = "未命名";
+
+/* Navigation title for the notes list */
+"notes_navigation_title" = "備忘錄";
+
+/* Placeholder text for the search field */
+"search_notes_prompt" = "搜尋備忘錄";
+
+/* Label and help text for the new note button */
+"new_note_button" = "新增備忘錄";
+
+/* Placeholder text for the note title field */
+"note_title_placeholder" = "標題";
+
+/* Label and help text for the copy button */
+"copy_button" = "拷貝";
+
+/* Label and help text for the paste button */
+"paste_button" = "貼上";
+
+/* Label and help text for the delete button */
+"delete_button" = "刪除";
+
+/* Title of the paste-from-clipboard confirmation alert */
+"paste_from_clipboard_alert_title" = "從剪貼板貼上";
+
+/* Action button in the paste confirmation alert */
+"paste_alert_action" = "貼上";
+
+/* Cancel button */
+"cancel_button" = "取消";
+
+/* Body text of the paste confirmation alert */
+"paste_clipboard_message" = "此操作將以剪貼板中的文字取代目前備忘錄的內容。";
+
+/* Title shown when no note is selected */
+"no_note_selected_title" = "未選擇備忘錄";
+
+/* Description shown when no note is selected */
+"no_note_selected_description" = "從列表中選擇備忘錄，或新增一個。";
+
+/* Label and help text for the settings button */
+"settings_button" = "設定";
+
+/* Done/dismiss button */
+"done_button" = "完成";
+
+/* Label for the font style picker */
+"font_style_picker" = "字體樣式";
+
+/* System font option */
+"system_font_option" = "系統";
+
+/* Monospaced font option */
+"monospaced_font_option" = "等寬";
+
+/* Serif font option */
+"serif_font_option" = "襯線";
+
+/* Label for the font size picker */
+"font_size_picker" = "字體大小";
+
+/* Small font size option */
+"font_size_small" = "小 (14)";
+
+/* Medium font size option */
+"font_size_medium" = "中 (16)";
+
+/* Large font size option */
+"font_size_large" = "大 (18)";
+
+/* Extra large font size option */
+"font_size_extra_large" = "超大 (20)";
+
+/* Navigation title for the editor font settings screen */
+"editor_font_navigation_title" = "編輯器字體";

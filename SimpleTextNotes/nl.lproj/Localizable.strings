@@ -1,0 +1,77 @@
+/* Fallback title for notes with no title */
+"untitled_note" = "Naamloos";
+
+/* Navigation title for the notes list */
+"notes_navigation_title" = "Notities";
+
+/* Placeholder text for the search field */
+"search_notes_prompt" = "Notities zoeken";
+
+/* Label and help text for the new note button */
+"new_note_button" = "Nieuwe notitie";
+
+/* Placeholder text for the note title field */
+"note_title_placeholder" = "Titel";
+
+/* Label and help text for the copy button */
+"copy_button" = "Kopiëren";
+
+/* Label and help text for the paste button */
+"paste_button" = "Plakken";
+
+/* Label and help text for the delete button */
+"delete_button" = "Verwijderen";
+
+/* Title of the paste-from-clipboard confirmation alert */
+"paste_from_clipboard_alert_title" = "Plakken uit klembord";
+
+/* Action button in the paste confirmation alert */
+"paste_alert_action" = "Plakken";
+
+/* Cancel button */
+"cancel_button" = "Annuleren";
+
+/* Body text of the paste confirmation alert */
+"paste_clipboard_message" = "De huidige inhoud van de notitie wordt vervangen door de tekst op het klembord.";
+
+/* Title shown when no note is selected */
+"no_note_selected_title" = "Geen notitie geselecteerd";
+
+/* Description shown when no note is selected */
+"no_note_selected_description" = "Selecteer een notitie uit de lijst of maak een nieuwe aan.";
+
+/* Label and help text for the settings button */
+"settings_button" = "Instellingen";
+
+/* Done/dismiss button */
+"done_button" = "Gereed";
+
+/* Label for the font style picker */
+"font_style_picker" = "Lettertypestijl";
+
+/* System font option */
+"system_font_option" = "Systeem";
+
+/* Monospaced font option */
+"monospaced_font_option" = "Monospatie";
+
+/* Serif font option */
+"serif_font_option" = "Schreef";
+
+/* Label for the font size picker */
+"font_size_picker" = "Lettergrootte";
+
+/* Small font size option */
+"font_size_small" = "Klein (14)";
+
+/* Medium font size option */
+"font_size_medium" = "Gemiddeld (16)";
+
+/* Large font size option */
+"font_size_large" = "Groot (18)";
+
+/* Extra large font size option */
+"font_size_extra_large" = "Extra groot (20)";
+
+/* Navigation title for the editor font settings screen */
+"editor_font_navigation_title" = "Editorlettertype";
