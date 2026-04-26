@@ -1,0 +1,77 @@
+/* Fallback title for notes with no title */
+"untitled_note" = "Untitled";
+
+/* Navigation title for the notes list */
+"notes_navigation_title" = "Notes";
+
+/* Placeholder text for the search field */
+"search_notes_prompt" = "Search notes";
+
+/* Label and help text for the new note button */
+"new_note_button" = "New Note";
+
+/* Placeholder text for the note title field */
+"note_title_placeholder" = "Title";
+
+/* Label and help text for the copy button */
+"copy_button" = "Copy";
+
+/* Label and help text for the paste button */
+"paste_button" = "Paste";
+
+/* Label and help text for the delete button */
+"delete_button" = "Delete";
+
+/* Title of the paste-from-clipboard confirmation alert */
+"paste_from_clipboard_alert_title" = "Paste from Clipboard";
+
+/* Action button in the paste confirmation alert */
+"paste_alert_action" = "Paste";
+
+/* Cancel button */
+"cancel_button" = "Cancel";
+
+/* Body text of the paste confirmation alert */
+"paste_clipboard_message" = "This will replace the current note content with the clipboard text.";
+
+/* Title shown when no note is selected */
+"no_note_selected_title" = "No Note Selected";
+
+/* Description shown when no note is selected */
+"no_note_selected_description" = "Select a note from the list or create a new one.";
+
+/* Label and help text for the settings button */
+"settings_button" = "Settings";
+
+/* Done/dismiss button */
+"done_button" = "Done";
+
+/* Label for the font style picker */
+"font_style_picker" = "Font Style";
+
+/* System font option */
+"system_font_option" = "System";
+
+/* Monospaced font option */
+"monospaced_font_option" = "Monospaced";
+
+/* Serif font option */
+"serif_font_option" = "Serif";
+
+/* Label for the font size picker */
+"font_size_picker" = "Font Size";
+
+/* Small font size option */
+"font_size_small" = "Small (14)";
+
+/* Medium font size option */
+"font_size_medium" = "Medium (16)";
+
+/* Large font size option */
+"font_size_large" = "Large (18)";
+
+/* Extra large font size option */
+"font_size_extra_large" = "Extra Large (20)";
+
+/* Navigation title for the editor font settings screen */
+"editor_font_navigation_title" = "Editor Font";

@@ -24,7 +24,7 @@ struct NoteDetailView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            TextField("Title", text: $note.title)
+            TextField("note_title_placeholder", text: $note.title)
                 .font(.title2.bold())
                 .textFieldStyle(.plain)
                 .padding()
@@ -36,7 +36,7 @@ struct NoteDetailView: View {
                 .padding(.horizontal, 12)
                 .padding(.vertical, 8)
         }
-        .navigationTitle(note.title.isEmpty ? "Untitled" : note.title)
+        .navigationTitle(note.title.isEmpty ? String(localized: "untitled_note") : note.title)
         #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
         #endif
@@ -47,33 +47,33 @@ struct NoteDetailView: View {
                 Button {
                     copyToClipboard()
                 } label: {
-                    Label("Copy", systemImage: "doc.on.doc")
+                    Label("copy_button", systemImage: "doc.on.doc")
                 }
-                .help("Copy")
+                .help("copy_button")
 
                 Button {
                     showPasteConfirmation = true
                 } label: {
-                    Label("Paste", systemImage: "doc.on.clipboard")
+                    Label("paste_button", systemImage: "doc.on.clipboard")
                 }
-                .help("Paste")
+                .help("paste_button")
 
                 Button(role: .destructive) {
                     selectedNoteID = nil
                     modelContext.delete(note)
                 } label: {
-                    Label("Delete", systemImage: "trash")
+                    Label("delete_button", systemImage: "trash")
                 }
-                .help("Delete")
+                .help("delete_button")
             }
         }
-        .alert("Paste from Clipboard", isPresented: $showPasteConfirmation) {
-            Button("Paste", role: .destructive) {
+        .alert("paste_from_clipboard_alert_title", isPresented: $showPasteConfirmation) {
+            Button("paste_alert_action", role: .destructive) {
                 pasteFromClipboard()
             }
-            Button("Cancel", role: .cancel) { }
+            Button("cancel_button", role: .cancel) { }
         } message: {
-            Text("This will replace the current note content with the clipboard text.")
+            Text("paste_clipboard_message")
         }
     }
 

@@ -15,7 +15,7 @@ struct ContentView: View {
                 NoteDetailView(note: note, selectedNoteID: $selectedNoteID)
                     .id(noteID)
             } else {
-                ContentUnavailableView("No Note Selected", systemImage: "note.text", description: Text("Select a note from the list or create a new one."))
+                ContentUnavailableView("no_note_selected_title", systemImage: "note.text", description: Text("no_note_selected_description"))
             }
         }
         .toolbar {
@@ -23,9 +23,9 @@ struct ContentView: View {
                 Button {
                     showSettings = true
                 } label: {
-                    Label("Settings", systemImage: "gearshape")
+                    Label("settings_button", systemImage: "gearshape")
                 }
-                .help("Settings")
+                .help("settings_button")
             }
         }
         .sheet(isPresented: $showSettings) {
@@ -33,7 +33,7 @@ struct ContentView: View {
                 SettingsView()
                     .toolbar {
                         ToolbarItem(placement: .confirmationAction) {
-                            Button("Done") { showSettings = false }
+                            Button("done_button") { showSettings = false }
                         }
                     }
             }

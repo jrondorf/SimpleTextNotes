@@ -16,6 +16,7 @@
 		AA000001008 /* SimpleTextNotesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000002008 /* SimpleTextNotesTests.swift */; };
 		AA000001009 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000002012 /* SettingsView.swift */; };
 		AA000001010 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AA000002013 /* Settings.bundle */; };
+		AA001001001 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA001002001 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,14 @@
 		AA000002011 /* SimpleTextNotes.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SimpleTextNotes.entitlements; sourceTree = "<group>"; };
 		AA000002012 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		AA000002013 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		AA001002002 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AA001002003 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		AA001002004 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AA001002005 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AA001002006 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AA001002007 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AA001002008 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AA001002009 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +91,7 @@
 				AA000002007 /* Assets.xcassets */,
 				AA000002011 /* SimpleTextNotes.entitlements */,
 				AA000002013 /* Settings.bundle */,
+				AA001002001 /* Localizable.strings */,
 			);
 			path = SimpleTextNotes;
 			sourceTree = "<group>";
@@ -122,6 +132,24 @@
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
+
+/* Begin PBXVariantGroup section */
+		AA001002001 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AA001002002 /* en */,
+				AA001002003 /* zh-Hans */,
+				AA001002004 /* ja */,
+				AA001002005 /* ko */,
+				AA001002006 /* de */,
+				AA001002007 /* fr */,
+				AA001002008 /* es */,
+				AA001002009 /* pt-BR */,
+			);
+			name = "Localizable.strings";
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin PBXNativeTarget section */
 		AA000007001 /* SimpleTextNotes */ = {
@@ -184,6 +212,13 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
+				ja,
+				ko,
+				de,
+				fr,
+				es,
+				"pt-BR",
 			);
 			mainGroup = AA000003001;
 			productRefGroup = AA000003003 /* Products */;
@@ -203,6 +238,7 @@
 			files = (
 				AA000001007 /* Assets.xcassets in Resources */,
 				AA000001010 /* Settings.bundle in Resources */,
+				AA001001001 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

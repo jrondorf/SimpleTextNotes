@@ -1,0 +1,77 @@
+/* Fallback title for notes with no title */
+"untitled_note" = "无标题";
+
+/* Navigation title for the notes list */
+"notes_navigation_title" = "备忘录";
+
+/* Placeholder text for the search field */
+"search_notes_prompt" = "搜索备忘录";
+
+/* Label and help text for the new note button */
+"new_note_button" = "新建备忘录";
+
+/* Placeholder text for the note title field */
+"note_title_placeholder" = "标题";
+
+/* Label and help text for the copy button */
+"copy_button" = "拷贝";
+
+/* Label and help text for the paste button */
+"paste_button" = "粘贴";
+
+/* Label and help text for the delete button */
+"delete_button" = "删除";
+
+/* Title of the paste-from-clipboard confirmation alert */
+"paste_from_clipboard_alert_title" = "从剪贴板粘贴";
+
+/* Action button in the paste confirmation alert */
+"paste_alert_action" = "粘贴";
+
+/* Cancel button */
+"cancel_button" = "取消";
+
+/* Body text of the paste confirmation alert */
+"paste_clipboard_message" = "这将用剪贴板中的文字替换当前备忘录的内容。";
+
+/* Title shown when no note is selected */
+"no_note_selected_title" = "未选择备忘录";
+
+/* Description shown when no note is selected */
+"no_note_selected_description" = "从列表中选择备忘录，或新建一个。";
+
+/* Label and help text for the settings button */
+"settings_button" = "设置";
+
+/* Done/dismiss button */
+"done_button" = "完成";
+
+/* Label for the font style picker */
+"font_style_picker" = "字体样式";
+
+/* System font option */
+"system_font_option" = "系统";
+
+/* Monospaced font option */
+"monospaced_font_option" = "等宽";
+
+/* Serif font option */
+"serif_font_option" = "衬线";
+
+/* Label for the font size picker */
+"font_size_picker" = "字体大小";
+
+/* Small font size option */
+"font_size_small" = "小号 (14)";
+
+/* Medium font size option */
+"font_size_medium" = "中号 (16)";
+
+/* Large font size option */
+"font_size_large" = "大号 (18)";
+
+/* Extra large font size option */
+"font_size_extra_large" = "特大号 (20)";
+
+/* Navigation title for the editor font settings screen */
+"editor_font_navigation_title" = "编辑器字体";

@@ -27,7 +27,7 @@ struct NoteListView: View {
             ForEach(filteredNotes) { note in
                 NavigationLink(value: note.id) {
                     VStack(alignment: .leading, spacing: 4) {
-                        Text(note.title.isEmpty ? "Untitled" : note.title)
+                        Text(note.title.isEmpty ? String(localized: "untitled_note") : note.title)
                             .font(.headline)
                             .lineLimit(1)
                         Text(Self.dateFormatter.string(from: note.updatedAt))
@@ -47,8 +47,8 @@ struct NoteListView: View {
                 }
             }
         }
-        .navigationTitle("Notes")
-        .searchable(text: $searchText, placement: .toolbar, prompt: "Search notes")
+        .navigationTitle("notes_navigation_title")
+        .searchable(text: $searchText, placement: .toolbar, prompt: "search_notes_prompt")
         .refreshable {
             try? modelContext.save()
         }
@@ -59,9 +59,9 @@ struct NoteListView: View {
                     modelContext.insert(note)
                     selectedNoteID = note.id
                 } label: {
-                    Label("New Note", systemImage: "square.and.pencil")
+                    Label("new_note_button", systemImage: "square.and.pencil")
                 }
-                .help("New Note")
+                .help("new_note_button")
                 .keyboardShortcut("n", modifiers: .command)
             }
         }
