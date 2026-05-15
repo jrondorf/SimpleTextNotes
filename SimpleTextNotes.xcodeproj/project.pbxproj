@@ -148,39 +148,6 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXVariantGroup section */
-		AA001002001 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AA001002002 /* en */,
-				AA001002003 /* zh-Hans */,
-				AA001002004 /* ja */,
-				AA001002005 /* ko */,
-				AA001002006 /* de */,
-				AA001002007 /* fr */,
-				AA001002008 /* es */,
-				AA001002009 /* pt-BR */,
-				AA001002010 /* cs */,
-				AA001002011 /* da */,
-				AA001002012 /* el */,
-				AA001002013 /* fi */,
-				AA001002014 /* hu */,
-				AA001002015 /* it */,
-				AA001002016 /* nb */,
-				AA001002017 /* nl */,
-				AA001002018 /* pl */,
-				AA001002019 /* ro */,
-				AA001002020 /* ru */,
-				AA001002021 /* sv */,
-				AA001002022 /* tr */,
-				AA001002023 /* uk */,
-				AA001002024 /* zh-Hant */,
-			);
-			name = "Localizable.strings";
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin PBXNativeTarget section */
 		AA000007001 /* SimpleTextNotes */ = {
 			isa = PBXNativeTarget;
@@ -320,6 +287,39 @@
 			targetProxy = AA000006001 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		AA001002001 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AA001002002 /* en */,
+				AA001002003 /* zh-Hans */,
+				AA001002004 /* ja */,
+				AA001002005 /* ko */,
+				AA001002006 /* de */,
+				AA001002007 /* fr */,
+				AA001002008 /* es */,
+				AA001002009 /* pt-BR */,
+				AA001002010 /* cs */,
+				AA001002011 /* da */,
+				AA001002012 /* el */,
+				AA001002013 /* fi */,
+				AA001002014 /* hu */,
+				AA001002015 /* it */,
+				AA001002016 /* nb */,
+				AA001002017 /* nl */,
+				AA001002018 /* pl */,
+				AA001002019 /* ro */,
+				AA001002020 /* ru */,
+				AA001002021 /* sv */,
+				AA001002022 /* tr */,
+				AA001002023 /* uk */,
+				AA001002024 /* zh-Hant */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		AABB000001 /* Debug */ = {
@@ -470,7 +470,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.4.1;
+				MARKETING_VERSION = 1.4.2;
 				PRODUCT_BUNDLE_IDENTIFIER = de.futural.simpletextnotes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -511,7 +511,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.4.1;
+				MARKETING_VERSION = 1.4.2;
 				PRODUCT_BUNDLE_IDENTIFIER = de.futural.simpletextnotes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
