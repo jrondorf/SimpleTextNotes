@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import FoundationModels
 #if canImport(UIKit)
 import UIKit
 #elseif canImport(AppKit)
@@ -11,6 +12,7 @@ struct NoteDetailView: View {
     @Binding var selectedNoteID: UUID?
     @Environment(\.modelContext) private var modelContext
     @State private var showPasteConfirmation: Bool = false
+    @State private var titleGenerationTask: Task<Void, Never>?
     @AppStorage("editorFontName") private var editorFontName: String = "system"
     @AppStorage("editorFontSize") private var editorFontSize: Double = 16.0
 
@@ -42,6 +44,11 @@ struct NoteDetailView: View {
         #endif
         .onChange(of: note.title) { note.updatedAt = Date() }
         .onChange(of: note.content) { note.updatedAt = Date() }
+        .onDisappear {
+            guard note.title.isEmpty else { return }
+            titleGenerationTask?.cancel()
+            titleGenerationTask = Task { await generateTitle() }
+        }
         .toolbar {
             ToolbarItemGroup(placement: .primaryAction) {
                 Button {
@@ -96,5 +103,31 @@ struct NoteDetailView: View {
             note.content = text
         }
         #endif
+    }
+
+    private static let maxTitleLength = 60
+    private static let maxContentLengthForTitleGeneration = 1000
+
+    @MainActor
+    private func generateTitle() async {
+        let content = note.content.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard note.title.isEmpty, !content.isEmpty else { return }
+
+        guard case .available = SystemLanguageModel.default.availability else { return }
+
+        do {
+            let session = LanguageModelSession()
+            let truncated = String(content.prefix(Self.maxContentLengthForTitleGeneration))
+            let response = try await session.respond(
+                to: "Generate a very short title (maximum \(Self.maxTitleLength) characters) for this note. Reply with only the title text, no quotes, no punctuation at the end, no explanation:\n\n\(truncated)"
+            )
+            let generated = response.content.trimmingCharacters(in: .whitespacesAndNewlines)
+            // Re-check after the async call in case a concurrent task already set a title
+            guard !generated.isEmpty, note.title.isEmpty else { return }
+            note.title = String(generated.prefix(Self.maxTitleLength))
+            note.updatedAt = Date()
+        } catch {
+            // Title generation failed silently; the note keeps an empty title
+        }
     }
 }
