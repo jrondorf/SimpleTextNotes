@@ -13,6 +13,7 @@ struct NoteDetailView: View {
     @Bindable var note: Note
     @Binding var selectedNoteID: UUID?
     @Environment(\.modelContext) private var modelContext
+    @Environment(TitleGenerationState.self) private var titleGenerationState
     @State private var showPasteConfirmation: Bool = false
     @State private var titleGenerationTask: Task<Void, Never>?
     @State private var showAINoContent: Bool = false
@@ -54,7 +55,14 @@ struct NoteDetailView: View {
         .onDisappear {
             guard note.title.isEmpty else { return }
             titleGenerationTask?.cancel()
-            titleGenerationTask = Task { await generateTitle() }
+            let noteID = note.id
+            titleGenerationTask = Task {
+                if SimpleTextNotesAI.isAvailable {
+                    titleGenerationState.markGenerating(noteID)
+                }
+                await generateTitle()
+                titleGenerationState.markDone(noteID)
+            }
         }
         .toolbar {
             ToolbarItemGroup(placement: .primaryAction) {

@@ -7,6 +7,7 @@ struct ContentView: View {
     @State private var selectedNoteID: UUID?
     @State private var showSettings: Bool = false
     @State private var showTrash: Bool = false
+    @State private var titleGenerationState = TitleGenerationState()
 
     var body: some View {
         NavigationSplitView {
@@ -58,6 +59,7 @@ struct ContentView: View {
                     }
             }
         }
+        .environment(titleGenerationState)
         .task {
             purgeOldTrashNotes()
         }
