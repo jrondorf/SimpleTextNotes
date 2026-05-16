@@ -2,9 +2,11 @@ import SwiftUI
 import SwiftData
 
 private struct GeneratingTitleView: View {
+    private static let animationInterval: TimeInterval = 0.5
+
     var body: some View {
-        TimelineView(.periodic(from: .now, by: 0.5)) { context in
-            let phase = Int(context.date.timeIntervalSinceReferenceDate / 0.5) % 3
+        TimelineView(.periodic(from: .now, by: Self.animationInterval)) { context in
+            let phase = Int(context.date.timeIntervalSinceReferenceDate / Self.animationInterval) % 3
             Text(String(repeating: ".", count: phase + 1))
                 .font(.headline)
                 .foregroundStyle(.secondary)

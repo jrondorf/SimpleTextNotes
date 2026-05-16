@@ -3,7 +3,7 @@ import Observation
 
 @Observable
 final class TitleGenerationState {
-    var generatingNoteIDs: Set<UUID> = []
+    private var generatingNoteIDs: Set<UUID> = []
 
     func markGenerating(_ id: UUID) {
         generatingNoteIDs.insert(id)

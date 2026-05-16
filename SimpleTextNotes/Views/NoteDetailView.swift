@@ -57,11 +57,10 @@ struct NoteDetailView: View {
             titleGenerationTask?.cancel()
             let noteID = note.id
             titleGenerationTask = Task {
-                if SimpleTextNotesAI.isAvailable {
-                    titleGenerationState.markGenerating(noteID)
-                }
+                let isAvailable = SimpleTextNotesAI.isAvailable
+                if isAvailable { titleGenerationState.markGenerating(noteID) }
+                defer { if isAvailable { titleGenerationState.markDone(noteID) } }
                 await generateTitle()
-                titleGenerationState.markDone(noteID)
             }
         }
         .toolbar {
