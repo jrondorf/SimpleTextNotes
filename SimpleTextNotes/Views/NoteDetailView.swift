@@ -19,7 +19,7 @@ struct NoteDetailView: View {
     @AppStorage("editorFontName") private var editorFontName: String = "system"
     @AppStorage("editorFontSize") private var editorFontSize: Double = 16.0
 
-    private let ai = SimpleTextNotesAI()
+    private let notesAI = SimpleTextNotesAI()
 
     private var editorFont: Font {
         switch editorFontName {
@@ -136,7 +136,7 @@ struct NoteDetailView: View {
 #if canImport(FoundationModels)
         if #available(iOS 26.0, macOS 26.0, *) {
             do {
-                let session = try ai.makeSession()
+                let session = try notesAI.makeSession()
                 let truncated = String(content.prefix(Self.maxContentLengthForTitleGeneration))
                 let response = try await session.respond(
                     to: "Generate a very short title (maximum \(Self.maxTitleLength) characters) for this note. Reply with only the title text, no quotes, no punctuation at the end, no explanation:\n\n\(truncated)"
@@ -160,11 +160,12 @@ struct NoteDetailView: View {
 #if canImport(FoundationModels)
         if #available(iOS 26.0, macOS 26.0, *) {
             do {
-                let session = try ai.makeSession(instructions: "You are a helpful writing assistant. Generate clear, well-structured note content based on the user's request.")
+                let session = try notesAI.makeSession(instructions: "You are a helpful writing assistant. Generate clear, well-structured note content based on the user's request.")
                 let response = try await session.respond(to: prompt)
                 let generated = response.content.trimmingCharacters(in: .whitespacesAndNewlines)
                 guard !generated.isEmpty else { return }
-                note.content = generated
+                let existing = note.content.trimmingCharacters(in: .whitespacesAndNewlines)
+                note.content = existing.isEmpty ? generated : "\(note.content)\n\n\(generated)"
                 note.updatedAt = Date()
             } catch {
                 // Content generation failed silently
