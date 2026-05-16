@@ -86,9 +86,6 @@ struct NoteListView: View {
             }
             #if canImport(UIKit)
             ToolbarItem(placement: .topBarLeading) {
-            #else
-            ToolbarItem(placement: .navigation) {
-            #endif
                 Button {
                     showTrash = true
                 } label: {
@@ -96,6 +93,16 @@ struct NoteListView: View {
                 }
                 .help("trash_button")
             }
+            #else
+            ToolbarItem(placement: .navigation) {
+                Button {
+                    showTrash = true
+                } label: {
+                    Label("trash_button", systemImage: "trash")
+                }
+                .help("trash_button")
+            }
+            #endif
         }
         .sheet(isPresented: $showTrash) {
             NavigationStack {
