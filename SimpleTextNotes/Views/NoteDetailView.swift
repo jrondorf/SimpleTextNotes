@@ -1,6 +1,8 @@
 import SwiftUI
 import SwiftData
+#if canImport(FoundationModels)
 import FoundationModels
+#endif
 #if canImport(UIKit)
 import UIKit
 #elseif canImport(AppKit)
@@ -13,8 +15,11 @@ struct NoteDetailView: View {
     @Environment(\.modelContext) private var modelContext
     @State private var showPasteConfirmation: Bool = false
     @State private var titleGenerationTask: Task<Void, Never>?
+    @State private var showAIPrompt: Bool = false
     @AppStorage("editorFontName") private var editorFontName: String = "system"
     @AppStorage("editorFontSize") private var editorFontSize: Double = 16.0
+
+    private let ai = SimpleTextNotesAI()
 
     private var editorFont: Font {
         switch editorFontName {
@@ -51,6 +56,15 @@ struct NoteDetailView: View {
         }
         .toolbar {
             ToolbarItemGroup(placement: .primaryAction) {
+                if SimpleTextNotesAI.isAvailable {
+                    Button {
+                        showAIPrompt = true
+                    } label: {
+                        Label("ai_button", systemImage: "sparkles")
+                    }
+                    .help("ai_button")
+                }
+
                 Button {
                     copyToClipboard()
                 } label: {
@@ -72,6 +86,11 @@ struct NoteDetailView: View {
                     Label("delete_button", systemImage: "trash")
                 }
                 .help("delete_button")
+            }
+        }
+        .sheet(isPresented: $showAIPrompt) {
+            AIPromptView { prompt in
+                Task { await generateContent(for: prompt) }
             }
         }
         .alert("paste_from_clipboard_alert_title", isPresented: $showPasteConfirmation) {
@@ -112,22 +131,89 @@ struct NoteDetailView: View {
     private func generateTitle() async {
         let content = note.content.trimmingCharacters(in: .whitespacesAndNewlines)
         guard note.title.isEmpty, !content.isEmpty else { return }
+        guard SimpleTextNotesAI.isAvailable else { return }
 
-        guard case .available = SystemLanguageModel.default.availability else { return }
+#if canImport(FoundationModels)
+        if #available(iOS 26.0, macOS 26.0, *) {
+            do {
+                let session = try ai.makeSession()
+                let truncated = String(content.prefix(Self.maxContentLengthForTitleGeneration))
+                let response = try await session.respond(
+                    to: "Generate a very short title (maximum \(Self.maxTitleLength) characters) for this note. Reply with only the title text, no quotes, no punctuation at the end, no explanation:\n\n\(truncated)"
+                )
+                let generated = response.content.trimmingCharacters(in: .whitespacesAndNewlines)
+                // Re-check after the async call in case a concurrent task already set a title
+                guard !generated.isEmpty, note.title.isEmpty else { return }
+                note.title = String(generated.prefix(Self.maxTitleLength))
+                note.updatedAt = Date()
+            } catch {
+                // Title generation failed silently; the note keeps an empty title
+            }
+        }
+#endif
+    }
 
-        do {
-            let session = LanguageModelSession()
-            let truncated = String(content.prefix(Self.maxContentLengthForTitleGeneration))
-            let response = try await session.respond(
-                to: "Generate a very short title (maximum \(Self.maxTitleLength) characters) for this note. Reply with only the title text, no quotes, no punctuation at the end, no explanation:\n\n\(truncated)"
-            )
-            let generated = response.content.trimmingCharacters(in: .whitespacesAndNewlines)
-            // Re-check after the async call in case a concurrent task already set a title
-            guard !generated.isEmpty, note.title.isEmpty else { return }
-            note.title = String(generated.prefix(Self.maxTitleLength))
-            note.updatedAt = Date()
-        } catch {
-            // Title generation failed silently; the note keeps an empty title
+    @MainActor
+    private func generateContent(for prompt: String) async {
+        guard SimpleTextNotesAI.isAvailable else { return }
+
+#if canImport(FoundationModels)
+        if #available(iOS 26.0, macOS 26.0, *) {
+            do {
+                let session = try ai.makeSession(instructions: "You are a helpful writing assistant. Generate clear, well-structured note content based on the user's request.")
+                let response = try await session.respond(to: prompt)
+                let generated = response.content.trimmingCharacters(in: .whitespacesAndNewlines)
+                guard !generated.isEmpty else { return }
+                note.content = generated
+                note.updatedAt = Date()
+            } catch {
+                // Content generation failed silently
+            }
+        }
+#endif
+    }
+}
+
+struct AIPromptView: View {
+    let onSend: (String) -> Void
+    @Environment(\.dismiss) private var dismiss
+    @State private var promptText: String = ""
+
+    var body: some View {
+        NavigationStack {
+            VStack(spacing: 16) {
+                TextEditor(text: $promptText)
+                    .font(.body)
+                    .padding(8)
+                    .frame(minHeight: 120)
+                    #if os(iOS)
+                    .background(Color(.secondarySystemBackground))
+                    #endif
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+
+                Spacer()
+            }
+            .padding()
+            .navigationTitle("ai_prompt_title")
+            #if os(iOS)
+            .navigationBarTitleDisplayMode(.inline)
+            #endif
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("ai_send_button") {
+                        let trimmed = promptText.trimmingCharacters(in: .whitespacesAndNewlines)
+                        guard !trimmed.isEmpty else { return }
+                        dismiss()
+                        onSend(trimmed)
+                    }
+                    .disabled(promptText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                }
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("cancel_button") {
+                        dismiss()
+                    }
+                }
+            }
         }
     }
 }
