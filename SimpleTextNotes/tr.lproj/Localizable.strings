@@ -76,11 +76,44 @@
 /* Navigation title for the editor font settings screen */
 "editor_font_navigation_title" = "Editör Yazı Tipi";
 
+/* OK button */
+"ok_button" = "Tamam";
+
 /* Label and help text for the AI button */
 "ai_button" = "AI";
 
-/* Title for the AI prompt modal */
-"ai_prompt_title" = "Bugün ne hakkında yazmak istiyorsun?";
+/* Title for the alert when AI is triggered with no note content */
+"ai_no_content_title" = "İçerik Yok";
 
-/* Send button in the AI prompt modal */
-"ai_send_button" = "Gönder";
+/* Message shown when AI is triggered with no note content */
+"ai_no_content_message" = "AI işlemini kullanmak için lütfen önce nota metin girin.";
+
+/* Title of the delete-note confirmation alert */
+"delete_note_alert_title" = "Notu Sil";
+
+/* Message shown in the delete-note confirmation alert */
+"delete_note_alert_message" = "Bu not Çöp Kutusu'na taşınacak. 30 gün içinde geri yükleyebilirsiniz.";
+
+/* Action button to move a note to trash */
+"move_to_trash_button" = "Çöp Kutusuna Taşı";
+
+/* Label and help text for the trash button */
+"trash_button" = "Çöp Kutusu";
+
+/* Navigation title for the trash view */
+"trash_navigation_title" = "Çöp Kutusu";
+
+/* Restore a note from trash */
+"restore_note_button" = "Geri Yükle";
+
+/* Permanently delete a note */
+"delete_permanently_button" = "Kalıcı Olarak Sil";
+
+/* Title shown when the trash is empty */
+"empty_trash_title" = "Çöp Kutusu Boş";
+
+/* Description shown when the trash is empty */
+"empty_trash_description" = "Silinen notlar kalıcı olarak kaldırılmadan önce 30 gün boyunca burada görünecektir.";
+
+/* Format string showing days remaining before permanent deletion (%d = number of days) */
+"days_until_deletion_format" = "Kalıcı silmeye %d gün kaldı";

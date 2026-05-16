@@ -76,11 +76,44 @@
 /* Navigation title for the editor font settings screen */
 "editor_font_navigation_title" = "편집기 글꼴";
 
+/* OK button */
+"ok_button" = "확인";
+
 /* Label and help text for the AI button */
 "ai_button" = "AI";
 
-/* Title for the AI prompt modal */
-"ai_prompt_title" = "오늘은 무엇에 대해 쓰고 싶으신가요?";
+/* Title for the alert when AI is triggered with no note content */
+"ai_no_content_title" = "내용 없음";
 
-/* Send button in the AI prompt modal */
-"ai_send_button" = "전송";
+/* Message shown when AI is triggered with no note content */
+"ai_no_content_message" = "AI 처리를 사용하려면 먼저 메모에 텍스트를 입력하세요.";
+
+/* Title of the delete-note confirmation alert */
+"delete_note_alert_title" = "메모 삭제";
+
+/* Message shown in the delete-note confirmation alert */
+"delete_note_alert_message" = "이 메모는 휴지통으로 이동됩니다. 30일 이내에 복원할 수 있습니다.";
+
+/* Action button to move a note to trash */
+"move_to_trash_button" = "휴지통으로 이동";
+
+/* Label and help text for the trash button */
+"trash_button" = "휴지통";
+
+/* Navigation title for the trash view */
+"trash_navigation_title" = "휴지통";
+
+/* Restore a note from trash */
+"restore_note_button" = "복원";
+
+/* Permanently delete a note */
+"delete_permanently_button" = "영구 삭제";
+
+/* Title shown when the trash is empty */
+"empty_trash_title" = "휴지통이 비어 있습니다";
+
+/* Description shown when the trash is empty */
+"empty_trash_description" = "삭제된 메모는 영구적으로 제거되기 전 30일 동안 여기에 표시됩니다.";
+
+/* Format string showing days remaining before permanent deletion (%d = number of days) */
+"days_until_deletion_format" = "영구 삭제까지 %d일";

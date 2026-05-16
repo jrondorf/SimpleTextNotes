@@ -76,11 +76,44 @@
 /* Navigation title for the editor font settings screen */
 "editor_font_navigation_title" = "Шрифт редактора";
 
+/* OK button */
+"ok_button" = "OK";
+
 /* Label and help text for the AI button */
 "ai_button" = "AI";
 
-/* Title for the AI prompt modal */
-"ai_prompt_title" = "Про що ти хочеш написати сьогодні?";
+/* Title for the alert when AI is triggered with no note content */
+"ai_no_content_title" = "Немає вмісту";
 
-/* Send button in the AI prompt modal */
-"ai_send_button" = "Надіслати";
+/* Message shown when AI is triggered with no note content */
+"ai_no_content_message" = "Будь ласка, спочатку введіть текст у нотатку, щоб використовувати обробку ШІ.";
+
+/* Title of the delete-note confirmation alert */
+"delete_note_alert_title" = "Видалити нотатку";
+
+/* Message shown in the delete-note confirmation alert */
+"delete_note_alert_message" = "Цю нотатку буде переміщено до Кошика. Ви можете відновити її протягом 30 днів.";
+
+/* Action button to move a note to trash */
+"move_to_trash_button" = "До Кошика";
+
+/* Label and help text for the trash button */
+"trash_button" = "Кошик";
+
+/* Navigation title for the trash view */
+"trash_navigation_title" = "Кошик";
+
+/* Restore a note from trash */
+"restore_note_button" = "Відновити";
+
+/* Permanently delete a note */
+"delete_permanently_button" = "Видалити назавжди";
+
+/* Title shown when the trash is empty */
+"empty_trash_title" = "Кошик порожній";
+
+/* Description shown when the trash is empty */
+"empty_trash_description" = "Видалені нотатки з'являтимуться тут протягом 30 днів до остаточного видалення.";
+
+/* Format string showing days remaining before permanent deletion (%d = number of days) */
+"days_until_deletion_format" = "%d день(днів) до остаточного видалення";
