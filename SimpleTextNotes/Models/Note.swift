@@ -8,6 +8,9 @@ class Note {
     var content: String = ""
     var createdAt: Date = Date()
     var updatedAt: Date = Date()
+    var deletedAt: Date? = nil
+
+    static let trashRetentionDays: Int = 30
 
     init(
         id: UUID = UUID(),
@@ -20,5 +23,6 @@ class Note {
         self.content = content
         self.createdAt = createdAt
         self.updatedAt = createdAt
+        self.deletedAt = nil
     }
 }
