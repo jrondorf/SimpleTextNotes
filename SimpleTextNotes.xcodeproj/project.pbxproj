@@ -16,6 +16,7 @@
 		AA000001008 /* SimpleTextNotesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000002008 /* SimpleTextNotesTests.swift */; };
 		AA000001009 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000002012 /* SettingsView.swift */; };
 		AA000001010 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AA000002013 /* Settings.bundle */; };
+		AA000001011 /* SimpleTextNotesAI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000002014 /* SimpleTextNotesAI.swift */; };
 		AA001001001 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA001002001 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		AA000002011 /* SimpleTextNotes.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SimpleTextNotes.entitlements; sourceTree = "<group>"; };
 		AA000002012 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		AA000002013 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		AA000002014 /* SimpleTextNotesAI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTextNotesAI.swift; sourceTree = "<group>"; };
 		AA001002002 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AA001002003 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		AA001002004 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				AA000002001 /* SimpleTextNotesApp.swift */,
 				AA000002002 /* ContentView.swift */,
 				AA000003004 /* Models */,
+				AA000003005 /* AI */,
 				AA000003006 /* Views */,
 				AA000002007 /* Assets.xcassets */,
 				AA000002011 /* SimpleTextNotes.entitlements */,
@@ -126,6 +129,14 @@
 				AA000002003 /* Note.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		AA000003005 /* AI */ = {
+			isa = PBXGroup;
+			children = (
+				AA000002014 /* SimpleTextNotesAI.swift */,
+			);
+			path = AI;
 			sourceTree = "<group>";
 		};
 		AA000003006 /* Views */ = {
@@ -267,6 +278,7 @@
 				AA000001005 /* NoteListView.swift in Sources */,
 				AA000001006 /* NoteDetailView.swift in Sources */,
 				AA000001009 /* SettingsView.swift in Sources */,
+				AA000001011 /* SimpleTextNotesAI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
