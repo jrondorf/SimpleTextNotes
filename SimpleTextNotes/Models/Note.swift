@@ -10,6 +10,8 @@ class Note {
     var updatedAt: Date = Date()
     var deletedAt: Date? = nil
 
+    static let trashRetentionDays: Int = 30
+
     init(
         id: UUID = UUID(),
         title: String = "",

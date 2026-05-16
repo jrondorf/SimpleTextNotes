@@ -79,14 +79,17 @@ final class NoteTests: XCTestCase {
         context.insert(note)
         try context.save()
 
-        let trashedAt = Date()
-        note.deletedAt = trashedAt
+        note.deletedAt = Date()
         try context.save()
 
-        let descriptor = FetchDescriptor<Note>(filter: #Predicate<Note> { $0.deletedAt != nil })
-        let trashedNotes = try context.fetch(descriptor)
+        let trashedDescriptor = FetchDescriptor<Note>(filter: #Predicate<Note> { $0.deletedAt != nil })
+        let trashedNotes = try context.fetch(trashedDescriptor)
         XCTAssertEqual(trashedNotes.count, 1)
         XCTAssertNotNil(trashedNotes.first?.deletedAt)
+
+        let activeDescriptor = FetchDescriptor<Note>(filter: #Predicate<Note> { $0.deletedAt == nil })
+        let activeNotes = try context.fetch(activeDescriptor)
+        XCTAssertEqual(activeNotes.count, 0)
     }
 
     @MainActor
@@ -108,9 +111,9 @@ final class NoteTests: XCTestCase {
         XCTAssertEqual(activeNotes.count, 1)
         XCTAssertNil(activeNotes.first?.deletedAt)
     }
-        let config = ModelConfiguration(isStoredInMemoryOnly: true)
-        let container = try ModelContainer(for: Note.self, configurations: config)
-        let context = container.mainContext
+
+    @MainActor
+    func testUpdateNoteUpdatesTimestamp() throws {
 
         let createdAt = Date(timeIntervalSinceNow: -60)
         let note = Note(title: "Original", content: "Content", createdAt: createdAt)

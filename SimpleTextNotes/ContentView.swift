@@ -64,13 +64,14 @@ struct ContentView: View {
     }
 
     private func purgeOldTrashNotes() {
-        let thirtyDaysAgo = Date(timeIntervalSinceNow: -30 * 24 * 60 * 60)
+        let retentionInterval = TimeInterval(Note.trashRetentionDays) * 24 * 60 * 60
+        let cutoff = Date(timeIntervalSinceNow: -retentionInterval)
         let descriptor = FetchDescriptor<Note>(
             filter: #Predicate<Note> { $0.deletedAt != nil }
         )
         if let trashedNotes = try? modelContext.fetch(descriptor) {
             for note in trashedNotes {
-                if let deletedAt = note.deletedAt, deletedAt < thirtyDaysAgo {
+                if let deletedAt = note.deletedAt, deletedAt < cutoff {
                     modelContext.delete(note)
                 }
             }

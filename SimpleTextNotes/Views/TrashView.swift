@@ -37,7 +37,7 @@ struct TrashView: View {
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
                             }
-                            let daysRemaining = 30 - daysInTrash(for: note)
+                            let daysRemaining = Note.trashRetentionDays - daysInTrash(for: note)
                             if daysRemaining > 0 {
                                 Text(String(format: String(localized: "days_until_deletion_format"), daysRemaining))
                                     .font(.caption2)
