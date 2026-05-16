@@ -1,9 +1,23 @@
 import SwiftUI
 import SwiftData
 
+private struct GeneratingTitleView: View {
+    private static let animationInterval: TimeInterval = 0.5
+
+    var body: some View {
+        TimelineView(.periodic(from: .now, by: Self.animationInterval)) { context in
+            let phase = Int(context.date.timeIntervalSinceReferenceDate / Self.animationInterval) % 3
+            Text(String(repeating: ".", count: phase + 1))
+                .font(.headline)
+                .foregroundStyle(.secondary)
+        }
+    }
+}
+
 struct NoteListView: View {
     @Query(filter: #Predicate<Note> { $0.deletedAt == nil }, sort: \Note.updatedAt, order: .reverse) private var notes: [Note]
     @Environment(\.modelContext) private var modelContext
+    @Environment(TitleGenerationState.self) private var titleGenerationState
     @Binding var selectedNoteID: UUID?
     @State private var searchText: String = ""
 
@@ -27,9 +41,13 @@ struct NoteListView: View {
             ForEach(filteredNotes) { note in
                 NavigationLink(value: note.id) {
                     VStack(alignment: .leading, spacing: 4) {
-                        Text(note.title.isEmpty ? String(localized: "untitled_note") : note.title)
-                            .font(.headline)
-                            .lineLimit(1)
+                        if note.title.isEmpty && titleGenerationState.isGenerating(note.id) {
+                            GeneratingTitleView()
+                        } else {
+                            Text(note.title.isEmpty ? String(localized: "untitled_note") : note.title)
+                                .font(.headline)
+                                .lineLimit(1)
+                        }
                         Text(Self.dateFormatter.string(from: note.updatedAt))
                             .font(.caption)
                             .foregroundStyle(.secondary)
