@@ -67,7 +67,7 @@ struct ContentView: View {
         let retentionInterval = TimeInterval(Note.trashRetentionDays) * 24 * 60 * 60
         let cutoff = Date(timeIntervalSinceNow: -retentionInterval)
         let descriptor = FetchDescriptor<Note>(
-            filter: #Predicate<Note> { $0.deletedAt != nil }
+            predicate: #Predicate<Note> { $0.deletedAt != nil }
         )
         if let trashedNotes = try? modelContext.fetch(descriptor) {
             for note in trashedNotes {
