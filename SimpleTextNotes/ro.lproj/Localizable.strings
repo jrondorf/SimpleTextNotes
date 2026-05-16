@@ -76,11 +76,44 @@
 /* Navigation title for the editor font settings screen */
 "editor_font_navigation_title" = "Font editor";
 
+/* OK button */
+"ok_button" = "OK";
+
 /* Label and help text for the AI button */
 "ai_button" = "AI";
 
-/* Title for the AI prompt modal */
-"ai_prompt_title" = "Despre ce vrei să scrii astăzi?";
+/* Title for the alert when AI is triggered with no note content */
+"ai_no_content_title" = "Fără conținut";
 
-/* Send button in the AI prompt modal */
-"ai_send_button" = "Trimite";
+/* Message shown when AI is triggered with no note content */
+"ai_no_content_message" = "Vă rugăm să introduceți mai întâi text în notă pentru a utiliza procesarea AI.";
+
+/* Title of the delete-note confirmation alert */
+"delete_note_alert_title" = "Ștergere notă";
+
+/* Message shown in the delete-note confirmation alert */
+"delete_note_alert_message" = "Această notă va fi mutată în Coș. O puteți restaura în termen de 30 de zile.";
+
+/* Action button to move a note to trash */
+"move_to_trash_button" = "Mută în Coș";
+
+/* Label and help text for the trash button */
+"trash_button" = "Coș";
+
+/* Navigation title for the trash view */
+"trash_navigation_title" = "Coș";
+
+/* Restore a note from trash */
+"restore_note_button" = "Restaurare";
+
+/* Permanently delete a note */
+"delete_permanently_button" = "Ștergere permanentă";
+
+/* Title shown when the trash is empty */
+"empty_trash_title" = "Coșul este gol";
+
+/* Description shown when the trash is empty */
+"empty_trash_description" = "Notele șterse vor apărea aici timp de 30 de zile înainte de a fi eliminate permanent.";
+
+/* Format string showing days remaining before permanent deletion (%d = number of days) */
+"days_until_deletion_format" = "%d zi/zile până la ștergerea permanentă";

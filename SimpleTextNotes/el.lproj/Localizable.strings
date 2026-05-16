@@ -76,11 +76,44 @@
 /* Navigation title for the editor font settings screen */
 "editor_font_navigation_title" = "Γραμματοσειρά επεξεργαστή";
 
+/* OK button */
+"ok_button" = "OK";
+
 /* Label and help text for the AI button */
 "ai_button" = "AI";
 
-/* Title for the AI prompt modal */
-"ai_prompt_title" = "Για τι θέλεις να γράψεις σήμερα;";
+/* Title for the alert when AI is triggered with no note content */
+"ai_no_content_title" = "Χωρίς περιεχόμενο";
 
-/* Send button in the AI prompt modal */
-"ai_send_button" = "Αποστολή";
+/* Message shown when AI is triggered with no note content */
+"ai_no_content_message" = "Παρακαλώ εισάγετε πρώτα κείμενο στη σημείωση για να χρησιμοποιήσετε την επεξεργασία AI.";
+
+/* Title of the delete-note confirmation alert */
+"delete_note_alert_title" = "Διαγραφή σημείωσης";
+
+/* Message shown in the delete-note confirmation alert */
+"delete_note_alert_message" = "Αυτή η σημείωση θα μετακινηθεί στον Κάδο ανακύκλωσης. Μπορείτε να την επαναφέρετε εντός 30 ημερών.";
+
+/* Action button to move a note to trash */
+"move_to_trash_button" = "Μετακίνηση στον Κάδο";
+
+/* Label and help text for the trash button */
+"trash_button" = "Κάδος";
+
+/* Navigation title for the trash view */
+"trash_navigation_title" = "Κάδος";
+
+/* Restore a note from trash */
+"restore_note_button" = "Επαναφορά";
+
+/* Permanently delete a note */
+"delete_permanently_button" = "Μόνιμη διαγραφή";
+
+/* Title shown when the trash is empty */
+"empty_trash_title" = "Ο κάδος είναι κενός";
+
+/* Description shown when the trash is empty */
+"empty_trash_description" = "Οι διαγραμμένες σημειώσεις θα εμφανίζονται εδώ για 30 ημέρες πριν αφαιρεθούν μόνιμα.";
+
+/* Format string showing days remaining before permanent deletion (%d = number of days) */
+"days_until_deletion_format" = "%d ημέρα(ες) μέχρι τη μόνιμη διαγραφή";

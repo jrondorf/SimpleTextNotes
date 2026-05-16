@@ -76,11 +76,44 @@
 /* Navigation title for the editor font settings screen */
 "editor_font_navigation_title" = "編輯器字體";
 
+/* OK button */
+"ok_button" = "好";
+
 /* Label and help text for the AI button */
 "ai_button" = "AI";
 
-/* Title for the AI prompt modal */
-"ai_prompt_title" = "今天想寫些什麼？";
+/* Title for the alert when AI is triggered with no note content */
+"ai_no_content_title" = "無內容";
 
-/* Send button in the AI prompt modal */
-"ai_send_button" = "傳送";
+/* Message shown when AI is triggered with no note content */
+"ai_no_content_message" = "請先在備忘錄中輸入文字以使用 AI 處理。";
+
+/* Title of the delete-note confirmation alert */
+"delete_note_alert_title" = "刪除備忘錄";
+
+/* Message shown in the delete-note confirmation alert */
+"delete_note_alert_message" = "此備忘錄將移至垃圾桶。您可以在 30 天內還原它。";
+
+/* Action button to move a note to trash */
+"move_to_trash_button" = "移至垃圾桶";
+
+/* Label and help text for the trash button */
+"trash_button" = "垃圾桶";
+
+/* Navigation title for the trash view */
+"trash_navigation_title" = "垃圾桶";
+
+/* Restore a note from trash */
+"restore_note_button" = "還原";
+
+/* Permanently delete a note */
+"delete_permanently_button" = "永久刪除";
+
+/* Title shown when the trash is empty */
+"empty_trash_title" = "垃圾桶為空";
+
+/* Description shown when the trash is empty */
+"empty_trash_description" = "已刪除的備忘錄將在此處保留 30 天，之後將被永久刪除。";
+
+/* Format string showing days remaining before permanent deletion (%d = number of days) */
+"days_until_deletion_format" = "距永久刪除還有 %d 天";

@@ -76,11 +76,44 @@
 /* Navigation title for the editor font settings screen */
 "editor_font_navigation_title" = "Carattere editor";
 
+/* OK button */
+"ok_button" = "OK";
+
 /* Label and help text for the AI button */
 "ai_button" = "AI";
 
-/* Title for the AI prompt modal */
-"ai_prompt_title" = "Di cosa vuoi scrivere oggi?";
+/* Title for the alert when AI is triggered with no note content */
+"ai_no_content_title" = "Nessun contenuto";
 
-/* Send button in the AI prompt modal */
-"ai_send_button" = "Invia";
+/* Message shown when AI is triggered with no note content */
+"ai_no_content_message" = "Inserisci prima del testo nella nota per utilizzare l'elaborazione IA.";
+
+/* Title of the delete-note confirmation alert */
+"delete_note_alert_title" = "Elimina nota";
+
+/* Message shown in the delete-note confirmation alert */
+"delete_note_alert_message" = "Questa nota verrà spostata nel cestino. Puoi ripristinarla entro 30 giorni.";
+
+/* Action button to move a note to trash */
+"move_to_trash_button" = "Sposta nel cestino";
+
+/* Label and help text for the trash button */
+"trash_button" = "Cestino";
+
+/* Navigation title for the trash view */
+"trash_navigation_title" = "Cestino";
+
+/* Restore a note from trash */
+"restore_note_button" = "Ripristina";
+
+/* Permanently delete a note */
+"delete_permanently_button" = "Elimina definitivamente";
+
+/* Title shown when the trash is empty */
+"empty_trash_title" = "Il cestino è vuoto";
+
+/* Description shown when the trash is empty */
+"empty_trash_description" = "Le note eliminate appariranno qui per 30 giorni prima di essere rimosse definitivamente.";
+
+/* Format string showing days remaining before permanent deletion (%d = number of days) */
+"days_until_deletion_format" = "%d giorno/i alla cancellazione definitiva";
