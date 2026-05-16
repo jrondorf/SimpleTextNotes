@@ -75,3 +75,12 @@
 
 /* Navigation title for the editor font settings screen */
 "editor_font_navigation_title" = "Szerkesztő betűtípusa";
+
+/* Label and help text for the AI button */
+"ai_button" = "AI";
+
+/* Title for the AI prompt modal */
+"ai_prompt_title" = "Miről szeretnél ma írni?";
+
+/* Send button in the AI prompt modal */
+"ai_send_button" = "Küldés";

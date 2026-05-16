@@ -75,3 +75,12 @@
 
 /* Navigation title for the editor font settings screen */
 "editor_font_navigation_title" = "编辑器字体";
+
+/* Label and help text for the AI button */
+"ai_button" = "AI";
+
+/* Title for the AI prompt modal */
+"ai_prompt_title" = "今天想写些什么？";
+
+/* Send button in the AI prompt modal */
+"ai_send_button" = "发送";
