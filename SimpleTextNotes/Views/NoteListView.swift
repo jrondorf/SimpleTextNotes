@@ -20,6 +20,7 @@ struct NoteListView: View {
     @Environment(TitleGenerationState.self) private var titleGenerationState
     @Binding var selectedNoteID: UUID?
     @State private var searchText: String = ""
+    @State private var showTrash: Bool = false
 
     private var filteredNotes: [Note] {
         guard !searchText.isEmpty else { return notes }
@@ -82,6 +83,30 @@ struct NoteListView: View {
                 }
                 .help("new_note_button")
                 .keyboardShortcut("n", modifiers: .command)
+            }
+            ToolbarItem(placement:
+                #if canImport(UIKit)
+                .topBarLeading
+                #else
+                .navigation
+                #endif
+            ) {
+                Button {
+                    showTrash = true
+                } label: {
+                    Label("trash_button", systemImage: "trash")
+                }
+                .help("trash_button")
+            }
+        }
+        .sheet(isPresented: $showTrash) {
+            NavigationStack {
+                TrashView()
+                    .toolbar {
+                        ToolbarItem(placement: .confirmationAction) {
+                            Button("done_button") { showTrash = false }
+                        }
+                    }
             }
         }
     }

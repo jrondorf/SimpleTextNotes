@@ -6,7 +6,6 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @State private var selectedNoteID: UUID?
     @State private var showSettings: Bool = false
-    @State private var showTrash: Bool = false
     @State private var titleGenerationState = TitleGenerationState()
 
     var body: some View {
@@ -30,14 +29,6 @@ struct ContentView: View {
                 }
                 .help("settings_button")
             }
-            ToolbarItem(placement: .navigation) {
-                Button {
-                    showTrash = true
-                } label: {
-                    Label("trash_button", systemImage: "trash")
-                }
-                .help("trash_button")
-            }
         }
         .sheet(isPresented: $showSettings) {
             NavigationStack {
@@ -45,16 +36,6 @@ struct ContentView: View {
                     .toolbar {
                         ToolbarItem(placement: .confirmationAction) {
                             Button("done_button") { showSettings = false }
-                        }
-                    }
-            }
-        }
-        .sheet(isPresented: $showTrash) {
-            NavigationStack {
-                TrashView()
-                    .toolbar {
-                        ToolbarItem(placement: .confirmationAction) {
-                            Button("done_button") { showTrash = false }
                         }
                     }
             }
