@@ -3,8 +3,10 @@ import SwiftData
 
 struct ContentView: View {
     @Query(sort: \Note.updatedAt, order: .reverse) private var notes: [Note]
+    @Environment(\.modelContext) private var modelContext
     @State private var selectedNoteID: UUID?
     @State private var showSettings: Bool = false
+    @State private var showTrash: Bool = false
 
     var body: some View {
         NavigationSplitView {
@@ -27,6 +29,14 @@ struct ContentView: View {
                 }
                 .help("settings_button")
             }
+            ToolbarItem(placement: .navigation) {
+                Button {
+                    showTrash = true
+                } label: {
+                    Label("trash_button", systemImage: "trash")
+                }
+                .help("trash_button")
+            }
         }
         .sheet(isPresented: $showSettings) {
             NavigationStack {
@@ -36,6 +46,33 @@ struct ContentView: View {
                             Button("done_button") { showSettings = false }
                         }
                     }
+            }
+        }
+        .sheet(isPresented: $showTrash) {
+            NavigationStack {
+                TrashView()
+                    .toolbar {
+                        ToolbarItem(placement: .confirmationAction) {
+                            Button("done_button") { showTrash = false }
+                        }
+                    }
+            }
+        }
+        .task {
+            purgeOldTrashNotes()
+        }
+    }
+
+    private func purgeOldTrashNotes() {
+        let thirtyDaysAgo = Date(timeIntervalSinceNow: -30 * 24 * 60 * 60)
+        let descriptor = FetchDescriptor<Note>(
+            filter: #Predicate<Note> { $0.deletedAt != nil }
+        )
+        if let trashedNotes = try? modelContext.fetch(descriptor) {
+            for note in trashedNotes {
+                if let deletedAt = note.deletedAt, deletedAt < thirtyDaysAgo {
+                    modelContext.delete(note)
+                }
             }
         }
     }

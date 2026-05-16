@@ -64,8 +64,50 @@ final class NoteTests: XCTestCase {
         XCTAssertEqual(notes.count, 0)
     }
 
+    func testNoteDefaultDeletedAt() {
+        let note = Note()
+        XCTAssertNil(note.deletedAt)
+    }
+
     @MainActor
-    func testUpdateNoteUpdatesTimestamp() throws {
+    func testMoveNoteToTrash() throws {
+        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+        let container = try ModelContainer(for: Note.self, configurations: config)
+        let context = container.mainContext
+
+        let note = Note(title: "Trash Test", content: "Content")
+        context.insert(note)
+        try context.save()
+
+        let trashedAt = Date()
+        note.deletedAt = trashedAt
+        try context.save()
+
+        let descriptor = FetchDescriptor<Note>(filter: #Predicate<Note> { $0.deletedAt != nil })
+        let trashedNotes = try context.fetch(descriptor)
+        XCTAssertEqual(trashedNotes.count, 1)
+        XCTAssertNotNil(trashedNotes.first?.deletedAt)
+    }
+
+    @MainActor
+    func testRestoreNoteFromTrash() throws {
+        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+        let container = try ModelContainer(for: Note.self, configurations: config)
+        let context = container.mainContext
+
+        let note = Note(title: "Restore Test", content: "Content")
+        note.deletedAt = Date()
+        context.insert(note)
+        try context.save()
+
+        note.deletedAt = nil
+        try context.save()
+
+        let activeDescriptor = FetchDescriptor<Note>(filter: #Predicate<Note> { $0.deletedAt == nil })
+        let activeNotes = try context.fetch(activeDescriptor)
+        XCTAssertEqual(activeNotes.count, 1)
+        XCTAssertNil(activeNotes.first?.deletedAt)
+    }
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
         let container = try ModelContainer(for: Note.self, configurations: config)
         let context = container.mainContext

@@ -15,8 +15,9 @@ struct NoteDetailView: View {
     @Environment(\.modelContext) private var modelContext
     @State private var showPasteConfirmation: Bool = false
     @State private var titleGenerationTask: Task<Void, Never>?
-    @State private var showAIPrompt: Bool = false
+    @State private var showAINoContent: Bool = false
     @State private var isGenerating: Bool = false
+    @State private var showDeleteConfirmation: Bool = false
     @AppStorage("editorFontName") private var editorFontName: String = "system"
     @AppStorage("editorFontSize") private var editorFontSize: Double = 16.0
 
@@ -62,7 +63,12 @@ struct NoteDetailView: View {
                         ProgressView()
                     } else {
                         Button {
-                            showAIPrompt = true
+                            let content = note.content.trimmingCharacters(in: .whitespacesAndNewlines)
+                            if content.isEmpty {
+                                showAINoContent = true
+                            } else {
+                                Task { await generateContent() }
+                            }
                         } label: {
                             Label("ai_button", systemImage: "sparkles")
                         }
@@ -85,21 +91,26 @@ struct NoteDetailView: View {
                 .help("paste_button")
 
                 Button(role: .destructive) {
-                    selectedNoteID = nil
-                    modelContext.delete(note)
+                    showDeleteConfirmation = true
                 } label: {
                     Label("delete_button", systemImage: "trash")
                 }
                 .help("delete_button")
             }
         }
-        .sheet(isPresented: $showAIPrompt) {
-            AIPromptView { prompt in
-                Task { await generateContent(for: prompt) }
+        .alert("ai_no_content_title", isPresented: $showAINoContent) {
+            Button("ok_button", role: .cancel) { }
+        } message: {
+            Text("ai_no_content_message")
+        }
+        .alert("delete_note_alert_title", isPresented: $showDeleteConfirmation) {
+            Button("move_to_trash_button", role: .destructive) {
+                selectedNoteID = nil
+                note.deletedAt = Date()
             }
-            #if os(iOS)
-            .presentationDetents([.medium, .large])
-            #endif
+            Button("cancel_button", role: .cancel) { }
+        } message: {
+            Text("delete_note_alert_message")
         }
         .alert("paste_from_clipboard_alert_title", isPresented: $showPasteConfirmation) {
             Button("paste_alert_action", role: .destructive) {
@@ -162,7 +173,7 @@ struct NoteDetailView: View {
     }
 
     @MainActor
-    private func generateContent(for prompt: String) async {
+    private func generateContent() async {
         guard SimpleTextNotesAI.isAvailable else { return }
         isGenerating = true
         defer { isGenerating = false }
@@ -170,61 +181,17 @@ struct NoteDetailView: View {
 #if canImport(FoundationModels)
         if #available(iOS 26.0, macOS 26.0, *) {
             do {
-                let session = try notesAI.makeSession(instructions: "You are a helpful writing assistant. Generate clear, well-structured note content based on the user's request.")
+                let session = try notesAI.makeSession(instructions: "You are a helpful writing assistant. Improve, expand, or process the given note content.")
+                let prompt = note.content.trimmingCharacters(in: .whitespacesAndNewlines)
                 let response = try await session.respond(to: prompt)
                 let generated = response.content.trimmingCharacters(in: .whitespacesAndNewlines)
                 guard !generated.isEmpty else { return }
-                let existing = note.content.trimmingCharacters(in: .whitespacesAndNewlines)
-                note.content = existing.isEmpty ? generated : "\(note.content)\n\n\(generated)"
+                note.content = "\(note.content)\n\n\(generated)"
                 note.updatedAt = Date()
             } catch {
                 // Content generation failed silently
             }
         }
 #endif
-    }
-}
-
-struct AIPromptView: View {
-    let onSend: (String) -> Void
-    @Environment(\.dismiss) private var dismiss
-    @State private var promptText: String = ""
-
-    var body: some View {
-        NavigationStack {
-            VStack(spacing: 16) {
-                TextEditor(text: $promptText)
-                    .font(.body)
-                    .padding(8)
-                    .frame(minHeight: 120)
-                    #if os(iOS)
-                    .background(Color(.secondarySystemBackground))
-                    #endif
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
-
-                Spacer()
-            }
-            .padding()
-            .navigationTitle("ai_prompt_title")
-            #if os(iOS)
-            .navigationBarTitleDisplayMode(.inline)
-            #endif
-            .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("ai_send_button") {
-                        let trimmed = promptText.trimmingCharacters(in: .whitespacesAndNewlines)
-                        guard !trimmed.isEmpty else { return }
-                        dismiss()
-                        onSend(trimmed)
-                    }
-                    .disabled(promptText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
-                }
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("cancel_button") {
-                        dismiss()
-                    }
-                }
-            }
-        }
     }
 }

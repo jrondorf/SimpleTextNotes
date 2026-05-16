@@ -2,7 +2,7 @@ import SwiftUI
 import SwiftData
 
 struct NoteListView: View {
-    @Query(sort: \Note.updatedAt, order: .reverse) private var notes: [Note]
+    @Query(filter: #Predicate<Note> { $0.deletedAt == nil }, sort: \Note.updatedAt, order: .reverse) private var notes: [Note]
     @Environment(\.modelContext) private var modelContext
     @Binding var selectedNoteID: UUID?
     @State private var searchText: String = ""
@@ -42,8 +42,9 @@ struct NoteListView: View {
                 if let selected = selectedNoteID, deletedIDs.contains(selected) {
                     selectedNoteID = nil
                 }
+                let now = Date()
                 for index in offsets.sorted().reversed() {
-                    modelContext.delete(filteredNotes[index])
+                    filteredNotes[index].deletedAt = now
                 }
             }
         }

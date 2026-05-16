@@ -31,6 +31,9 @@
 /* Cancel button */
 "cancel_button" = "Cancel";
 
+/* OK button */
+"ok_button" = "OK";
+
 /* Body text of the paste confirmation alert */
 "paste_clipboard_message" = "This will replace the current note content with the clipboard text.";
 
@@ -79,8 +82,38 @@
 /* Label and help text for the AI button */
 "ai_button" = "AI";
 
-/* Title for the AI prompt modal */
-"ai_prompt_title" = "What do you want to write about today?";
+/* Title for the alert when AI is triggered with no note content */
+"ai_no_content_title" = "No Content";
 
-/* Send button in the AI prompt modal */
-"ai_send_button" = "Send";
+/* Message shown when AI is triggered with no note content */
+"ai_no_content_message" = "Please enter some text in the note first to use AI processing.";
+
+/* Title of the delete-note confirmation alert */
+"delete_note_alert_title" = "Delete Note";
+
+/* Message shown in the delete-note confirmation alert */
+"delete_note_alert_message" = "This note will be moved to the Trash. You can restore it within 30 days.";
+
+/* Action button to move a note to trash */
+"move_to_trash_button" = "Move to Trash";
+
+/* Label and help text for the trash button */
+"trash_button" = "Trash";
+
+/* Navigation title for the trash view */
+"trash_navigation_title" = "Trash";
+
+/* Restore a note from trash */
+"restore_note_button" = "Restore";
+
+/* Permanently delete a note */
+"delete_permanently_button" = "Delete Permanently";
+
+/* Title shown when the trash is empty */
+"empty_trash_title" = "Trash is Empty";
+
+/* Description shown when the trash is empty */
+"empty_trash_description" = "Deleted notes will appear here for 30 days before being permanently removed.";
+
+/* Format string showing days remaining before permanent deletion (%d = number of days) */
+"days_until_deletion_format" = "%d day(s) until permanent deletion";
