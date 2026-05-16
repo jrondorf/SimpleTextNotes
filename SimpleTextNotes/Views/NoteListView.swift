@@ -84,13 +84,11 @@ struct NoteListView: View {
                 .help("new_note_button")
                 .keyboardShortcut("n", modifiers: .command)
             }
-            ToolbarItem(placement:
-                #if canImport(UIKit)
-                .topBarLeading
-                #else
-                .navigation
-                #endif
-            ) {
+            #if canImport(UIKit)
+            ToolbarItem(placement: .topBarLeading) {
+            #else
+            ToolbarItem(placement: .navigation) {
+            #endif
                 Button {
                     showTrash = true
                 } label: {
