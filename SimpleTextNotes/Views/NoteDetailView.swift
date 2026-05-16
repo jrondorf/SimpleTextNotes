@@ -16,6 +16,7 @@ struct NoteDetailView: View {
     @State private var showPasteConfirmation: Bool = false
     @State private var titleGenerationTask: Task<Void, Never>?
     @State private var showAIPrompt: Bool = false
+    @State private var isGenerating: Bool = false
     @AppStorage("editorFontName") private var editorFontName: String = "system"
     @AppStorage("editorFontSize") private var editorFontSize: Double = 16.0
 
@@ -57,12 +58,16 @@ struct NoteDetailView: View {
         .toolbar {
             ToolbarItemGroup(placement: .primaryAction) {
                 if SimpleTextNotesAI.isAvailable {
-                    Button {
-                        showAIPrompt = true
-                    } label: {
-                        Label("ai_button", systemImage: "sparkles")
+                    if isGenerating {
+                        ProgressView()
+                    } else {
+                        Button {
+                            showAIPrompt = true
+                        } label: {
+                            Label("ai_button", systemImage: "sparkles")
+                        }
+                        .help("ai_button")
                     }
-                    .help("ai_button")
                 }
 
                 Button {
@@ -92,6 +97,9 @@ struct NoteDetailView: View {
             AIPromptView { prompt in
                 Task { await generateContent(for: prompt) }
             }
+            #if os(iOS)
+            .presentationDetents([.medium, .large])
+            #endif
         }
         .alert("paste_from_clipboard_alert_title", isPresented: $showPasteConfirmation) {
             Button("paste_alert_action", role: .destructive) {
@@ -156,6 +164,8 @@ struct NoteDetailView: View {
     @MainActor
     private func generateContent(for prompt: String) async {
         guard SimpleTextNotesAI.isAvailable else { return }
+        isGenerating = true
+        defer { isGenerating = false }
 
 #if canImport(FoundationModels)
         if #available(iOS 26.0, macOS 26.0, *) {
