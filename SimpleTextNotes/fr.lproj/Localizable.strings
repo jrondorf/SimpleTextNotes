@@ -75,3 +75,12 @@
 
 /* Navigation title for the editor font settings screen */
 "editor_font_navigation_title" = "Police de l'éditeur";
+
+/* Label and help text for the AI button */
+"ai_button" = "AI";
+
+/* Title for the AI prompt modal */
+"ai_prompt_title" = "Sur quoi veux-tu écrire aujourd'hui ?";
+
+/* Send button in the AI prompt modal */
+"ai_send_button" = "Envoyer";

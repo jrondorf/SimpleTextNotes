@@ -75,3 +75,12 @@
 
 /* Navigation title for the editor font settings screen */
 "editor_font_navigation_title" = "Písmo editoru";
+
+/* Label and help text for the AI button */
+"ai_button" = "AI";
+
+/* Title for the AI prompt modal */
+"ai_prompt_title" = "O čem chceš dnes psát?";
+
+/* Send button in the AI prompt modal */
+"ai_send_button" = "Odeslat";
