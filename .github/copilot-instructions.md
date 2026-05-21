@@ -22,9 +22,9 @@ The app follows **MVVM with reactive programming** using SwiftUI property wrappe
 SimpleTextNotesApp (@main)
   └─ ModelContainer (SwiftData + CloudKit)
        └─ ContentView (NavigationSplitView)
-             ├─ NoteListView   — @Query, search/filter, swipe-to-delete, trash toolbar
-             ├─ NoteDetailView — @Bindable, edit title/content, clipboard, delete, AI button
-             └─ TrashView      — sheet showing soft-deleted notes, restore / purge actions
+             ├─ NoteListView   — @Query, search/filter/sort, swipe-to-delete, pin, trash toolbar, sync indicator
+             ├─ NoteDetailView — @Bindable, edit title/content, clipboard, share, delete, pin, AI button, word count
+             └─ TrashView      — sheet with NavigationStack; soft-deleted notes readable; restore / purge actions
 ```
 
 - `@Model` — marks `Note` as a SwiftData persistent class
@@ -32,24 +32,25 @@ SimpleTextNotesApp (@main)
 - `@Bindable` — enables two-way binding between `NoteDetailView` and a `Note` instance
 - `@Binding` — passes state between parent and child views
 - `onChange()` — triggers side effects like updating the `updatedAt` timestamp
-- `@Observable` — used by `SimpleTextNotesAI` and `TitleGenerationState` for reactive state
+- `@Observable` — used by `SimpleTextNotesAI`, `TitleGenerationState`, and `CloudSyncMonitor` for reactive state
 
 ## Project File Structure
 
 ```
 SimpleTextNotes/
-├── SimpleTextNotesApp.swift   # @main app entry point, ModelContainer setup
-├── ContentView.swift          # NavigationSplitView, selected note state, trash purge on launch
+├── SimpleTextNotesApp.swift   # @main app entry point, ModelContainer setup, DatabaseErrorView
+├── ContentView.swift          # NavigationSplitView, selectedNote state, trash purge on launch,
+│                              # CloudSyncMonitor class (inline), environment injection
 ├── Models/
-│   └── Note.swift             # SwiftData @Model (id, title, content, createdAt, updatedAt, deletedAt)
+│   └── Note.swift             # SwiftData @Model (id, title, content, createdAt, updatedAt, deletedAt, isPinned)
 ├── AI/
 │   ├── SimpleTextNotesAI.swift    # @Observable wrapper around FoundationModels (Apple Intelligence)
-│   └── TitleGenerationState.swift # @Observable class tracking in-progress AI title generation
+│   └── TitleGenerationState.swift # @Observable class; stores Tasks and in-progress IDs for AI title generation
 ├── Views/
-│   ├── NoteListView.swift     # List with @Query, search, toolbar, animated generating-title indicator
-│   ├── NoteDetailView.swift   # Editor with toolbar, clipboard, delete, AI content button
-│   ├── TrashView.swift        # Sheet listing soft-deleted notes; restore / permanently delete
-│   └── SettingsView.swift     # App settings sheet
+│   ├── NoteListView.swift     # List with @Query, search, sort menu, pin swipe, trash toolbar, sync indicator
+│   ├── NoteDetailView.swift   # Editor with toolbar: pin, share, AI, copy, paste, delete; word count footer
+│   ├── TrashView.swift        # Sheet with NavigationLink → TrashedNoteDetailView; restore / empty trash
+│   └── SettingsView.swift     # App settings sheet (font style + size)
 └── SimpleTextNotesTests/
     └── SimpleTextNotesTests.swift  # XCTest unit tests for Note model
 ```
@@ -58,7 +59,7 @@ SimpleTextNotes/
 
 ### Naming
 - **Types** (structs, classes, enums): `PascalCase` — e.g., `NoteDetailView`, `NoteListView`
-- **Variables and properties**: `camelCase` — e.g., `selectedNoteID`, `filteredNotes`, `updatedAt`
+- **Variables and properties**: `camelCase` — e.g., `selectedNote`, `displayedNotes`, `updatedAt`
 - **Private members**: marked with `private` keyword
 - **File names**: match the primary type they contain, using `PascalCase`
 
@@ -68,9 +69,12 @@ SimpleTextNotes/
 - Use `@Bindable` for two-way binding to a SwiftData `@Model` object
 - Use `@Query` for fetching and observing SwiftData results
 - Use `@Environment(\.modelContext)` to access the data context for insert/delete
-- Prefer computed properties for derived values (e.g., `filteredNotes`)
+- Use `@Environment(\.undoManager)` to register undos for programmatic content changes
+- Use `@ScaledMetric(relativeTo:)` for font sizes that respect Dynamic Type
+- Prefer computed properties for derived values (e.g., `displayedNotes`)
 - Use `.searchable()` modifier with a `searchText` state variable for search
 - Use `ContentUnavailableView` for empty or unselected states
+- Use `ShareLink` for share/export functionality
 
 ### SwiftData Patterns
 - Define models with the `@Model` macro on a `class` (not `struct`)
@@ -79,6 +83,7 @@ SimpleTextNotes/
 - Use `modelContext.insert()` to add and `modelContext.delete()` to remove objects
 - No explicit save is needed — SwiftData auto-saves
 - Use `FetchDescriptor(predicate:)` (not `filter:`) when constructing descriptors for imperative fetches
+- After any `await` that follows a SwiftData model mutation, guard with `note.modelContext != nil` to handle deleted notes
 
 ### Platform-Specific Code
 - Use conditional compilation for platform differences:
@@ -108,6 +113,7 @@ class Note {
     var createdAt: Date = Date()
     var updatedAt: Date = Date()
     var deletedAt: Date? = nil
+    var isPinned: Bool = false
 
     static let trashRetentionDays: Int = 30
 }
@@ -115,23 +121,31 @@ class Note {
 
 - Title and content default to empty strings (not optional)
 - `updatedAt` must be updated whenever the user modifies the note
-- Notes are sorted descending by `updatedAt` in `NoteListView`
+- Notes are sorted by the user's chosen sort option (Last Modified / Created Date / Title) with pinned notes always first
 - `deletedAt` is `nil` for active notes and set to the deletion date when moved to trash
+- `isPinned` controls whether a note appears at the top of the list regardless of sort order
 - `trashRetentionDays` (30) is the shared constant governing both purge logic and the UI countdown
 - `NoteListView` queries only active notes: `@Query(filter: #Predicate { $0.deletedAt == nil })`
-- On app launch, `ContentView` purges any notes trashed more than `trashRetentionDays` days ago
+- On app launch, `ContentView` purges any notes trashed more than `trashRetentionDays` days ago using a predicate that includes the cutoff date
+
+## Navigation & Selection
+
+- `ContentView` holds `@State private var selectedNote: Note?` (direct model reference, no UUID lookup)
+- `NoteListView` receives `@Binding var selectedNote: Note?` and uses `List(selection: $selectedNote)` with `NavigationLink(value: note)`
+- When a note is moved to trash or deleted, `selectedNote` is explicitly set to `nil`
+- `NoteListView` uses `.onChange(of: notes)` to clear `selectedNote` if it is no longer in the active notes array (e.g., deleted from another device via CloudKit)
 
 ## Apple Intelligence (AI)
 
 The app integrates Apple Intelligence via `FoundationModels` (iOS 26 / macOS 26+). All AI code is gated behind `#if canImport(FoundationModels)` and `#available(iOS 26.0, macOS 26.0, *)` so the app remains fully functional on devices without Apple Intelligence.
 
-- **`SimpleTextNotesAI`** — `@Observable` singleton wrapper:
+- **`SimpleTextNotesAI`** — `@Observable` class injected via the environment from `ContentView` (not instantiated per-view):
   - `isAvailable: Bool` — static guard checked before rendering any AI UI
   - `makeSession(instructions:)` — creates a `LanguageModelSession`
   - `wrap(_:)` — normalizes errors into `SimpleTextNotesAIError` (`.modelUnavailable` / `.generationFailed`)
-- **`TitleGenerationState`** — `@Observable` class injected via the environment; tracks which note IDs have an in-progress title generation so `NoteListView` can show an animated dots indicator (`GeneratingTitleView`)
-- **AI button in `NoteDetailView`** — only rendered when `SimpleTextNotesAI.isAvailable`; uses `note.content` directly as the prompt; shows an informational alert if content is empty; appends generated output to existing content
-- **Auto title generation** — triggered on `NoteDetailView.onDisappear` when the note title is empty; `TitleGenerationState` tracks the in-progress state so the list row animates while waiting
+- **`TitleGenerationState`** — `@Observable` class injected via the environment; stores both in-progress IDs (for the animated dots indicator) **and** the `Task` objects (so tasks survive the view lifecycle). Use `startTask(_:for:showIndicator:)` / `markDone(_:)` / `cancelTask(for:)`.
+- **AI button in `NoteDetailView`** — only rendered when `SimpleTextNotesAI.isAvailable`; uses `note.content` as the prompt; shows an informational alert if content is empty; appends generated output; shows an error alert on failure; registers an **undo operation** via `@Environment(\.undoManager)` before mutating content
+- **Auto title generation** — triggered on `NoteDetailView.onDisappear` when the note title is empty; task is stored in `TitleGenerationState` (not in `@State`); a `guard note.modelContext != nil` check protects against race conditions after the async gap
 
 ### Conditional compilation pattern for FoundationModels
 
@@ -154,9 +168,45 @@ if #available(iOS 26.0, macOS 26.0, *) {
 Notes are soft-deleted by setting `deletedAt` rather than removed from the store immediately.
 
 - **Move to trash** — sets `note.deletedAt = Date()`; the note disappears from `NoteListView` immediately
-- **`TrashView`** — accessible via a toolbar button in `NoteListView`; lists trashed notes with a countdown of days remaining before permanent deletion; swipe-left to **restore**, swipe-right to **permanently delete**
-- **Purge on launch** — `ContentView` calls `purgeOldTrashNotes()` at startup using `FetchDescriptor(predicate:)` to hard-delete notes past the retention window
+- **`TrashView`** — accessible via a toolbar button in `NoteListView`; lists trashed notes with a countdown of days remaining before permanent deletion; notes with `daysRemaining <= 0` show "Pending deletion" in red; swipe-left to **restore**, swipe-right to open a **confirmation alert** before permanently deleting; tap to read the note via `TrashedNoteDetailView` (read-only, inside the same `NavigationStack`); "Empty Trash" toolbar button purges all trashed notes after confirmation
+- **Purge on launch** — `ContentView` calls `purgeOldTrashNotes()` at startup using a `FetchDescriptor` with a predicate that includes the cutoff date (only expired notes are fetched); errors are caught and logged
 - **Delete confirmation** — the delete action in `NoteDetailView` shows a confirmation alert before moving the note to trash
+
+## iCloud Sync Status
+
+`CloudSyncMonitor` is an `@Observable` class defined in `ContentView.swift` and injected into the environment. It listens for `NSPersistentStoreRemoteChange` notifications (fired by SwiftData's CloudKit backend) and exposes `isSyncing: Bool`. `NoteListView` reads this from the environment and shows a `ProgressView` in the toolbar for 2 seconds after each remote change event.
+
+## Pinning
+
+Notes can be pinned via:
+- Leading swipe action in `NoteListView` (pin / unpin with orange tint)
+- Toolbar button in `NoteDetailView` (Cmd+Shift+P)
+
+Pinned notes always appear at the top of the list regardless of the active sort option.
+
+## Sorting
+
+The active sort option is stored in `@AppStorage("noteSortOption")` and applied client-side in `NoteListView.displayedNotes`. Options:
+- **Last Modified** (`updatedAt` descending) — default
+- **Created Date** (`createdAt` descending)
+- **Title** (ascending, locale-aware)
+
+The sort is exposed as a `Menu` picker in the `NoteListView` toolbar.
+
+## Undo Support
+
+Programmatic content mutations (paste and AI generation) register undo operations via `@Environment(\.undoManager)` before mutating `note.content`. This makes them reversible with Cmd+Z on macOS or shake-to-undo on iOS. Native `TextEditor` typing undo is handled automatically by the system.
+
+## Keyboard Shortcuts (macOS / Hardware Keyboard)
+
+| Shortcut | Action |
+|----------|--------|
+| Cmd+N | New note |
+| Cmd+Delete | Move current note to trash |
+| Cmd+Shift+C | Copy note (title + content) |
+| Cmd+Shift+V | Paste from clipboard (append) |
+| Cmd+Shift+S | Share note |
+| Cmd+Shift+P | Pin / Unpin note |
 
 ## Building and Testing
 
@@ -184,7 +234,11 @@ Tests live in `SimpleTextNotesTests/SimpleTextNotesTests.swift` and use XCTest w
 | `@Bindable` for model editing | Direct two-way binding to persistent model properties |
 | Soft-delete (trash) | 30-day retention window; notes are recoverable before permanent purge |
 | `FoundationModels` for AI | Uses on-device Apple Intelligence; fully gated so the app works without it |
-| `@Observable` for AI state | `SimpleTextNotesAI` and `TitleGenerationState` use `@Observable` (not `ObservableObject`) |
+| `@Observable` for AI state | `SimpleTextNotesAI`, `TitleGenerationState`, and `CloudSyncMonitor` use `@Observable` (not `ObservableObject`) |
+| `Note?` selection (not `UUID?`) | Direct model reference eliminates the need for a secondary `@Query` in ContentView to resolve the selection |
+| `@ScaledMetric` for font sizes | Editor font sizes scale with the system Dynamic Type / Accessibility setting |
+| `ShareLink` for sharing | Native system share sheet; no custom code needed |
+| Client-side sort + filter | Simple and flexible; avoids needing multiple `@Query` instances for each sort direction |
 
 ## What to Avoid
 
@@ -193,6 +247,9 @@ Tests live in `SimpleTextNotesTests/SimpleTextNotesTests.swift` and use XCTest w
 - Do not use `UIKit` or `AppKit` types directly in shared view code — use conditional compilation
 - Do not call `modelContext.save()` explicitly — SwiftData handles this automatically
 - Do not use `ObservableObject` / `@ObservedObject` — use `@Bindable` with `@Model` or `@Observable` instead
+- Do not instantiate `SimpleTextNotesAI` inside `NoteDetailView` — read it from `@Environment(SimpleTextNotesAI.self)`
 - Do not call `LanguageModelSession` directly — route through `SimpleTextNotesAI` so availability checks are centralized
 - Do not hard-delete notes in response to user "delete" actions — move them to trash by setting `deletedAt`; only `purgeOldTrashNotes()` and the permanent-delete action in `TrashView` should hard-delete
 - Do not use `FetchDescriptor(filter:)` — SwiftData uses `FetchDescriptor(predicate:)`
+- Do not store `Task` references for title generation in `@State` inside `NoteDetailView` — use `TitleGenerationState.startTask(_:for:showIndicator:)` so tasks survive the view lifecycle
+- Do not use fixed numeric font sizes in the editor — use `effectiveFontSize` (derived from `@ScaledMetric` properties) so they scale with Dynamic Type
