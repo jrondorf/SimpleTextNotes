@@ -9,6 +9,7 @@ class Note {
     var createdAt: Date = Date()
     var updatedAt: Date = Date()
     var deletedAt: Date? = nil
+    var isTrashed: Bool = false
 
     static let trashRetentionDays: Int = 30
 
@@ -24,5 +25,6 @@ class Note {
         self.createdAt = createdAt
         self.updatedAt = createdAt
         self.deletedAt = nil
+        self.isTrashed = false
     }
 }

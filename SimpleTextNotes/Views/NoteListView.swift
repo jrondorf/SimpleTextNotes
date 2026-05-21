@@ -15,7 +15,7 @@ private struct GeneratingTitleView: View {
 }
 
 struct NoteListView: View {
-    @Query(filter: #Predicate<Note> { $0.deletedAt == nil }, sort: \Note.updatedAt, order: .reverse) private var notes: [Note]
+    @Query(filter: #Predicate<Note> { $0.isTrashed == false }, sort: \Note.updatedAt, order: .reverse) private var notes: [Note]
     @Environment(\.modelContext) private var modelContext
     @Environment(TitleGenerationState.self) private var titleGenerationState
     @Binding var selectedNoteID: UUID?
@@ -64,6 +64,7 @@ struct NoteListView: View {
                 let now = Date()
                 for index in offsets.sorted().reversed() {
                     filteredNotes[index].deletedAt = now
+                    filteredNotes[index].isTrashed = true
                 }
             }
         }
