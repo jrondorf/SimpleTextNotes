@@ -67,6 +67,7 @@ final class NoteTests: XCTestCase {
     func testNoteDefaultDeletedAt() {
         let note = Note()
         XCTAssertNil(note.deletedAt)
+        XCTAssertFalse(note.isTrashed)
     }
 
     @MainActor
@@ -80,14 +81,16 @@ final class NoteTests: XCTestCase {
         try context.save()
 
         note.deletedAt = Date()
+        note.isTrashed = true
         try context.save()
 
-        let trashedDescriptor = FetchDescriptor<Note>(filter: #Predicate<Note> { $0.deletedAt != nil })
+        let trashedDescriptor = FetchDescriptor<Note>(filter: #Predicate<Note> { $0.isTrashed == true })
         let trashedNotes = try context.fetch(trashedDescriptor)
         XCTAssertEqual(trashedNotes.count, 1)
         XCTAssertNotNil(trashedNotes.first?.deletedAt)
+        XCTAssertTrue(trashedNotes.first?.isTrashed == true)
 
-        let activeDescriptor = FetchDescriptor<Note>(filter: #Predicate<Note> { $0.deletedAt == nil })
+        let activeDescriptor = FetchDescriptor<Note>(filter: #Predicate<Note> { $0.isTrashed == false })
         let activeNotes = try context.fetch(activeDescriptor)
         XCTAssertEqual(activeNotes.count, 0)
     }
@@ -100,16 +103,19 @@ final class NoteTests: XCTestCase {
 
         let note = Note(title: "Restore Test", content: "Content")
         note.deletedAt = Date()
+        note.isTrashed = true
         context.insert(note)
         try context.save()
 
         note.deletedAt = nil
+        note.isTrashed = false
         try context.save()
 
-        let activeDescriptor = FetchDescriptor<Note>(filter: #Predicate<Note> { $0.deletedAt == nil })
+        let activeDescriptor = FetchDescriptor<Note>(filter: #Predicate<Note> { $0.isTrashed == false })
         let activeNotes = try context.fetch(activeDescriptor)
         XCTAssertEqual(activeNotes.count, 1)
         XCTAssertNil(activeNotes.first?.deletedAt)
+        XCTAssertFalse(activeNotes.first?.isTrashed == true)
     }
 
     @MainActor
