@@ -1,21 +1,47 @@
 import SwiftUI
 import SwiftData
+import CoreData
+import Observation
+
+// MARK: - CloudSyncMonitor
+
+/// Observes NSPersistentStoreRemoteChange notifications to surface a brief syncing indicator.
+@Observable
+final class CloudSyncMonitor {
+    var isSyncing: Bool = false
+
+    func startObserving() {
+        NotificationCenter.default.addObserver(
+            forName: .NSPersistentStoreRemoteChange,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            self?.isSyncing = true
+            Task { @MainActor [weak self] in
+                try? await Task.sleep(for: .seconds(2))
+                self?.isSyncing = false
+            }
+        }
+    }
+}
+
+// MARK: - ContentView
 
 struct ContentView: View {
-    @Query(sort: \Note.updatedAt, order: .reverse) private var notes: [Note]
     @Environment(\.modelContext) private var modelContext
-    @State private var selectedNoteID: UUID?
+    @State private var selectedNote: Note?
     @State private var showSettings: Bool = false
     @State private var titleGenerationState = TitleGenerationState()
+    @State private var notesAI = SimpleTextNotesAI()
+    @State private var syncMonitor = CloudSyncMonitor()
 
     var body: some View {
         NavigationSplitView {
-            NoteListView(selectedNoteID: $selectedNoteID)
+            NoteListView(selectedNote: $selectedNote)
         } detail: {
-            if let noteID = selectedNoteID,
-               let note = notes.first(where: { $0.id == noteID }) {
-                NoteDetailView(note: note, selectedNoteID: $selectedNoteID)
-                    .id(noteID)
+            if let note = selectedNote {
+                NoteDetailView(note: note, selectedNote: $selectedNote)
+                    .id(note.id)
             } else {
                 ContentUnavailableView("no_note_selected_title", systemImage: "note.text", description: Text("no_note_selected_description"))
             }
@@ -41,8 +67,11 @@ struct ContentView: View {
             }
         }
         .environment(titleGenerationState)
+        .environment(notesAI)
+        .environment(syncMonitor)
         .task {
             purgeOldTrashNotes()
+            syncMonitor.startObserving()
         }
     }
 
@@ -50,14 +79,20 @@ struct ContentView: View {
         let retentionInterval = TimeInterval(Note.trashRetentionDays) * 24 * 60 * 60
         let cutoff = Date(timeIntervalSinceNow: -retentionInterval)
         let descriptor = FetchDescriptor<Note>(
-            predicate: #Predicate<Note> { $0.deletedAt != nil }
-        )
-        if let trashedNotes = try? modelContext.fetch(descriptor) {
-            for note in trashedNotes {
-                if let deletedAt = note.deletedAt, deletedAt < cutoff {
-                    modelContext.delete(note)
+            predicate: #Predicate<Note> { note in
+                if let deletedAt = note.deletedAt {
+                    return deletedAt < cutoff
                 }
+                return false
             }
+        )
+        do {
+            let expired = try modelContext.fetch(descriptor)
+            for note in expired {
+                modelContext.delete(note)
+            }
+        } catch {
+            print("SimpleTextNotes: failed to purge old trash notes — \(error)")
         }
     }
 }

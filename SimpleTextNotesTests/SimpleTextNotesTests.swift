@@ -114,6 +114,9 @@ final class NoteTests: XCTestCase {
 
     @MainActor
     func testUpdateNoteUpdatesTimestamp() throws {
+        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+        let container = try ModelContainer(for: Note.self, configurations: config)
+        let context = container.mainContext
 
         let createdAt = Date(timeIntervalSinceNow: -60)
         let note = Note(title: "Original", content: "Content", createdAt: createdAt)

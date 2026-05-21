@@ -34,8 +34,8 @@
 /* OK button */
 "ok_button" = "OK";
 
-/* Body text of the paste confirmation alert */
-"paste_clipboard_message" = "This will replace the current note content with the clipboard text.";
+/* Body text of the paste confirmation alert (paste now appends) */
+"paste_clipboard_message" = "Clipboard text will be appended to the end of the current note.";
 
 /* Title shown when no note is selected */
 "no_note_selected_title" = "No Note Selected";
@@ -88,6 +88,15 @@
 /* Message shown when AI is triggered with no note content */
 "ai_no_content_message" = "Please enter some text in the note first to use AI processing.";
 
+/* Help text shown for the AI improve button */
+"ai_improve_help" = "Improve note content using Apple Intelligence";
+
+/* Title for the AI generation failure alert */
+"ai_generation_failed_title" = "AI Generation Failed";
+
+/* Message shown when AI generation fails */
+"ai_generation_failed_message" = "The AI could not process your request. Please try again.";
+
 /* Title of the delete-note confirmation alert */
 "delete_note_alert_title" = "Delete Note";
 
@@ -117,3 +126,60 @@
 
 /* Format string showing days remaining before permanent deletion (%d = number of days) */
 "days_until_deletion_format" = "%d day(s) until permanent deletion";
+
+/* Label for the share button */
+"share_button" = "Share";
+
+/* Label for the sort menu button */
+"sort_button" = "Sort";
+
+/* Sort by last modified date */
+"sort_updated_at" = "Last Modified";
+
+/* Sort by created date */
+"sort_created_at" = "Created Date";
+
+/* Sort by title */
+"sort_title" = "Title";
+
+/* Label for the pin button */
+"pin_note_button" = "Pin";
+
+/* Label for the unpin button */
+"unpin_note_button" = "Unpin";
+
+/* Word and character count footer (%1$d = words, %2$d = characters) */
+"word_count_format" = "%d words, %d characters";
+
+/* Label for the empty trash button */
+"empty_trash_button" = "Empty Trash";
+
+/* Title for the empty trash confirmation dialog */
+"empty_trash_confirm_title" = "Empty Trash";
+
+/* Message shown in the empty trash confirmation dialog */
+"empty_trash_confirm_message" = "All notes in the Trash will be permanently deleted. This cannot be undone.";
+
+/* Action button in the empty trash confirmation dialog */
+"empty_trash_confirm_action" = "Empty Trash";
+
+/* Title for the permanent delete confirmation alert */
+"delete_permanently_confirm_title" = "Delete Permanently";
+
+/* Message shown when confirming permanent deletion */
+"delete_permanently_confirm_message" = "This note will be permanently deleted and cannot be recovered.";
+
+/* Action button to permanently delete a note */
+"delete_permanently_confirm_action" = "Delete Permanently";
+
+/* Label shown for notes that are overdue for deletion from trash */
+"overdue_deletion_label" = "Pending deletion";
+
+/* Help text for the iCloud syncing indicator */
+"icloud_syncing_label" = "Syncing with iCloud…";
+
+/* Title for the database error view */
+"database_error_title" = "Cannot Open Notes";
+
+/* Description for the database error view */
+"database_error_description" = "The notes database could not be opened. Please restart the app.";
