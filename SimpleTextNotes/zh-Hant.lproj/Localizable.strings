@@ -32,7 +32,7 @@
 "cancel_button" = "取消";
 
 /* Body text of the paste confirmation alert */
-"paste_clipboard_message" = "此操作將以剪貼板中的文字取代目前備忘錄的內容。";
+"paste_clipboard_message" = "剪貼板中的文字將附加到目前備忘錄的結尾。";
 
 /* Title shown when no note is selected */
 "no_note_selected_title" = "未選擇備忘錄";
@@ -119,67 +119,67 @@
 "days_until_deletion_format" = "距永久刪除還有 %d 天";
 
 /* Label for the share button */
-"share_button" = "Share";
+"share_button" = "分享";
 
 /* Label for the sort menu button */
-"sort_button" = "Sort";
+"sort_button" = "排序";
 
 /* Sort by last modified date */
-"sort_updated_at" = "Last Modified";
+"sort_updated_at" = "最後修改時間";
 
 /* Sort by created date */
-"sort_created_at" = "Created Date";
+"sort_created_at" = "建立日期";
 
 /* Sort by title */
-"sort_title" = "Title";
+"sort_title" = "標題";
 
 /* Label for the pin button */
-"pin_note_button" = "Pin";
+"pin_note_button" = "置頂";
 
 /* Label for the unpin button */
-"unpin_note_button" = "Unpin";
+"unpin_note_button" = "取消置頂";
 
 /* Word and character count footer (%1$d = words, %2$d = characters) */
-"word_count_format" = "%d words, %d characters";
+"word_count_format" = "%d 個字，%d 個字元";
 
 /* Label for the empty trash button */
-"empty_trash_button" = "Empty Trash";
+"empty_trash_button" = "清空垃圾桶";
 
 /* Title for the empty trash confirmation dialog */
-"empty_trash_confirm_title" = "Empty Trash";
+"empty_trash_confirm_title" = "清空垃圾桶";
 
 /* Message shown in the empty trash confirmation dialog */
-"empty_trash_confirm_message" = "All notes in the Trash will be permanently deleted. This cannot be undone.";
+"empty_trash_confirm_message" = "垃圾桶中的所有備忘錄將被永久刪除。此操作無法復原。";
 
 /* Action button in the empty trash confirmation dialog */
-"empty_trash_confirm_action" = "Empty Trash";
+"empty_trash_confirm_action" = "清空垃圾桶";
 
 /* Title for the permanent delete confirmation alert */
-"delete_permanently_confirm_title" = "Delete Permanently";
+"delete_permanently_confirm_title" = "永久刪除";
 
 /* Message shown when confirming permanent deletion */
-"delete_permanently_confirm_message" = "This note will be permanently deleted and cannot be recovered.";
+"delete_permanently_confirm_message" = "此備忘錄將被永久刪除，無法復原。";
 
 /* Action button to permanently delete a note */
-"delete_permanently_confirm_action" = "Delete Permanently";
+"delete_permanently_confirm_action" = "永久刪除";
 
 /* Label shown for notes that are overdue for deletion from trash */
-"overdue_deletion_label" = "Pending deletion";
+"overdue_deletion_label" = "待刪除";
 
 /* Help text for the iCloud syncing indicator */
-"icloud_syncing_label" = "Syncing with iCloud\u2026";
+"icloud_syncing_label" = "正在與 iCloud 同步…";
 
 /* Help text shown for the AI improve button */
-"ai_improve_help" = "Improve note content using Apple Intelligence";
+"ai_improve_help" = "使用 Apple Intelligence 改善備忘錄內容";
 
 /* Title for the AI generation failure alert */
-"ai_generation_failed_title" = "AI Generation Failed";
+"ai_generation_failed_title" = "AI 生成失敗";
 
 /* Message shown when AI generation fails */
-"ai_generation_failed_message" = "The AI could not process your request. Please try again.";
+"ai_generation_failed_message" = "AI 無法處理您的請求，請再試一次。";
 
 /* Title for the database error view */
-"database_error_title" = "Cannot Open Notes";
+"database_error_title" = "無法開啟備忘錄";
 
 /* Description for the database error view */
-"database_error_description" = "The notes database could not be opened. Please restart the app.";
+"database_error_description" = "備忘錄資料庫無法開啟，請重新啟動應用程式。";

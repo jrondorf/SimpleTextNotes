@@ -32,7 +32,7 @@
 "cancel_button" = "Cancelar";
 
 /* Body text of the paste confirmation alert */
-"paste_clipboard_message" = "Esto reemplazará el contenido actual de la nota con el texto del portapapeles.";
+"paste_clipboard_message" = "El texto del portapapeles se añadirá al final de la nota actual.";
 
 /* Title shown when no note is selected */
 "no_note_selected_title" = "Ninguna nota seleccionada";
@@ -119,67 +119,67 @@
 "days_until_deletion_format" = "%d día(s) hasta la eliminación permanente";
 
 /* Label for the share button */
-"share_button" = "Share";
+"share_button" = "Compartir";
 
 /* Label for the sort menu button */
-"sort_button" = "Sort";
+"sort_button" = "Ordenar";
 
 /* Sort by last modified date */
-"sort_updated_at" = "Last Modified";
+"sort_updated_at" = "Última modificación";
 
 /* Sort by created date */
-"sort_created_at" = "Created Date";
+"sort_created_at" = "Fecha de creación";
 
 /* Sort by title */
-"sort_title" = "Title";
+"sort_title" = "Título";
 
 /* Label for the pin button */
-"pin_note_button" = "Pin";
+"pin_note_button" = "Fijar";
 
 /* Label for the unpin button */
-"unpin_note_button" = "Unpin";
+"unpin_note_button" = "Desfijar";
 
 /* Word and character count footer (%1$d = words, %2$d = characters) */
-"word_count_format" = "%d words, %d characters";
+"word_count_format" = "%d palabras, %d caracteres";
 
 /* Label for the empty trash button */
-"empty_trash_button" = "Empty Trash";
+"empty_trash_button" = "Vaciar papelera";
 
 /* Title for the empty trash confirmation dialog */
-"empty_trash_confirm_title" = "Empty Trash";
+"empty_trash_confirm_title" = "Vaciar papelera";
 
 /* Message shown in the empty trash confirmation dialog */
-"empty_trash_confirm_message" = "All notes in the Trash will be permanently deleted. This cannot be undone.";
+"empty_trash_confirm_message" = "Todas las notas de la papelera se eliminarán de forma permanente. Esta acción no se puede deshacer.";
 
 /* Action button in the empty trash confirmation dialog */
-"empty_trash_confirm_action" = "Empty Trash";
+"empty_trash_confirm_action" = "Vaciar papelera";
 
 /* Title for the permanent delete confirmation alert */
-"delete_permanently_confirm_title" = "Delete Permanently";
+"delete_permanently_confirm_title" = "Eliminar permanentemente";
 
 /* Message shown when confirming permanent deletion */
-"delete_permanently_confirm_message" = "This note will be permanently deleted and cannot be recovered.";
+"delete_permanently_confirm_message" = "Esta nota se eliminará de forma permanente y no podrá recuperarse.";
 
 /* Action button to permanently delete a note */
-"delete_permanently_confirm_action" = "Delete Permanently";
+"delete_permanently_confirm_action" = "Eliminar permanentemente";
 
 /* Label shown for notes that are overdue for deletion from trash */
-"overdue_deletion_label" = "Pending deletion";
+"overdue_deletion_label" = "Eliminación pendiente";
 
 /* Help text for the iCloud syncing indicator */
-"icloud_syncing_label" = "Syncing with iCloud\u2026";
+"icloud_syncing_label" = "Sincronizando con iCloud…";
 
 /* Help text shown for the AI improve button */
-"ai_improve_help" = "Improve note content using Apple Intelligence";
+"ai_improve_help" = "Mejorar el contenido de la nota con Apple Intelligence";
 
 /* Title for the AI generation failure alert */
-"ai_generation_failed_title" = "AI Generation Failed";
+"ai_generation_failed_title" = "Error en la generación de IA";
 
 /* Message shown when AI generation fails */
-"ai_generation_failed_message" = "The AI could not process your request. Please try again.";
+"ai_generation_failed_message" = "La IA no pudo procesar tu solicitud. Por favor, inténtalo de nuevo.";
 
 /* Title for the database error view */
-"database_error_title" = "Cannot Open Notes";
+"database_error_title" = "No se pueden abrir las notas";
 
 /* Description for the database error view */
-"database_error_description" = "The notes database could not be opened. Please restart the app.";
+"database_error_description" = "No se pudo abrir la base de datos de notas. Por favor, reinicia la aplicación.";

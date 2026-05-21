@@ -32,7 +32,7 @@
 "cancel_button" = "취소";
 
 /* Body text of the paste confirmation alert */
-"paste_clipboard_message" = "현재 메모 내용이 클립보드의 텍스트로 교체됩니다.";
+"paste_clipboard_message" = "클립보드의 텍스트가 현재 메모의 끝에 추가됩니다.";
 
 /* Title shown when no note is selected */
 "no_note_selected_title" = "선택된 메모 없음";
@@ -119,67 +119,67 @@
 "days_until_deletion_format" = "영구 삭제까지 %d일";
 
 /* Label for the share button */
-"share_button" = "Share";
+"share_button" = "공유";
 
 /* Label for the sort menu button */
-"sort_button" = "Sort";
+"sort_button" = "정렬";
 
 /* Sort by last modified date */
-"sort_updated_at" = "Last Modified";
+"sort_updated_at" = "최근 수정일";
 
 /* Sort by created date */
-"sort_created_at" = "Created Date";
+"sort_created_at" = "생성일";
 
 /* Sort by title */
-"sort_title" = "Title";
+"sort_title" = "제목";
 
 /* Label for the pin button */
-"pin_note_button" = "Pin";
+"pin_note_button" = "고정";
 
 /* Label for the unpin button */
-"unpin_note_button" = "Unpin";
+"unpin_note_button" = "고정 해제";
 
 /* Word and character count footer (%1$d = words, %2$d = characters) */
-"word_count_format" = "%d words, %d characters";
+"word_count_format" = "%d 단어, %d 자";
 
 /* Label for the empty trash button */
-"empty_trash_button" = "Empty Trash";
+"empty_trash_button" = "휴지통 비우기";
 
 /* Title for the empty trash confirmation dialog */
-"empty_trash_confirm_title" = "Empty Trash";
+"empty_trash_confirm_title" = "휴지통 비우기";
 
 /* Message shown in the empty trash confirmation dialog */
-"empty_trash_confirm_message" = "All notes in the Trash will be permanently deleted. This cannot be undone.";
+"empty_trash_confirm_message" = "휴지통의 모든 메모가 영구적으로 삭제됩니다. 이 작업은 취소할 수 없습니다.";
 
 /* Action button in the empty trash confirmation dialog */
-"empty_trash_confirm_action" = "Empty Trash";
+"empty_trash_confirm_action" = "휴지통 비우기";
 
 /* Title for the permanent delete confirmation alert */
-"delete_permanently_confirm_title" = "Delete Permanently";
+"delete_permanently_confirm_title" = "영구 삭제";
 
 /* Message shown when confirming permanent deletion */
-"delete_permanently_confirm_message" = "This note will be permanently deleted and cannot be recovered.";
+"delete_permanently_confirm_message" = "이 메모는 영구적으로 삭제되며 복구할 수 없습니다.";
 
 /* Action button to permanently delete a note */
-"delete_permanently_confirm_action" = "Delete Permanently";
+"delete_permanently_confirm_action" = "영구 삭제";
 
 /* Label shown for notes that are overdue for deletion from trash */
-"overdue_deletion_label" = "Pending deletion";
+"overdue_deletion_label" = "삭제 대기 중";
 
 /* Help text for the iCloud syncing indicator */
-"icloud_syncing_label" = "Syncing with iCloud\u2026";
+"icloud_syncing_label" = "iCloud와 동기화 중…";
 
 /* Help text shown for the AI improve button */
-"ai_improve_help" = "Improve note content using Apple Intelligence";
+"ai_improve_help" = "Apple Intelligence로 메모 내용 개선";
 
 /* Title for the AI generation failure alert */
-"ai_generation_failed_title" = "AI Generation Failed";
+"ai_generation_failed_title" = "AI 생성 실패";
 
 /* Message shown when AI generation fails */
-"ai_generation_failed_message" = "The AI could not process your request. Please try again.";
+"ai_generation_failed_message" = "AI가 요청을 처리하지 못했습니다. 다시 시도하세요.";
 
 /* Title for the database error view */
-"database_error_title" = "Cannot Open Notes";
+"database_error_title" = "메모를 열 수 없습니다";
 
 /* Description for the database error view */
-"database_error_description" = "The notes database could not be opened. Please restart the app.";
+"database_error_description" = "메모 데이터베이스를 열 수 없습니다. 앱을 다시 시작하세요.";

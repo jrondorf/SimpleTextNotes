@@ -32,7 +32,7 @@
 "cancel_button" = "Anuluj";
 
 /* Body text of the paste confirmation alert */
-"paste_clipboard_message" = "Bieżąca zawartość notatki zostanie zastąpiona tekstem ze schowka.";
+"paste_clipboard_message" = "Tekst ze schowka zostanie dołączony na końcu bieżącej notatki.";
 
 /* Title shown when no note is selected */
 "no_note_selected_title" = "Nie wybrano notatki";
@@ -119,67 +119,67 @@
 "days_until_deletion_format" = "%d dzień/dni do trwałego usunięcia";
 
 /* Label for the share button */
-"share_button" = "Share";
+"share_button" = "Udostępnij";
 
 /* Label for the sort menu button */
-"sort_button" = "Sort";
+"sort_button" = "Sortuj";
 
 /* Sort by last modified date */
-"sort_updated_at" = "Last Modified";
+"sort_updated_at" = "Data modyfikacji";
 
 /* Sort by created date */
-"sort_created_at" = "Created Date";
+"sort_created_at" = "Data utworzenia";
 
 /* Sort by title */
-"sort_title" = "Title";
+"sort_title" = "Tytuł";
 
 /* Label for the pin button */
-"pin_note_button" = "Pin";
+"pin_note_button" = "Przypnij";
 
 /* Label for the unpin button */
-"unpin_note_button" = "Unpin";
+"unpin_note_button" = "Odepnij";
 
 /* Word and character count footer (%1$d = words, %2$d = characters) */
-"word_count_format" = "%d words, %d characters";
+"word_count_format" = "%d słów, %d znaków";
 
 /* Label for the empty trash button */
-"empty_trash_button" = "Empty Trash";
+"empty_trash_button" = "Opróżnij kosz";
 
 /* Title for the empty trash confirmation dialog */
-"empty_trash_confirm_title" = "Empty Trash";
+"empty_trash_confirm_title" = "Opróżnij kosz";
 
 /* Message shown in the empty trash confirmation dialog */
-"empty_trash_confirm_message" = "All notes in the Trash will be permanently deleted. This cannot be undone.";
+"empty_trash_confirm_message" = "Wszystkie notatki w koszu zostaną trwale usunięte. Tej czynności nie można cofnąć.";
 
 /* Action button in the empty trash confirmation dialog */
-"empty_trash_confirm_action" = "Empty Trash";
+"empty_trash_confirm_action" = "Opróżnij kosz";
 
 /* Title for the permanent delete confirmation alert */
-"delete_permanently_confirm_title" = "Delete Permanently";
+"delete_permanently_confirm_title" = "Usuń trwale";
 
 /* Message shown when confirming permanent deletion */
-"delete_permanently_confirm_message" = "This note will be permanently deleted and cannot be recovered.";
+"delete_permanently_confirm_message" = "Ta notatka zostanie trwale usunięta i nie będzie możliwe jej odzyskanie.";
 
 /* Action button to permanently delete a note */
-"delete_permanently_confirm_action" = "Delete Permanently";
+"delete_permanently_confirm_action" = "Usuń trwale";
 
 /* Label shown for notes that are overdue for deletion from trash */
-"overdue_deletion_label" = "Pending deletion";
+"overdue_deletion_label" = "Oczekuje na usunięcie";
 
 /* Help text for the iCloud syncing indicator */
-"icloud_syncing_label" = "Syncing with iCloud\u2026";
+"icloud_syncing_label" = "Synchronizacja z iCloud…";
 
 /* Help text shown for the AI improve button */
-"ai_improve_help" = "Improve note content using Apple Intelligence";
+"ai_improve_help" = "Popraw zawartość notatki za pomocą Apple Intelligence";
 
 /* Title for the AI generation failure alert */
-"ai_generation_failed_title" = "AI Generation Failed";
+"ai_generation_failed_title" = "Generowanie AI nie powiodło się";
 
 /* Message shown when AI generation fails */
-"ai_generation_failed_message" = "The AI could not process your request. Please try again.";
+"ai_generation_failed_message" = "Nie udało się przetworzyć Twojego żądania. Spróbuj ponownie.";
 
 /* Title for the database error view */
-"database_error_title" = "Cannot Open Notes";
+"database_error_title" = "Nie można otworzyć notatek";
 
 /* Description for the database error view */
-"database_error_description" = "The notes database could not be opened. Please restart the app.";
+"database_error_description" = "Nie udało się otworzyć bazy danych notatek. Uruchom ponownie aplikację.";
