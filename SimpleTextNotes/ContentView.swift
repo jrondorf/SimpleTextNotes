@@ -80,10 +80,7 @@ struct ContentView: View {
         let cutoff = Date(timeIntervalSinceNow: -retentionInterval)
         let descriptor = FetchDescriptor<Note>(
             predicate: #Predicate<Note> { note in
-                if let deletedAt = note.deletedAt {
-                    return deletedAt < cutoff
-                }
-                return false
+                (note.deletedAt ?? Date.distantFuture) < cutoff
             }
         )
         do {
