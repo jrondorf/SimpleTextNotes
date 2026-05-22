@@ -64,7 +64,7 @@ final class NoteTests: XCTestCase {
         XCTAssertEqual(notes.count, 0)
     }
 
-    func testNoteDefaultDeletedAt() {
+    func testNoteDefaultTrashState() {
         let note = Note()
         XCTAssertNil(note.deletedAt)
         XCTAssertFalse(note.isTrashed)
