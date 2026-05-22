@@ -80,11 +80,12 @@ struct ContentView: View {
         let cutoff = Date(timeIntervalSinceNow: -retentionInterval)
         let descriptor = FetchDescriptor<Note>(
             predicate: #Predicate<Note> { note in
-                (note.deletedAt ?? Date.distantFuture) < cutoff
+                note.isTrashed == true
             }
         )
         do {
-            let expired = try modelContext.fetch(descriptor)
+            let trashed = try modelContext.fetch(descriptor)
+            let expired = trashed.filter { ($0.deletedAt ?? Date.distantFuture) < cutoff }
             for note in expired {
                 modelContext.delete(note)
             }
