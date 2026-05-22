@@ -32,7 +32,7 @@ private struct TrashedNoteDetailView: View {
 // MARK: - TrashView
 
 struct TrashView: View {
-    @Query(filter: #Predicate<Note> { $0.deletedAt != nil }, sort: \Note.updatedAt, order: .reverse) private var trashedNotes: [Note]
+    @Query(filter: #Predicate<Note> { $0.isTrashed == true }, sort: \Note.updatedAt, order: .reverse) private var trashedNotes: [Note]
     @Environment(\.modelContext) private var modelContext
     @State private var showEmptyTrashConfirmation: Bool = false
     @State private var noteToDelete: Note?
@@ -86,6 +86,7 @@ struct TrashView: View {
                         .swipeActions(edge: .leading) {
                             Button {
                                 note.deletedAt = nil
+                                note.isTrashed = false
                             } label: {
                                 Label("restore_note_button", systemImage: "arrow.uturn.backward")
                             }

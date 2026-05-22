@@ -183,6 +183,7 @@ struct NoteDetailView: View {
             Button("move_to_trash_button", role: .destructive) {
                 selectedNote = nil
                 note.deletedAt = Date()
+                note.isTrashed = true
             }
             Button("cancel_button", role: .cancel) { }
         } message: {

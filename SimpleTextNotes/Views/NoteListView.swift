@@ -23,7 +23,7 @@ enum NoteSortOption: String {
 // MARK: - NoteListView
 
 struct NoteListView: View {
-    @Query(filter: #Predicate<Note> { $0.deletedAt == nil }) private var notes: [Note]
+    @Query(filter: #Predicate<Note> { $0.isTrashed == false }) private var notes: [Note]
     @Environment(\.modelContext) private var modelContext
     @Environment(TitleGenerationState.self) private var titleGenerationState
     @Environment(CloudSyncMonitor.self) private var syncMonitor
@@ -102,6 +102,7 @@ struct NoteListView: View {
                 let now = Date()
                 for note in deleted {
                     note.deletedAt = now
+                    note.isTrashed = true
                 }
             }
         }
