@@ -32,7 +32,7 @@
 "cancel_button" = "Cancelar";
 
 /* Body text of the paste confirmation alert */
-"paste_clipboard_message" = "O conteúdo atual da nota será substituído pelo texto da área de transferência.";
+"paste_clipboard_message" = "O texto da área de transferência será adicionado ao final da nota atual.";
 
 /* Title shown when no note is selected */
 "no_note_selected_title" = "Nenhuma nota selecionada";
@@ -117,3 +117,69 @@
 
 /* Format string showing days remaining before permanent deletion (%d = number of days) */
 "days_until_deletion_format" = "%d dia(s) até a exclusão permanente";
+
+/* Label for the share button */
+"share_button" = "Compartilhar";
+
+/* Label for the sort menu button */
+"sort_button" = "Ordenar";
+
+/* Sort by last modified date */
+"sort_updated_at" = "Última modificação";
+
+/* Sort by created date */
+"sort_created_at" = "Data de criação";
+
+/* Sort by title */
+"sort_title" = "Título";
+
+/* Label for the pin button */
+"pin_note_button" = "Fixar";
+
+/* Label for the unpin button */
+"unpin_note_button" = "Desafixar";
+
+/* Word and character count footer (%1$d = words, %2$d = characters) */
+"word_count_format" = "%d palavras, %d caracteres";
+
+/* Label for the empty trash button */
+"empty_trash_button" = "Esvaziar lixeira";
+
+/* Title for the empty trash confirmation dialog */
+"empty_trash_confirm_title" = "Esvaziar lixeira";
+
+/* Message shown in the empty trash confirmation dialog */
+"empty_trash_confirm_message" = "Todas as notas na lixeira serão excluídas permanentemente. Esta ação não pode ser desfeita.";
+
+/* Action button in the empty trash confirmation dialog */
+"empty_trash_confirm_action" = "Esvaziar lixeira";
+
+/* Title for the permanent delete confirmation alert */
+"delete_permanently_confirm_title" = "Excluir permanentemente";
+
+/* Message shown when confirming permanent deletion */
+"delete_permanently_confirm_message" = "Esta nota será excluída permanentemente e não poderá ser recuperada.";
+
+/* Action button to permanently delete a note */
+"delete_permanently_confirm_action" = "Excluir permanentemente";
+
+/* Label shown for notes that are overdue for deletion from trash */
+"overdue_deletion_label" = "Exclusão pendente";
+
+/* Help text for the iCloud syncing indicator */
+"icloud_syncing_label" = "Sincronizando com iCloud…";
+
+/* Help text shown for the AI improve button */
+"ai_improve_help" = "Melhorar o conteúdo da nota com Apple Intelligence";
+
+/* Title for the AI generation failure alert */
+"ai_generation_failed_title" = "Falha na geração de IA";
+
+/* Message shown when AI generation fails */
+"ai_generation_failed_message" = "A IA não conseguiu processar sua solicitação. Por favor, tente novamente.";
+
+/* Title for the database error view */
+"database_error_title" = "Não é possível abrir as notas";
+
+/* Description for the database error view */
+"database_error_description" = "O banco de dados de notas não pôde ser aberto. Por favor, reinicie o aplicativo.";

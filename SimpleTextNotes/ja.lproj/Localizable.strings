@@ -32,7 +32,7 @@
 "cancel_button" = "キャンセル";
 
 /* Body text of the paste confirmation alert */
-"paste_clipboard_message" = "クリップボードのテキストで現在のメモの内容を置き換えます。";
+"paste_clipboard_message" = "クリップボードのテキストが現在のメモの末尾に追加されます。";
 
 /* Title shown when no note is selected */
 "no_note_selected_title" = "メモが選択されていません";
@@ -117,3 +117,69 @@
 
 /* Format string showing days remaining before permanent deletion (%d = number of days) */
 "days_until_deletion_format" = "完全削除まで%d日";
+
+/* Label for the share button */
+"share_button" = "共有";
+
+/* Label for the sort menu button */
+"sort_button" = "並べ替え";
+
+/* Sort by last modified date */
+"sort_updated_at" = "最終更新日";
+
+/* Sort by created date */
+"sort_created_at" = "作成日";
+
+/* Sort by title */
+"sort_title" = "タイトル";
+
+/* Label for the pin button */
+"pin_note_button" = "ピン留め";
+
+/* Label for the unpin button */
+"unpin_note_button" = "ピン解除";
+
+/* Word and character count footer (%1$d = words, %2$d = characters) */
+"word_count_format" = "%d語、%d文字";
+
+/* Label for the empty trash button */
+"empty_trash_button" = "ゴミ箱を空にする";
+
+/* Title for the empty trash confirmation dialog */
+"empty_trash_confirm_title" = "ゴミ箱を空にする";
+
+/* Message shown in the empty trash confirmation dialog */
+"empty_trash_confirm_message" = "ゴミ箱内のすべてのメモが完全に削除されます。この操作は元に戻せません。";
+
+/* Action button in the empty trash confirmation dialog */
+"empty_trash_confirm_action" = "ゴミ箱を空にする";
+
+/* Title for the permanent delete confirmation alert */
+"delete_permanently_confirm_title" = "完全に削除";
+
+/* Message shown when confirming permanent deletion */
+"delete_permanently_confirm_message" = "このメモは完全に削除され、復元できません。";
+
+/* Action button to permanently delete a note */
+"delete_permanently_confirm_action" = "完全に削除";
+
+/* Label shown for notes that are overdue for deletion from trash */
+"overdue_deletion_label" = "削除待ち";
+
+/* Help text for the iCloud syncing indicator */
+"icloud_syncing_label" = "iCloudと同期中…";
+
+/* Help text shown for the AI improve button */
+"ai_improve_help" = "Apple Intelligenceでメモの内容を改善する";
+
+/* Title for the AI generation failure alert */
+"ai_generation_failed_title" = "AI生成に失敗しました";
+
+/* Message shown when AI generation fails */
+"ai_generation_failed_message" = "AIがリクエストを処理できませんでした。もう一度お試しください。";
+
+/* Title for the database error view */
+"database_error_title" = "メモを開けません";
+
+/* Description for the database error view */
+"database_error_description" = "メモのデータベースを開けませんでした。アプリを再起動してください。";

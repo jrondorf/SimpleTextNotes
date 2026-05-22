@@ -32,7 +32,7 @@
 "cancel_button" = "Скасувати";
 
 /* Body text of the paste confirmation alert */
-"paste_clipboard_message" = "Поточний вміст нотатки буде замінено текстом з буфера обміну.";
+"paste_clipboard_message" = "Текст з буфера обміну буде додано в кінець поточної нотатки.";
 
 /* Title shown when no note is selected */
 "no_note_selected_title" = "Нотатку не вибрано";
@@ -117,3 +117,69 @@
 
 /* Format string showing days remaining before permanent deletion (%d = number of days) */
 "days_until_deletion_format" = "%d день(днів) до остаточного видалення";
+
+/* Label for the share button */
+"share_button" = "Поділитися";
+
+/* Label for the sort menu button */
+"sort_button" = "Сортування";
+
+/* Sort by last modified date */
+"sort_updated_at" = "Остання зміна";
+
+/* Sort by created date */
+"sort_created_at" = "Дата створення";
+
+/* Sort by title */
+"sort_title" = "Назва";
+
+/* Label for the pin button */
+"pin_note_button" = "Закріпити";
+
+/* Label for the unpin button */
+"unpin_note_button" = "Відкріпити";
+
+/* Word and character count footer (%1$d = words, %2$d = characters) */
+"word_count_format" = "%d слів, %d символів";
+
+/* Label for the empty trash button */
+"empty_trash_button" = "Очистити кошик";
+
+/* Title for the empty trash confirmation dialog */
+"empty_trash_confirm_title" = "Очистити кошик";
+
+/* Message shown in the empty trash confirmation dialog */
+"empty_trash_confirm_message" = "Усі нотатки в кошику буде безповоротно видалено. Цю дію не можна скасувати.";
+
+/* Action button in the empty trash confirmation dialog */
+"empty_trash_confirm_action" = "Очистити кошик";
+
+/* Title for the permanent delete confirmation alert */
+"delete_permanently_confirm_title" = "Видалити назавжди";
+
+/* Message shown when confirming permanent deletion */
+"delete_permanently_confirm_message" = "Цю нотатку буде видалено назавжди, і її неможливо буде відновити.";
+
+/* Action button to permanently delete a note */
+"delete_permanently_confirm_action" = "Видалити назавжди";
+
+/* Label shown for notes that are overdue for deletion from trash */
+"overdue_deletion_label" = "Очікується видалення";
+
+/* Help text for the iCloud syncing indicator */
+"icloud_syncing_label" = "Синхронізація з iCloud…";
+
+/* Help text shown for the AI improve button */
+"ai_improve_help" = "Покращити вміст нотатки за допомогою Apple Intelligence";
+
+/* Title for the AI generation failure alert */
+"ai_generation_failed_title" = "Помилка генерації ШІ";
+
+/* Message shown when AI generation fails */
+"ai_generation_failed_message" = "ШІ не зміг обробити ваш запит. Будь ласка, спробуйте ще раз.";
+
+/* Title for the database error view */
+"database_error_title" = "Не вдається відкрити нотатки";
+
+/* Description for the database error view */
+"database_error_description" = "Базу даних нотаток не вдалося відкрити. Будь ласка, перезапустіть програму.";

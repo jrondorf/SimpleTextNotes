@@ -11,26 +11,50 @@ import AppKit
 
 struct NoteDetailView: View {
     @Bindable var note: Note
-    @Binding var selectedNoteID: UUID?
+    @Binding var selectedNote: Note?
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.undoManager) private var undoManager
     @Environment(TitleGenerationState.self) private var titleGenerationState
+    @Environment(SimpleTextNotesAI.self) private var notesAI
     @State private var showPasteConfirmation: Bool = false
-    @State private var titleGenerationTask: Task<Void, Never>?
     @State private var showAINoContent: Bool = false
     @State private var isGenerating: Bool = false
     @State private var showDeleteConfirmation: Bool = false
+    @State private var aiError: String?
     @AppStorage("editorFontName") private var editorFontName: String = "system"
     @AppStorage("editorFontSize") private var editorFontSize: Double = 16.0
 
-    private let notesAI = SimpleTextNotesAI()
+    // @ScaledMetric props so each base size scales with the system Dynamic Type setting
+    @ScaledMetric(relativeTo: .body) private var scaledSmall: CGFloat = 14
+    @ScaledMetric(relativeTo: .body) private var scaledMedium: CGFloat = 16
+    @ScaledMetric(relativeTo: .body) private var scaledLarge: CGFloat = 18
+    @ScaledMetric(relativeTo: .body) private var scaledExtraLarge: CGFloat = 20
+
+    private var effectiveFontSize: CGFloat {
+        switch editorFontSize {
+        case 14.0: return scaledSmall
+        case 18.0: return scaledLarge
+        case 20.0: return scaledExtraLarge
+        default:   return scaledMedium
+        }
+    }
 
     private var editorFont: Font {
         switch editorFontName {
-        case "monospaced": return .system(size: editorFontSize, design: .monospaced)
-        case "serif": return .system(size: editorFontSize, design: .serif)
-        default: return .system(size: editorFontSize)
+        case "monospaced": return .system(size: effectiveFontSize, design: .monospaced)
+        case "serif":      return .system(size: effectiveFontSize, design: .serif)
+        default:           return .system(size: effectiveFontSize)
         }
     }
+
+    private var wordCount: Int {
+        note.content
+            .components(separatedBy: .whitespacesAndNewlines)
+            .filter { !$0.isEmpty }
+            .count
+    }
+
+    private var characterCount: Int { note.content.count }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -45,26 +69,57 @@ struct NoteDetailView: View {
                 .font(editorFont)
                 .padding(.horizontal, 12)
                 .padding(.vertical, 8)
+
+            Divider()
+
+            // Word / character count footer
+            HStack {
+                Spacer()
+                Text(String(format: String(localized: "word_count_format"), wordCount, characterCount))
+                    .font(.caption2)
+                    .foregroundStyle(.tertiary)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 6)
+            }
         }
         .navigationTitle(note.title.isEmpty ? String(localized: "untitled_note") : note.title)
         #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
         #endif
-        .onChange(of: note.title) { note.updatedAt = Date() }
+        .onChange(of: note.title)   { note.updatedAt = Date() }
         .onChange(of: note.content) { note.updatedAt = Date() }
         .onDisappear {
             guard note.title.isEmpty else { return }
-            titleGenerationTask?.cancel()
             let noteID = note.id
-            titleGenerationTask = Task {
-                let isAvailable = SimpleTextNotesAI.isAvailable
-                if isAvailable { titleGenerationState.markGenerating(noteID) }
-                defer { if isAvailable { titleGenerationState.markDone(noteID) } }
+            let isAvailable = SimpleTextNotesAI.isAvailable
+            let task = Task {
+                defer {
+                    Task { @MainActor in titleGenerationState.markDone(noteID) }
+                }
                 await generateTitle()
             }
+            titleGenerationState.startTask(task, for: noteID, showIndicator: isAvailable)
         }
         .toolbar {
             ToolbarItemGroup(placement: .primaryAction) {
+                // Pin / Unpin
+                Button {
+                    note.isPinned.toggle()
+                } label: {
+                    Label(note.isPinned ? "unpin_note_button" : "pin_note_button",
+                          systemImage: note.isPinned ? "pin.slash.fill" : "pin")
+                }
+                .help(note.isPinned ? "unpin_note_button" : "pin_note_button")
+                .keyboardShortcut("p", modifiers: [.command, .shift])
+
+                // Share
+                ShareLink(item: shareText) {
+                    Label("share_button", systemImage: "square.and.arrow.up")
+                }
+                .help("share_button")
+                .keyboardShortcut("s", modifiers: [.command, .shift])
+
+                // AI improve
                 if SimpleTextNotesAI.isAvailable {
                     if isGenerating {
                         ProgressView()
@@ -79,30 +134,36 @@ struct NoteDetailView: View {
                         } label: {
                             Label("ai_button", systemImage: "sparkles")
                         }
-                        .help("ai_button")
+                        .help("ai_improve_help")
                     }
                 }
 
+                // Copy
                 Button {
                     copyToClipboard()
                 } label: {
                     Label("copy_button", systemImage: "doc.on.doc")
                 }
                 .help("copy_button")
+                .keyboardShortcut("c", modifiers: [.command, .shift])
 
+                // Paste
                 Button {
                     showPasteConfirmation = true
                 } label: {
                     Label("paste_button", systemImage: "doc.on.clipboard")
                 }
                 .help("paste_button")
+                .keyboardShortcut("v", modifiers: [.command, .shift])
 
+                // Delete
                 Button(role: .destructive) {
                     showDeleteConfirmation = true
                 } label: {
                     Label("delete_button", systemImage: "trash")
                 }
                 .help("delete_button")
+                .keyboardShortcut(.delete, modifiers: .command)
             }
         }
         .alert("ai_no_content_title", isPresented: $showAINoContent) {
@@ -110,9 +171,17 @@ struct NoteDetailView: View {
         } message: {
             Text("ai_no_content_message")
         }
+        .alert("ai_generation_failed_title", isPresented: Binding(
+            get: { aiError != nil },
+            set: { if !$0 { aiError = nil } }
+        )) {
+            Button("ok_button", role: .cancel) { }
+        } message: {
+            if let msg = aiError { Text(msg) } else { Text("ai_generation_failed_message") }
+        }
         .alert("delete_note_alert_title", isPresented: $showDeleteConfirmation) {
             Button("move_to_trash_button", role: .destructive) {
-                selectedNoteID = nil
+                selectedNote = nil
                 note.deletedAt = Date()
                 note.isTrashed = true
             }
@@ -130,26 +199,46 @@ struct NoteDetailView: View {
         }
     }
 
+    // MARK: - Clipboard
+
+    private var shareText: String {
+        if note.title.isEmpty { return note.content }
+        if note.content.isEmpty { return note.title }
+        return "\(note.title)\n\n\(note.content)"
+    }
+
     private func copyToClipboard() {
+        let text = shareText
         #if canImport(UIKit)
-        UIPasteboard.general.string = note.content
+        UIPasteboard.general.string = text
         #elseif canImport(AppKit)
         NSPasteboard.general.clearContents()
-        NSPasteboard.general.setString(note.content, forType: .string)
+        NSPasteboard.general.setString(text, forType: .string)
         #endif
     }
 
     private func pasteFromClipboard() {
+        let clipboard: String?
         #if canImport(UIKit)
-        if let text = UIPasteboard.general.string {
-            note.content = text
-        }
+        clipboard = UIPasteboard.general.string
         #elseif canImport(AppKit)
-        if let text = NSPasteboard.general.string(forType: .string) {
-            note.content = text
-        }
+        clipboard = NSPasteboard.general.string(forType: .string)
         #endif
+        guard let text = clipboard else { return }
+
+        // Register undo so Cmd+Z restores the original content
+        let originalContent = note.content
+        undoManager?.registerUndo(withTarget: note) { note in
+            note.content = originalContent
+            note.updatedAt = Date()
+        }
+        undoManager?.setActionName(String(localized: "paste_button"))
+
+        note.content = note.content.isEmpty ? text : note.content + "\n\n" + text
+        note.updatedAt = Date()
     }
+
+    // MARK: - AI
 
     private static let maxTitleLength = 60
     private static let maxContentLengthForTitleGeneration = 1000
@@ -169,12 +258,12 @@ struct NoteDetailView: View {
                     to: "Generate a very short title (maximum \(Self.maxTitleLength) characters) for this note. Reply with only the title text, no quotes, no punctuation at the end, no explanation:\n\n\(truncated)"
                 )
                 let generated = response.content.trimmingCharacters(in: .whitespacesAndNewlines)
-                // Re-check after the async call in case a concurrent task already set a title
-                guard !generated.isEmpty, note.title.isEmpty else { return }
+                // Re-check after the async gap: note must still be active and untitled
+                guard !generated.isEmpty, note.title.isEmpty, note.modelContext != nil else { return }
                 note.title = String(generated.prefix(Self.maxTitleLength))
                 note.updatedAt = Date()
             } catch {
-                // Title generation failed silently; the note keeps an empty title
+                // Title generation failed silently; note keeps an empty title
             }
         }
 #endif
@@ -191,13 +280,22 @@ struct NoteDetailView: View {
             do {
                 let session = try notesAI.makeSession(instructions: "You are a helpful writing assistant. Improve, expand, or process the given note content.")
                 let prompt = note.content.trimmingCharacters(in: .whitespacesAndNewlines)
+
+                // Register undo before mutating content
+                let originalContent = note.content
+                undoManager?.registerUndo(withTarget: note) { note in
+                    note.content = originalContent
+                    note.updatedAt = Date()
+                }
+                undoManager?.setActionName(String(localized: "ai_button"))
+
                 let response = try await session.respond(to: prompt)
                 let generated = response.content.trimmingCharacters(in: .whitespacesAndNewlines)
                 guard !generated.isEmpty else { return }
                 note.content = "\(note.content)\n\n\(generated)"
                 note.updatedAt = Date()
             } catch {
-                // Content generation failed silently
+                aiError = notesAI.wrap(error).localizedDescription
             }
         }
 #endif

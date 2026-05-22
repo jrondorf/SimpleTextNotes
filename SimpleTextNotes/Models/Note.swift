@@ -9,7 +9,8 @@ class Note {
     var createdAt: Date = Date()
     var updatedAt: Date = Date()
     var deletedAt: Date? = nil
-    var isTrashed: Bool = false
+    var isPinned: Bool = false
+    var isTrashed: Bool = false   // mirrors deletedAt != nil; stored as an explicit Bool for reliable CloudKit sync predicates
 
     static let trashRetentionDays: Int = 30
 
@@ -25,6 +26,7 @@ class Note {
         self.createdAt = createdAt
         self.updatedAt = createdAt
         self.deletedAt = nil
+        self.isPinned = false
         self.isTrashed = false
     }
 }

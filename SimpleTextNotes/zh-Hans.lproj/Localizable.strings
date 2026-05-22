@@ -32,7 +32,7 @@
 "cancel_button" = "取消";
 
 /* Body text of the paste confirmation alert */
-"paste_clipboard_message" = "这将用剪贴板中的文字替换当前备忘录的内容。";
+"paste_clipboard_message" = "剪贴板中的文本将被附加到当前备忘录的末尾。";
 
 /* Title shown when no note is selected */
 "no_note_selected_title" = "未选择备忘录";
@@ -117,3 +117,69 @@
 
 /* Format string showing days remaining before permanent deletion (%d = number of days) */
 "days_until_deletion_format" = "距永久删除还有 %d 天";
+
+/* Label for the share button */
+"share_button" = "分享";
+
+/* Label for the sort menu button */
+"sort_button" = "排序";
+
+/* Sort by last modified date */
+"sort_updated_at" = "最后修改时间";
+
+/* Sort by created date */
+"sort_created_at" = "创建日期";
+
+/* Sort by title */
+"sort_title" = "标题";
+
+/* Label for the pin button */
+"pin_note_button" = "置顶";
+
+/* Label for the unpin button */
+"unpin_note_button" = "取消置顶";
+
+/* Word and character count footer (%1$d = words, %2$d = characters) */
+"word_count_format" = "%d 个词，%d 个字符";
+
+/* Label for the empty trash button */
+"empty_trash_button" = "清空废纸篓";
+
+/* Title for the empty trash confirmation dialog */
+"empty_trash_confirm_title" = "清空废纸篓";
+
+/* Message shown in the empty trash confirmation dialog */
+"empty_trash_confirm_message" = "废纸篓中的所有备忘录将被永久删除。此操作无法撤销。";
+
+/* Action button in the empty trash confirmation dialog */
+"empty_trash_confirm_action" = "清空废纸篓";
+
+/* Title for the permanent delete confirmation alert */
+"delete_permanently_confirm_title" = "永久删除";
+
+/* Message shown when confirming permanent deletion */
+"delete_permanently_confirm_message" = "此备忘录将被永久删除，无法恢复。";
+
+/* Action button to permanently delete a note */
+"delete_permanently_confirm_action" = "永久删除";
+
+/* Label shown for notes that are overdue for deletion from trash */
+"overdue_deletion_label" = "待删除";
+
+/* Help text for the iCloud syncing indicator */
+"icloud_syncing_label" = "正在与 iCloud 同步…";
+
+/* Help text shown for the AI improve button */
+"ai_improve_help" = "使用 Apple Intelligence 改善备忘录内容";
+
+/* Title for the AI generation failure alert */
+"ai_generation_failed_title" = "AI 生成失败";
+
+/* Message shown when AI generation fails */
+"ai_generation_failed_message" = "AI 无法处理您的请求，请重试。";
+
+/* Title for the database error view */
+"database_error_title" = "无法打开备忘录";
+
+/* Description for the database error view */
+"database_error_description" = "备忘录数据库无法打开，请重启应用。";

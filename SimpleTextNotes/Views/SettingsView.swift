@@ -19,7 +19,6 @@ struct SettingsView: View {
             }
         }
         .formStyle(.grouped)
-        .frame(width: 320)
         .navigationTitle("editor_font_navigation_title")
     }
 }

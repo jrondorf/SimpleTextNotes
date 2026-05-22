@@ -32,7 +32,7 @@
 "cancel_button" = "İptal";
 
 /* Body text of the paste confirmation alert */
-"paste_clipboard_message" = "Bu işlem, mevcut not içeriğini panodaki metinle değiştirecektir.";
+"paste_clipboard_message" = "Pano metni mevcut notun sonuna eklenecek.";
 
 /* Title shown when no note is selected */
 "no_note_selected_title" = "Not Seçilmedi";
@@ -117,3 +117,69 @@
 
 /* Format string showing days remaining before permanent deletion (%d = number of days) */
 "days_until_deletion_format" = "Kalıcı silmeye %d gün kaldı";
+
+/* Label for the share button */
+"share_button" = "Paylaş";
+
+/* Label for the sort menu button */
+"sort_button" = "Sırala";
+
+/* Sort by last modified date */
+"sort_updated_at" = "Son değiştirme";
+
+/* Sort by created date */
+"sort_created_at" = "Oluşturma tarihi";
+
+/* Sort by title */
+"sort_title" = "Başlık";
+
+/* Label for the pin button */
+"pin_note_button" = "Sabitle";
+
+/* Label for the unpin button */
+"unpin_note_button" = "Sabitlemeyi kaldır";
+
+/* Word and character count footer (%1$d = words, %2$d = characters) */
+"word_count_format" = "%d kelime, %d karakter";
+
+/* Label for the empty trash button */
+"empty_trash_button" = "Çöpü boşalt";
+
+/* Title for the empty trash confirmation dialog */
+"empty_trash_confirm_title" = "Çöpü boşalt";
+
+/* Message shown in the empty trash confirmation dialog */
+"empty_trash_confirm_message" = "Çöpteki tüm notlar kalıcı olarak silinecek. Bu işlem geri alınamaz.";
+
+/* Action button in the empty trash confirmation dialog */
+"empty_trash_confirm_action" = "Çöpü boşalt";
+
+/* Title for the permanent delete confirmation alert */
+"delete_permanently_confirm_title" = "Kalıcı olarak sil";
+
+/* Message shown when confirming permanent deletion */
+"delete_permanently_confirm_message" = "Bu not kalıcı olarak silinecek ve kurtarılamayacak.";
+
+/* Action button to permanently delete a note */
+"delete_permanently_confirm_action" = "Kalıcı olarak sil";
+
+/* Label shown for notes that are overdue for deletion from trash */
+"overdue_deletion_label" = "Silme beklemede";
+
+/* Help text for the iCloud syncing indicator */
+"icloud_syncing_label" = "iCloud ile eşitleniyor…";
+
+/* Help text shown for the AI improve button */
+"ai_improve_help" = "Apple Intelligence ile not içeriğini iyileştir";
+
+/* Title for the AI generation failure alert */
+"ai_generation_failed_title" = "Yapay zeka üretimi başarısız oldu";
+
+/* Message shown when AI generation fails */
+"ai_generation_failed_message" = "Yapay zeka isteğinizi işleyemedi. Lütfen tekrar deneyin.";
+
+/* Title for the database error view */
+"database_error_title" = "Notlar açılamıyor";
+
+/* Description for the database error view */
+"database_error_description" = "Not veritabanı açılamadı. Lütfen uygulamayı yeniden başlatın.";

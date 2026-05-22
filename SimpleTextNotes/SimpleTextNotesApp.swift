@@ -3,24 +3,52 @@ import SwiftData
 
 @main
 struct SimpleTextNotesApp: App {
-    let modelContainer: ModelContainer
+    private let modelContainer: ModelContainer?
+    private let initializationError: String?
 
     init() {
         let schema = Schema([Note.self])
-        //let modelConfiguration = ModelConfiguration(schema: schema, cloudKitDatabase: .automatic)
         let modelConfiguration = ModelConfiguration(schema: schema, cloudKitDatabase: .private("iCloud.de.futural.simpletextnotes.v2"))
-
         do {
             self.modelContainer = try ModelContainer(for: schema, configurations: [modelConfiguration])
+            self.initializationError = nil
         } catch {
-            fatalError("Could not create ModelContainer: \(error)")
+            self.modelContainer = nil
+            self.initializationError = error.localizedDescription
         }
     }
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if let container = modelContainer {
+                ContentView()
+                    .modelContainer(container)
+            } else {
+                DatabaseErrorView(message: initializationError ?? "Unknown error")
+            }
         }
-        .modelContainer(modelContainer)
+    }
+}
+
+private struct DatabaseErrorView: View {
+    let message: String
+
+    var body: some View {
+        VStack(spacing: 20) {
+            Image(systemName: "exclamationmark.triangle.fill")
+                .font(.system(size: 56))
+                .foregroundStyle(.red)
+            Text("database_error_title")
+                .font(.title2.bold())
+            Text("database_error_description")
+                .font(.body)
+                .foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
+            Text(message)
+                .font(.caption)
+                .foregroundStyle(.tertiary)
+                .multilineTextAlignment(.center)
+        }
+        .padding(32)
     }
 }

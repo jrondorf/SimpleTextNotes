@@ -32,7 +32,7 @@
 "cancel_button" = "Peruuta";
 
 /* Body text of the paste confirmation alert */
-"paste_clipboard_message" = "Muistiinpanon nykyinen sisältö korvataan leikepöydän tekstillä.";
+"paste_clipboard_message" = "Leikepöydän teksti lisätään nykyisen muistiinpanon loppuun.";
 
 /* Title shown when no note is selected */
 "no_note_selected_title" = "Muistiinpanoa ei valittu";
@@ -117,3 +117,69 @@
 
 /* Format string showing days remaining before permanent deletion (%d = number of days) */
 "days_until_deletion_format" = "%d päivä(ä) pysyvään poistamiseen";
+
+/* Label for the share button */
+"share_button" = "Jaa";
+
+/* Label for the sort menu button */
+"sort_button" = "Lajittele";
+
+/* Sort by last modified date */
+"sort_updated_at" = "Viimeksi muokattu";
+
+/* Sort by created date */
+"sort_created_at" = "Luontipäivämäärä";
+
+/* Sort by title */
+"sort_title" = "Otsikko";
+
+/* Label for the pin button */
+"pin_note_button" = "Kiinnitä";
+
+/* Label for the unpin button */
+"unpin_note_button" = "Irrota";
+
+/* Word and character count footer (%1$d = words, %2$d = characters) */
+"word_count_format" = "%d sanaa, %d merkkiä";
+
+/* Label for the empty trash button */
+"empty_trash_button" = "Tyhjennä roskakori";
+
+/* Title for the empty trash confirmation dialog */
+"empty_trash_confirm_title" = "Tyhjennä roskakori";
+
+/* Message shown in the empty trash confirmation dialog */
+"empty_trash_confirm_message" = "Kaikki roskakorissa olevat muistiinpanot poistetaan pysyvästi. Tätä toimintoa ei voi kumota.";
+
+/* Action button in the empty trash confirmation dialog */
+"empty_trash_confirm_action" = "Tyhjennä roskakori";
+
+/* Title for the permanent delete confirmation alert */
+"delete_permanently_confirm_title" = "Poista pysyvästi";
+
+/* Message shown when confirming permanent deletion */
+"delete_permanently_confirm_message" = "Tämä muistiinpano poistetaan pysyvästi eikä sitä voi palauttaa.";
+
+/* Action button to permanently delete a note */
+"delete_permanently_confirm_action" = "Poista pysyvästi";
+
+/* Label shown for notes that are overdue for deletion from trash */
+"overdue_deletion_label" = "Odottaa poistoa";
+
+/* Help text for the iCloud syncing indicator */
+"icloud_syncing_label" = "Synkronoidaan iCloudin kanssa…";
+
+/* Help text shown for the AI improve button */
+"ai_improve_help" = "Paranna muistiinpanon sisältöä Apple Intelligencellä";
+
+/* Title for the AI generation failure alert */
+"ai_generation_failed_title" = "Tekoälygeneraatio epäonnistui";
+
+/* Message shown when AI generation fails */
+"ai_generation_failed_message" = "Tekoäly ei pystynyt käsittelemään pyyntöäsi. Yritä uudelleen.";
+
+/* Title for the database error view */
+"database_error_title" = "Muistiinpanoja ei voi avata";
+
+/* Description for the database error view */
+"database_error_description" = "Muistiinpanojen tietokantaa ei voitu avata. Käynnistä sovellus uudelleen.";

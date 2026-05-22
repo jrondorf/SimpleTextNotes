@@ -32,7 +32,7 @@
 "cancel_button" = "Abbrechen";
 
 /* Body text of the paste confirmation alert */
-"paste_clipboard_message" = "Dadurch wird der aktuelle Notizinhalt durch den Text aus der Zwischenablage ersetzt.";
+"paste_clipboard_message" = "Der Text aus der Zwischenablage wird am Ende der aktuellen Notiz angehängt.";
 
 /* Title shown when no note is selected */
 "no_note_selected_title" = "Keine Notiz ausgewählt";
@@ -117,3 +117,69 @@
 
 /* Format string showing days remaining before permanent deletion (%d = number of days) */
 "days_until_deletion_format" = "%d Tag(e) bis zur endgültigen Löschung";
+
+/* Label for the share button */
+"share_button" = "Teilen";
+
+/* Label for the sort menu button */
+"sort_button" = "Sortieren";
+
+/* Sort by last modified date */
+"sort_updated_at" = "Zuletzt geändert";
+
+/* Sort by created date */
+"sort_created_at" = "Erstellungsdatum";
+
+/* Sort by title */
+"sort_title" = "Titel";
+
+/* Label for the pin button */
+"pin_note_button" = "Anheften";
+
+/* Label for the unpin button */
+"unpin_note_button" = "Loslösen";
+
+/* Word and character count footer (%1$d = words, %2$d = characters) */
+"word_count_format" = "%d Wörter, %d Zeichen";
+
+/* Label for the empty trash button */
+"empty_trash_button" = "Papierkorb leeren";
+
+/* Title for the empty trash confirmation dialog */
+"empty_trash_confirm_title" = "Papierkorb leeren";
+
+/* Message shown in the empty trash confirmation dialog */
+"empty_trash_confirm_message" = "Alle Notizen im Papierkorb werden endgültig gelöscht. Dies kann nicht rückgängig gemacht werden.";
+
+/* Action button in the empty trash confirmation dialog */
+"empty_trash_confirm_action" = "Papierkorb leeren";
+
+/* Title for the permanent delete confirmation alert */
+"delete_permanently_confirm_title" = "Endgültig löschen";
+
+/* Message shown when confirming permanent deletion */
+"delete_permanently_confirm_message" = "Diese Notiz wird endgültig gelöscht und kann nicht wiederhergestellt werden.";
+
+/* Action button to permanently delete a note */
+"delete_permanently_confirm_action" = "Endgültig löschen";
+
+/* Label shown for notes that are overdue for deletion from trash */
+"overdue_deletion_label" = "Löschung ausstehend";
+
+/* Help text for the iCloud syncing indicator */
+"icloud_syncing_label" = "Mit iCloud synchronisieren…";
+
+/* Help text shown for the AI improve button */
+"ai_improve_help" = "Notizinhalt mit Apple Intelligence verbessern";
+
+/* Title for the AI generation failure alert */
+"ai_generation_failed_title" = "KI-Generierung fehlgeschlagen";
+
+/* Message shown when AI generation fails */
+"ai_generation_failed_message" = "Die KI konnte deine Anfrage nicht verarbeiten. Bitte versuche es erneut.";
+
+/* Title for the database error view */
+"database_error_title" = "Notizen können nicht geöffnet werden";
+
+/* Description for the database error view */
+"database_error_description" = "Die Notizendatenbank konnte nicht geöffnet werden. Bitte starte die App neu.";
