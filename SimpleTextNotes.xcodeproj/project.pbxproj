@@ -15,9 +15,9 @@
 		AA000001007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA000002007 /* Assets.xcassets */; };
 		AA000001008 /* SimpleTextNotesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000002008 /* SimpleTextNotesTests.swift */; };
 		AA000001009 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000002012 /* SettingsView.swift */; };
-		AA000001012 /* TrashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000002015 /* TrashView.swift */; };
 		AA000001010 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AA000002013 /* Settings.bundle */; };
 		AA000001011 /* SimpleTextNotesAI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000002014 /* SimpleTextNotesAI.swift */; };
+		AA000001012 /* TrashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000002015 /* TrashView.swift */; };
 		AA000001013 /* TitleGenerationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000002016 /* TitleGenerationState.swift */; };
 		AA001001001 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA001002001 /* Localizable.strings */; };
 /* End PBXBuildFile section */
@@ -45,9 +45,9 @@
 		AA000002010 /* SimpleTextNotesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleTextNotesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA000002011 /* SimpleTextNotes.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SimpleTextNotes.entitlements; sourceTree = "<group>"; };
 		AA000002012 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		AA000002015 /* TrashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashView.swift; sourceTree = "<group>"; };
 		AA000002013 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		AA000002014 /* SimpleTextNotesAI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTextNotesAI.swift; sourceTree = "<group>"; };
+		AA000002015 /* TrashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashView.swift; sourceTree = "<group>"; };
 		AA000002016 /* TitleGenerationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleGenerationState.swift; sourceTree = "<group>"; };
 		AA001002002 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AA001002003 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -208,7 +208,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 2640;
+				LastUpgradeCheck = 2650;
 				TargetAttributes = {
 					AA000007001 = {
 						CreatedOnToolsVersion = 15.0;
@@ -347,6 +347,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -411,6 +412,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -490,7 +492,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.5.1;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = de.futural.simpletextnotes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -531,7 +533,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.5.1;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = de.futural.simpletextnotes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
