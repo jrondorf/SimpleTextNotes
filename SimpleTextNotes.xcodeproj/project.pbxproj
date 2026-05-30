@@ -19,6 +19,7 @@
 		AA000001011 /* SimpleTextNotesAI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000002014 /* SimpleTextNotesAI.swift */; };
 		AA000001012 /* TrashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000002015 /* TrashView.swift */; };
 		AA000001013 /* TitleGenerationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000002016 /* TitleGenerationState.swift */; };
+		AA000001014 /* CloudKitSyncMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000002017 /* CloudKitSyncMonitor.swift */; };
 		AA001001001 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA001002001 /* Localizable.strings */; };
 		BB000001001 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000002001 /* ShareViewController.swift */; };
 		BB000001002 /* ShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BB000002004 /* ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -58,6 +59,7 @@
 		AA000002014 /* SimpleTextNotesAI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTextNotesAI.swift; sourceTree = "<group>"; };
 		AA000002015 /* TrashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashView.swift; sourceTree = "<group>"; };
 		AA000002016 /* TitleGenerationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleGenerationState.swift; sourceTree = "<group>"; };
+		AA000002017 /* CloudKitSyncMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitSyncMonitor.swift; sourceTree = "<group>"; };
 		AA001002002 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AA001002003 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		AA001002004 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				1F97346D2F48EB2200789962 /* Info.plist */,
 				AA000002001 /* SimpleTextNotesApp.swift */,
 				AA000002002 /* ContentView.swift */,
+				AA000002017 /* CloudKitSyncMonitor.swift */,
 				AA000003004 /* Models */,
 				AA000003005 /* AI */,
 				AA000003006 /* Views */,
@@ -354,6 +357,7 @@
 				AA000001012 /* TrashView.swift in Sources */,
 				AA000001011 /* SimpleTextNotesAI.swift in Sources */,
 				AA000001013 /* TitleGenerationState.swift in Sources */,
+				AA000001014 /* CloudKitSyncMonitor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
