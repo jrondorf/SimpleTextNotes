@@ -128,6 +128,13 @@ struct NoteListView: View {
             }
 
             ToolbarItem(placement: .primaryAction) {
+                if syncMonitor.isSyncing {
+                    ProgressView()
+                        .help("icloud_syncing_label")
+                }
+            }
+
+            ToolbarItem(placement: .primaryAction) {
                 Menu {
                     Picker("sort_button", selection: $sortOptionRaw) {
                         Text("sort_updated_at").tag(NoteSortOption.updatedAt.rawValue)
@@ -149,13 +156,6 @@ struct NoteListView: View {
                 trashButton
             }
             #endif
-
-            ToolbarItem(placement: .primaryAction) {
-                if syncMonitor.isSyncing {
-                    ProgressView()
-                        .help("icloud_syncing_label")
-                }
-            }
         }
         .sheet(isPresented: $showTrash) {
             NavigationStack {

@@ -2,6 +2,7 @@ import SwiftUI
 import SwiftData
 import CoreData
 import Observation
+import Combine
 
 // MARK: - CloudSyncMonitor
 
@@ -72,6 +73,10 @@ struct ContentView: View {
         .task {
             purgeOldTrashNotes()
             syncMonitor.startObserving()
+            importPendingSharedNotes()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+            importPendingSharedNotes()
         }
     }
 
@@ -91,6 +96,20 @@ struct ContentView: View {
             }
         } catch {
             print("SimpleTextNotes: failed to purge old trash notes — \(error)")
+        }
+    }
+
+    private func importPendingSharedNotes() {
+        let defaults = UserDefaults(suiteName: "group.de.futural.simpletextnotes")
+        guard let pending = defaults?.array(forKey: "pendingSharedNotes") as? [[String: String]],
+              !pending.isEmpty else { return }
+        defaults?.removeObject(forKey: "pendingSharedNotes")
+        defaults?.synchronize()
+        for entry in pending {
+            guard let content = entry["content"], !content.isEmpty else { continue }
+            let note = Note()
+            note.content = content
+            modelContext.insert(note)
         }
     }
 }
