@@ -1,30 +1,5 @@
 import SwiftUI
 import SwiftData
-import CoreData
-import Observation
-import Combine
-
-// MARK: - CloudSyncMonitor
-
-/// Observes NSPersistentStoreRemoteChange notifications to surface a brief syncing indicator.
-@Observable
-final class CloudSyncMonitor {
-    var isSyncing: Bool = false
-
-    func startObserving() {
-        NotificationCenter.default.addObserver(
-            forName: .NSPersistentStoreRemoteChange,
-            object: nil,
-            queue: .main
-        ) { [weak self] _ in
-            self?.isSyncing = true
-            Task { @MainActor [weak self] in
-                try? await Task.sleep(for: .seconds(2))
-                self?.isSyncing = false
-            }
-        }
-    }
-}
 
 // MARK: - ContentView
 
@@ -34,7 +9,7 @@ struct ContentView: View {
     @State private var showSettings: Bool = false
     @State private var titleGenerationState = TitleGenerationState()
     @State private var notesAI = SimpleTextNotesAI()
-    @State private var syncMonitor = CloudSyncMonitor()
+    @State private var syncMonitor = CloudKitSyncMonitor()
 
     var body: some View {
         NavigationSplitView {
@@ -72,7 +47,6 @@ struct ContentView: View {
         .environment(syncMonitor)
         .task {
             purgeOldTrashNotes()
-            syncMonitor.startObserving()
             importPendingSharedNotes()
         }
         #if canImport(UIKit)

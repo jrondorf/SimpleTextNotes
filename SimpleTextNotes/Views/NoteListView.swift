@@ -26,7 +26,7 @@ struct NoteListView: View {
     @Query(filter: #Predicate<Note> { $0.isTrashed == false }) private var notes: [Note]
     @Environment(\.modelContext) private var modelContext
     @Environment(TitleGenerationState.self) private var titleGenerationState
-    @Environment(CloudSyncMonitor.self) private var syncMonitor
+    @Environment(CloudKitSyncMonitor.self) private var syncMonitor
     @Binding var selectedNote: Note?
     @State private var searchText: String = ""
     @State private var showTrash: Bool = false
@@ -128,10 +128,7 @@ struct NoteListView: View {
             }
 
             ToolbarItem(placement: .primaryAction) {
-                if syncMonitor.isSyncing {
-                    ProgressView()
-                        .help("icloud_syncing_label")
-                }
+                iCloudSyncIndicator
             }
 
             ToolbarItem(placement: .primaryAction) {
@@ -166,6 +163,29 @@ struct NoteListView: View {
                         }
                     }
             }
+        }
+    }
+
+    @ViewBuilder
+    private var iCloudSyncIndicator: some View {
+        switch syncMonitor.syncState {
+        case .syncing:
+            Image(systemName: "arrow.triangle.2.circlepath.icloud")
+                .symbolEffect(.rotate, isActive: true)
+                .foregroundStyle(.secondary)
+                .accessibilityLabel(Text("icloud_syncing_label"))
+        case .synced:
+            Image(systemName: "checkmark.icloud")
+                .foregroundStyle(.secondary)
+                .accessibilityLabel(Text("icloud_synced_label"))
+        case .error:
+            Image(systemName: "exclamationmark.icloud")
+                .foregroundStyle(.red)
+                .accessibilityLabel(Text("icloud_error_label"))
+        case .notSyncing:
+            Image(systemName: "icloud")
+                .foregroundStyle(.secondary)
+                .accessibilityLabel(Text("icloud_label"))
         }
     }
 
