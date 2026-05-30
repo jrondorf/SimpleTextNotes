@@ -75,9 +75,11 @@ struct ContentView: View {
             syncMonitor.startObserving()
             importPendingSharedNotes()
         }
+        #if canImport(UIKit)
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
             importPendingSharedNotes()
         }
+        #endif
     }
 
     private func purgeOldTrashNotes() {
@@ -104,7 +106,6 @@ struct ContentView: View {
         guard let pending = defaults?.array(forKey: "pendingSharedNotes") as? [[String: String]],
               !pending.isEmpty else { return }
         defaults?.removeObject(forKey: "pendingSharedNotes")
-        defaults?.synchronize()
         for entry in pending {
             guard let content = entry["content"], !content.isEmpty else { continue }
             let note = Note()

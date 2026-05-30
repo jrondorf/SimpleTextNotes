@@ -3,6 +3,8 @@ import UniformTypeIdentifiers
 
 class ShareViewController: UIViewController {
 
+    private static let isoFormatter = ISO8601DateFormatter()
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         handleSharedContent()
@@ -54,10 +56,9 @@ class ShareViewController: UIViewController {
         var pending = defaults?.array(forKey: "pendingSharedNotes") as? [[String: String]] ?? []
         pending.append([
             "content": content,
-            "timestamp": ISO8601DateFormatter().string(from: Date())
+            "timestamp": Self.isoFormatter.string(from: Date())
         ])
         defaults?.set(pending, forKey: "pendingSharedNotes")
-        defaults?.synchronize()
     }
 
     private func complete() {
