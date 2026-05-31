@@ -5,11 +5,15 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
+    @Query(filter: #Predicate<Note> { $0.isTrashed == false }) private var notes: [Note]
     @State private var selectedNote: Note?
     @State private var showSettings: Bool = false
     @State private var titleGenerationState = TitleGenerationState()
     @State private var notesAI = SimpleTextNotesAI()
     @State private var syncMonitor = CloudKitSyncMonitor()
+
+    private static let appGroupID = "group.de.futural.simpletextnotes"
+    private static let isoFormatter = ISO8601DateFormatter()
 
     var body: some View {
         NavigationSplitView {
@@ -48,6 +52,10 @@ struct ContentView: View {
         .task {
             purgeOldTrashNotes()
             importPendingSharedNotes()
+            syncNotesList()
+        }
+        .onChange(of: notes) { _, _ in
+            syncNotesList()
         }
         #if canImport(UIKit)
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
@@ -76,15 +84,41 @@ struct ContentView: View {
     }
 
     private func importPendingSharedNotes() {
-        let defaults = UserDefaults(suiteName: "group.de.futural.simpletextnotes")
+        let defaults = UserDefaults(suiteName: Self.appGroupID)
         guard let pending = defaults?.array(forKey: "pendingSharedNotes") as? [[String: String]],
               !pending.isEmpty else { return }
         defaults?.removeObject(forKey: "pendingSharedNotes")
         for entry in pending {
             guard let content = entry["content"], !content.isEmpty else { continue }
-            let note = Note()
-            note.content = content
-            modelContext.insert(note)
+            let action = entry["action"] ?? "new"
+            if action == "append", let noteIdString = entry["noteId"], let uuid = UUID(uuidString: noteIdString) {
+                let descriptor = FetchDescriptor<Note>(
+                    predicate: #Predicate<Note> { $0.isTrashed == false }
+                )
+                if let allNotes = try? modelContext.fetch(descriptor),
+                   let note = allNotes.first(where: { $0.id == uuid }) {
+                    note.content = note.content.isEmpty ? content : note.content + "\n" + content
+                    note.updatedAt = Date()
+                } else {
+                    let note = Note()
+                    note.content = content
+                    modelContext.insert(note)
+                }
+            } else {
+                let note = Note()
+                note.content = content
+                modelContext.insert(note)
+            }
         }
+    }
+
+    private func syncNotesList() {
+        let defaults = UserDefaults(suiteName: Self.appGroupID)
+        let list: [[String: String]] = notes.map { note in
+            ["id": note.id.uuidString,
+             "title": note.title,
+             "updatedAt": Self.isoFormatter.string(from: note.updatedAt)]
+        }
+        defaults?.set(list, forKey: "notesList")
     }
 }
