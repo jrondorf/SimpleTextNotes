@@ -74,7 +74,7 @@ struct SharePickerView: View {
                                         Spacer()
                                         if selectedNoteId == note.id {
                                             Image(systemName: "checkmark")
-                                                .foregroundStyle(.accentColor)
+                                                .foregroundStyle(.tint)
                                         }
                                     }
                                 }
