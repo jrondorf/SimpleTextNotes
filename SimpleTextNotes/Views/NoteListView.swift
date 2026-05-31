@@ -128,10 +128,6 @@ struct NoteListView: View {
             }
 
             ToolbarItem(placement: .primaryAction) {
-                iCloudSyncIndicator
-            }
-
-            ToolbarItem(placement: .primaryAction) {
                 Menu {
                     Picker("sort_button", selection: $sortOptionRaw) {
                         Text("sort_updated_at").tag(NoteSortOption.updatedAt.rawValue)
@@ -142,6 +138,10 @@ struct NoteListView: View {
                     Label("sort_button", systemImage: "arrow.up.arrow.down")
                 }
                 .help("sort_button")
+            }
+
+            ToolbarItem(placement: .primaryAction) {
+                iCloudSyncIndicator
             }
 
             #if canImport(UIKit)
