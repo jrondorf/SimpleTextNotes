@@ -1,5 +1,8 @@
 import SwiftUI
 import SwiftData
+#if canImport(FoundationModels)
+import FoundationModels
+#endif
 
 // MARK: - ContentView
 
@@ -97,17 +100,19 @@ struct ContentView: View {
                 )
                 if let allNotes = try? modelContext.fetch(descriptor),
                    let note = allNotes.first(where: { $0.id == uuid }) {
-                    note.content = note.content.isEmpty ? content : note.content + "\n" + content
+                    note.content = note.content.isEmpty ? content : note.content + "\n\n" + content
                     note.updatedAt = Date()
                 } else {
                     let note = Note()
                     note.content = content
                     modelContext.insert(note)
+                    scheduleAutoTitle(for: note)
                 }
             } else {
                 let note = Note()
                 note.content = content
                 modelContext.insert(note)
+                scheduleAutoTitle(for: note)
             }
         }
     }
@@ -120,5 +125,47 @@ struct ContentView: View {
              "updatedAt": Self.isoFormatter.string(from: note.updatedAt)]
         }
         defaults?.set(list, forKey: "notesList")
+    }
+
+    // MARK: - AI Title Generation (Share Extension)
+
+    private static let maxTitleLength = 60
+    private static let maxContentLengthForTitleGeneration = 1000
+
+    private func scheduleAutoTitle(for note: Note) {
+        guard SimpleTextNotesAI.isAvailable else { return }
+        let noteID = note.id
+        let task = Task {
+            defer {
+                Task { @MainActor in titleGenerationState.markDone(noteID) }
+            }
+            await generateAutoTitle(for: note)
+        }
+        titleGenerationState.startTask(task, for: noteID, showIndicator: false)
+    }
+
+    @MainActor
+    private func generateAutoTitle(for note: Note) async {
+        let content = note.content.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard note.title.isEmpty, !content.isEmpty else { return }
+        guard SimpleTextNotesAI.isAvailable else { return }
+
+#if canImport(FoundationModels)
+        if #available(iOS 26.0, macOS 26.0, *) {
+            do {
+                let session = try notesAI.makeSession()
+                let truncated = String(content.prefix(Self.maxContentLengthForTitleGeneration))
+                let response = try await session.respond(
+                    to: "Generate a very short title (maximum \(Self.maxTitleLength) characters) for this note. Reply with only the title text, no quotes, no punctuation at the end, no explanation:\n\n\(truncated)"
+                )
+                let generated = response.content.trimmingCharacters(in: .whitespacesAndNewlines)
+                guard !generated.isEmpty, note.title.isEmpty, note.modelContext != nil else { return }
+                note.title = String(generated.prefix(Self.maxTitleLength))
+                note.updatedAt = Date()
+            } catch {
+                // Title generation failed silently; note keeps an empty title
+            }
+        }
+#endif
     }
 }
