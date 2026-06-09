@@ -21,8 +21,8 @@ struct LinkPreviewCard: UIViewRepresentable {
         context.coordinator.provider = provider
         provider.startFetchingMetadata(for: url) { metadata, _ in
             guard let metadata else { return }
-            DispatchQueue.main.async {
-                linkView.metadata = metadata
+            DispatchQueue.main.async { [weak linkView] in
+                linkView?.metadata = metadata
             }
         }
         return linkView
@@ -34,6 +34,7 @@ struct LinkPreviewCard: UIViewRepresentable {
 
     class Coordinator {
         var provider: LPMetadataProvider?
+        deinit { provider?.cancel() }
     }
 }
 
@@ -107,8 +108,7 @@ struct SharePickerView: View {
             } label: {
                 Text("Save")
                     .font(.headline)
-                    .foregroundStyle(Color(.label).opacity(1))
-                    .colorScheme(.light)
+                    .foregroundStyle(.black)
                     .padding(.horizontal, 16)
                     .padding(.vertical, 8)
                     .background(Color.accentColor)
@@ -330,7 +330,7 @@ class ShareViewController: UIViewController {
 
     private func saveNote(content: String, additionalText: String, action: ShareAction) {
         let trimmed = additionalText.trimmingCharacters(in: .whitespacesAndNewlines)
-        let combined = trimmed.isEmpty ? content : trimmed + "\n" + content
+        let combined = trimmed.isEmpty ? content : trimmed + "\n\n" + content
 
         let defaults = UserDefaults(suiteName: Self.appGroupID)
         var pending = defaults?.array(forKey: "pendingSharedNotes") as? [[String: String]] ?? []
