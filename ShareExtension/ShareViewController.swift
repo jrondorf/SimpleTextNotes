@@ -242,6 +242,11 @@ class ShareViewController: UIViewController {
     private static let isoFormatter = ISO8601DateFormatter()
     private static let appGroupID = "group.de.futural.simpletextnotes"
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .systemBackground
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         handleSharedContent()
@@ -297,24 +302,24 @@ class ShareViewController: UIViewController {
                 existingNotes: existingNotes,
                 onSave: { [weak self] action, additionalText in
                     self?.saveNote(content: content, additionalText: additionalText, action: action)
-                    self?.dismiss(animated: true) {
-                        self?.complete()
-                    }
+                    self?.complete()
                 },
                 onCancel: { [weak self] in
-                    self?.dismiss(animated: true) {
-                        self?.complete()
-                    }
+                    self?.complete()
                 }
             )
         )
 
-        if let sheet = hostingController.sheetPresentationController {
-            sheet.detents = [.medium(), .large()]
-            sheet.prefersGrabberVisible = true
-        }
-
-        present(hostingController, animated: true)
+        addChild(hostingController)
+        hostingController.view.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(hostingController.view)
+        NSLayoutConstraint.activate([
+            hostingController.view.topAnchor.constraint(equalTo: view.topAnchor),
+            hostingController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            hostingController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            hostingController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
+        hostingController.didMove(toParent: self)
     }
 
     private func loadNotesList() -> [(id: String, title: String)] {
