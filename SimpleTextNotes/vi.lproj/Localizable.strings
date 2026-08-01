@@ -1,0 +1,194 @@
+/* Fallback title for notes with no title */
+"untitled_note" = "Không có tiêu đề";
+
+/* Navigation title for the notes list */
+"notes_navigation_title" = "Ghi chú";
+
+/* Placeholder text for the search field */
+"search_notes_prompt" = "Tìm ghi chú";
+
+/* Label and help text for the new note button */
+"new_note_button" = "Ghi chú mới";
+
+/* Placeholder text for the note title field */
+"note_title_placeholder" = "Tiêu đề";
+
+/* Label and help text for the copy button */
+"copy_button" = "Sao chép";
+
+/* Label and help text for the paste button */
+"paste_button" = "Dán";
+
+/* Label and help text for the delete button */
+"delete_button" = "Xóa";
+
+/* Title of the paste-from-clipboard confirmation alert */
+"paste_from_clipboard_alert_title" = "Dán từ bảng tạm";
+
+/* Action button in the paste confirmation alert */
+"paste_alert_action" = "Dán";
+
+/* Cancel button */
+"cancel_button" = "Hủy";
+
+/* Body text of the paste confirmation alert */
+"paste_clipboard_message" = "Văn bản trong bảng tạm sẽ được thêm vào cuối ghi chú hiện tại.";
+
+/* Title shown when no note is selected */
+"no_note_selected_title" = "Chưa chọn ghi chú";
+
+/* Description shown when no note is selected */
+"no_note_selected_description" = "Chọn một ghi chú từ danh sách hoặc tạo ghi chú mới.";
+
+/* Label and help text for the settings button */
+"settings_button" = "Cài đặt";
+
+/* Done/dismiss button */
+"done_button" = "Xong";
+
+/* Label for the font style picker */
+"font_style_picker" = "Kiểu phông chữ";
+
+/* System font option */
+"system_font_option" = "Hệ thống";
+
+/* Monospaced font option */
+"monospaced_font_option" = "Đơn cách";
+
+/* Serif font option */
+"serif_font_option" = "Có chân";
+
+/* Label for the font size picker */
+"font_size_picker" = "Cỡ phông chữ";
+
+/* Small font size option */
+"font_size_small" = "Nhỏ (14)";
+
+/* Medium font size option */
+"font_size_medium" = "Vừa (16)";
+
+/* Large font size option */
+"font_size_large" = "Lớn (18)";
+
+/* Extra large font size option */
+"font_size_extra_large" = "Rất lớn (20)";
+
+/* Navigation title for the editor font settings screen */
+"editor_font_navigation_title" = "Phông chữ trình soạn thảo";
+
+/* OK button */
+"ok_button" = "OK";
+
+/* Label and help text for the AI button */
+"ai_button" = "AI";
+
+/* Title for the alert when AI is triggered with no note content */
+"ai_no_content_title" = "Không có nội dung";
+
+/* Message shown when AI is triggered with no note content */
+"ai_no_content_message" = "Vui lòng nhập văn bản vào ghi chú trước để sử dụng xử lý AI.";
+
+/* Title of the delete-note confirmation alert */
+"delete_note_alert_title" = "Xóa ghi chú";
+
+/* Message shown in the delete-note confirmation alert */
+"delete_note_alert_message" = "Ghi chú này sẽ được chuyển vào Thùng rác. Bạn có thể khôi phục trong vòng 30 ngày.";
+
+/* Action button to move a note to trash */
+"move_to_trash_button" = "Chuyển vào Thùng rác";
+
+/* Label and help text for the trash button */
+"trash_button" = "Thùng rác";
+
+/* Navigation title for the trash view */
+"trash_navigation_title" = "Thùng rác";
+
+/* Restore a note from trash */
+"restore_note_button" = "Khôi phục";
+
+/* Permanently delete a note */
+"delete_permanently_button" = "Xóa vĩnh viễn";
+
+/* Title shown when the trash is empty */
+"empty_trash_title" = "Thùng rác trống";
+
+/* Description shown when the trash is empty */
+"empty_trash_description" = "Các ghi chú đã xóa sẽ xuất hiện ở đây trong 30 ngày trước khi bị xóa vĩnh viễn.";
+
+/* Format string showing days remaining before permanent deletion (%d = number of days) */
+"days_until_deletion_format" = "Còn %d ngày trước khi xóa vĩnh viễn";
+
+/* Label for the share button */
+"share_button" = "Chia sẻ";
+
+/* Label for the sort menu button */
+"sort_button" = "Sắp xếp";
+
+/* Sort by last modified date */
+"sort_updated_at" = "Sửa đổi lần cuối";
+
+/* Sort by created date */
+"sort_created_at" = "Ngày tạo";
+
+/* Sort by title */
+"sort_title" = "Tiêu đề";
+
+/* Label for the pin button */
+"pin_note_button" = "Ghim";
+
+/* Label for the unpin button */
+"unpin_note_button" = "Bỏ ghim";
+
+/* Word and character count footer (%1$d = words, %2$d = characters) */
+"word_count_format" = "%d từ, %d ký tự";
+
+/* Label for the empty trash button */
+"empty_trash_button" = "Dọn Thùng rác";
+
+/* Title for the empty trash confirmation dialog */
+"empty_trash_confirm_title" = "Dọn Thùng rác";
+
+/* Message shown in the empty trash confirmation dialog */
+"empty_trash_confirm_message" = "Tất cả ghi chú trong Thùng rác sẽ bị xóa vĩnh viễn. Không thể hoàn tác thao tác này.";
+
+/* Action button in the empty trash confirmation dialog */
+"empty_trash_confirm_action" = "Dọn Thùng rác";
+
+/* Title for the permanent delete confirmation alert */
+"delete_permanently_confirm_title" = "Xóa vĩnh viễn";
+
+/* Message shown when confirming permanent deletion */
+"delete_permanently_confirm_message" = "Ghi chú này sẽ bị xóa vĩnh viễn và không thể khôi phục.";
+
+/* Action button to permanently delete a note */
+"delete_permanently_confirm_action" = "Xóa vĩnh viễn";
+
+/* Label shown for notes that are overdue for deletion from trash */
+"overdue_deletion_label" = "Đang chờ xóa";
+
+/* Help text for the iCloud syncing indicator */
+"icloud_syncing_label" = "Đang đồng bộ với iCloud…";
+
+/* Help text for the iCloud synced indicator */
+"icloud_synced_label" = "Đã đồng bộ với iCloud";
+
+/* Help text for the iCloud sync error indicator */
+"icloud_error_label" = "Lỗi đồng bộ iCloud";
+
+/* Help text for the iCloud indicator when idle */
+"icloud_label" = "Đồng bộ iCloud";
+
+/* Help text shown for the AI improve button */
+"ai_improve_help" = "Cải thiện nội dung ghi chú bằng Apple Intelligence";
+
+/* Title for the AI generation failure alert */
+"ai_generation_failed_title" = "Tạo bằng AI thất bại";
+
+/* Message shown when AI generation fails */
+"ai_generation_failed_message" = "AI không thể xử lý yêu cầu của bạn. Vui lòng thử lại.";
+
+/* Title for the database error view */
+"database_error_title" = "Không thể mở ghi chú";
+
+/* Description for the database error view */
+"database_error_description" = "Không thể mở cơ sở dữ liệu ghi chú. Vui lòng khởi động lại ứng dụng.";

@@ -1,0 +1,194 @@
+/* Fallback title for notes with no title */
+"untitled_note" = "Sem título";
+
+/* Navigation title for the notes list */
+"notes_navigation_title" = "Notas";
+
+/* Placeholder text for the search field */
+"search_notes_prompt" = "Pesquisar notas";
+
+/* Label and help text for the new note button */
+"new_note_button" = "Nova nota";
+
+/* Placeholder text for the note title field */
+"note_title_placeholder" = "Título";
+
+/* Label and help text for the copy button */
+"copy_button" = "Copiar";
+
+/* Label and help text for the paste button */
+"paste_button" = "Colar";
+
+/* Label and help text for the delete button */
+"delete_button" = "Apagar";
+
+/* Title of the paste-from-clipboard confirmation alert */
+"paste_from_clipboard_alert_title" = "Colar da área de transferência";
+
+/* Action button in the paste confirmation alert */
+"paste_alert_action" = "Colar";
+
+/* Cancel button */
+"cancel_button" = "Cancelar";
+
+/* Body text of the paste confirmation alert */
+"paste_clipboard_message" = "O texto da área de transferência será adicionado ao fim da nota atual.";
+
+/* Title shown when no note is selected */
+"no_note_selected_title" = "Nenhuma nota selecionada";
+
+/* Description shown when no note is selected */
+"no_note_selected_description" = "Selecione uma nota da lista ou crie uma nova.";
+
+/* Label and help text for the settings button */
+"settings_button" = "Definições";
+
+/* Done/dismiss button */
+"done_button" = "Concluído";
+
+/* Label for the font style picker */
+"font_style_picker" = "Estilo do tipo de letra";
+
+/* System font option */
+"system_font_option" = "Sistema";
+
+/* Monospaced font option */
+"monospaced_font_option" = "Monoespaçado";
+
+/* Serif font option */
+"serif_font_option" = "Serifa";
+
+/* Label for the font size picker */
+"font_size_picker" = "Tamanho do tipo de letra";
+
+/* Small font size option */
+"font_size_small" = "Pequeno (14)";
+
+/* Medium font size option */
+"font_size_medium" = "Médio (16)";
+
+/* Large font size option */
+"font_size_large" = "Grande (18)";
+
+/* Extra large font size option */
+"font_size_extra_large" = "Muito grande (20)";
+
+/* Navigation title for the editor font settings screen */
+"editor_font_navigation_title" = "Tipo de letra do editor";
+
+/* OK button */
+"ok_button" = "OK";
+
+/* Label and help text for the AI button */
+"ai_button" = "AI";
+
+/* Title for the alert when AI is triggered with no note content */
+"ai_no_content_title" = "Sem conteúdo";
+
+/* Message shown when AI is triggered with no note content */
+"ai_no_content_message" = "Introduza algum texto na nota primeiro para utilizar o processamento de IA.";
+
+/* Title of the delete-note confirmation alert */
+"delete_note_alert_title" = "Apagar nota";
+
+/* Message shown in the delete-note confirmation alert */
+"delete_note_alert_message" = "Esta nota será movida para o Lixo. Pode restaurá-la no prazo de 30 dias.";
+
+/* Action button to move a note to trash */
+"move_to_trash_button" = "Mover para o Lixo";
+
+/* Label and help text for the trash button */
+"trash_button" = "Lixo";
+
+/* Navigation title for the trash view */
+"trash_navigation_title" = "Lixo";
+
+/* Restore a note from trash */
+"restore_note_button" = "Restaurar";
+
+/* Permanently delete a note */
+"delete_permanently_button" = "Apagar definitivamente";
+
+/* Title shown when the trash is empty */
+"empty_trash_title" = "O Lixo está vazio";
+
+/* Description shown when the trash is empty */
+"empty_trash_description" = "As notas apagadas aparecem aqui durante 30 dias antes de serem removidas definitivamente.";
+
+/* Format string showing days remaining before permanent deletion (%d = number of days) */
+"days_until_deletion_format" = "%d dia(s) até à eliminação definitiva";
+
+/* Label for the share button */
+"share_button" = "Partilhar";
+
+/* Label for the sort menu button */
+"sort_button" = "Ordenar";
+
+/* Sort by last modified date */
+"sort_updated_at" = "Última modificação";
+
+/* Sort by created date */
+"sort_created_at" = "Data de criação";
+
+/* Sort by title */
+"sort_title" = "Título";
+
+/* Label for the pin button */
+"pin_note_button" = "Fixar";
+
+/* Label for the unpin button */
+"unpin_note_button" = "Desafixar";
+
+/* Word and character count footer (%1$d = words, %2$d = characters) */
+"word_count_format" = "%d palavras, %d caracteres";
+
+/* Label for the empty trash button */
+"empty_trash_button" = "Esvaziar Lixo";
+
+/* Title for the empty trash confirmation dialog */
+"empty_trash_confirm_title" = "Esvaziar Lixo";
+
+/* Message shown in the empty trash confirmation dialog */
+"empty_trash_confirm_message" = "Todas as notas no Lixo serão apagadas definitivamente. Esta ação não pode ser anulada.";
+
+/* Action button in the empty trash confirmation dialog */
+"empty_trash_confirm_action" = "Esvaziar Lixo";
+
+/* Title for the permanent delete confirmation alert */
+"delete_permanently_confirm_title" = "Apagar definitivamente";
+
+/* Message shown when confirming permanent deletion */
+"delete_permanently_confirm_message" = "Esta nota será apagada definitivamente e não poderá ser recuperada.";
+
+/* Action button to permanently delete a note */
+"delete_permanently_confirm_action" = "Apagar definitivamente";
+
+/* Label shown for notes that are overdue for deletion from trash */
+"overdue_deletion_label" = "Eliminação pendente";
+
+/* Help text for the iCloud syncing indicator */
+"icloud_syncing_label" = "A sincronizar com o iCloud…";
+
+/* Help text for the iCloud synced indicator */
+"icloud_synced_label" = "Sincronizado com o iCloud";
+
+/* Help text for the iCloud sync error indicator */
+"icloud_error_label" = "Erro de sincronização com o iCloud";
+
+/* Help text for the iCloud indicator when idle */
+"icloud_label" = "Sincronização com o iCloud";
+
+/* Help text shown for the AI improve button */
+"ai_improve_help" = "Melhorar o conteúdo da nota com o Apple Intelligence";
+
+/* Title for the AI generation failure alert */
+"ai_generation_failed_title" = "Falha na geração de IA";
+
+/* Message shown when AI generation fails */
+"ai_generation_failed_message" = "A IA não conseguiu processar o seu pedido. Tente novamente.";
+
+/* Title for the database error view */
+"database_error_title" = "Não é possível abrir as notas";
+
+/* Description for the database error view */
+"database_error_description" = "Não foi possível abrir a base de dados de notas. Reinicie a aplicação.";

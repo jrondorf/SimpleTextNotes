@@ -1,0 +1,194 @@
+/* Fallback title for notes with no title */
+"untitled_note" = "बिना शीर्षक";
+
+/* Navigation title for the notes list */
+"notes_navigation_title" = "नोट्स";
+
+/* Placeholder text for the search field */
+"search_notes_prompt" = "नोट्स खोजें";
+
+/* Label and help text for the new note button */
+"new_note_button" = "नया नोट";
+
+/* Placeholder text for the note title field */
+"note_title_placeholder" = "शीर्षक";
+
+/* Label and help text for the copy button */
+"copy_button" = "कॉपी करें";
+
+/* Label and help text for the paste button */
+"paste_button" = "पेस्ट करें";
+
+/* Label and help text for the delete button */
+"delete_button" = "हटाएं";
+
+/* Title of the paste-from-clipboard confirmation alert */
+"paste_from_clipboard_alert_title" = "क्लिपबोर्ड से पेस्ट करें";
+
+/* Action button in the paste confirmation alert */
+"paste_alert_action" = "पेस्ट करें";
+
+/* Cancel button */
+"cancel_button" = "रद्द करें";
+
+/* Body text of the paste confirmation alert */
+"paste_clipboard_message" = "क्लिपबोर्ड का टेक्स्ट मौजूदा नोट के अंत में जोड़ा जाएगा।";
+
+/* Title shown when no note is selected */
+"no_note_selected_title" = "कोई नोट चयनित नहीं";
+
+/* Description shown when no note is selected */
+"no_note_selected_description" = "सूची से कोई नोट चुनें या नया नोट बनाएं।";
+
+/* Label and help text for the settings button */
+"settings_button" = "सेटिंग्स";
+
+/* Done/dismiss button */
+"done_button" = "पूर्ण";
+
+/* Label for the font style picker */
+"font_style_picker" = "फ़ॉन्ट शैली";
+
+/* System font option */
+"system_font_option" = "सिस्टम";
+
+/* Monospaced font option */
+"monospaced_font_option" = "मोनोस्पेस्ड";
+
+/* Serif font option */
+"serif_font_option" = "सेरिफ़";
+
+/* Label for the font size picker */
+"font_size_picker" = "फ़ॉन्ट आकार";
+
+/* Small font size option */
+"font_size_small" = "छोटा (14)";
+
+/* Medium font size option */
+"font_size_medium" = "मध्यम (16)";
+
+/* Large font size option */
+"font_size_large" = "बड़ा (18)";
+
+/* Extra large font size option */
+"font_size_extra_large" = "अतिरिक्त बड़ा (20)";
+
+/* Navigation title for the editor font settings screen */
+"editor_font_navigation_title" = "एडिटर फ़ॉन्ट";
+
+/* OK button */
+"ok_button" = "ठीक है";
+
+/* Label and help text for the AI button */
+"ai_button" = "AI";
+
+/* Title for the alert when AI is triggered with no note content */
+"ai_no_content_title" = "कोई सामग्री नहीं";
+
+/* Message shown when AI is triggered with no note content */
+"ai_no_content_message" = "AI प्रोसेसिंग का उपयोग करने के लिए पहले नोट में कुछ टेक्स्ट दर्ज करें।";
+
+/* Title of the delete-note confirmation alert */
+"delete_note_alert_title" = "नोट हटाएं";
+
+/* Message shown in the delete-note confirmation alert */
+"delete_note_alert_message" = "यह नोट ट्रैश में ले जाया जाएगा। आप इसे 30 दिनों के भीतर पुनर्स्थापित कर सकते हैं।";
+
+/* Action button to move a note to trash */
+"move_to_trash_button" = "ट्रैश में ले जाएं";
+
+/* Label and help text for the trash button */
+"trash_button" = "ट्रैश";
+
+/* Navigation title for the trash view */
+"trash_navigation_title" = "ट्रैश";
+
+/* Restore a note from trash */
+"restore_note_button" = "पुनर्स्थापित करें";
+
+/* Permanently delete a note */
+"delete_permanently_button" = "स्थायी रूप से हटाएं";
+
+/* Title shown when the trash is empty */
+"empty_trash_title" = "ट्रैश खाली है";
+
+/* Description shown when the trash is empty */
+"empty_trash_description" = "हटाए गए नोट्स स्थायी रूप से हटाए जाने से पहले 30 दिनों तक यहां दिखाई देंगे।";
+
+/* Format string showing days remaining before permanent deletion (%d = number of days) */
+"days_until_deletion_format" = "स्थायी विलोपन में %d दिन शेष";
+
+/* Label for the share button */
+"share_button" = "साझा करें";
+
+/* Label for the sort menu button */
+"sort_button" = "क्रमबद्ध करें";
+
+/* Sort by last modified date */
+"sort_updated_at" = "अंतिम संशोधित";
+
+/* Sort by created date */
+"sort_created_at" = "निर्माण तिथि";
+
+/* Sort by title */
+"sort_title" = "शीर्षक";
+
+/* Label for the pin button */
+"pin_note_button" = "पिन करें";
+
+/* Label for the unpin button */
+"unpin_note_button" = "अनपिन करें";
+
+/* Word and character count footer (%1$d = words, %2$d = characters) */
+"word_count_format" = "%d शब्द, %d वर्ण";
+
+/* Label for the empty trash button */
+"empty_trash_button" = "ट्रैश खाली करें";
+
+/* Title for the empty trash confirmation dialog */
+"empty_trash_confirm_title" = "ट्रैश खाली करें";
+
+/* Message shown in the empty trash confirmation dialog */
+"empty_trash_confirm_message" = "ट्रैश के सभी नोट्स स्थायी रूप से हटा दिए जाएंगे। इसे पूर्ववत नहीं किया जा सकता।";
+
+/* Action button in the empty trash confirmation dialog */
+"empty_trash_confirm_action" = "ट्रैश खाली करें";
+
+/* Title for the permanent delete confirmation alert */
+"delete_permanently_confirm_title" = "स्थायी रूप से हटाएं";
+
+/* Message shown when confirming permanent deletion */
+"delete_permanently_confirm_message" = "यह नोट स्थायी रूप से हटा दिया जाएगा और इसे पुनर्प्राप्त नहीं किया जा सकता।";
+
+/* Action button to permanently delete a note */
+"delete_permanently_confirm_action" = "स्थायी रूप से हटाएं";
+
+/* Label shown for notes that are overdue for deletion from trash */
+"overdue_deletion_label" = "विलोपन लंबित";
+
+/* Help text for the iCloud syncing indicator */
+"icloud_syncing_label" = "iCloud के साथ सिंक हो रहा है…";
+
+/* Help text for the iCloud synced indicator */
+"icloud_synced_label" = "iCloud के साथ सिंक किया गया";
+
+/* Help text for the iCloud sync error indicator */
+"icloud_error_label" = "iCloud सिंक त्रुटि";
+
+/* Help text for the iCloud indicator when idle */
+"icloud_label" = "iCloud सिंक";
+
+/* Help text shown for the AI improve button */
+"ai_improve_help" = "Apple Intelligence का उपयोग करके नोट की सामग्री सुधारें";
+
+/* Title for the AI generation failure alert */
+"ai_generation_failed_title" = "AI जनरेशन विफल";
+
+/* Message shown when AI generation fails */
+"ai_generation_failed_message" = "AI आपके अनुरोध को संसाधित नहीं कर सका। कृपया पुनः प्रयास करें।";
+
+/* Title for the database error view */
+"database_error_title" = "नोट्स नहीं खोल सकते";
+
+/* Description for the database error view */
+"database_error_description" = "नोट्स डेटाबेस नहीं खोला जा सका। कृपया ऐप को पुनः आरंभ करें।";

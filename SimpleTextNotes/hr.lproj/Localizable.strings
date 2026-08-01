@@ -1,0 +1,194 @@
+/* Fallback title for notes with no title */
+"untitled_note" = "Bez naslova";
+
+/* Navigation title for the notes list */
+"notes_navigation_title" = "Bilješke";
+
+/* Placeholder text for the search field */
+"search_notes_prompt" = "Pretraži bilješke";
+
+/* Label and help text for the new note button */
+"new_note_button" = "Nova bilješka";
+
+/* Placeholder text for the note title field */
+"note_title_placeholder" = "Naslov";
+
+/* Label and help text for the copy button */
+"copy_button" = "Kopiraj";
+
+/* Label and help text for the paste button */
+"paste_button" = "Zalijepi";
+
+/* Label and help text for the delete button */
+"delete_button" = "Izbriši";
+
+/* Title of the paste-from-clipboard confirmation alert */
+"paste_from_clipboard_alert_title" = "Zalijepi iz međuspremnika";
+
+/* Action button in the paste confirmation alert */
+"paste_alert_action" = "Zalijepi";
+
+/* Cancel button */
+"cancel_button" = "Odustani";
+
+/* Body text of the paste confirmation alert */
+"paste_clipboard_message" = "Tekst iz međuspremnika bit će dodan na kraj trenutne bilješke.";
+
+/* Title shown when no note is selected */
+"no_note_selected_title" = "Nije odabrana nijedna bilješka";
+
+/* Description shown when no note is selected */
+"no_note_selected_description" = "Odaberite bilješku s popisa ili izradite novu.";
+
+/* Label and help text for the settings button */
+"settings_button" = "Postavke";
+
+/* Done/dismiss button */
+"done_button" = "Gotovo";
+
+/* Label for the font style picker */
+"font_style_picker" = "Stil fonta";
+
+/* System font option */
+"system_font_option" = "Sustav";
+
+/* Monospaced font option */
+"monospaced_font_option" = "Jednakoširoki";
+
+/* Serif font option */
+"serif_font_option" = "Serifni";
+
+/* Label for the font size picker */
+"font_size_picker" = "Veličina fonta";
+
+/* Small font size option */
+"font_size_small" = "Mala (14)";
+
+/* Medium font size option */
+"font_size_medium" = "Srednja (16)";
+
+/* Large font size option */
+"font_size_large" = "Velika (18)";
+
+/* Extra large font size option */
+"font_size_extra_large" = "Vrlo velika (20)";
+
+/* Navigation title for the editor font settings screen */
+"editor_font_navigation_title" = "Font uređivača";
+
+/* OK button */
+"ok_button" = "U redu";
+
+/* Label and help text for the AI button */
+"ai_button" = "AI";
+
+/* Title for the alert when AI is triggered with no note content */
+"ai_no_content_title" = "Nema sadržaja";
+
+/* Message shown when AI is triggered with no note content */
+"ai_no_content_message" = "Za korištenje AI obrade najprije unesite tekst u bilješku.";
+
+/* Title of the delete-note confirmation alert */
+"delete_note_alert_title" = "Izbriši bilješku";
+
+/* Message shown in the delete-note confirmation alert */
+"delete_note_alert_message" = "Ova bilješka bit će premještena u Smeće. Možete je vratiti unutar 30 dana.";
+
+/* Action button to move a note to trash */
+"move_to_trash_button" = "Premjesti u Smeće";
+
+/* Label and help text for the trash button */
+"trash_button" = "Smeće";
+
+/* Navigation title for the trash view */
+"trash_navigation_title" = "Smeće";
+
+/* Restore a note from trash */
+"restore_note_button" = "Vrati";
+
+/* Permanently delete a note */
+"delete_permanently_button" = "Izbriši trajno";
+
+/* Title shown when the trash is empty */
+"empty_trash_title" = "Smeće je prazno";
+
+/* Description shown when the trash is empty */
+"empty_trash_description" = "Izbrisane bilješke prikazivat će se ovdje 30 dana prije trajnog uklanjanja.";
+
+/* Format string showing days remaining before permanent deletion (%d = number of days) */
+"days_until_deletion_format" = "%d dan/dana do trajnog brisanja";
+
+/* Label for the share button */
+"share_button" = "Podijeli";
+
+/* Label for the sort menu button */
+"sort_button" = "Razvrstaj";
+
+/* Sort by last modified date */
+"sort_updated_at" = "Zadnja izmjena";
+
+/* Sort by created date */
+"sort_created_at" = "Datum izrade";
+
+/* Sort by title */
+"sort_title" = "Naslov";
+
+/* Label for the pin button */
+"pin_note_button" = "Prikvači";
+
+/* Label for the unpin button */
+"unpin_note_button" = "Otkvači";
+
+/* Word and character count footer (%1$d = words, %2$d = characters) */
+"word_count_format" = "%d riječi, %d znakova";
+
+/* Label for the empty trash button */
+"empty_trash_button" = "Isprazni Smeće";
+
+/* Title for the empty trash confirmation dialog */
+"empty_trash_confirm_title" = "Isprazni Smeće";
+
+/* Message shown in the empty trash confirmation dialog */
+"empty_trash_confirm_message" = "Sve bilješke u Smeću bit će trajno izbrisane. Ova se radnja ne može poništiti.";
+
+/* Action button in the empty trash confirmation dialog */
+"empty_trash_confirm_action" = "Isprazni Smeće";
+
+/* Title for the permanent delete confirmation alert */
+"delete_permanently_confirm_title" = "Izbriši trajno";
+
+/* Message shown when confirming permanent deletion */
+"delete_permanently_confirm_message" = "Ova bilješka bit će trajno izbrisana i neće se moći vratiti.";
+
+/* Action button to permanently delete a note */
+"delete_permanently_confirm_action" = "Izbriši trajno";
+
+/* Label shown for notes that are overdue for deletion from trash */
+"overdue_deletion_label" = "Čeka brisanje";
+
+/* Help text for the iCloud syncing indicator */
+"icloud_syncing_label" = "Sinkronizacija s iCloudom…";
+
+/* Help text for the iCloud synced indicator */
+"icloud_synced_label" = "Sinkronizirano s iCloudom";
+
+/* Help text for the iCloud sync error indicator */
+"icloud_error_label" = "Pogreška sinkronizacije s iCloudom";
+
+/* Help text for the iCloud indicator when idle */
+"icloud_label" = "Sinkronizacija s iCloudom";
+
+/* Help text shown for the AI improve button */
+"ai_improve_help" = "Poboljšaj sadržaj bilješke pomoću Apple Intelligencea";
+
+/* Title for the AI generation failure alert */
+"ai_generation_failed_title" = "Generiranje pomoću AI-ja nije uspjelo";
+
+/* Message shown when AI generation fails */
+"ai_generation_failed_message" = "AI nije mogao obraditi vaš zahtjev. Pokušajte ponovno.";
+
+/* Title for the database error view */
+"database_error_title" = "Nije moguće otvoriti bilješke";
+
+/* Description for the database error view */
+"database_error_description" = "Bazu podataka bilješki nije bilo moguće otvoriti. Ponovno pokrenite aplikaciju.";

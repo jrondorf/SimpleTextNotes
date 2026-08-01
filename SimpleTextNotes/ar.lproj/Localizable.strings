@@ -1,0 +1,194 @@
+/* Fallback title for notes with no title */
+"untitled_note" = "بدون عنوان";
+
+/* Navigation title for the notes list */
+"notes_navigation_title" = "الملاحظات";
+
+/* Placeholder text for the search field */
+"search_notes_prompt" = "البحث في الملاحظات";
+
+/* Label and help text for the new note button */
+"new_note_button" = "ملاحظة جديدة";
+
+/* Placeholder text for the note title field */
+"note_title_placeholder" = "العنوان";
+
+/* Label and help text for the copy button */
+"copy_button" = "نسخ";
+
+/* Label and help text for the paste button */
+"paste_button" = "لصق";
+
+/* Label and help text for the delete button */
+"delete_button" = "حذف";
+
+/* Title of the paste-from-clipboard confirmation alert */
+"paste_from_clipboard_alert_title" = "اللصق من الحافظة";
+
+/* Action button in the paste confirmation alert */
+"paste_alert_action" = "لصق";
+
+/* Cancel button */
+"cancel_button" = "إلغاء";
+
+/* Body text of the paste confirmation alert */
+"paste_clipboard_message" = "ستتم إضافة نص الحافظة إلى نهاية الملاحظة الحالية.";
+
+/* Title shown when no note is selected */
+"no_note_selected_title" = "لم يتم تحديد ملاحظة";
+
+/* Description shown when no note is selected */
+"no_note_selected_description" = "اختر ملاحظة من القائمة أو أنشئ ملاحظة جديدة.";
+
+/* Label and help text for the settings button */
+"settings_button" = "الإعدادات";
+
+/* Done/dismiss button */
+"done_button" = "تم";
+
+/* Label for the font style picker */
+"font_style_picker" = "نمط الخط";
+
+/* System font option */
+"system_font_option" = "النظام";
+
+/* Monospaced font option */
+"monospaced_font_option" = "ثابت العرض";
+
+/* Serif font option */
+"serif_font_option" = "مذيّل";
+
+/* Label for the font size picker */
+"font_size_picker" = "حجم الخط";
+
+/* Small font size option */
+"font_size_small" = "صغير (14)";
+
+/* Medium font size option */
+"font_size_medium" = "متوسط (16)";
+
+/* Large font size option */
+"font_size_large" = "كبير (18)";
+
+/* Extra large font size option */
+"font_size_extra_large" = "كبير جدًا (20)";
+
+/* Navigation title for the editor font settings screen */
+"editor_font_navigation_title" = "خط المحرر";
+
+/* OK button */
+"ok_button" = "موافق";
+
+/* Label and help text for the AI button */
+"ai_button" = "AI";
+
+/* Title for the alert when AI is triggered with no note content */
+"ai_no_content_title" = "لا يوجد محتوى";
+
+/* Message shown when AI is triggered with no note content */
+"ai_no_content_message" = "يُرجى إدخال نص في الملاحظة أولاً لاستخدام معالجة الذكاء الاصطناعي.";
+
+/* Title of the delete-note confirmation alert */
+"delete_note_alert_title" = "حذف الملاحظة";
+
+/* Message shown in the delete-note confirmation alert */
+"delete_note_alert_message" = "سيتم نقل هذه الملاحظة إلى المهملات. يمكنك استعادتها خلال 30 يومًا.";
+
+/* Action button to move a note to trash */
+"move_to_trash_button" = "النقل إلى المهملات";
+
+/* Label and help text for the trash button */
+"trash_button" = "المهملات";
+
+/* Navigation title for the trash view */
+"trash_navigation_title" = "المهملات";
+
+/* Restore a note from trash */
+"restore_note_button" = "استعادة";
+
+/* Permanently delete a note */
+"delete_permanently_button" = "حذف نهائي";
+
+/* Title shown when the trash is empty */
+"empty_trash_title" = "المهملات فارغة";
+
+/* Description shown when the trash is empty */
+"empty_trash_description" = "تظهر الملاحظات المحذوفة هنا لمدة 30 يومًا قبل إزالتها نهائيًا.";
+
+/* Format string showing days remaining before permanent deletion (%d = number of days) */
+"days_until_deletion_format" = "%d يوم حتى الحذف النهائي";
+
+/* Label for the share button */
+"share_button" = "مشاركة";
+
+/* Label for the sort menu button */
+"sort_button" = "الفرز";
+
+/* Sort by last modified date */
+"sort_updated_at" = "آخر تعديل";
+
+/* Sort by created date */
+"sort_created_at" = "تاريخ الإنشاء";
+
+/* Sort by title */
+"sort_title" = "العنوان";
+
+/* Label for the pin button */
+"pin_note_button" = "تثبيت";
+
+/* Label for the unpin button */
+"unpin_note_button" = "إلغاء التثبيت";
+
+/* Word and character count footer (%1$d = words, %2$d = characters) */
+"word_count_format" = "%d كلمة، %d حرف";
+
+/* Label for the empty trash button */
+"empty_trash_button" = "إفراغ المهملات";
+
+/* Title for the empty trash confirmation dialog */
+"empty_trash_confirm_title" = "إفراغ المهملات";
+
+/* Message shown in the empty trash confirmation dialog */
+"empty_trash_confirm_message" = "سيتم حذف جميع الملاحظات في المهملات نهائيًا. لا يمكن التراجع عن هذا الإجراء.";
+
+/* Action button in the empty trash confirmation dialog */
+"empty_trash_confirm_action" = "إفراغ المهملات";
+
+/* Title for the permanent delete confirmation alert */
+"delete_permanently_confirm_title" = "حذف نهائي";
+
+/* Message shown when confirming permanent deletion */
+"delete_permanently_confirm_message" = "سيتم حذف هذه الملاحظة نهائيًا ولا يمكن استردادها.";
+
+/* Action button to permanently delete a note */
+"delete_permanently_confirm_action" = "حذف نهائي";
+
+/* Label shown for notes that are overdue for deletion from trash */
+"overdue_deletion_label" = "في انتظار الحذف";
+
+/* Help text for the iCloud syncing indicator */
+"icloud_syncing_label" = "المزامنة مع iCloud…";
+
+/* Help text for the iCloud synced indicator */
+"icloud_synced_label" = "تمت المزامنة مع iCloud";
+
+/* Help text for the iCloud sync error indicator */
+"icloud_error_label" = "خطأ في المزامنة مع iCloud";
+
+/* Help text for the iCloud indicator when idle */
+"icloud_label" = "مزامنة iCloud";
+
+/* Help text shown for the AI improve button */
+"ai_improve_help" = "تحسين محتوى الملاحظة باستخدام Apple Intelligence";
+
+/* Title for the AI generation failure alert */
+"ai_generation_failed_title" = "فشل التوليد بالذكاء الاصطناعي";
+
+/* Message shown when AI generation fails */
+"ai_generation_failed_message" = "تعذّر على الذكاء الاصطناعي معالجة طلبك. يُرجى المحاولة مرة أخرى.";
+
+/* Title for the database error view */
+"database_error_title" = "تعذّر فتح الملاحظات";
+
+/* Description for the database error view */
+"database_error_description" = "تعذّر فتح قاعدة بيانات الملاحظات. يُرجى إعادة تشغيل التطبيق.";

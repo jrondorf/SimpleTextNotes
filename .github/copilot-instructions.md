@@ -240,6 +240,21 @@ Tests live in `SimpleTextNotesTests/SimpleTextNotesTests.swift` and use XCTest w
 | `ShareLink` for sharing | Native system share sheet; no custom code needed |
 | Client-side sort + filter | Simple and flexible; avoids needing multiple `@Query` instances for each sort direction |
 
+## Localization
+
+- 34 languages live in `SimpleTextNotes/*.lproj/Localizable.strings`, 65 keys each. `en` is the
+  development language and the source of truth; every other file must carry the identical key set.
+- Views pass the **key** straight to SwiftUI (`Text("untitled_note")`,
+  `Label("copy_button", systemImage:)`), use `String(localized:)` when a `String` is needed
+  imperatively, and `String(format: String(localized: "word_count_format"), …)` for formatted ones.
+- Keys are `snake_case`, suffixed by role (`_button`, `_title`, `_message`, `_label`, `_prompt`,
+  `_placeholder`, `_format`, `_navigation_title`).
+- The 33 translation files share a key **order** that differs from `en` — follow the translations.
+- Portuguese ships as `pt` (Brazilian wording, which Apple resolves a bare `pt` to) with
+  `pt-PT` overriding it for European Portuguese. There is no `pt-BR` directory.
+- `ar` and `he` are right-to-left. Shipping those `.lproj` directories is what makes iOS mirror
+  the UI; the layout already mirrors cleanly because no view hardcodes a side.
+
 ## What to Avoid
 
 - Do not use `CoreData` — the project uses SwiftData
@@ -253,3 +268,5 @@ Tests live in `SimpleTextNotesTests/SimpleTextNotesTests.swift` and use XCTest w
 - Do not use `FetchDescriptor(filter:)` — SwiftData uses `FetchDescriptor(predicate:)`
 - Do not store `Task` references for title generation in `@State` inside `NoteDetailView` — use `TitleGenerationState.startTask(_:for:showIndicator:)` so tasks survive the view lifecycle
 - Do not use fixed numeric font sizes in the editor — use `effectiveFontSize` (derived from `@ScaledMetric` properties) so they scale with Dynamic Type
+- Do not hardcode a user-facing English string in the main app — add a localized key to all 34 `.strings` files
+- Do not use `.left` / `.right`, `.offset(x:)`, or `semanticContentAttribute` in layout — they break RTL mirroring for `ar` and `he`; use `.leading` / `.trailing` and `.padding(.horizontal:)`
