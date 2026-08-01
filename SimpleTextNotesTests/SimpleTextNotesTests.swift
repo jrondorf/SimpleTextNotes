@@ -84,13 +84,13 @@ final class NoteTests: XCTestCase {
         note.isTrashed = true
         try context.save()
 
-        let trashedDescriptor = FetchDescriptor<Note>(filter: #Predicate<Note> { $0.isTrashed == true })
+        let trashedDescriptor = FetchDescriptor<Note>(predicate: #Predicate<Note> { $0.isTrashed == true })
         let trashedNotes = try context.fetch(trashedDescriptor)
         XCTAssertEqual(trashedNotes.count, 1)
         XCTAssertNotNil(trashedNotes.first?.deletedAt)
         XCTAssertTrue(trashedNotes.first?.isTrashed ?? false)
 
-        let activeDescriptor = FetchDescriptor<Note>(filter: #Predicate<Note> { $0.isTrashed == false })
+        let activeDescriptor = FetchDescriptor<Note>(predicate: #Predicate<Note> { $0.isTrashed == false })
         let activeNotes = try context.fetch(activeDescriptor)
         XCTAssertEqual(activeNotes.count, 0)
     }
@@ -111,7 +111,7 @@ final class NoteTests: XCTestCase {
         note.isTrashed = false
         try context.save()
 
-        let activeDescriptor = FetchDescriptor<Note>(filter: #Predicate<Note> { $0.isTrashed == false })
+        let activeDescriptor = FetchDescriptor<Note>(predicate: #Predicate<Note> { $0.isTrashed == false })
         let activeNotes = try context.fetch(activeDescriptor)
         XCTAssertEqual(activeNotes.count, 1)
         XCTAssertNil(activeNotes.first?.deletedAt)
