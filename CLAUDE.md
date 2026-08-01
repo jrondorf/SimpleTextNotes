@@ -27,7 +27,7 @@ SimpleTextNotes/                 # Main app target
   Views/NoteDetailView.swift     # Title + TextEditor, toolbar actions, word count, AI actions
   Views/TrashView.swift          # Trash sheet + read-only TrashedNoteDetailView
   Views/SettingsView.swift       # Editor font style/size
-  *.lproj/Localizable.strings    # 23 languages, 62 keys each (en is the source language)
+  *.lproj/Localizable.strings    # 23 languages, 65 keys each (en is the source language)
   Settings.bundle/Root.plist     # iOS Settings-app mirror of the font preferences
   Assets.xcassets/               # AppIcon (iOS + mac sizes), AccentColor
   Info.plist                     # UIBackgroundModes: remote-notification
@@ -233,10 +233,10 @@ Catalyst; see commit `d2e2e92`). Its UI strings are hardcoded English and are *n
 
 ## Localization
 
-- 23 languages under `SimpleTextNotes/*.lproj/Localizable.strings`, 62 keys each; `en` is the
+- 23 languages under `SimpleTextNotes/*.lproj/Localizable.strings`, 65 keys each; `en` is the
   development language and the source of truth. `SWIFT_EMIT_LOC_STRINGS = YES`. All 23 files
-  currently carry an identical key set — keep it that way. (Three keys referenced by
-  `NoteListView` are missing from every file; see `TODO.md`.)
+  currently carry an identical key set, and every key referenced from Swift exists in it —
+  keep it that way.
 - Views pass the **key** directly to SwiftUI (`Text("untitled_note")`,
   `Label("copy_button", systemImage:)`, `.navigationTitle("trash_navigation_title")`) and use
   `String(localized:)` when a `String` is needed imperatively, plus

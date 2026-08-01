@@ -169,6 +169,15 @@
 /* Help text for the iCloud syncing indicator */
 "icloud_syncing_label" = "Szinkronizálás az iClouddal…";
 
+/* Help text for the iCloud synced indicator */
+"icloud_synced_label" = "Szinkronizálva az iClouddal";
+
+/* Help text for the iCloud sync error indicator */
+"icloud_error_label" = "iCloud-szinkronizálási hiba";
+
+/* Help text for the iCloud indicator when idle */
+"icloud_label" = "iCloud-szinkronizálás";
+
 /* Help text shown for the AI improve button */
 "ai_improve_help" = "Javítsd a jegyzetek tartalmát az Apple Intelligence segítségével";
 

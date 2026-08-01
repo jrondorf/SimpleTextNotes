@@ -169,6 +169,15 @@
 /* Help text for the iCloud syncing indicator */
 "icloud_syncing_label" = "Συγχρονισμός με iCloud…";
 
+/* Help text for the iCloud synced indicator */
+"icloud_synced_label" = "Συγχρονίστηκε με iCloud";
+
+/* Help text for the iCloud sync error indicator */
+"icloud_error_label" = "Σφάλμα συγχρονισμού iCloud";
+
+/* Help text for the iCloud indicator when idle */
+"icloud_label" = "Συγχρονισμός iCloud";
+
 /* Help text shown for the AI improve button */
 "ai_improve_help" = "Βελτίωση περιεχομένου σημείωσης με Apple Intelligence";
 

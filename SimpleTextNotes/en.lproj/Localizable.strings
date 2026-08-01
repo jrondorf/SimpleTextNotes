@@ -178,6 +178,15 @@
 /* Help text for the iCloud syncing indicator */
 "icloud_syncing_label" = "Syncing with iCloud…";
 
+/* Help text for the iCloud synced indicator */
+"icloud_synced_label" = "Synced with iCloud";
+
+/* Help text for the iCloud sync error indicator */
+"icloud_error_label" = "iCloud sync error";
+
+/* Help text for the iCloud indicator when idle */
+"icloud_label" = "iCloud sync";
+
 /* Title for the database error view */
 "database_error_title" = "Cannot Open Notes";
 

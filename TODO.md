@@ -11,12 +11,14 @@ from the source and must be confirmed on a Mac before acting.
 
 ## P1 — Correctness bugs
 
-- [ ] **Three iCloud accessibility labels are missing from every locale** — **[verified]**
+- [x] **Three iCloud accessibility labels are missing from every locale** — **[verified]**
   `Views/NoteListView.swift:180,184,188` reference `icloud_synced_label`, `icloud_error_label`,
   and `icloud_label`, but only `icloud_syncing_label` exists (`en.lproj/Localizable.strings:179`).
   A `grep -l` across all 23 `.lproj` files returns **0** matches for the other three.
   VoiceOver currently announces the raw key names ("icloud_synced_label") in every language.
   *Fix:* add the three keys with translations to all 23 `Localizable.strings` files.
+  **Done:** all three keys added to every locale next to `icloud_syncing_label` (65 keys per
+  file, identical key sets). Strings-only change, not compiled — no Xcode available.
 
 - [ ] **Test target uses `FetchDescriptor(filter:)`, which is not a valid initializer label**
   — **[needs Xcode]** `SimpleTextNotesTests/SimpleTextNotesTests.swift:87,93,114`.
