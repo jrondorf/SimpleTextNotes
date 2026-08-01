@@ -20,12 +20,15 @@ from the source and must be confirmed on a Mac before acting.
   **Done:** all three keys added to every locale next to `icloud_syncing_label` (65 keys per
   file, identical key sets). Strings-only change, not compiled — no Xcode available.
 
-- [ ] **Test target uses `FetchDescriptor(filter:)`, which is not a valid initializer label**
+- [x] **Test target uses `FetchDescriptor(filter:)`, which is not a valid initializer label**
   — **[needs Xcode]** `SimpleTextNotesTests/SimpleTextNotesTests.swift:87,93,114`.
   `FetchDescriptor` takes `init(predicate:sortBy:)`; `filter:` is the `@Query` label. App code
   correctly uses `predicate:` (`ContentView.swift:73,98`). If this is what it looks like, the
   test target does not compile and has not for some time — there is no CI to catch it.
   *Fix:* rename to `predicate:`, then actually run the suite.
+  **Done:** all three call sites now use `predicate:`, matching `ContentView.swift`. Label-only
+  change, no test logic touched — **not compiled or run** (no Xcode here), so the suite still
+  needs a `xcodebuild … test` pass on a Mac to confirm the target builds green.
 
 - [ ] **Share extension can duplicate the shared text** — **[needs Xcode]**
   `ShareExtension/ShareViewController.swift:268-289`. The loop appends each attachment
