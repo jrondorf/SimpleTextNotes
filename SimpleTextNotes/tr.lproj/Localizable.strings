@@ -169,6 +169,15 @@
 /* Help text for the iCloud syncing indicator */
 "icloud_syncing_label" = "iCloud ile eşitleniyor…";
 
+/* Help text for the iCloud synced indicator */
+"icloud_synced_label" = "iCloud ile eşitlendi";
+
+/* Help text for the iCloud sync error indicator */
+"icloud_error_label" = "iCloud eşitleme hatası";
+
+/* Help text for the iCloud indicator when idle */
+"icloud_label" = "iCloud eşitleme";
+
 /* Help text shown for the AI improve button */
 "ai_improve_help" = "Apple Intelligence ile not içeriğini iyileştir";
 

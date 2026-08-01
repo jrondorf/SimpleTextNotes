@@ -169,6 +169,15 @@
 /* Help text for the iCloud syncing indicator */
 "icloud_syncing_label" = "正在與 iCloud 同步…";
 
+/* Help text for the iCloud synced indicator */
+"icloud_synced_label" = "已與 iCloud 同步";
+
+/* Help text for the iCloud sync error indicator */
+"icloud_error_label" = "iCloud 同步錯誤";
+
+/* Help text for the iCloud indicator when idle */
+"icloud_label" = "iCloud 同步";
+
 /* Help text shown for the AI improve button */
 "ai_improve_help" = "使用 Apple Intelligence 改善備忘錄內容";
 

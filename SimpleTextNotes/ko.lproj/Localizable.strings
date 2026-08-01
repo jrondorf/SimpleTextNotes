@@ -169,6 +169,15 @@
 /* Help text for the iCloud syncing indicator */
 "icloud_syncing_label" = "iCloud와 동기화 중…";
 
+/* Help text for the iCloud synced indicator */
+"icloud_synced_label" = "iCloud와 동기화됨";
+
+/* Help text for the iCloud sync error indicator */
+"icloud_error_label" = "iCloud 동기화 오류";
+
+/* Help text for the iCloud indicator when idle */
+"icloud_label" = "iCloud 동기화";
+
 /* Help text shown for the AI improve button */
 "ai_improve_help" = "Apple Intelligence로 메모 내용 개선";
 

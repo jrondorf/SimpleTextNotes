@@ -169,6 +169,15 @@
 /* Help text for the iCloud syncing indicator */
 "icloud_syncing_label" = "Synkroniserar med iCloud…";
 
+/* Help text for the iCloud synced indicator */
+"icloud_synced_label" = "Synkroniserad med iCloud";
+
+/* Help text for the iCloud sync error indicator */
+"icloud_error_label" = "Fel vid iCloud-synkronisering";
+
+/* Help text for the iCloud indicator when idle */
+"icloud_label" = "iCloud-synkronisering";
+
 /* Help text shown for the AI improve button */
 "ai_improve_help" = "Förbättra anteckningsinnehållet med Apple Intelligence";
 
