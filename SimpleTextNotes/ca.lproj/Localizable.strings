@@ -1,0 +1,194 @@
+/* Fallback title for notes with no title */
+"untitled_note" = "Sense títol";
+
+/* Navigation title for the notes list */
+"notes_navigation_title" = "Notes";
+
+/* Placeholder text for the search field */
+"search_notes_prompt" = "Cerca notes";
+
+/* Label and help text for the new note button */
+"new_note_button" = "Nota nova";
+
+/* Placeholder text for the note title field */
+"note_title_placeholder" = "Títol";
+
+/* Label and help text for the copy button */
+"copy_button" = "Copia";
+
+/* Label and help text for the paste button */
+"paste_button" = "Enganxa";
+
+/* Label and help text for the delete button */
+"delete_button" = "Elimina";
+
+/* Title of the paste-from-clipboard confirmation alert */
+"paste_from_clipboard_alert_title" = "Enganxa del porta-retalls";
+
+/* Action button in the paste confirmation alert */
+"paste_alert_action" = "Enganxa";
+
+/* Cancel button */
+"cancel_button" = "Cancel·la";
+
+/* Body text of the paste confirmation alert */
+"paste_clipboard_message" = "El text del porta-retalls s'afegirà al final de la nota actual.";
+
+/* Title shown when no note is selected */
+"no_note_selected_title" = "Cap nota seleccionada";
+
+/* Description shown when no note is selected */
+"no_note_selected_description" = "Selecciona una nota de la llista o crea'n una de nova.";
+
+/* Label and help text for the settings button */
+"settings_button" = "Configuració";
+
+/* Done/dismiss button */
+"done_button" = "Fet";
+
+/* Label for the font style picker */
+"font_style_picker" = "Estil de lletra";
+
+/* System font option */
+"system_font_option" = "Sistema";
+
+/* Monospaced font option */
+"monospaced_font_option" = "Monoespaiada";
+
+/* Serif font option */
+"serif_font_option" = "Serif";
+
+/* Label for the font size picker */
+"font_size_picker" = "Mida de lletra";
+
+/* Small font size option */
+"font_size_small" = "Petita (14)";
+
+/* Medium font size option */
+"font_size_medium" = "Mitjana (16)";
+
+/* Large font size option */
+"font_size_large" = "Gran (18)";
+
+/* Extra large font size option */
+"font_size_extra_large" = "Molt gran (20)";
+
+/* Navigation title for the editor font settings screen */
+"editor_font_navigation_title" = "Lletra de l'editor";
+
+/* OK button */
+"ok_button" = "D'acord";
+
+/* Label and help text for the AI button */
+"ai_button" = "AI";
+
+/* Title for the alert when AI is triggered with no note content */
+"ai_no_content_title" = "Sense contingut";
+
+/* Message shown when AI is triggered with no note content */
+"ai_no_content_message" = "Introdueix text a la nota per poder utilitzar el processament d'IA.";
+
+/* Title of the delete-note confirmation alert */
+"delete_note_alert_title" = "Elimina la nota";
+
+/* Message shown in the delete-note confirmation alert */
+"delete_note_alert_message" = "Aquesta nota es mourà a la Paperera. La pots restaurar en un termini de 30 dies.";
+
+/* Action button to move a note to trash */
+"move_to_trash_button" = "Mou a la Paperera";
+
+/* Label and help text for the trash button */
+"trash_button" = "Paperera";
+
+/* Navigation title for the trash view */
+"trash_navigation_title" = "Paperera";
+
+/* Restore a note from trash */
+"restore_note_button" = "Restaura";
+
+/* Permanently delete a note */
+"delete_permanently_button" = "Elimina permanentment";
+
+/* Title shown when the trash is empty */
+"empty_trash_title" = "La Paperera és buida";
+
+/* Description shown when the trash is empty */
+"empty_trash_description" = "Les notes eliminades es mostraran aquí durant 30 dies abans de suprimir-se permanentment.";
+
+/* Format string showing days remaining before permanent deletion (%d = number of days) */
+"days_until_deletion_format" = "%d dia/dies fins a l'eliminació permanent";
+
+/* Label for the share button */
+"share_button" = "Comparteix";
+
+/* Label for the sort menu button */
+"sort_button" = "Ordena";
+
+/* Sort by last modified date */
+"sort_updated_at" = "Última modificació";
+
+/* Sort by created date */
+"sort_created_at" = "Data de creació";
+
+/* Sort by title */
+"sort_title" = "Títol";
+
+/* Label for the pin button */
+"pin_note_button" = "Fixa";
+
+/* Label for the unpin button */
+"unpin_note_button" = "Deixa de fixar";
+
+/* Word and character count footer (%1$d = words, %2$d = characters) */
+"word_count_format" = "%d paraules, %d caràcters";
+
+/* Label for the empty trash button */
+"empty_trash_button" = "Buida la Paperera";
+
+/* Title for the empty trash confirmation dialog */
+"empty_trash_confirm_title" = "Buida la Paperera";
+
+/* Message shown in the empty trash confirmation dialog */
+"empty_trash_confirm_message" = "Totes les notes de la Paperera s'eliminaran permanentment. Aquesta acció no es pot desfer.";
+
+/* Action button in the empty trash confirmation dialog */
+"empty_trash_confirm_action" = "Buida la Paperera";
+
+/* Title for the permanent delete confirmation alert */
+"delete_permanently_confirm_title" = "Elimina permanentment";
+
+/* Message shown when confirming permanent deletion */
+"delete_permanently_confirm_message" = "Aquesta nota s'eliminarà permanentment i no es podrà recuperar.";
+
+/* Action button to permanently delete a note */
+"delete_permanently_confirm_action" = "Elimina permanentment";
+
+/* Label shown for notes that are overdue for deletion from trash */
+"overdue_deletion_label" = "Pendent d'eliminació";
+
+/* Help text for the iCloud syncing indicator */
+"icloud_syncing_label" = "Sincronitzant amb l'iCloud…";
+
+/* Help text for the iCloud synced indicator */
+"icloud_synced_label" = "Sincronitzat amb l'iCloud";
+
+/* Help text for the iCloud sync error indicator */
+"icloud_error_label" = "Error de sincronització amb l'iCloud";
+
+/* Help text for the iCloud indicator when idle */
+"icloud_label" = "Sincronització amb l'iCloud";
+
+/* Help text shown for the AI improve button */
+"ai_improve_help" = "Millora el contingut de la nota amb l'Apple Intelligence";
+
+/* Title for the AI generation failure alert */
+"ai_generation_failed_title" = "La generació amb IA ha fallat";
+
+/* Message shown when AI generation fails */
+"ai_generation_failed_message" = "La IA no ha pogut processar la teva sol·licitud. Torna-ho a provar.";
+
+/* Title for the database error view */
+"database_error_title" = "No es poden obrir les notes";
+
+/* Description for the database error view */
+"database_error_description" = "No s'ha pogut obrir la base de dades de notes. Reinicia l'aplicació.";

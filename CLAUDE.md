@@ -27,7 +27,7 @@ SimpleTextNotes/                 # Main app target
   Views/NoteDetailView.swift     # Title + TextEditor, toolbar actions, word count, AI actions
   Views/TrashView.swift          # Trash sheet + read-only TrashedNoteDetailView
   Views/SettingsView.swift       # Editor font style/size
-  *.lproj/Localizable.strings    # 23 languages, 65 keys each (en is the source language)
+  *.lproj/Localizable.strings    # 34 languages incl. RTL (ar/he), 65 keys each (en is source)
   Settings.bundle/Root.plist     # iOS Settings-app mirror of the font preferences
   Assets.xcassets/               # AppIcon (iOS + mac sizes), AccentColor
   Info.plist                     # UIBackgroundModes: remote-notification
@@ -233,15 +233,28 @@ Catalyst; see commit `d2e2e92`). Its UI strings are hardcoded English and are *n
 
 ## Localization
 
-- 23 languages under `SimpleTextNotes/*.lproj/Localizable.strings`, 65 keys each; `en` is the
-  development language and the source of truth. `SWIFT_EMIT_LOC_STRINGS = YES`. All 23 files
+- 34 languages under `SimpleTextNotes/*.lproj/Localizable.strings`, 65 keys each; `en` is the
+  development language and the source of truth. `SWIFT_EMIT_LOC_STRINGS = YES`. All 34 files
   currently carry an identical key set, and every key referenced from Swift exists in it —
-  keep it that way.
+  keep it that way. Note that the 22 translation files share a key **order** that differs from
+  `en` (`ok_button` and the three `ai_*` help/failure keys sit elsewhere); follow the
+  translations' order, not `en`'s, when adding a file.
+- **Portuguese is `pt`, not `pt-BR`.** Apple treats a bare `pt` as Brazilian Portuguese, so
+  `pt.lproj` carries the Brazilian wording and covers Brazil *and* any Portuguese locale with
+  no closer match; `pt-PT.lproj` overrides it with European wording (Definições/Lixo/Partilhar/
+  Apagar, "A sincronizar", base de dados, aplicação). App Store Connect is a separate axis and
+  still lists Portuguese (Brazil) and Portuguese (Portugal) individually.
+- **`ar` and `he` are RTL.** Shipping those `.lproj` directories is what makes iOS flip
+  `layoutDirection` — there is no separate switch. The UI mirrors for free because no view
+  hardcodes a side: all edge padding is `.horizontal`/`.vertical`, alignments are
+  `.leading`/`.trailing`, and the only directional SF Symbols (`chevron.right`,
+  `arrow.uturn.backward`) carry the auto-mirroring trait. Keep it that way — never introduce
+  `.left`/`.right`, `.offset(x:)`, or `semanticContentAttribute`.
 - Views pass the **key** directly to SwiftUI (`Text("untitled_note")`,
   `Label("copy_button", systemImage:)`, `.navigationTitle("trash_navigation_title")`) and use
   `String(localized:)` when a `String` is needed imperatively, plus
   `String(format: String(localized: "word_count_format"), …)` for the formatted ones.
-- **Adding a user-facing string means adding the key to all 23 files** with a translation, not
+- **Adding a user-facing string means adding the key to all 34 files** with a translation, not
   just `en`. Keep the `/* comment */` above each key and the existing key order.
 - Keys are `snake_case` and suffixed by role: `_button`, `_title`, `_message`, `_label`,
   `_prompt`, `_placeholder`, `_format`, `_navigation_title`.

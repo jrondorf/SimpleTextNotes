@@ -1,0 +1,194 @@
+/* Fallback title for notes with no title */
+"untitled_note" = "ไม่มีชื่อ";
+
+/* Navigation title for the notes list */
+"notes_navigation_title" = "โน้ต";
+
+/* Placeholder text for the search field */
+"search_notes_prompt" = "ค้นหาโน้ต";
+
+/* Label and help text for the new note button */
+"new_note_button" = "โน้ตใหม่";
+
+/* Placeholder text for the note title field */
+"note_title_placeholder" = "ชื่อเรื่อง";
+
+/* Label and help text for the copy button */
+"copy_button" = "คัดลอก";
+
+/* Label and help text for the paste button */
+"paste_button" = "วาง";
+
+/* Label and help text for the delete button */
+"delete_button" = "ลบ";
+
+/* Title of the paste-from-clipboard confirmation alert */
+"paste_from_clipboard_alert_title" = "วางจากคลิปบอร์ด";
+
+/* Action button in the paste confirmation alert */
+"paste_alert_action" = "วาง";
+
+/* Cancel button */
+"cancel_button" = "ยกเลิก";
+
+/* Body text of the paste confirmation alert */
+"paste_clipboard_message" = "ข้อความในคลิปบอร์ดจะถูกเพิ่มต่อท้ายโน้ตปัจจุบัน";
+
+/* Title shown when no note is selected */
+"no_note_selected_title" = "ยังไม่ได้เลือกโน้ต";
+
+/* Description shown when no note is selected */
+"no_note_selected_description" = "เลือกโน้ตจากรายการ หรือสร้างโน้ตใหม่";
+
+/* Label and help text for the settings button */
+"settings_button" = "การตั้งค่า";
+
+/* Done/dismiss button */
+"done_button" = "เสร็จสิ้น";
+
+/* Label for the font style picker */
+"font_style_picker" = "รูปแบบฟอนต์";
+
+/* System font option */
+"system_font_option" = "ระบบ";
+
+/* Monospaced font option */
+"monospaced_font_option" = "ความกว้างเท่ากัน";
+
+/* Serif font option */
+"serif_font_option" = "เซอริฟ";
+
+/* Label for the font size picker */
+"font_size_picker" = "ขนาดฟอนต์";
+
+/* Small font size option */
+"font_size_small" = "เล็ก (14)";
+
+/* Medium font size option */
+"font_size_medium" = "กลาง (16)";
+
+/* Large font size option */
+"font_size_large" = "ใหญ่ (18)";
+
+/* Extra large font size option */
+"font_size_extra_large" = "ใหญ่พิเศษ (20)";
+
+/* Navigation title for the editor font settings screen */
+"editor_font_navigation_title" = "ฟอนต์ตัวแก้ไข";
+
+/* OK button */
+"ok_button" = "ตกลง";
+
+/* Label and help text for the AI button */
+"ai_button" = "AI";
+
+/* Title for the alert when AI is triggered with no note content */
+"ai_no_content_title" = "ไม่มีเนื้อหา";
+
+/* Message shown when AI is triggered with no note content */
+"ai_no_content_message" = "กรุณาป้อนข้อความในโน้ตก่อนเพื่อใช้การประมวลผลด้วย AI";
+
+/* Title of the delete-note confirmation alert */
+"delete_note_alert_title" = "ลบโน้ต";
+
+/* Message shown in the delete-note confirmation alert */
+"delete_note_alert_message" = "โน้ตนี้จะถูกย้ายไปยังถังขยะ คุณสามารถกู้คืนได้ภายใน 30 วัน";
+
+/* Action button to move a note to trash */
+"move_to_trash_button" = "ย้ายไปถังขยะ";
+
+/* Label and help text for the trash button */
+"trash_button" = "ถังขยะ";
+
+/* Navigation title for the trash view */
+"trash_navigation_title" = "ถังขยะ";
+
+/* Restore a note from trash */
+"restore_note_button" = "กู้คืน";
+
+/* Permanently delete a note */
+"delete_permanently_button" = "ลบถาวร";
+
+/* Title shown when the trash is empty */
+"empty_trash_title" = "ถังขยะว่างเปล่า";
+
+/* Description shown when the trash is empty */
+"empty_trash_description" = "โน้ตที่ลบแล้วจะแสดงที่นี่เป็นเวลา 30 วันก่อนถูกลบอย่างถาวร";
+
+/* Format string showing days remaining before permanent deletion (%d = number of days) */
+"days_until_deletion_format" = "อีก %d วันก่อนลบถาวร";
+
+/* Label for the share button */
+"share_button" = "แชร์";
+
+/* Label for the sort menu button */
+"sort_button" = "จัดเรียง";
+
+/* Sort by last modified date */
+"sort_updated_at" = "แก้ไขล่าสุด";
+
+/* Sort by created date */
+"sort_created_at" = "วันที่สร้าง";
+
+/* Sort by title */
+"sort_title" = "ชื่อเรื่อง";
+
+/* Label for the pin button */
+"pin_note_button" = "ปักหมุด";
+
+/* Label for the unpin button */
+"unpin_note_button" = "เลิกปักหมุด";
+
+/* Word and character count footer (%1$d = words, %2$d = characters) */
+"word_count_format" = "%d คำ, %d อักขระ";
+
+/* Label for the empty trash button */
+"empty_trash_button" = "ล้างถังขยะ";
+
+/* Title for the empty trash confirmation dialog */
+"empty_trash_confirm_title" = "ล้างถังขยะ";
+
+/* Message shown in the empty trash confirmation dialog */
+"empty_trash_confirm_message" = "โน้ตทั้งหมดในถังขยะจะถูกลบอย่างถาวร การกระทำนี้ไม่สามารถเลิกทำได้";
+
+/* Action button in the empty trash confirmation dialog */
+"empty_trash_confirm_action" = "ล้างถังขยะ";
+
+/* Title for the permanent delete confirmation alert */
+"delete_permanently_confirm_title" = "ลบถาวร";
+
+/* Message shown when confirming permanent deletion */
+"delete_permanently_confirm_message" = "โน้ตนี้จะถูกลบอย่างถาวรและไม่สามารถกู้คืนได้";
+
+/* Action button to permanently delete a note */
+"delete_permanently_confirm_action" = "ลบถาวร";
+
+/* Label shown for notes that are overdue for deletion from trash */
+"overdue_deletion_label" = "รอการลบ";
+
+/* Help text for the iCloud syncing indicator */
+"icloud_syncing_label" = "กำลังซิงค์กับ iCloud…";
+
+/* Help text for the iCloud synced indicator */
+"icloud_synced_label" = "ซิงค์กับ iCloud แล้ว";
+
+/* Help text for the iCloud sync error indicator */
+"icloud_error_label" = "ข้อผิดพลาดในการซิงค์ iCloud";
+
+/* Help text for the iCloud indicator when idle */
+"icloud_label" = "การซิงค์ iCloud";
+
+/* Help text shown for the AI improve button */
+"ai_improve_help" = "ปรับปรุงเนื้อหาโน้ตด้วย Apple Intelligence";
+
+/* Title for the AI generation failure alert */
+"ai_generation_failed_title" = "การสร้างด้วย AI ล้มเหลว";
+
+/* Message shown when AI generation fails */
+"ai_generation_failed_message" = "AI ไม่สามารถประมวลผลคำขอของคุณได้ กรุณาลองอีกครั้ง";
+
+/* Title for the database error view */
+"database_error_title" = "ไม่สามารถเปิดโน้ตได้";
+
+/* Description for the database error view */
+"database_error_description" = "ไม่สามารถเปิดฐานข้อมูลโน้ตได้ กรุณาเริ่มแอปใหม่";

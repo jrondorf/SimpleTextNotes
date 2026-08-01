@@ -1,0 +1,194 @@
+/* Fallback title for notes with no title */
+"untitled_note" = "Tanpa judul";
+
+/* Navigation title for the notes list */
+"notes_navigation_title" = "Catatan";
+
+/* Placeholder text for the search field */
+"search_notes_prompt" = "Cari catatan";
+
+/* Label and help text for the new note button */
+"new_note_button" = "Catatan Baru";
+
+/* Placeholder text for the note title field */
+"note_title_placeholder" = "Judul";
+
+/* Label and help text for the copy button */
+"copy_button" = "Salin";
+
+/* Label and help text for the paste button */
+"paste_button" = "Tempel";
+
+/* Label and help text for the delete button */
+"delete_button" = "Hapus";
+
+/* Title of the paste-from-clipboard confirmation alert */
+"paste_from_clipboard_alert_title" = "Tempel dari Papan Klip";
+
+/* Action button in the paste confirmation alert */
+"paste_alert_action" = "Tempel";
+
+/* Cancel button */
+"cancel_button" = "Batal";
+
+/* Body text of the paste confirmation alert */
+"paste_clipboard_message" = "Teks dari papan klip akan ditambahkan ke akhir catatan saat ini.";
+
+/* Title shown when no note is selected */
+"no_note_selected_title" = "Tidak Ada Catatan Dipilih";
+
+/* Description shown when no note is selected */
+"no_note_selected_description" = "Pilih catatan dari daftar atau buat catatan baru.";
+
+/* Label and help text for the settings button */
+"settings_button" = "Pengaturan";
+
+/* Done/dismiss button */
+"done_button" = "Selesai";
+
+/* Label for the font style picker */
+"font_style_picker" = "Gaya Font";
+
+/* System font option */
+"system_font_option" = "Sistem";
+
+/* Monospaced font option */
+"monospaced_font_option" = "Monospace";
+
+/* Serif font option */
+"serif_font_option" = "Serif";
+
+/* Label for the font size picker */
+"font_size_picker" = "Ukuran Font";
+
+/* Small font size option */
+"font_size_small" = "Kecil (14)";
+
+/* Medium font size option */
+"font_size_medium" = "Sedang (16)";
+
+/* Large font size option */
+"font_size_large" = "Besar (18)";
+
+/* Extra large font size option */
+"font_size_extra_large" = "Sangat Besar (20)";
+
+/* Navigation title for the editor font settings screen */
+"editor_font_navigation_title" = "Font Editor";
+
+/* OK button */
+"ok_button" = "OK";
+
+/* Label and help text for the AI button */
+"ai_button" = "AI";
+
+/* Title for the alert when AI is triggered with no note content */
+"ai_no_content_title" = "Tidak Ada Konten";
+
+/* Message shown when AI is triggered with no note content */
+"ai_no_content_message" = "Masukkan teks pada catatan terlebih dahulu untuk menggunakan pemrosesan AI.";
+
+/* Title of the delete-note confirmation alert */
+"delete_note_alert_title" = "Hapus Catatan";
+
+/* Message shown in the delete-note confirmation alert */
+"delete_note_alert_message" = "Catatan ini akan dipindahkan ke Tempat Sampah. Anda dapat memulihkannya dalam 30 hari.";
+
+/* Action button to move a note to trash */
+"move_to_trash_button" = "Pindahkan ke Tempat Sampah";
+
+/* Label and help text for the trash button */
+"trash_button" = "Tempat Sampah";
+
+/* Navigation title for the trash view */
+"trash_navigation_title" = "Tempat Sampah";
+
+/* Restore a note from trash */
+"restore_note_button" = "Pulihkan";
+
+/* Permanently delete a note */
+"delete_permanently_button" = "Hapus Permanen";
+
+/* Title shown when the trash is empty */
+"empty_trash_title" = "Tempat Sampah Kosong";
+
+/* Description shown when the trash is empty */
+"empty_trash_description" = "Catatan yang dihapus akan muncul di sini selama 30 hari sebelum dihapus permanen.";
+
+/* Format string showing days remaining before permanent deletion (%d = number of days) */
+"days_until_deletion_format" = "%d hari lagi hingga penghapusan permanen";
+
+/* Label for the share button */
+"share_button" = "Bagikan";
+
+/* Label for the sort menu button */
+"sort_button" = "Urutkan";
+
+/* Sort by last modified date */
+"sort_updated_at" = "Terakhir Diubah";
+
+/* Sort by created date */
+"sort_created_at" = "Tanggal Dibuat";
+
+/* Sort by title */
+"sort_title" = "Judul";
+
+/* Label for the pin button */
+"pin_note_button" = "Sematkan";
+
+/* Label for the unpin button */
+"unpin_note_button" = "Lepas Sematan";
+
+/* Word and character count footer (%1$d = words, %2$d = characters) */
+"word_count_format" = "%d kata, %d karakter";
+
+/* Label for the empty trash button */
+"empty_trash_button" = "Kosongkan Tempat Sampah";
+
+/* Title for the empty trash confirmation dialog */
+"empty_trash_confirm_title" = "Kosongkan Tempat Sampah";
+
+/* Message shown in the empty trash confirmation dialog */
+"empty_trash_confirm_message" = "Semua catatan di Tempat Sampah akan dihapus permanen. Tindakan ini tidak dapat dibatalkan.";
+
+/* Action button in the empty trash confirmation dialog */
+"empty_trash_confirm_action" = "Kosongkan Tempat Sampah";
+
+/* Title for the permanent delete confirmation alert */
+"delete_permanently_confirm_title" = "Hapus Permanen";
+
+/* Message shown when confirming permanent deletion */
+"delete_permanently_confirm_message" = "Catatan ini akan dihapus permanen dan tidak dapat dipulihkan.";
+
+/* Action button to permanently delete a note */
+"delete_permanently_confirm_action" = "Hapus Permanen";
+
+/* Label shown for notes that are overdue for deletion from trash */
+"overdue_deletion_label" = "Menunggu penghapusan";
+
+/* Help text for the iCloud syncing indicator */
+"icloud_syncing_label" = "Menyinkronkan dengan iCloud…";
+
+/* Help text for the iCloud synced indicator */
+"icloud_synced_label" = "Tersinkronisasi dengan iCloud";
+
+/* Help text for the iCloud sync error indicator */
+"icloud_error_label" = "Kesalahan sinkronisasi iCloud";
+
+/* Help text for the iCloud indicator when idle */
+"icloud_label" = "Sinkronisasi iCloud";
+
+/* Help text shown for the AI improve button */
+"ai_improve_help" = "Tingkatkan konten catatan dengan Apple Intelligence";
+
+/* Title for the AI generation failure alert */
+"ai_generation_failed_title" = "Pembuatan AI Gagal";
+
+/* Message shown when AI generation fails */
+"ai_generation_failed_message" = "AI tidak dapat memproses permintaan Anda. Silakan coba lagi.";
+
+/* Title for the database error view */
+"database_error_title" = "Tidak Dapat Membuka Catatan";
+
+/* Description for the database error view */
+"database_error_description" = "Basis data catatan tidak dapat dibuka. Silakan mulai ulang aplikasi.";

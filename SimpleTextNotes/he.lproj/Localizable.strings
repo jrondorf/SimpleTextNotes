@@ -1,0 +1,194 @@
+/* Fallback title for notes with no title */
+"untitled_note" = "ללא כותרת";
+
+/* Navigation title for the notes list */
+"notes_navigation_title" = "פתקים";
+
+/* Placeholder text for the search field */
+"search_notes_prompt" = "חיפוש פתקים";
+
+/* Label and help text for the new note button */
+"new_note_button" = "פתק חדש";
+
+/* Placeholder text for the note title field */
+"note_title_placeholder" = "כותרת";
+
+/* Label and help text for the copy button */
+"copy_button" = "העתקה";
+
+/* Label and help text for the paste button */
+"paste_button" = "הדבקה";
+
+/* Label and help text for the delete button */
+"delete_button" = "מחיקה";
+
+/* Title of the paste-from-clipboard confirmation alert */
+"paste_from_clipboard_alert_title" = "הדבקה מלוח הגזירים";
+
+/* Action button in the paste confirmation alert */
+"paste_alert_action" = "הדבקה";
+
+/* Cancel button */
+"cancel_button" = "ביטול";
+
+/* Body text of the paste confirmation alert */
+"paste_clipboard_message" = "הטקסט מלוח הגזירים יתווסף לסוף הפתק הנוכחי.";
+
+/* Title shown when no note is selected */
+"no_note_selected_title" = "לא נבחר פתק";
+
+/* Description shown when no note is selected */
+"no_note_selected_description" = "יש לבחור פתק מהרשימה או ליצור פתק חדש.";
+
+/* Label and help text for the settings button */
+"settings_button" = "הגדרות";
+
+/* Done/dismiss button */
+"done_button" = "סיום";
+
+/* Label for the font style picker */
+"font_style_picker" = "סגנון גופן";
+
+/* System font option */
+"system_font_option" = "מערכת";
+
+/* Monospaced font option */
+"monospaced_font_option" = "רוחב אחיד";
+
+/* Serif font option */
+"serif_font_option" = "סריף";
+
+/* Label for the font size picker */
+"font_size_picker" = "גודל גופן";
+
+/* Small font size option */
+"font_size_small" = "קטן (14)";
+
+/* Medium font size option */
+"font_size_medium" = "בינוני (16)";
+
+/* Large font size option */
+"font_size_large" = "גדול (18)";
+
+/* Extra large font size option */
+"font_size_extra_large" = "גדול מאוד (20)";
+
+/* Navigation title for the editor font settings screen */
+"editor_font_navigation_title" = "גופן העורך";
+
+/* OK button */
+"ok_button" = "אישור";
+
+/* Label and help text for the AI button */
+"ai_button" = "AI";
+
+/* Title for the alert when AI is triggered with no note content */
+"ai_no_content_title" = "אין תוכן";
+
+/* Message shown when AI is triggered with no note content */
+"ai_no_content_message" = "יש להזין תחילה טקסט בפתק כדי להשתמש בעיבוד AI.";
+
+/* Title of the delete-note confirmation alert */
+"delete_note_alert_title" = "מחיקת פתק";
+
+/* Message shown in the delete-note confirmation alert */
+"delete_note_alert_message" = "הפתק יועבר לאשפה. ניתן לשחזר אותו תוך 30 יום.";
+
+/* Action button to move a note to trash */
+"move_to_trash_button" = "העברה לאשפה";
+
+/* Label and help text for the trash button */
+"trash_button" = "אשפה";
+
+/* Navigation title for the trash view */
+"trash_navigation_title" = "אשפה";
+
+/* Restore a note from trash */
+"restore_note_button" = "שחזור";
+
+/* Permanently delete a note */
+"delete_permanently_button" = "מחיקה לצמיתות";
+
+/* Title shown when the trash is empty */
+"empty_trash_title" = "האשפה ריקה";
+
+/* Description shown when the trash is empty */
+"empty_trash_description" = "פתקים שנמחקו יופיעו כאן במשך 30 יום לפני שיוסרו לצמיתות.";
+
+/* Format string showing days remaining before permanent deletion (%d = number of days) */
+"days_until_deletion_format" = "%d ימים עד למחיקה לצמיתות";
+
+/* Label for the share button */
+"share_button" = "שיתוף";
+
+/* Label for the sort menu button */
+"sort_button" = "מיון";
+
+/* Sort by last modified date */
+"sort_updated_at" = "שינוי אחרון";
+
+/* Sort by created date */
+"sort_created_at" = "תאריך יצירה";
+
+/* Sort by title */
+"sort_title" = "כותרת";
+
+/* Label for the pin button */
+"pin_note_button" = "נעיצה";
+
+/* Label for the unpin button */
+"unpin_note_button" = "ביטול נעיצה";
+
+/* Word and character count footer (%1$d = words, %2$d = characters) */
+"word_count_format" = "%d מילים, %d תווים";
+
+/* Label for the empty trash button */
+"empty_trash_button" = "רוקן אשפה";
+
+/* Title for the empty trash confirmation dialog */
+"empty_trash_confirm_title" = "רוקן אשפה";
+
+/* Message shown in the empty trash confirmation dialog */
+"empty_trash_confirm_message" = "כל הפתקים באשפה יימחקו לצמיתות. לא ניתן לבטל פעולה זו.";
+
+/* Action button in the empty trash confirmation dialog */
+"empty_trash_confirm_action" = "רוקן אשפה";
+
+/* Title for the permanent delete confirmation alert */
+"delete_permanently_confirm_title" = "מחיקה לצמיתות";
+
+/* Message shown when confirming permanent deletion */
+"delete_permanently_confirm_message" = "הפתק יימחק לצמיתות ולא ניתן יהיה לשחזר אותו.";
+
+/* Action button to permanently delete a note */
+"delete_permanently_confirm_action" = "מחיקה לצמיתות";
+
+/* Label shown for notes that are overdue for deletion from trash */
+"overdue_deletion_label" = "ממתין למחיקה";
+
+/* Help text for the iCloud syncing indicator */
+"icloud_syncing_label" = "מסנכרן עם iCloud…";
+
+/* Help text for the iCloud synced indicator */
+"icloud_synced_label" = "מסונכרן עם iCloud";
+
+/* Help text for the iCloud sync error indicator */
+"icloud_error_label" = "שגיאת סנכרון עם iCloud";
+
+/* Help text for the iCloud indicator when idle */
+"icloud_label" = "סנכרון iCloud";
+
+/* Help text shown for the AI improve button */
+"ai_improve_help" = "שיפור תוכן הפתק באמצעות Apple Intelligence";
+
+/* Title for the AI generation failure alert */
+"ai_generation_failed_title" = "יצירת AI נכשלה";
+
+/* Message shown when AI generation fails */
+"ai_generation_failed_message" = "מנוע ה-AI לא הצליח לעבד את הבקשה שלך. יש לנסות שוב.";
+
+/* Title for the database error view */
+"database_error_title" = "לא ניתן לפתוח את הפתקים";
+
+/* Description for the database error view */
+"database_error_description" = "לא ניתן היה לפתוח את מסד הנתונים של הפתקים. יש להפעיל מחדש את היישום.";
