@@ -27,7 +27,7 @@ SimpleTextNotes/                 # Main app target
   Views/NoteDetailView.swift     # Title + TextEditor, toolbar actions, word count, AI actions
   Views/TrashView.swift          # Trash sheet + read-only TrashedNoteDetailView
   Views/SettingsView.swift       # Editor font style/size
-  *.lproj/Localizable.strings    # 34 languages incl. RTL (ar/he), 65 keys each (en is source)
+  *.lproj/Localizable.strings    # 34 languages incl. RTL (ar/he), 69 keys each (en is source)
   Settings.bundle/Root.plist     # iOS Settings-app mirror of the font preferences
   Assets.xcassets/               # AppIcon (iOS + mac sizes), AccentColor
   Info.plist                     # UIBackgroundModes: remote-notification
@@ -35,6 +35,7 @@ SimpleTextNotes/                 # Main app target
   SimpleTextNotesRelease.entitlements  # Release signing (adds aps-environment: production)
 ShareExtension/                  # iOS share extension target (UIKit host + SwiftUI picker)
   ShareViewController.swift      # Everything: ShareAction, LinkPreviewCard, SharePickerView, controller
+  *.lproj/Localizable.strings    # Its own 34-language table, 11 keys each (separate from the app's)
 SimpleTextNotesTests/            # XCTest unit tests for the Note model (in-memory ModelContainer)
 scripts/generate_icons.sh        # sips-based app-icon generator (see caveat below)
 .github/copilot-instructions.md  # Parallel instruction file — keep in sync with this one
@@ -163,6 +164,10 @@ SimpleTextNotesApp (@main)
   explicitly; that's fine.)
 - After any `await` that follows a model mutation, re-check `note.modelContext != nil` before
   touching the note — it may have been deleted during the async gap.
+- `note.updatedAt` is **debounced**, not written per keystroke: `NoteDetailView`'s title and
+  content `onChange` handlers call `scheduleTimestampUpdate()`, which coalesces the write for
+  one second, and `onDisappear` calls `commitTimestampUpdate()` to flush it. Anything that
+  mutates content programmatically (paste, AI) still stamps `updatedAt` directly.
 
 ### Persisted preferences (`@AppStorage`)
 
@@ -222,23 +227,38 @@ The extension does **not** touch SwiftData. It talks to the app through
 | `notesList` | app (`ContentView.syncNotesList`, on launch and on every `notes` change) | extension (`loadNotesList`) | `[[String: String]]` with `id`, `title`, `updatedAt` (ISO 8601) |
 | `pendingSharedNotes` | extension (`saveNote`) | app (`ContentView.importPendingSharedNotes`) | `[[String: String]]` with `content`, `timestamp`, `action` (`new`/`append`), and `noteId` when appending |
 
-The app drains `pendingSharedNotes` on launch and on `willEnterForeground`, removing the key
-first. Appends insert a blank line (`\n\n`) between old and new content; an `append` whose
-target note no longer exists falls back to creating a new note. If you change either payload
-shape, change both sides — there is no shared module and no versioning on these dictionaries.
+The app drains `pendingSharedNotes` on launch and on `willEnterForeground`, popping **one entry
+at a time** (`ContentView.popPendingSharedNote`) so an entry only leaves the inbox once its note
+exists — never read the whole array and clear the key up front. Both sides wrap their
+read-modify-write in `withSharedInboxLock`, an `NSFileCoordinator` write on
+`pendingSharedNotes.lock` in the app-group container; the helper is duplicated in `ContentView`
+and `ShareViewController` (no shared module) and both copies must keep using the same lock file.
+Appends insert a blank line (`\n\n`) between old and new content; an `append` whose target note
+no longer exists falls back to creating a new note. If you change either payload shape, change
+both sides — there is no versioning on these dictionaries.
 
 The extension is UIKit-hosted: `ShareViewController` embeds `SharePickerView` as a child view
 controller with edge constraints (**not** as a presented sheet — presenting broke it on
-Catalyst; see commit `d2e2e92`). Its UI strings are hardcoded English and are *not* localized.
+Catalyst; see commit `d2e2e92`). It has its **own** `Localizable.strings` table under
+`ShareExtension/*.lproj` — 34 locales, 11 `share_*` keys, resolved against the appex bundle, and
+entirely separate from the app's table (a key added to one is not visible to the other). The
+literal `"SimpleTextNotes"` in the header bar is the product name and is deliberately not a key.
+Because `ShareExtension/` is a synchronized root group, new `.lproj` folders are picked up with
+no `project.pbxproj` edit — but they only build for locales listed in the project's
+`knownRegions`.
 
 ## Localization
 
-- 34 languages under `SimpleTextNotes/*.lproj/Localizable.strings`, 65 keys each; `en` is the
+- 34 languages under `SimpleTextNotes/*.lproj/Localizable.strings`, 69 keys each; `en` is the
   development language and the source of truth. `SWIFT_EMIT_LOC_STRINGS = YES`. All 34 files
   currently carry an identical key set, and every key referenced from Swift exists in it —
   keep it that way. Note that the 22 translation files share a key **order** that differs from
   `en` (`ok_button` and the three `ai_*` help/failure keys sit elsewhere); follow the
   translations' order, not `en`'s, when adding a file.
+- The share extension has a **second, independent table** (`ShareExtension/*.lproj`, 11 keys).
+  Its keys are all prefixed `share_`; four of them intentionally duplicate app values
+  (`share_new_note_title`, `share_untitled_note`, `share_cancel_button`, `share_done_button`) —
+  keep them in step with the app wording when you change either.
 - **Portuguese is `pt`, not `pt-BR`.** Apple treats a bare `pt` as Brazilian Portuguese, so
   `pt.lproj` carries the Brazilian wording and covers Brazil *and* any Portuguese locale with
   no closer match; `pt-PT.lproj` overrides it with European wording (Definições/Lixo/Partilhar/
@@ -255,7 +275,8 @@ Catalyst; see commit `d2e2e92`). Its UI strings are hardcoded English and are *n
   `String(localized:)` when a `String` is needed imperatively, plus
   `String(format: String(localized: "word_count_format"), …)` for the formatted ones.
 - **Adding a user-facing string means adding the key to all 34 files** with a translation, not
-  just `en`. Keep the `/* comment */` above each key and the existing key order.
+  just `en` — in whichever of the two tables the code reads it from. Keep the `/* comment */`
+  above each key and the existing key order.
 - Keys are `snake_case` and suffixed by role: `_button`, `_title`, `_message`, `_label`,
   `_prompt`, `_placeholder`, `_format`, `_navigation_title`.
 
@@ -281,7 +302,9 @@ typing undo is handled by the system.
 counts in-flight events, logs via `OSLog` (subsystem `de.futural.simpletextnotes`, category
 `CloudKitSync`), and exposes `syncState: CloudKitSyncState` (`.notSyncing`, `.syncing`,
 `.synced`, `.error`). `NoteListView.iCloudSyncIndicator` maps those four states to toolbar
-SF Symbols with accessibility labels.
+SF Symbols with accessibility labels. `.synced` is transient — `scheduleReturnToIdle()` drops
+back to `.notSyncing` after `syncedDisplayDuration` (3s) so the checkmark doesn't sit in the
+toolbar for the rest of the session; a new in-flight event cancels that pending transition.
 
 ## Conventions
 

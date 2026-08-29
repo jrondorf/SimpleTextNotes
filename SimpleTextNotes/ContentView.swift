@@ -86,12 +86,14 @@ struct ContentView: View {
         }
     }
 
+    /// Upper bound on one drain, so a write that never lands cannot spin the main actor.
+    private static let maxSharedNotesPerDrain = 100
+
     private func importPendingSharedNotes() {
-        let defaults = UserDefaults(suiteName: Self.appGroupID)
-        guard let pending = defaults?.array(forKey: "pendingSharedNotes") as? [[String: String]],
-              !pending.isEmpty else { return }
-        defaults?.removeObject(forKey: "pendingSharedNotes")
-        for entry in pending {
+        // Consume one entry at a time: an entry leaves the shared inbox only once
+        // its note exists, so a crash mid-import can never discard the whole batch.
+        for _ in 0..<Self.maxSharedNotesPerDrain {
+            guard let entry = Self.popPendingSharedNote() else { return }
             guard let content = entry["content"], !content.isEmpty else { continue }
             let action = entry["action"] ?? "new"
             if action == "append", let noteIdString = entry["noteId"], let uuid = UUID(uuidString: noteIdString) {
@@ -103,18 +105,63 @@ struct ContentView: View {
                     note.content = note.content.isEmpty ? content : note.content + "\n\n" + content
                     note.updatedAt = Date()
                 } else {
-                    let note = Note()
-                    note.content = content
-                    modelContext.insert(note)
-                    scheduleAutoTitle(for: note)
+                    insertSharedNote(content: content)
                 }
             } else {
-                let note = Note()
-                note.content = content
-                modelContext.insert(note)
-                scheduleAutoTitle(for: note)
+                insertSharedNote(content: content)
             }
         }
+    }
+
+    private func insertSharedNote(content: String) {
+        let note = Note()
+        note.content = content
+        modelContext.insert(note)
+        scheduleAutoTitle(for: note)
+    }
+
+    // MARK: - Shared inbox
+
+    /// Sentinel file in the shared container used to serialize `pendingSharedNotes`
+    /// access between the app and the share extension. Mirrored in `ShareViewController`.
+    private static let sharedInboxLockURL: URL? = FileManager.default
+        .containerURL(forSecurityApplicationGroupIdentifier: ContentView.appGroupID)?
+        .appendingPathComponent("pendingSharedNotes.lock")
+
+    /// Removes and returns the oldest entry written by the share extension, or `nil`
+    /// when the inbox is empty. Coordinated so a concurrent share is never clobbered.
+    private static func popPendingSharedNote() -> [String: String]? {
+        var entry: [String: String]?
+        withSharedInboxLock {
+            let defaults = UserDefaults(suiteName: appGroupID)
+            guard var pending = defaults?.array(forKey: "pendingSharedNotes") as? [[String: String]],
+                  !pending.isEmpty else { return }
+            entry = pending.removeFirst()
+            if pending.isEmpty {
+                defaults?.removeObject(forKey: "pendingSharedNotes")
+            } else {
+                defaults?.set(pending, forKey: "pendingSharedNotes")
+            }
+        }
+        return entry
+    }
+
+    private static func withSharedInboxLock(_ body: @escaping () -> Void) {
+        guard let url = sharedInboxLockURL else {
+            body()
+            return
+        }
+        if !FileManager.default.fileExists(atPath: url.path) {
+            FileManager.default.createFile(atPath: url.path, contents: nil)
+        }
+        var didRun = false
+        var coordinationError: NSError?
+        NSFileCoordinator().coordinate(writingItemAt: url, options: [], error: &coordinationError) { _ in
+            body()
+            didRun = true
+        }
+        // Coordination itself failed — better an uncoordinated read than a stuck inbox.
+        if !didRun { body() }
     }
 
     private func syncNotesList() {

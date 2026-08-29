@@ -1,6 +1,9 @@
 /* Fallback title for notes with no title */
 "untitled_note" = "Χωρίς τίτλο";
 
+/* Message shown in place of the body when a note has no content */
+"empty_note_message" = "Αυτή η σημείωση είναι κενή.";
+
 /* Navigation title for the notes list */
 "notes_navigation_title" = "Σημειώσεις";
 
@@ -187,8 +190,17 @@
 /* Message shown when AI generation fails */
 "ai_generation_failed_message" = "Η AI δεν μπόρεσε να επεξεργαστεί το αίτημά σας. Δοκιμάστε ξανά.";
 
+/* Error shown when Apple Intelligence is unavailable on this device */
+"ai_error_unavailable_message" = "Το Apple Intelligence δεν είναι διαθέσιμο σε αυτή τη συσκευή.";
+
+/* Error shown when an Apple Intelligence request fails (%@ = underlying error) */
+"ai_error_generation_failed_format" = "Δεν ήταν δυνατή η δημιουργία απάντησης Apple Intelligence: %@";
+
 /* Title for the database error view */
 "database_error_title" = "Δεν είναι δυνατό το άνοιγμα σημειώσεων";
 
 /* Description for the database error view */
 "database_error_description" = "Η βάση δεδομένων σημειώσεων δεν μπόρεσε να ανοιχτεί. Επανεκκινήστε την εφαρμογή.";
+
+/* Fallback detail shown when the database error carries no description */
+"database_error_unknown_message" = "Άγνωστο σφάλμα";

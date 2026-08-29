@@ -1,6 +1,9 @@
 /* Fallback title for notes with no title */
 "untitled_note" = "제목 없음";
 
+/* Message shown in place of the body when a note has no content */
+"empty_note_message" = "이 메모는 비어 있습니다.";
+
 /* Navigation title for the notes list */
 "notes_navigation_title" = "메모";
 
@@ -187,8 +190,17 @@
 /* Message shown when AI generation fails */
 "ai_generation_failed_message" = "AI가 요청을 처리하지 못했습니다. 다시 시도하세요.";
 
+/* Error shown when Apple Intelligence is unavailable on this device */
+"ai_error_unavailable_message" = "이 기기에서는 Apple Intelligence를 사용할 수 없습니다.";
+
+/* Error shown when an Apple Intelligence request fails (%@ = underlying error) */
+"ai_error_generation_failed_format" = "Apple Intelligence 응답을 생성할 수 없습니다: %@";
+
 /* Title for the database error view */
 "database_error_title" = "메모를 열 수 없습니다";
 
 /* Description for the database error view */
 "database_error_description" = "메모 데이터베이스를 열 수 없습니다. 앱을 다시 시작하세요.";
+
+/* Fallback detail shown when the database error carries no description */
+"database_error_unknown_message" = "알 수 없는 오류";

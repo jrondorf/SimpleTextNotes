@@ -1,6 +1,9 @@
 /* Fallback title for notes with no title */
 "untitled_note" = "Không có tiêu đề";
 
+/* Message shown in place of the body when a note has no content */
+"empty_note_message" = "Ghi chú này trống.";
+
 /* Navigation title for the notes list */
 "notes_navigation_title" = "Ghi chú";
 
@@ -187,8 +190,17 @@
 /* Message shown when AI generation fails */
 "ai_generation_failed_message" = "AI không thể xử lý yêu cầu của bạn. Vui lòng thử lại.";
 
+/* Error shown when Apple Intelligence is unavailable on this device */
+"ai_error_unavailable_message" = "Apple Intelligence không khả dụng trên thiết bị này.";
+
+/* Error shown when an Apple Intelligence request fails (%@ = underlying error) */
+"ai_error_generation_failed_format" = "Không thể tạo phản hồi Apple Intelligence: %@";
+
 /* Title for the database error view */
 "database_error_title" = "Không thể mở ghi chú";
 
 /* Description for the database error view */
 "database_error_description" = "Không thể mở cơ sở dữ liệu ghi chú. Vui lòng khởi động lại ứng dụng.";
+
+/* Fallback detail shown when the database error carries no description */
+"database_error_unknown_message" = "Lỗi không xác định";

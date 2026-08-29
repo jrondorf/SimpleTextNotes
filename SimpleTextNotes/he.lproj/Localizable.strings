@@ -1,6 +1,9 @@
 /* Fallback title for notes with no title */
 "untitled_note" = "ללא כותרת";
 
+/* Message shown in place of the body when a note has no content */
+"empty_note_message" = "הפתק הזה ריק.";
+
 /* Navigation title for the notes list */
 "notes_navigation_title" = "פתקים";
 
@@ -187,8 +190,17 @@
 /* Message shown when AI generation fails */
 "ai_generation_failed_message" = "מנוע ה-AI לא הצליח לעבד את הבקשה שלך. יש לנסות שוב.";
 
+/* Error shown when Apple Intelligence is unavailable on this device */
+"ai_error_unavailable_message" = "Apple Intelligence אינו זמין במכשיר הזה.";
+
+/* Error shown when an Apple Intelligence request fails (%@ = underlying error) */
+"ai_error_generation_failed_format" = "לא ניתן היה ליצור תגובה של Apple Intelligence: %@";
+
 /* Title for the database error view */
 "database_error_title" = "לא ניתן לפתוח את הפתקים";
 
 /* Description for the database error view */
 "database_error_description" = "לא ניתן היה לפתוח את מסד הנתונים של הפתקים. יש להפעיל מחדש את היישום.";
+
+/* Fallback detail shown when the database error carries no description */
+"database_error_unknown_message" = "שגיאה לא ידועה";

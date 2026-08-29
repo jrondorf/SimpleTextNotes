@@ -1,6 +1,9 @@
 /* Fallback title for notes with no title */
 "untitled_note" = "Senza titolo";
 
+/* Message shown in place of the body when a note has no content */
+"empty_note_message" = "Questa nota è vuota.";
+
 /* Navigation title for the notes list */
 "notes_navigation_title" = "Note";
 
@@ -187,8 +190,17 @@
 /* Message shown when AI generation fails */
 "ai_generation_failed_message" = "L'IA non è riuscita a elaborare la tua richiesta. Riprova.";
 
+/* Error shown when Apple Intelligence is unavailable on this device */
+"ai_error_unavailable_message" = "Apple Intelligence non è disponibile su questo dispositivo.";
+
+/* Error shown when an Apple Intelligence request fails (%@ = underlying error) */
+"ai_error_generation_failed_format" = "Impossibile generare una risposta di Apple Intelligence: %@";
+
 /* Title for the database error view */
 "database_error_title" = "Impossibile aprire le note";
 
 /* Description for the database error view */
 "database_error_description" = "Il database delle note non ha potuto essere aperto. Riavvia l'app.";
+
+/* Fallback detail shown when the database error carries no description */
+"database_error_unknown_message" = "Errore sconosciuto";

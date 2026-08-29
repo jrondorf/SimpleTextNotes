@@ -1,6 +1,9 @@
 /* Fallback title for notes with no title */
 "untitled_note" = "Fără titlu";
 
+/* Message shown in place of the body when a note has no content */
+"empty_note_message" = "Această notă este goală.";
+
 /* Navigation title for the notes list */
 "notes_navigation_title" = "Note";
 
@@ -187,8 +190,17 @@
 /* Message shown when AI generation fails */
 "ai_generation_failed_message" = "AI nu a putut procesa solicitarea. Te rugăm să încerci din nou.";
 
+/* Error shown when Apple Intelligence is unavailable on this device */
+"ai_error_unavailable_message" = "Apple Intelligence nu este disponibil pe acest dispozitiv.";
+
+/* Error shown when an Apple Intelligence request fails (%@ = underlying error) */
+"ai_error_generation_failed_format" = "Nu s-a putut genera un răspuns Apple Intelligence: %@";
+
 /* Title for the database error view */
 "database_error_title" = "Nu se pot deschide notele";
 
 /* Description for the database error view */
 "database_error_description" = "Baza de date a notelor nu a putut fi deschisă. Repornește aplicația.";
+
+/* Fallback detail shown when the database error carries no description */
+"database_error_unknown_message" = "Eroare necunoscută";

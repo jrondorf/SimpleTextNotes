@@ -1,0 +1,34 @@
+/* Share extension — el */
+
+/* Title of the destination row and picker for a brand-new note */
+"share_new_note_title" = "Νέα σημείωση";
+
+/* Fallback title for notes with no title */
+"share_untitled_note" = "Χωρίς τίτλο";
+
+/* Section label above the destination picker */
+"share_save_to_label" = "ΑΠΟΘΗΚΕΥΣΗ ΣΕ";
+
+/* Navigation title of the destination picker */
+"share_save_to_navigation_title" = "Αποθήκευση σε";
+
+/* Explanation shown when the shared text is appended to an existing note */
+"share_append_message" = "Αυτό το περιεχόμενο θα προστεθεί στην επιλεγμένη σημείωση.";
+
+/* Explanation shown when the shared text becomes a new note */
+"share_new_note_message" = "Αυτό το περιεχόμενο θα αποθηκευτεί σε νέα σημείωση.";
+
+/* Placeholder for the free-text field above the shared content */
+"share_text_placeholder" = "Προσθήκη κειμένου στη σημείωση…";
+
+/* Section header above the list of existing notes */
+"share_existing_notes_label" = "Υπάρχουσες σημειώσεις";
+
+/* Button that saves the shared content */
+"share_save_button" = "Αποθήκευση";
+
+/* Accessibility label for the button that dismisses the share sheet */
+"share_cancel_button" = "Ακύρωση";
+
+/* Button that closes the destination picker */
+"share_done_button" = "Τέλος";

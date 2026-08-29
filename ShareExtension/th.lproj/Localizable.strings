@@ -1,0 +1,34 @@
+/* Share extension — th */
+
+/* Title of the destination row and picker for a brand-new note */
+"share_new_note_title" = "โน้ตใหม่";
+
+/* Fallback title for notes with no title */
+"share_untitled_note" = "ไม่มีชื่อ";
+
+/* Section label above the destination picker */
+"share_save_to_label" = "บันทึกไปที่";
+
+/* Navigation title of the destination picker */
+"share_save_to_navigation_title" = "บันทึกไปที่";
+
+/* Explanation shown when the shared text is appended to an existing note */
+"share_append_message" = "เนื้อหานี้จะถูกเพิ่มต่อท้ายโน้ตที่เลือก";
+
+/* Explanation shown when the shared text becomes a new note */
+"share_new_note_message" = "เนื้อหานี้จะถูกบันทึกในโน้ตใหม่";
+
+/* Placeholder for the free-text field above the shared content */
+"share_text_placeholder" = "เพิ่มข้อความลงในโน้ต…";
+
+/* Section header above the list of existing notes */
+"share_existing_notes_label" = "โน้ตที่มีอยู่";
+
+/* Button that saves the shared content */
+"share_save_button" = "บันทึก";
+
+/* Accessibility label for the button that dismisses the share sheet */
+"share_cancel_button" = "ยกเลิก";
+
+/* Button that closes the destination picker */
+"share_done_button" = "เสร็จสิ้น";

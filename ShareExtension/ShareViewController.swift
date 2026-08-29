@@ -60,15 +60,15 @@ struct SharePickerView: View {
     private var destinationTitle: String {
         if let id = selectedNoteId,
            let note = existingNotes.first(where: { $0.id == id }) {
-            return note.title.isEmpty ? "Untitled" : note.title
+            return note.title.isEmpty ? String(localized: "share_untitled_note") : note.title
         }
-        return "New Note"
+        return String(localized: "share_new_note_title")
     }
 
     private var destinationSubtitle: String {
         selectedNoteId != nil
-            ? "This content will be appended to the selected note."
-            : "This content will be saved in a new note."
+            ? String(localized: "share_append_message")
+            : String(localized: "share_new_note_message")
     }
 
     var body: some View {
@@ -98,6 +98,7 @@ struct SharePickerView: View {
                     .background(Color(.systemGray5))
                     .clipShape(Circle())
             }
+            .accessibilityLabel(Text("share_cancel_button"))
             Spacer()
             Text("SimpleTextNotes")
                 .font(.headline)
@@ -106,7 +107,7 @@ struct SharePickerView: View {
                 let action: ShareAction = selectedNoteId.map { .appendToNote(id: $0) } ?? .newNote
                 onSave(action, additionalText)
             } label: {
-                Text("Save")
+                Text("share_save_button")
                     .font(.headline)
                     .foregroundStyle(.black)
                     .padding(.horizontal, 16)
@@ -121,7 +122,7 @@ struct SharePickerView: View {
 
     private var destinationSection: some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text("SAVE TO")
+            Text("share_save_to_label")
                 .font(.caption)
                 .fontWeight(.semibold)
                 .foregroundStyle(.secondary)
@@ -154,7 +155,7 @@ struct SharePickerView: View {
         VStack(alignment: .leading, spacing: 8) {
             ZStack(alignment: .topLeading) {
                 if additionalText.isEmpty {
-                    Text("Add text to note...")
+                    Text("share_text_placeholder")
                         .font(.body)
                         .foregroundStyle(Color(.placeholderText))
                         .padding(.horizontal, 4)
@@ -193,7 +194,7 @@ struct SharePickerView: View {
                     showNotePicker = false
                 } label: {
                     HStack {
-                        Text("New Note")
+                        Text("share_new_note_title")
                             .foregroundStyle(.primary)
                         Spacer()
                         if selectedNoteId == nil {
@@ -204,14 +205,14 @@ struct SharePickerView: View {
                 }
 
                 if !existingNotes.isEmpty {
-                    Section("Existing Notes") {
+                    Section("share_existing_notes_label") {
                         ForEach(existingNotes, id: \.id) { note in
                             Button {
                                 selectedNoteId = note.id
                                 showNotePicker = false
                             } label: {
                                 HStack {
-                                    Text(note.title.isEmpty ? "Untitled" : note.title)
+                                    Text(note.title.isEmpty ? String(localized: "share_untitled_note") : note.title)
                                         .foregroundStyle(.primary)
                                     Spacer()
                                     if selectedNoteId == note.id {
@@ -224,11 +225,11 @@ struct SharePickerView: View {
                     }
                 }
             }
-            .navigationTitle("Save to")
+            .navigationTitle("share_save_to_navigation_title")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Done") { showNotePicker = false }
+                    Button("share_done_button") { showNotePicker = false }
                 }
             }
         }
@@ -262,23 +263,29 @@ class ShareViewController: UIViewController {
             var lines: [String] = []
 
             for item in extensionItems {
-                guard let attachments = item.attachments else { continue }
-                for provider in attachments {
+                var itemLines: [String] = []
+
+                for provider in item.attachments ?? [] {
                     if provider.hasItemConformingToTypeIdentifier(UTType.plainText.identifier) {
                         if let text = try? await provider.loadItem(forTypeIdentifier: UTType.plainText.identifier) as? String,
                            !text.isEmpty {
-                            lines.append(text)
+                            itemLines.append(text)
                         }
                     } else if provider.hasItemConformingToTypeIdentifier(UTType.url.identifier) {
                         if let url = try? await provider.loadItem(forTypeIdentifier: UTType.url.identifier) as? URL {
-                            lines.append(url.absoluteString)
+                            itemLines.append(url.absoluteString)
                         }
                     }
                 }
 
-                if let text = item.attributedContentText?.string, !text.isEmpty {
-                    lines.append(text)
+                // Most share sources put the same text in both an attachment and
+                // attributedContentText — only use the latter as a fallback, or the
+                // note ends up with the shared text twice.
+                if itemLines.isEmpty, let text = item.attributedContentText?.string, !text.isEmpty {
+                    itemLines.append(text)
                 }
+
+                lines.append(contentsOf: itemLines)
             }
 
             let content = lines.joined(separator: "\n").trimmingCharacters(in: .whitespacesAndNewlines)
@@ -337,8 +344,6 @@ class ShareViewController: UIViewController {
         let trimmed = additionalText.trimmingCharacters(in: .whitespacesAndNewlines)
         let combined = trimmed.isEmpty ? content : trimmed + "\n\n" + content
 
-        let defaults = UserDefaults(suiteName: Self.appGroupID)
-        var pending = defaults?.array(forKey: "pendingSharedNotes") as? [[String: String]] ?? []
         var entry: [String: String] = [
             "content": combined,
             "timestamp": Self.isoFormatter.string(from: Date())
@@ -350,8 +355,40 @@ class ShareViewController: UIViewController {
             entry["action"] = "append"
             entry["noteId"] = id
         }
-        pending.append(entry)
-        defaults?.set(pending, forKey: "pendingSharedNotes")
+        // The app drains this list concurrently; coordinate so an append never
+        // races a drain and loses either side's changes.
+        Self.withSharedInboxLock {
+            let defaults = UserDefaults(suiteName: Self.appGroupID)
+            var pending = defaults?.array(forKey: "pendingSharedNotes") as? [[String: String]] ?? []
+            pending.append(entry)
+            defaults?.set(pending, forKey: "pendingSharedNotes")
+        }
+    }
+
+    // MARK: - Shared inbox coordination
+
+    /// Sentinel file in the shared container used to serialize `pendingSharedNotes`
+    /// access between this extension and the app. Mirrored in `ContentView`.
+    private static let sharedInboxLockURL: URL? = FileManager.default
+        .containerURL(forSecurityApplicationGroupIdentifier: ShareViewController.appGroupID)?
+        .appendingPathComponent("pendingSharedNotes.lock")
+
+    private static func withSharedInboxLock(_ body: @escaping () -> Void) {
+        guard let url = sharedInboxLockURL else {
+            body()
+            return
+        }
+        if !FileManager.default.fileExists(atPath: url.path) {
+            FileManager.default.createFile(atPath: url.path, contents: nil)
+        }
+        var didRun = false
+        var coordinationError: NSError?
+        NSFileCoordinator().coordinate(writingItemAt: url, options: [], error: &coordinationError) { _ in
+            body()
+            didRun = true
+        }
+        // Coordination itself failed — better an uncoordinated write than a dropped share.
+        if !didRun { body() }
     }
 
     private func complete() {

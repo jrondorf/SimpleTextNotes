@@ -21,6 +21,8 @@ struct NoteDetailView: View {
     @State private var isGenerating: Bool = false
     @State private var showDeleteConfirmation: Bool = false
     @State private var aiError: String?
+    @State private var timestampTask: Task<Void, Never>?
+    @State private var hasPendingTimestampUpdate: Bool = false
     @AppStorage("editorFontName") private var editorFontName: String = "system"
     @AppStorage("editorFontSize") private var editorFontSize: Double = 16.0
 
@@ -86,9 +88,10 @@ struct NoteDetailView: View {
         #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
         #endif
-        .onChange(of: note.title)   { note.updatedAt = Date() }
-        .onChange(of: note.content) { note.updatedAt = Date() }
+        .onChange(of: note.title)   { scheduleTimestampUpdate() }
+        .onChange(of: note.content) { scheduleTimestampUpdate() }
         .onDisappear {
+            commitTimestampUpdate()
             guard note.title.isEmpty else { return }
             let noteID = note.id
             let isAvailable = SimpleTextNotesAI.isAvailable
@@ -197,6 +200,32 @@ struct NoteDetailView: View {
         } message: {
             Text("paste_clipboard_message")
         }
+    }
+
+    // MARK: - Modification timestamp
+
+    private static let timestampDebounceInterval: Duration = .seconds(1)
+
+    /// Coalesce the `updatedAt` write. Stamping it on every keystroke re-sorts the
+    /// sidebar while the user types and pushes a CloudKit change per character.
+    private func scheduleTimestampUpdate() {
+        hasPendingTimestampUpdate = true
+        timestampTask?.cancel()
+        timestampTask = Task { @MainActor in
+            try? await Task.sleep(for: Self.timestampDebounceInterval)
+            guard !Task.isCancelled else { return }
+            commitTimestampUpdate()
+        }
+    }
+
+    /// Write any coalesced edit through immediately (also called when the editor closes).
+    private func commitTimestampUpdate() {
+        timestampTask?.cancel()
+        timestampTask = nil
+        guard hasPendingTimestampUpdate else { return }
+        hasPendingTimestampUpdate = false
+        guard note.modelContext != nil else { return }
+        note.updatedAt = Date()
     }
 
     // MARK: - Clipboard
