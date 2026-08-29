@@ -14,9 +14,10 @@ extension SimpleTextNotesAIError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .modelUnavailable:
-            return "Apple Intelligence is not available on this device."
+            return String(localized: "ai_error_unavailable_message")
         case .generationFailed(let underlying):
-            return "Could not generate an Apple Intelligence response: \(underlying.localizedDescription)"
+            return String(format: String(localized: "ai_error_generation_failed_format"),
+                          underlying.localizedDescription)
         }
     }
 }

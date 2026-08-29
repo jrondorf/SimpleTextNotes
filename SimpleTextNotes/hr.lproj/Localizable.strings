@@ -1,6 +1,9 @@
 /* Fallback title for notes with no title */
 "untitled_note" = "Bez naslova";
 
+/* Message shown in place of the body when a note has no content */
+"empty_note_message" = "Ova bilješka je prazna.";
+
 /* Navigation title for the notes list */
 "notes_navigation_title" = "Bilješke";
 
@@ -187,8 +190,17 @@
 /* Message shown when AI generation fails */
 "ai_generation_failed_message" = "AI nije mogao obraditi vaš zahtjev. Pokušajte ponovno.";
 
+/* Error shown when Apple Intelligence is unavailable on this device */
+"ai_error_unavailable_message" = "Apple Intelligence nije dostupan na ovom uređaju.";
+
+/* Error shown when an Apple Intelligence request fails (%@ = underlying error) */
+"ai_error_generation_failed_format" = "Nije moguće generirati Apple Intelligence odgovor: %@";
+
 /* Title for the database error view */
 "database_error_title" = "Nije moguće otvoriti bilješke";
 
 /* Description for the database error view */
 "database_error_description" = "Bazu podataka bilješki nije bilo moguće otvoriti. Ponovno pokrenite aplikaciju.";
+
+/* Fallback detail shown when the database error carries no description */
+"database_error_unknown_message" = "Nepoznata pogreška";

@@ -15,8 +15,9 @@ private struct TrashedNoteDetailView: View {
                         .padding(.horizontal)
                         .padding(.top)
                 }
-                Text(note.content.isEmpty ? String(localized: "untitled_note") : note.content)
+                Text(note.content.isEmpty ? String(localized: "empty_note_message") : note.content)
                     .font(.body)
+                    .foregroundStyle(note.content.isEmpty ? .secondary : .primary)
                     .padding(.horizontal)
                     .padding(.bottom)
             }

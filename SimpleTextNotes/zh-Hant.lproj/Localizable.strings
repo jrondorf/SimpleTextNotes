@@ -1,6 +1,9 @@
 /* Fallback title for notes with no title */
 "untitled_note" = "未命名";
 
+/* Message shown in place of the body when a note has no content */
+"empty_note_message" = "此備忘錄為空。";
+
 /* Navigation title for the notes list */
 "notes_navigation_title" = "備忘錄";
 
@@ -187,8 +190,17 @@
 /* Message shown when AI generation fails */
 "ai_generation_failed_message" = "AI 無法處理您的請求，請再試一次。";
 
+/* Error shown when Apple Intelligence is unavailable on this device */
+"ai_error_unavailable_message" = "此裝置不支援 Apple Intelligence。";
+
+/* Error shown when an Apple Intelligence request fails (%@ = underlying error) */
+"ai_error_generation_failed_format" = "無法產生 Apple Intelligence 回應：%@";
+
 /* Title for the database error view */
 "database_error_title" = "無法開啟備忘錄";
 
 /* Description for the database error view */
 "database_error_description" = "備忘錄資料庫無法開啟，請重新啟動應用程式。";
+
+/* Fallback detail shown when the database error carries no description */
+"database_error_unknown_message" = "未知錯誤";

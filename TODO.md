@@ -30,20 +30,26 @@ from the source and must be confirmed on a Mac before acting.
   change, no test logic touched — **not compiled or run** (no Xcode here), so the suite still
   needs a `xcodebuild … test` pass on a Mac to confirm the target builds green.
 
-- [ ] **Share extension can duplicate the shared text** — **[needs Xcode]**
+- [x] **Share extension can duplicate the shared text** — **[needs Xcode]**
   `ShareExtension/ShareViewController.swift:268-289`. The loop appends each attachment
   conforming to `plainText`/`url`, and *then* separately appends
   `item.attributedContentText?.string`. For many share sources those are the same text, so the
   note gets it twice. *Fix:* only fall back to `attributedContentText` when no attachment
   produced content.
+  **Done:** each item now collects its attachment text into `itemLines`, and
+  `attributedContentText` is appended only when that is empty. Not compiled — no Xcode here.
 
-- [ ] **Shared-note handoff can lose content** — **[verified]**
+- [x] **Shared-note handoff can lose content** — **[verified]**
   `ContentView.swift:88-92` reads `pendingSharedNotes` and immediately removes the key before
   inserting any notes; a crash or early `continue` between the two loses the payload. The
   read-modify-write in `ShareViewController.saveNote` (`:339-353`) is also unsynchronized
   against the app's drain, so a share arriving during foregrounding can be dropped.
   *Fix:* delete each entry only after its note is inserted, and coordinate access (file
   coordination or an atomic swap) instead of `removeObject` + iterate.
+  **Done:** the app now pops one entry at a time (`popPendingSharedNote`), so an entry leaves
+  the inbox only once its note exists, and both sides wrap their read-modify-write in
+  `withSharedInboxLock` (an `NSFileCoordinator` write on a lock file in the app group).
+  Not compiled — no Xcode here.
 
 ## P2 — Build, signing, and release configuration
 
@@ -78,11 +84,13 @@ from the source and must be confirmed on a Mac before acting.
 
 ## P3 — Performance and data flow
 
-- [ ] **`updatedAt` is rewritten on every keystroke** — **[verified]**
+- [x] **`updatedAt` is rewritten on every keystroke** — **[verified]**
   `NoteDetailView.swift:88-89` sets `note.updatedAt = Date()` in `onChange` of both title and
   content. With the default "Last Modified" sort this re-sorts the sidebar while the user
   types, and it amplifies CloudKit writes. *Fix:* debounce (e.g. a `Task` cancelled per
   keystroke, committing after a pause) or set `updatedAt` on editor dismissal.
+  **Done:** `scheduleTimestampUpdate()` coalesces the write for one second and `onDisappear`
+  flushes it via `commitTimestampUpdate()`. Not compiled — no Xcode here.
 
 - [ ] **`syncNotesList()` rewrites the full note list to shared `UserDefaults` on every change**
   — **[verified]** `ContentView.swift:57-59` calls it from `onChange(of: notes)`, which fires
@@ -128,17 +136,22 @@ from the source and must be confirmed on a Mac before acting.
   Settings.bundle that doesn't match exactly, silently falls back to medium. *Fix:* scale a
   single base value (e.g. `UIFontMetrics`/`ScaledMetric` on one property) instead of switching.
 
-- [ ] **`CloudKitSyncMonitor` never returns to idle** — **[verified]**
+- [x] **`CloudKitSyncMonitor` never returns to idle** — **[verified]**
   `CloudKitSyncMonitor.swift:56-62` sets `.synced` and leaves it; the checkmark stays in the
   toolbar for the rest of the session. *Fix:* revert to `.notSyncing` after a delay.
+  **Done:** `scheduleReturnToIdle()` drops back to `.notSyncing` 3s after the last event; a new
+  in-flight event cancels the pending transition. Not compiled — no Xcode here.
 
 ## P5 — Localization and accessibility
 
-- [ ] **The share extension is entirely unlocalized** — **[verified]**
+- [x] **The share extension is entirely unlocalized** — **[verified]**
   13 hardcoded English strings in `ShareExtension/ShareViewController.swift` ("Save",
   "New Note", "SAVE TO", "Add text to note...", "Existing Notes", "Untitled", "Done", the two
   destination subtitles, …). The app ships 23 languages; the share sheet is English for all of
   them. *Fix:* add `Localizable.strings` to the extension target and localize.
+  **Done:** added `ShareExtension/*.lproj/Localizable.strings` for all 34 locales (11 `share_*`
+  keys) and replaced every literal. Only the product name in the header bar stays a literal.
+  Needs a build to confirm the synchronized group bundles the new `.lproj` folders.
 
 - [ ] **No `.stringsdict` for plurals** — **[verified]**
   `days_until_deletion_format` is `"%d day(s) until permanent deletion"` and the German is

@@ -1,0 +1,34 @@
+/* Share extension — ko */
+
+/* Title of the destination row and picker for a brand-new note */
+"share_new_note_title" = "새 메모";
+
+/* Fallback title for notes with no title */
+"share_untitled_note" = "제목 없음";
+
+/* Section label above the destination picker */
+"share_save_to_label" = "저장 위치";
+
+/* Navigation title of the destination picker */
+"share_save_to_navigation_title" = "저장 위치";
+
+/* Explanation shown when the shared text is appended to an existing note */
+"share_append_message" = "이 콘텐츠는 선택한 메모에 추가됩니다.";
+
+/* Explanation shown when the shared text becomes a new note */
+"share_new_note_message" = "이 콘텐츠는 새로운 메모에 저장됩니다.";
+
+/* Placeholder for the free-text field above the shared content */
+"share_text_placeholder" = "메모에 텍스트 추가…";
+
+/* Section header above the list of existing notes */
+"share_existing_notes_label" = "기존 메모";
+
+/* Button that saves the shared content */
+"share_save_button" = "저장";
+
+/* Accessibility label for the button that dismisses the share sheet */
+"share_cancel_button" = "취소";
+
+/* Button that closes the destination picker */
+"share_done_button" = "완료";

@@ -24,7 +24,7 @@ struct SimpleTextNotesApp: App {
                 ContentView()
                     .modelContainer(container)
             } else {
-                DatabaseErrorView(message: initializationError ?? "Unknown error")
+                DatabaseErrorView(message: initializationError ?? String(localized: "database_error_unknown_message"))
             }
         }
     }

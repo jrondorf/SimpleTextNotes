@@ -1,6 +1,9 @@
 /* Fallback title for notes with no title */
 "untitled_note" = "बिना शीर्षक";
 
+/* Message shown in place of the body when a note has no content */
+"empty_note_message" = "यह नोट खाली है।";
+
 /* Navigation title for the notes list */
 "notes_navigation_title" = "नोट्स";
 
@@ -187,8 +190,17 @@
 /* Message shown when AI generation fails */
 "ai_generation_failed_message" = "AI आपके अनुरोध को संसाधित नहीं कर सका। कृपया पुनः प्रयास करें।";
 
+/* Error shown when Apple Intelligence is unavailable on this device */
+"ai_error_unavailable_message" = "इस डिवाइस पर Apple Intelligence उपलब्ध नहीं है।";
+
+/* Error shown when an Apple Intelligence request fails (%@ = underlying error) */
+"ai_error_generation_failed_format" = "Apple Intelligence प्रतिक्रिया उत्पन्न नहीं की जा सकी: %@";
+
 /* Title for the database error view */
 "database_error_title" = "नोट्स नहीं खोल सकते";
 
 /* Description for the database error view */
 "database_error_description" = "नोट्स डेटाबेस नहीं खोला जा सका। कृपया ऐप को पुनः आरंभ करें।";
+
+/* Fallback detail shown when the database error carries no description */
+"database_error_unknown_message" = "अज्ञात त्रुटि";

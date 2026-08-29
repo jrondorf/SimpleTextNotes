@@ -1,6 +1,9 @@
 /* Fallback title for notes with no title */
 "untitled_note" = "Bez názvu";
 
+/* Message shown in place of the body when a note has no content */
+"empty_note_message" = "Táto poznámka je prázdna.";
+
 /* Navigation title for the notes list */
 "notes_navigation_title" = "Poznámky";
 
@@ -187,8 +190,17 @@
 /* Message shown when AI generation fails */
 "ai_generation_failed_message" = "AI nedokázala spracovať vašu požiadavku. Skúste to znova.";
 
+/* Error shown when Apple Intelligence is unavailable on this device */
+"ai_error_unavailable_message" = "Apple Intelligence nie je na tomto zariadení k dispozícii.";
+
+/* Error shown when an Apple Intelligence request fails (%@ = underlying error) */
+"ai_error_generation_failed_format" = "Nepodarilo sa vygenerovať odpoveď Apple Intelligence: %@";
+
 /* Title for the database error view */
 "database_error_title" = "Poznámky sa nedajú otvoriť";
 
 /* Description for the database error view */
 "database_error_description" = "Databázu poznámok sa nepodarilo otvoriť. Reštartujte aplikáciu.";
+
+/* Fallback detail shown when the database error carries no description */
+"database_error_unknown_message" = "Neznáma chyba";

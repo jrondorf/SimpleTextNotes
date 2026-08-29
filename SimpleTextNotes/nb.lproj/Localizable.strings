@@ -1,6 +1,9 @@
 /* Fallback title for notes with no title */
 "untitled_note" = "Uten tittel";
 
+/* Message shown in place of the body when a note has no content */
+"empty_note_message" = "Dette notatet er tomt.";
+
 /* Navigation title for the notes list */
 "notes_navigation_title" = "Notater";
 
@@ -187,8 +190,17 @@
 /* Message shown when AI generation fails */
 "ai_generation_failed_message" = "AI-en kunne ikke behandle forespørselen din. Prøv igjen.";
 
+/* Error shown when Apple Intelligence is unavailable on this device */
+"ai_error_unavailable_message" = "Apple Intelligence er ikke tilgjengelig på denne enheten.";
+
+/* Error shown when an Apple Intelligence request fails (%@ = underlying error) */
+"ai_error_generation_failed_format" = "Kunne ikke generere et Apple Intelligence-svar: %@";
+
 /* Title for the database error view */
 "database_error_title" = "Kan ikke åpne notater";
 
 /* Description for the database error view */
 "database_error_description" = "Notatdatabasen kunne ikke åpnes. Start appen på nytt.";
+
+/* Fallback detail shown when the database error carries no description */
+"database_error_unknown_message" = "Ukjent feil";

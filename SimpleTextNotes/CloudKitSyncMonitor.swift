@@ -21,9 +21,13 @@ enum CloudKitSyncState {
 final class CloudKitSyncMonitor {
     private(set) var syncState: CloudKitSyncState = .notSyncing
 
+    /// How long the "synced" checkmark stays up before the indicator goes back to idle.
+    private static let syncedDisplayDuration: TimeInterval = 3
+
     private let logger = Logger(subsystem: "de.futural.simpletextnotes", category: "CloudKitSync")
     private var observer: NSObjectProtocol?
     private var activeEvents: Int = 0
+    private var idleTask: Task<Void, Never>?
 
     init() {
         observer = NotificationCenter.default.addObserver(
@@ -36,6 +40,7 @@ final class CloudKitSyncMonitor {
     }
 
     deinit {
+        idleTask?.cancel()
         if let observer {
             NotificationCenter.default.removeObserver(observer)
         }
@@ -47,6 +52,8 @@ final class CloudKitSyncMonitor {
 
         if event.endDate == nil {
             // Event is still in progress
+            idleTask?.cancel()
+            idleTask = nil
             activeEvents += 1
             syncState = .syncing
         } else {
@@ -58,8 +65,21 @@ final class CloudKitSyncMonitor {
                 logger.debug("CloudKit sync succeeded [\(self.typeName(event.type), privacy: .public)]")
                 if activeEvents == 0 {
                     syncState = .synced
+                    scheduleReturnToIdle()
                 }
             }
+        }
+    }
+
+    /// Drop back to the neutral icon so the checkmark doesn't sit in the toolbar
+    /// for the rest of the session.
+    private func scheduleReturnToIdle() {
+        idleTask?.cancel()
+        idleTask = Task { @MainActor [weak self] in
+            try? await Task.sleep(for: .seconds(Self.syncedDisplayDuration))
+            guard !Task.isCancelled, let self, self.activeEvents == 0 else { return }
+            guard case .synced = self.syncState else { return }
+            self.syncState = .notSyncing
         }
     }
 

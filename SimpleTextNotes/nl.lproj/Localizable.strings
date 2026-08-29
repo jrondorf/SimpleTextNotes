@@ -1,6 +1,9 @@
 /* Fallback title for notes with no title */
 "untitled_note" = "Naamloos";
 
+/* Message shown in place of the body when a note has no content */
+"empty_note_message" = "Deze notitie is leeg.";
+
 /* Navigation title for the notes list */
 "notes_navigation_title" = "Notities";
 
@@ -187,8 +190,17 @@
 /* Message shown when AI generation fails */
 "ai_generation_failed_message" = "De AI kon uw verzoek niet verwerken. Probeer het opnieuw.";
 
+/* Error shown when Apple Intelligence is unavailable on this device */
+"ai_error_unavailable_message" = "Apple Intelligence is niet beschikbaar op dit apparaat.";
+
+/* Error shown when an Apple Intelligence request fails (%@ = underlying error) */
+"ai_error_generation_failed_format" = "Kan geen Apple Intelligence-antwoord genereren: %@";
+
 /* Title for the database error view */
 "database_error_title" = "Kan notities niet openen";
 
 /* Description for the database error view */
 "database_error_description" = "De notitiedatabase kon niet worden geopend. Start de app opnieuw op.";
+
+/* Fallback detail shown when the database error carries no description */
+"database_error_unknown_message" = "Onbekende fout";

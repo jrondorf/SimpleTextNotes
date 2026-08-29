@@ -1,6 +1,9 @@
 /* Fallback title for notes with no title */
 "untitled_note" = "بدون عنوان";
 
+/* Message shown in place of the body when a note has no content */
+"empty_note_message" = "هذه الملاحظة فارغة.";
+
 /* Navigation title for the notes list */
 "notes_navigation_title" = "الملاحظات";
 
@@ -187,8 +190,17 @@
 /* Message shown when AI generation fails */
 "ai_generation_failed_message" = "تعذّر على الذكاء الاصطناعي معالجة طلبك. يُرجى المحاولة مرة أخرى.";
 
+/* Error shown when Apple Intelligence is unavailable on this device */
+"ai_error_unavailable_message" = "Apple Intelligence غير متوفر على هذا الجهاز.";
+
+/* Error shown when an Apple Intelligence request fails (%@ = underlying error) */
+"ai_error_generation_failed_format" = "تعذّر إنشاء استجابة Apple Intelligence: %@";
+
 /* Title for the database error view */
 "database_error_title" = "تعذّر فتح الملاحظات";
 
 /* Description for the database error view */
 "database_error_description" = "تعذّر فتح قاعدة بيانات الملاحظات. يُرجى إعادة تشغيل التطبيق.";
+
+/* Fallback detail shown when the database error carries no description */
+"database_error_unknown_message" = "خطأ غير معروف";

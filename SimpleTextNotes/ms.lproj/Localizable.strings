@@ -1,6 +1,9 @@
 /* Fallback title for notes with no title */
 "untitled_note" = "Tanpa tajuk";
 
+/* Message shown in place of the body when a note has no content */
+"empty_note_message" = "Nota ini kosong.";
+
 /* Navigation title for the notes list */
 "notes_navigation_title" = "Nota";
 
@@ -187,8 +190,17 @@
 /* Message shown when AI generation fails */
 "ai_generation_failed_message" = "AI tidak dapat memproses permintaan anda. Sila cuba lagi.";
 
+/* Error shown when Apple Intelligence is unavailable on this device */
+"ai_error_unavailable_message" = "Apple Intelligence tidak tersedia pada peranti ini.";
+
+/* Error shown when an Apple Intelligence request fails (%@ = underlying error) */
+"ai_error_generation_failed_format" = "Tidak dapat menjana respons Apple Intelligence: %@";
+
 /* Title for the database error view */
 "database_error_title" = "Tidak Dapat Membuka Nota";
 
 /* Description for the database error view */
 "database_error_description" = "Pangkalan data nota tidak dapat dibuka. Sila mulakan semula apl.";
+
+/* Fallback detail shown when the database error carries no description */
+"database_error_unknown_message" = "Ralat tidak diketahui";

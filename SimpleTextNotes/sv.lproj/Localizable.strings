@@ -1,6 +1,9 @@
 /* Fallback title for notes with no title */
 "untitled_note" = "Namnlös";
 
+/* Message shown in place of the body when a note has no content */
+"empty_note_message" = "Den här anteckningen är tom.";
+
 /* Navigation title for the notes list */
 "notes_navigation_title" = "Anteckningar";
 
@@ -187,8 +190,17 @@
 /* Message shown when AI generation fails */
 "ai_generation_failed_message" = "AI kunde inte behandla din begäran. Försök igen.";
 
+/* Error shown when Apple Intelligence is unavailable on this device */
+"ai_error_unavailable_message" = "Apple Intelligence är inte tillgängligt på den här enheten.";
+
+/* Error shown when an Apple Intelligence request fails (%@ = underlying error) */
+"ai_error_generation_failed_format" = "Det gick inte att skapa ett Apple Intelligence-svar: %@";
+
 /* Title for the database error view */
 "database_error_title" = "Kan inte öppna anteckningar";
 
 /* Description for the database error view */
 "database_error_description" = "Anteckningsdatabasen kunde inte öppnas. Starta om appen.";
+
+/* Fallback detail shown when the database error carries no description */
+"database_error_unknown_message" = "Okänt fel";

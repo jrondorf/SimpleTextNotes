@@ -1,6 +1,9 @@
 /* Fallback title for notes with no title */
 "untitled_note" = "Nimetön";
 
+/* Message shown in place of the body when a note has no content */
+"empty_note_message" = "Tämä muistiinpano on tyhjä.";
+
 /* Navigation title for the notes list */
 "notes_navigation_title" = "Muistiinpanot";
 
@@ -187,8 +190,17 @@
 /* Message shown when AI generation fails */
 "ai_generation_failed_message" = "Tekoäly ei pystynyt käsittelemään pyyntöäsi. Yritä uudelleen.";
 
+/* Error shown when Apple Intelligence is unavailable on this device */
+"ai_error_unavailable_message" = "Apple Intelligence ei ole käytettävissä tässä laitteessa.";
+
+/* Error shown when an Apple Intelligence request fails (%@ = underlying error) */
+"ai_error_generation_failed_format" = "Apple Intelligence -vastausta ei voitu luoda: %@";
+
 /* Title for the database error view */
 "database_error_title" = "Muistiinpanoja ei voi avata";
 
 /* Description for the database error view */
 "database_error_description" = "Muistiinpanojen tietokantaa ei voitu avata. Käynnistä sovellus uudelleen.";
+
+/* Fallback detail shown when the database error carries no description */
+"database_error_unknown_message" = "Tuntematon virhe";
