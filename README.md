@@ -1,4 +1,4 @@
-# SimpleTextNotes
+# Simple Text Notes
 
 A simple plain text note-taking app built with SwiftUI for iOS, iPadOS, and macOS.
 

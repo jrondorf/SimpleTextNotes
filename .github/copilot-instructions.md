@@ -1,8 +1,8 @@
-# GitHub Copilot Instructions — SimpleTextNotes
+# GitHub Copilot Instructions — Simple Text Notes
 
 ## Project Overview
 
-**SimpleTextNotes** is a lightweight, cross-platform note-taking app for iOS, iPadOS, and macOS. It is built entirely with native Apple frameworks and has no external dependencies.
+**Simple Text Notes** is a lightweight, cross-platform note-taking app for iOS, iPadOS, and macOS. It is built entirely with native Apple frameworks and has no external dependencies.
 
 ## Tech Stack
 

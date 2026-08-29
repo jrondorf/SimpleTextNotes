@@ -4,7 +4,7 @@ Guidance for Claude Code (and other AI assistants) working in this repository.
 
 ## What this is
 
-**SimpleTextNotes** — a plain-text note-taking app for iPhone, iPad, and Mac (via Mac
+**Simple Text Notes** — a plain-text note-taking app for iPhone, iPad, and Mac (via Mac
 Catalyst). SwiftUI + SwiftData + CloudKit, plus an iOS Share Extension and optional
 on-device Apple Intelligence features. **No external dependencies** — Apple frameworks only,
 no SPM/CocoaPods/Carthage manifests anywhere in the tree.
@@ -242,7 +242,10 @@ controller with edge constraints (**not** as a presented sheet — presenting br
 Catalyst; see commit `d2e2e92`). It has its **own** `Localizable.strings` table under
 `ShareExtension/*.lproj` — 34 locales, 11 `share_*` keys, resolved against the appex bundle, and
 entirely separate from the app's table (a key added to one is not visible to the other). The
-literal `"SimpleTextNotes"` in the header bar is the product name and is deliberately not a key.
+literal `"Simple Text Notes"` in the header bar is the product name (matching
+`INFOPLIST_KEY_CFBundleDisplayName`) and is deliberately not a key — it uses `Text(verbatim:)`
+so it is never looked up. The product name is always spelled with spaces in user-facing text;
+`SimpleTextNotes` without spaces is only the Xcode project, target, directory, and type prefix.
 Because `ShareExtension/` is a synchronized root group, new `.lproj` folders are picked up with
 no `project.pbxproj` edit — but they only build for locales listed in the project's
 `knownRegions`.

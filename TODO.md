@@ -1,4 +1,4 @@
-# TODO — SimpleTextNotes
+# TODO — Simple Text Notes
 
 Findings from a full read of the codebase at `d2e2e92` (v1.7). Ordered by priority.
 
