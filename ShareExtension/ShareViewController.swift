@@ -100,7 +100,7 @@ struct SharePickerView: View {
             }
             .accessibilityLabel(Text("share_cancel_button"))
             Spacer()
-            Text("SimpleTextNotes")
+            Text(verbatim: "Simple Text Notes")
                 .font(.headline)
             Spacer()
             Button {
