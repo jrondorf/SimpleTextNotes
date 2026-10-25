@@ -208,6 +208,8 @@ Programmatic content mutations (paste and AI generation) register undo operation
 | Cmd+Shift+S | Share note |
 | Cmd+Shift+P | Pin / Unpin note |
 
+Cmd+N is the File menu's "New Note" command (`NoteCommands` in `SimpleTextNotesApp.swift`), which replaces `WindowGroup`'s "New Window" via `CommandGroup(replacing: .newItem)`. On Mac Catalyst the menu bar handles Cmd+N before any view-level `.keyboardShortcut`, so without it Cmd+N opens a new window. The command reaches the key window through `focusedSceneValue(\.newNoteAction, …)` set in `ContentView`.
+
 ## Building and Testing
 
 ```bash

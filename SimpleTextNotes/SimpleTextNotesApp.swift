@@ -27,6 +27,41 @@ struct SimpleTextNotesApp: App {
                 DatabaseErrorView(message: initializationError ?? String(localized: "database_error_unknown_message"))
             }
         }
+        .commands {
+            NoteCommands()
+        }
+    }
+}
+
+// MARK: - Menu commands
+
+/// Creates a note in one scene's window. `ContentView` publishes it with
+/// `focusedSceneValue`, so a menu command acts on the key window only.
+private struct NewNoteActionKey: FocusedValueKey {
+    typealias Value = @MainActor () -> Void
+}
+
+extension FocusedValues {
+    var newNoteAction: (@MainActor () -> Void)? {
+        get { self[NewNoteActionKey.self] }
+        set { self[NewNoteActionKey.self] = newValue }
+    }
+}
+
+/// `WindowGroup` puts "New Window" (⌘N) in the File menu on Mac Catalyst and iPadOS, and
+/// the menu bar claims ⌘N before any view's `.keyboardShortcut` sees it. Replace that item
+/// with "New Note" so ⌘N creates a note in the key window instead of opening a window.
+private struct NoteCommands: Commands {
+    @FocusedValue(\.newNoteAction) private var newNoteAction
+
+    var body: some Commands {
+        CommandGroup(replacing: .newItem) {
+            Button("new_note_button") {
+                newNoteAction?()
+            }
+            .keyboardShortcut("n", modifiers: .command)
+            .disabled(newNoteAction == nil)
+        }
     }
 }
 

@@ -52,6 +52,7 @@ struct ContentView: View {
         .environment(titleGenerationState)
         .environment(notesAI)
         .environment(syncMonitor)
+        .focusedSceneValue(\.newNoteAction, createNote)
         .task {
             purgeOldTrashNotes()
             importPendingSharedNotes()
@@ -65,6 +66,13 @@ struct ContentView: View {
             importPendingSharedNotes()
         }
         #endif
+    }
+
+    /// Target of the File ▸ New Note command (⌘N) for this window.
+    private func createNote() {
+        let note = Note()
+        modelContext.insert(note)
+        selectedNote = note
     }
 
     private func purgeOldTrashNotes() {
