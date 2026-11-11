@@ -9,7 +9,7 @@ Catalyst). SwiftUI + SwiftData + CloudKit, plus an iOS Share Extension and optio
 on-device Apple Intelligence features. **No external dependencies** — Apple frameworks only,
 no SPM/CocoaPods/Carthage manifests anywhere in the tree.
 
-Current release: `MARKETING_VERSION = 1.7`.
+Current release: `MARKETING_VERSION = 1.7.1`.
 
 ## Repository layout
 
