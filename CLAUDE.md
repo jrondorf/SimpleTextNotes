@@ -16,7 +16,8 @@ Current release: `MARKETING_VERSION = 1.7`.
 ```
 SimpleTextNotes.xcodeproj/       # Single Xcode project, 3 targets (no workspace, no SPM)
 SimpleTextNotes/                 # Main app target
-  SimpleTextNotesApp.swift       # @main, ModelContainer + CloudKit setup, DatabaseErrorView fallback
+  SimpleTextNotesApp.swift       # @main, ModelContainer + CloudKit setup, DatabaseErrorView fallback,
+                                 #   NoteCommands (File ▸ New Note ⌘N, replaces New Window)
   ContentView.swift              # NavigationSplitView, environment injection, trash purge,
                                  #   share-extension import/export bridge, AI auto-title for shared notes
   CloudKitSyncMonitor.swift      # @Observable, NSPersistentCloudKitContainer event observer
@@ -293,6 +294,14 @@ no `project.pbxproj` edit — but they only build for locales listed in the proj
 | ⇧⌘V | Paste clipboard (appended) |
 | ⇧⌘S | Share note |
 | ⇧⌘P | Pin / unpin |
+
+⌘N is a menu command, not just a button shortcut: `NoteCommands` (in `SimpleTextNotesApp.swift`)
+replaces `WindowGroup`'s File ▸ New Window via `CommandGroup(replacing: .newItem)`, because on
+Mac Catalyst the menu bar claims ⌘N before any view's `.keyboardShortcut` and would open a new
+window. It reaches the key window through `focusedSceneValue(\.newNoteAction, …)`, published by
+`ContentView`. The toolbar button keeps its own ⌘N only off Catalyst
+(`#if !targetEnvironment(macCatalyst)`). Note that `#if os(macOS)` is **false** on Catalyst, and
+AppKit-only scene APIs (`Window`, `NSApplicationDelegateAdaptor`) don't exist there.
 
 Programmatic content mutations (paste, AI generation) register an undo with
 `@Environment(\.undoManager)` **before** mutating `note.content`, with

@@ -124,7 +124,10 @@ struct NoteListView: View {
                     Label("new_note_button", systemImage: "square.and.pencil")
                 }
                 .help("new_note_button")
+                #if !targetEnvironment(macCatalyst)
+                // On Mac the File ▸ New Note command owns ⌘N (see NoteCommands).
                 .keyboardShortcut("n", modifiers: .command)
+                #endif
             }
 
             ToolbarItem(placement: .primaryAction) {
