@@ -76,8 +76,8 @@
 /* Extra large font size option */
 "font_size_extra_large" = "Rất lớn (20)";
 
-/* Navigation title for the editor font settings screen */
-"editor_font_navigation_title" = "Phông chữ trình soạn thảo";
+/* Section header for the editor font settings */
+"editor_font_section_title" = "Phông chữ trình soạn thảo";
 
 /* OK button */
 "ok_button" = "OK";
@@ -204,3 +204,27 @@
 
 /* Fallback detail shown when the database error carries no description */
 "database_error_unknown_message" = "Lỗi không xác định";
+
+/* Navigation title for the settings screen */
+"settings_navigation_title" = "Cài đặt";
+
+/* Title of the one-time question asking whether Private Cloud Compute may be used */
+"ai_pcc_consent_title" = "Sử dụng Private Cloud Compute?";
+
+/* Message of the Private Cloud Compute consent question */
+"ai_pcc_consent_message" = "Tiêu đề AI và hỗ trợ viết có thể sử dụng Private Cloud Compute của Apple để cho kết quả tốt hơn. Khi đó, văn bản ghi chú của bạn được gửi đến máy chủ Apple để xử lý và không được lưu trữ. Nếu bạn từ chối, chỉ mô hình trên thiết bị được sử dụng. Bạn có thể thay đổi tùy chọn này bất cứ lúc nào trong Cài đặt.";
+
+/* Button that allows Private Cloud Compute */
+"ai_pcc_consent_allow_button" = "Cho phép";
+
+/* Button that declines Private Cloud Compute and keeps AI on device */
+"ai_pcc_consent_deny_button" = "Chỉ trên thiết bị";
+
+/* Section header for the Apple Intelligence settings */
+"ai_settings_section_title" = "Apple Intelligence";
+
+/* Label for the Private Cloud Compute toggle in settings */
+"ai_pcc_toggle_label" = "Sử dụng Private Cloud Compute";
+
+/* Footer explaining the Private Cloud Compute toggle in settings */
+"ai_pcc_settings_message" = "Khi bật, tiêu đề AI và hỗ trợ viết sử dụng Private Cloud Compute của Apple. Văn bản ghi chú của bạn được gửi đến máy chủ Apple để xử lý và không được lưu trữ. Khi tắt, hoặc khi không thể kết nối máy chủ, mô hình trên thiết bị sẽ được sử dụng.";

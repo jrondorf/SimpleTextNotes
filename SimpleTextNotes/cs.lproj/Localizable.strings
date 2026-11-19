@@ -76,8 +76,8 @@
 /* Extra large font size option */
 "font_size_extra_large" = "Velmi velké (20)";
 
-/* Navigation title for the editor font settings screen */
-"editor_font_navigation_title" = "Písmo editoru";
+/* Section header for the editor font settings */
+"editor_font_section_title" = "Písmo editoru";
 
 /* OK button */
 "ok_button" = "OK";
@@ -204,3 +204,27 @@
 
 /* Fallback detail shown when the database error carries no description */
 "database_error_unknown_message" = "Neznámá chyba";
+
+/* Navigation title for the settings screen */
+"settings_navigation_title" = "Nastavení";
+
+/* Title of the one-time question asking whether Private Cloud Compute may be used */
+"ai_pcc_consent_title" = "Používat Private Cloud Compute?";
+
+/* Message of the Private Cloud Compute consent question */
+"ai_pcc_consent_message" = "AI názvy a pomoc s psaním mohou pro lepší výsledky využívat Private Cloud Compute od Applu. Text poznámky se pak odešle ke zpracování na servery Applu a neukládá se. Pokud odmítnete, použije se pouze model v zařízení. Kdykoli to můžete změnit v Nastavení.";
+
+/* Button that allows Private Cloud Compute */
+"ai_pcc_consent_allow_button" = "Povolit";
+
+/* Button that declines Private Cloud Compute and keeps AI on device */
+"ai_pcc_consent_deny_button" = "Jen v zařízení";
+
+/* Section header for the Apple Intelligence settings */
+"ai_settings_section_title" = "Apple Intelligence";
+
+/* Label for the Private Cloud Compute toggle in settings */
+"ai_pcc_toggle_label" = "Používat Private Cloud Compute";
+
+/* Footer explaining the Private Cloud Compute toggle in settings */
+"ai_pcc_settings_message" = "Je-li zapnuto, AI názvy a pomoc s psaním využívají Private Cloud Compute od Applu. Text poznámky se odešle ke zpracování na servery Applu a neukládá se. Je-li vypnuto nebo servery nejsou dostupné, použije se model v zařízení.";

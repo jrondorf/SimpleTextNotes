@@ -76,8 +76,8 @@
 /* Extra large font size option */
 "font_size_extra_large" = "特大号 (20)";
 
-/* Navigation title for the editor font settings screen */
-"editor_font_navigation_title" = "编辑器字体";
+/* Section header for the editor font settings */
+"editor_font_section_title" = "编辑器字体";
 
 /* OK button */
 "ok_button" = "好";
@@ -204,3 +204,27 @@
 
 /* Fallback detail shown when the database error carries no description */
 "database_error_unknown_message" = "未知错误";
+
+/* Navigation title for the settings screen */
+"settings_navigation_title" = "设置";
+
+/* Title of the one-time question asking whether Private Cloud Compute may be used */
+"ai_pcc_consent_title" = "使用私有云计算？";
+
+/* Message of the Private Cloud Compute consent question */
+"ai_pcc_consent_message" = "AI 标题和写作帮助可以使用 Apple 的私有云计算以获得更好的结果。此时，备忘录文本会发送到 Apple 服务器进行处理，且不会被存储。如果拒绝，则只使用设备上的模型。你可以随时在“设置”中更改此选项。";
+
+/* Button that allows Private Cloud Compute */
+"ai_pcc_consent_allow_button" = "允许";
+
+/* Button that declines Private Cloud Compute and keeps AI on device */
+"ai_pcc_consent_deny_button" = "仅限设备上";
+
+/* Section header for the Apple Intelligence settings */
+"ai_settings_section_title" = "Apple 智能";
+
+/* Label for the Private Cloud Compute toggle in settings */
+"ai_pcc_toggle_label" = "使用私有云计算";
+
+/* Footer explaining the Private Cloud Compute toggle in settings */
+"ai_pcc_settings_message" = "开启后，AI 标题和写作帮助将使用 Apple 的私有云计算。备忘录文本会发送到 Apple 服务器进行处理，且不会被存储。关闭时，或无法连接服务器时，将使用设备上的模型。";

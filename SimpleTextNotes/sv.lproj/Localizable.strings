@@ -76,8 +76,8 @@
 /* Extra large font size option */
 "font_size_extra_large" = "Extra stor (20)";
 
-/* Navigation title for the editor font settings screen */
-"editor_font_navigation_title" = "Redigerarteckensnitt";
+/* Section header for the editor font settings */
+"editor_font_section_title" = "Redigerarteckensnitt";
 
 /* OK button */
 "ok_button" = "OK";
@@ -204,3 +204,27 @@
 
 /* Fallback detail shown when the database error carries no description */
 "database_error_unknown_message" = "Okänt fel";
+
+/* Navigation title for the settings screen */
+"settings_navigation_title" = "Inställningar";
+
+/* Title of the one-time question asking whether Private Cloud Compute may be used */
+"ai_pcc_consent_title" = "Använda Private Cloud Compute?";
+
+/* Message of the Private Cloud Compute consent question */
+"ai_pcc_consent_message" = "AI-titlar och skrivhjälp kan använda Apples Private Cloud Compute för bättre resultat. Texten i din anteckning skickas då till Apples servrar för bearbetning och sparas inte. Om du avböjer används bara modellen på enheten. Du kan när som helst ändra detta i Inställningar.";
+
+/* Button that allows Private Cloud Compute */
+"ai_pcc_consent_allow_button" = "Tillåt";
+
+/* Button that declines Private Cloud Compute and keeps AI on device */
+"ai_pcc_consent_deny_button" = "Endast på enheten";
+
+/* Section header for the Apple Intelligence settings */
+"ai_settings_section_title" = "Apple Intelligence";
+
+/* Label for the Private Cloud Compute toggle in settings */
+"ai_pcc_toggle_label" = "Använd Private Cloud Compute";
+
+/* Footer explaining the Private Cloud Compute toggle in settings */
+"ai_pcc_settings_message" = "När detta är på använder AI-titlar och skrivhjälp Apples Private Cloud Compute. Texten i din anteckning skickas till Apples servrar för bearbetning och sparas inte. När det är av, eller om servrarna inte kan nås, används modellen på enheten.";

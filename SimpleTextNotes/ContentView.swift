@@ -1,8 +1,5 @@
 import SwiftUI
 import SwiftData
-#if canImport(FoundationModels)
-import FoundationModels
-#endif
 
 // MARK: - ContentView
 
@@ -14,6 +11,8 @@ struct ContentView: View {
     @State private var titleGenerationState = TitleGenerationState()
     @State private var notesAI = SimpleTextNotesAI()
     @State private var syncMonitor = CloudKitSyncMonitor()
+    @AppStorage(PrivateCloudComputeConsent.storageKey) private var pccConsent: PrivateCloudComputeConsent = .undecided
+    @State private var pccConsentRequested: Bool = false
 
     private static let appGroupID = "group.de.futural.simpletextnotes"
     private static let isoFormatter = ISO8601DateFormatter()
@@ -49,6 +48,12 @@ struct ContentView: View {
                     }
             }
         }
+        .alert("ai_pcc_consent_title", isPresented: pccConsentAlertBinding) {
+            Button("ai_pcc_consent_allow_button") { pccConsent = .granted }
+            Button("ai_pcc_consent_deny_button", role: .cancel) { pccConsent = .denied }
+        } message: {
+            Text("ai_pcc_consent_message")
+        }
         .environment(titleGenerationState)
         .environment(notesAI)
         .environment(syncMonitor)
@@ -57,6 +62,7 @@ struct ContentView: View {
             purgeOldTrashNotes()
             importPendingSharedNotes()
             syncNotesList()
+            requestPrivateCloudComputeConsentIfNeeded()
         }
         .onChange(of: notes) { _, _ in
             syncNotesList()
@@ -182,6 +188,24 @@ struct ContentView: View {
         defaults?.set(list, forKey: "notesList")
     }
 
+    // MARK: - Private Cloud Compute Consent
+
+    /// Shown while this window asked and nobody has answered yet. Keyed off the stored
+    /// consent too, so answering in one window dismisses the question in every other.
+    private var pccConsentAlertBinding: Binding<Bool> {
+        Binding(
+            get: { pccConsentRequested && pccConsent == .undecided },
+            set: { if !$0 { pccConsentRequested = false } }
+        )
+    }
+
+    /// Asks once, on the first launch where Private Cloud Compute is available (iOS 27+).
+    /// Until the user answers, all AI requests stay on device.
+    private func requestPrivateCloudComputeConsentIfNeeded() {
+        guard pccConsent == .undecided, SimpleTextNotesAI.isPrivateCloudComputeSupported else { return }
+        pccConsentRequested = true
+    }
+
     // MARK: - AI Title Generation (Share Extension)
 
     private static let maxTitleLength = 60
@@ -205,22 +229,16 @@ struct ContentView: View {
         guard note.title.isEmpty, !content.isEmpty else { return }
         guard SimpleTextNotesAI.isAvailable else { return }
 
-#if canImport(FoundationModels)
-        if #available(iOS 26.0, macOS 26.0, *) {
-            do {
-                let session = try notesAI.makeSession()
-                let truncated = String(content.prefix(Self.maxContentLengthForTitleGeneration))
-                let response = try await session.respond(
-                    to: "Generate a very short title (maximum \(Self.maxTitleLength) characters) for this note. Reply with only the title text, no quotes, no punctuation at the end, no explanation:\n\n\(truncated)"
-                )
-                let generated = response.content.trimmingCharacters(in: .whitespacesAndNewlines)
-                guard !generated.isEmpty, note.title.isEmpty, note.modelContext != nil else { return }
-                note.title = String(generated.prefix(Self.maxTitleLength))
-                note.updatedAt = Date()
-            } catch {
-                // Title generation failed silently; note keeps an empty title
-            }
+        do {
+            let truncated = String(content.prefix(Self.maxContentLengthForTitleGeneration))
+            let generated = try await notesAI.respond(
+                to: "Generate a very short title (maximum \(Self.maxTitleLength) characters) for this note. Reply with only the title text, no quotes, no punctuation at the end, no explanation:\n\n\(truncated)"
+            )
+            guard !generated.isEmpty, note.title.isEmpty, note.modelContext != nil else { return }
+            note.title = String(generated.prefix(Self.maxTitleLength))
+            note.updatedAt = Date()
+        } catch {
+            // Title generation failed silently; note keeps an empty title
         }
-#endif
     }
 }

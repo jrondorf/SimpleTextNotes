@@ -76,8 +76,8 @@
 /* Extra large font size option */
 "font_size_extra_large" = "Дуже великий (20)";
 
-/* Navigation title for the editor font settings screen */
-"editor_font_navigation_title" = "Шрифт редактора";
+/* Section header for the editor font settings */
+"editor_font_section_title" = "Шрифт редактора";
 
 /* OK button */
 "ok_button" = "OK";
@@ -204,3 +204,27 @@
 
 /* Fallback detail shown when the database error carries no description */
 "database_error_unknown_message" = "Невідома помилка";
+
+/* Navigation title for the settings screen */
+"settings_navigation_title" = "Налаштування";
+
+/* Title of the one-time question asking whether Private Cloud Compute may be used */
+"ai_pcc_consent_title" = "Використовувати Private Cloud Compute?";
+
+/* Message of the Private Cloud Compute consent question */
+"ai_pcc_consent_message" = "Для кращих результатів заголовки ШІ та допомога з написанням можуть використовувати Private Cloud Compute від Apple. Текст нотатки при цьому надсилається на сервери Apple для обробки й не зберігається. Якщо ви відмовитеся, використовуватиметься лише модель на пристрої. Ви можете змінити це будь-коли в Налаштуваннях.";
+
+/* Button that allows Private Cloud Compute */
+"ai_pcc_consent_allow_button" = "Дозволити";
+
+/* Button that declines Private Cloud Compute and keeps AI on device */
+"ai_pcc_consent_deny_button" = "Лише на пристрої";
+
+/* Section header for the Apple Intelligence settings */
+"ai_settings_section_title" = "Apple Intelligence";
+
+/* Label for the Private Cloud Compute toggle in settings */
+"ai_pcc_toggle_label" = "Використовувати Private Cloud Compute";
+
+/* Footer explaining the Private Cloud Compute toggle in settings */
+"ai_pcc_settings_message" = "Якщо ввімкнено, заголовки ШІ та допомога з написанням використовують Private Cloud Compute від Apple. Текст нотатки надсилається на сервери Apple для обробки й не зберігається. Якщо вимкнено або сервери недоступні, використовується модель на пристрої.";

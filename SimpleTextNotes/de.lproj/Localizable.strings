@@ -76,8 +76,8 @@
 /* Extra large font size option */
 "font_size_extra_large" = "Sehr groß (20)";
 
-/* Navigation title for the editor font settings screen */
-"editor_font_navigation_title" = "Editor-Schriftart";
+/* Section header for the editor font settings */
+"editor_font_section_title" = "Editor-Schriftart";
 
 /* OK button */
 "ok_button" = "OK";
@@ -204,3 +204,27 @@
 
 /* Fallback detail shown when the database error carries no description */
 "database_error_unknown_message" = "Unbekannter Fehler";
+
+/* Navigation title for the settings screen */
+"settings_navigation_title" = "Einstellungen";
+
+/* Title of the one-time question asking whether Private Cloud Compute may be used */
+"ai_pcc_consent_title" = "Private Cloud Compute verwenden?";
+
+/* Message of the Private Cloud Compute consent question */
+"ai_pcc_consent_message" = "KI-Titel und Schreibhilfe können für bessere Ergebnisse Apples Private Cloud Compute nutzen. Dabei wird der Text deiner Notiz zur Verarbeitung an Apple-Server gesendet und nicht gespeichert. Wenn du ablehnst, wird nur das Modell auf dem Gerät verwendet. Du kannst dies jederzeit in den Einstellungen ändern.";
+
+/* Button that allows Private Cloud Compute */
+"ai_pcc_consent_allow_button" = "Erlauben";
+
+/* Button that declines Private Cloud Compute and keeps AI on device */
+"ai_pcc_consent_deny_button" = "Nur auf dem Gerät";
+
+/* Section header for the Apple Intelligence settings */
+"ai_settings_section_title" = "Apple Intelligence";
+
+/* Label for the Private Cloud Compute toggle in settings */
+"ai_pcc_toggle_label" = "Private Cloud Compute verwenden";
+
+/* Footer explaining the Private Cloud Compute toggle in settings */
+"ai_pcc_settings_message" = "Wenn aktiviert, nutzen KI-Titel und Schreibhilfe Apples Private Cloud Compute. Der Text deiner Notiz wird zur Verarbeitung an Apple-Server gesendet und nicht gespeichert. Wenn deaktiviert oder die Server nicht erreichbar sind, wird das Modell auf dem Gerät verwendet.";

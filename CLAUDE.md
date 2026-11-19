@@ -27,13 +27,14 @@ SimpleTextNotes/                 # Main app target
   Views/NoteListView.swift       # List, search, sort, pin, trash button, iCloud indicator
   Views/NoteDetailView.swift     # Title + TextEditor, toolbar actions, word count, AI actions
   Views/TrashView.swift          # Trash sheet + read-only TrashedNoteDetailView
-  Views/SettingsView.swift       # Editor font style/size
-  *.lproj/Localizable.strings    # 34 languages incl. RTL (ar/he), 69 keys each (en is source)
+  Views/SettingsView.swift       # Editor font style/size, Private Cloud Compute toggle (iOS 27+)
+  *.lproj/Localizable.strings    # 34 languages incl. RTL (ar/he), 77 keys each (en is source)
   Settings.bundle/Root.plist     # iOS Settings-app mirror of the font preferences
   Assets.xcassets/               # AppIcon (iOS + mac sizes), AccentColor
   Info.plist                     # UIBackgroundModes: remote-notification
   SimpleTextNotes.entitlements   # Debug signing
   SimpleTextNotesRelease.entitlements  # Release signing (adds aps-environment: production)
+                                 #   Both carry com.apple.developer.private-cloud-compute
 ShareExtension/                  # iOS share extension target (UIKit host + SwiftUI picker)
   ShareViewController.swift      # Everything: ShareAction, LinkPreviewCard, SharePickerView, controller
   *.lproj/Localizable.strings    # Its own 34-language table, 11 keys each (separate from the app's)
@@ -177,6 +178,7 @@ SimpleTextNotesApp (@main)
 | `editorFontName` | String (`system`/`monospaced`/`serif`) | `system` | `SettingsView`, `NoteDetailView` |
 | `editorFontSize` | Double (14/16/18/20) | `16.0` | `SettingsView`, `NoteDetailView` |
 | `noteSortOption` | String (`updatedAt`/`createdAt`/`title`) | `updatedAt` | `NoteListView` |
+| `aiPrivateCloudComputeConsent` | `PrivateCloudComputeConsent` (`undecided`/`granted`/`denied`) | `undecided` | `ContentView` (consent alert), `SettingsView` (toggle), `SimpleTextNotesAI` (reads `UserDefaults.standard`) |
 
 The font keys are mirrored in `SimpleTextNotes/Settings.bundle/Root.plist` so they're also
 editable from the iOS Settings app. **Changing a font option means editing both places**, and
@@ -201,10 +203,20 @@ if #available(iOS 26.0, macOS 26.0, *) { /* AI code */ }
 ```
 
 - `SimpleTextNotesAI` — `@Observable`, injected from `ContentView`. `isAvailable` (static)
-  gates all AI UI; `makeSession(instructions:)` builds the `LanguageModelSession`;
+  gates all AI UI; `respond(to:instructions:)` runs a prompt and returns trimmed text;
   `wrap(_:)` normalizes errors to `SimpleTextNotesAIError`. **Never construct
-  `LanguageModelSession` directly** and never instantiate `SimpleTextNotesAI` inside a view —
-  read it from `@Environment(SimpleTextNotesAI.self)`.
+  `LanguageModelSession` directly** (sessions are built privately inside `SimpleTextNotesAI`)
+  and never instantiate `SimpleTextNotesAI` inside a view — read it from
+  `@Environment(SimpleTextNotesAI.self)`. Views don't import `FoundationModels` at all.
+- **Private Cloud Compute (iOS 27+).** `respond` uses `PrivateCloudComputeLanguageModel` only
+  when `usesPrivateCloudCompute` is true: the user granted consent *and*
+  `isPrivateCloudComputeSupported` (iOS 27 + the PCC model reports available). Otherwise — and
+  whenever a PCC request fails (offline, quota, outage) — it uses the on-device model. Consent
+  is the `PrivateCloudComputeConsent` enum in `@AppStorage("aiPrivateCloudComputeConsent")`:
+  `ContentView` asks once via an alert at launch while it is `undecided` (on-device only until
+  answered), and `SettingsView` shows a toggle (only when PCC is supported) to change it later.
+  PCC needs the managed entitlement `com.apple.developer.private-cloud-compute` (in both
+  entitlements files) and the iOS 27 SDK to compile.
 - `TitleGenerationState` — `@Observable`, holds the in-flight `Task` objects *and* the set of
   note IDs showing the animated-dots indicator. Title-generation tasks must be stored here via
   `startTask(_:for:showIndicator:)` (never in view `@State`) so they outlive the view;
@@ -253,7 +265,7 @@ no `project.pbxproj` edit — but they only build for locales listed in the proj
 
 ## Localization
 
-- 34 languages under `SimpleTextNotes/*.lproj/Localizable.strings`, 69 keys each; `en` is the
+- 34 languages under `SimpleTextNotes/*.lproj/Localizable.strings`, 77 keys each; `en` is the
   development language and the source of truth. `SWIFT_EMIT_LOC_STRINGS = YES`. All 34 files
   currently carry an identical key set, and every key referenced from Swift exists in it —
   keep it that way. Note that the 22 translation files share a key **order** that differs from

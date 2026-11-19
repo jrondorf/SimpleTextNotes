@@ -76,8 +76,8 @@
 /* Extra large font size option */
 "font_size_extra_large" = "超大 (20)";
 
-/* Navigation title for the editor font settings screen */
-"editor_font_navigation_title" = "編輯器字體";
+/* Section header for the editor font settings */
+"editor_font_section_title" = "編輯器字體";
 
 /* OK button */
 "ok_button" = "好";
@@ -204,3 +204,27 @@
 
 /* Fallback detail shown when the database error carries no description */
 "database_error_unknown_message" = "未知錯誤";
+
+/* Navigation title for the settings screen */
+"settings_navigation_title" = "設定";
+
+/* Title of the one-time question asking whether Private Cloud Compute may be used */
+"ai_pcc_consent_title" = "要使用私密雲端運算嗎？";
+
+/* Message of the Private Cloud Compute consent question */
+"ai_pcc_consent_message" = "AI 標題與寫作輔助可以使用 Apple 的私密雲端運算，以獲得更好的結果。此時，備忘錄文字會傳送到 Apple 伺服器進行處理，且不會被儲存。若拒絕，則只會使用裝置上的模型。你可以隨時在「設定」中更改此選項。";
+
+/* Button that allows Private Cloud Compute */
+"ai_pcc_consent_allow_button" = "允許";
+
+/* Button that declines Private Cloud Compute and keeps AI on device */
+"ai_pcc_consent_deny_button" = "僅限裝置上";
+
+/* Section header for the Apple Intelligence settings */
+"ai_settings_section_title" = "Apple Intelligence";
+
+/* Label for the Private Cloud Compute toggle in settings */
+"ai_pcc_toggle_label" = "使用私密雲端運算";
+
+/* Footer explaining the Private Cloud Compute toggle in settings */
+"ai_pcc_settings_message" = "開啟後，AI 標題與寫作輔助會使用 Apple 的私密雲端運算。備忘錄文字會傳送到 Apple 伺服器進行處理，且不會被儲存。關閉時，或無法連線到伺服器時，會使用裝置上的模型。";

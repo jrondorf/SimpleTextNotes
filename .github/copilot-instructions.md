@@ -141,7 +141,8 @@ The app integrates Apple Intelligence via `FoundationModels` (iOS 26 / macOS 26+
 
 - **`SimpleTextNotesAI`** — `@Observable` class injected via the environment from `ContentView` (not instantiated per-view):
   - `isAvailable: Bool` — static guard checked before rendering any AI UI
-  - `makeSession(instructions:)` — creates a `LanguageModelSession`
+  - `respond(to:instructions:)` — runs a prompt and returns the trimmed text; sessions are built privately inside this class
+  - Private Cloud Compute (iOS 27+): `respond` uses `PrivateCloudComputeLanguageModel` only when the user consented (`@AppStorage("aiPrivateCloudComputeConsent")`, `PrivateCloudComputeConsent` = `undecided`/`granted`/`denied`) and `isPrivateCloudComputeSupported`; otherwise, or when a PCC request fails, it falls back to the on-device model. `ContentView` asks once via an alert while consent is `undecided`; `SettingsView` has a toggle to change it. Requires the `com.apple.developer.private-cloud-compute` entitlement in both entitlements files.
   - `wrap(_:)` — normalizes errors into `SimpleTextNotesAIError` (`.modelUnavailable` / `.generationFailed`)
 - **`TitleGenerationState`** — `@Observable` class injected via the environment; stores both in-progress IDs (for the animated dots indicator) **and** the `Task` objects (so tasks survive the view lifecycle). Use `startTask(_:for:showIndicator:)` / `markDone(_:)` / `cancelTask(for:)`.
 - **AI button in `NoteDetailView`** — only rendered when `SimpleTextNotesAI.isAvailable`; uses `note.content` as the prompt; shows an informational alert if content is empty; appends generated output; shows an error alert on failure; registers an **undo operation** via `@Environment(\.undoManager)` before mutating content
@@ -244,7 +245,7 @@ Tests live in `SimpleTextNotesTests/SimpleTextNotesTests.swift` and use XCTest w
 
 ## Localization
 
-- 34 languages live in `SimpleTextNotes/*.lproj/Localizable.strings`, 69 keys each. `en` is the
+- 34 languages live in `SimpleTextNotes/*.lproj/Localizable.strings`, 77 keys each. `en` is the
   development language and the source of truth; every other file must carry the identical key set.
 - The share extension has its own separate table under `ShareExtension/*.lproj`, 34 locales with
   11 `share_*` keys, resolved against the appex bundle. Keys do not cross between the two tables.

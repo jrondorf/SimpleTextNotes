@@ -76,8 +76,8 @@
 /* Extra large font size option */
 "font_size_extra_large" = "Nagyon nagy (20)";
 
-/* Navigation title for the editor font settings screen */
-"editor_font_navigation_title" = "Szerkesztő betűtípusa";
+/* Section header for the editor font settings */
+"editor_font_section_title" = "Szerkesztő betűtípusa";
 
 /* OK button */
 "ok_button" = "OK";
@@ -204,3 +204,27 @@
 
 /* Fallback detail shown when the database error carries no description */
 "database_error_unknown_message" = "Ismeretlen hiba";
+
+/* Navigation title for the settings screen */
+"settings_navigation_title" = "Beállítások";
+
+/* Title of the one-time question asking whether Private Cloud Compute may be used */
+"ai_pcc_consent_title" = "Használja a Private Cloud Compute-ot?";
+
+/* Message of the Private Cloud Compute consent question */
+"ai_pcc_consent_message" = "Az AI-címek és az írássegéd a jobb eredmény érdekében az Apple Private Cloud Compute szolgáltatását is használhatják. Ilyenkor a jegyzet szövege feldolgozásra az Apple szervereire kerül, és nem tárolódik. Ha elutasítja, csak az eszközön futó modell lesz használva. Ezt bármikor módosíthatja a Beállításokban.";
+
+/* Button that allows Private Cloud Compute */
+"ai_pcc_consent_allow_button" = "Engedélyezés";
+
+/* Button that declines Private Cloud Compute and keeps AI on device */
+"ai_pcc_consent_deny_button" = "Csak az eszközön";
+
+/* Section header for the Apple Intelligence settings */
+"ai_settings_section_title" = "Apple Intelligence";
+
+/* Label for the Private Cloud Compute toggle in settings */
+"ai_pcc_toggle_label" = "Private Cloud Compute használata";
+
+/* Footer explaining the Private Cloud Compute toggle in settings */
+"ai_pcc_settings_message" = "Ha be van kapcsolva, az AI-címek és az írássegéd az Apple Private Cloud Compute szolgáltatását használják. A jegyzet szövege feldolgozásra az Apple szervereire kerül, és nem tárolódik. Ha ki van kapcsolva, vagy a szerverek nem érhetők el, az eszközön futó modell lesz használva.";

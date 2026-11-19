@@ -76,8 +76,8 @@
 /* Extra large font size option */
 "font_size_extra_large" = "特大 (20)";
 
-/* Navigation title for the editor font settings screen */
-"editor_font_navigation_title" = "エディタフォント";
+/* Section header for the editor font settings */
+"editor_font_section_title" = "エディタフォント";
 
 /* OK button */
 "ok_button" = "OK";
@@ -204,3 +204,27 @@
 
 /* Fallback detail shown when the database error carries no description */
 "database_error_unknown_message" = "不明なエラー";
+
+/* Navigation title for the settings screen */
+"settings_navigation_title" = "設定";
+
+/* Title of the one-time question asking whether Private Cloud Compute may be used */
+"ai_pcc_consent_title" = "Private Cloud Computeを使用しますか？";
+
+/* Message of the Private Cloud Compute consent question */
+"ai_pcc_consent_message" = "AIによるタイトル生成と文章作成支援では、より良い結果を得るためにAppleのPrivate Cloud Computeを使用できます。その場合、メモのテキストは処理のためにAppleのサーバへ送信されますが、保存されません。許可しない場合は、デバイス上のモデルのみが使用されます。この設定は「設定」でいつでも変更できます。";
+
+/* Button that allows Private Cloud Compute */
+"ai_pcc_consent_allow_button" = "許可";
+
+/* Button that declines Private Cloud Compute and keeps AI on device */
+"ai_pcc_consent_deny_button" = "デバイス上のみ";
+
+/* Section header for the Apple Intelligence settings */
+"ai_settings_section_title" = "Apple Intelligence";
+
+/* Label for the Private Cloud Compute toggle in settings */
+"ai_pcc_toggle_label" = "Private Cloud Computeを使用";
+
+/* Footer explaining the Private Cloud Compute toggle in settings */
+"ai_pcc_settings_message" = "オンにすると、AIによるタイトル生成と文章作成支援にAppleのPrivate Cloud Computeが使用されます。メモのテキストは処理のためにAppleのサーバへ送信されますが、保存されません。オフの場合やサーバに接続できない場合は、デバイス上のモデルが使用されます。";

@@ -1,8 +1,5 @@
 import SwiftUI
 import SwiftData
-#if canImport(FoundationModels)
-import FoundationModels
-#endif
 #if canImport(UIKit)
 import UIKit
 #elseif canImport(AppKit)
@@ -278,24 +275,18 @@ struct NoteDetailView: View {
         guard note.title.isEmpty, !content.isEmpty else { return }
         guard SimpleTextNotesAI.isAvailable else { return }
 
-#if canImport(FoundationModels)
-        if #available(iOS 26.0, macOS 26.0, *) {
-            do {
-                let session = try notesAI.makeSession()
-                let truncated = String(content.prefix(Self.maxContentLengthForTitleGeneration))
-                let response = try await session.respond(
-                    to: "Generate a very short title (maximum \(Self.maxTitleLength) characters) for this note. Reply with only the title text, no quotes, no punctuation at the end, no explanation:\n\n\(truncated)"
-                )
-                let generated = response.content.trimmingCharacters(in: .whitespacesAndNewlines)
-                // Re-check after the async gap: note must still be active and untitled
-                guard !generated.isEmpty, note.title.isEmpty, note.modelContext != nil else { return }
-                note.title = String(generated.prefix(Self.maxTitleLength))
-                note.updatedAt = Date()
-            } catch {
-                // Title generation failed silently; note keeps an empty title
-            }
+        do {
+            let truncated = String(content.prefix(Self.maxContentLengthForTitleGeneration))
+            let generated = try await notesAI.respond(
+                to: "Generate a very short title (maximum \(Self.maxTitleLength) characters) for this note. Reply with only the title text, no quotes, no punctuation at the end, no explanation:\n\n\(truncated)"
+            )
+            // Re-check after the async gap: note must still be active and untitled
+            guard !generated.isEmpty, note.title.isEmpty, note.modelContext != nil else { return }
+            note.title = String(generated.prefix(Self.maxTitleLength))
+            note.updatedAt = Date()
+        } catch {
+            // Title generation failed silently; note keeps an empty title
         }
-#endif
     }
 
     @MainActor
@@ -304,29 +295,26 @@ struct NoteDetailView: View {
         isGenerating = true
         defer { isGenerating = false }
 
-#if canImport(FoundationModels)
-        if #available(iOS 26.0, macOS 26.0, *) {
-            do {
-                let session = try notesAI.makeSession(instructions: "You are a helpful writing assistant. Improve, expand, or process the given note content.")
-                let prompt = note.content.trimmingCharacters(in: .whitespacesAndNewlines)
+        do {
+            let prompt = note.content.trimmingCharacters(in: .whitespacesAndNewlines)
 
-                // Register undo before mutating content
-                let originalContent = note.content
-                undoManager?.registerUndo(withTarget: note) { note in
-                    note.content = originalContent
-                    note.updatedAt = Date()
-                }
-                undoManager?.setActionName(String(localized: "ai_button"))
-
-                let response = try await session.respond(to: prompt)
-                let generated = response.content.trimmingCharacters(in: .whitespacesAndNewlines)
-                guard !generated.isEmpty else { return }
-                note.content = "\(note.content)\n\n\(generated)"
+            // Register undo before mutating content
+            let originalContent = note.content
+            undoManager?.registerUndo(withTarget: note) { note in
+                note.content = originalContent
                 note.updatedAt = Date()
-            } catch {
-                aiError = notesAI.wrap(error).localizedDescription
             }
+            undoManager?.setActionName(String(localized: "ai_button"))
+
+            let generated = try await notesAI.respond(
+                to: prompt,
+                instructions: "You are a helpful writing assistant. Improve, expand, or process the given note content."
+            )
+            guard !generated.isEmpty else { return }
+            note.content = "\(note.content)\n\n\(generated)"
+            note.updatedAt = Date()
+        } catch {
+            aiError = notesAI.wrap(error).localizedDescription
         }
-#endif
     }
 }
