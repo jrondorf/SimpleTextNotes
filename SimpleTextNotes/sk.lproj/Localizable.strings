@@ -208,10 +208,10 @@
 /* Navigation title for the settings screen */
 "settings_navigation_title" = "Nastavenia";
 
-/* Title of the one-time question asking whether Private Cloud Compute may be used */
+/* Title of the one-time question asking whether Private Cloud Compute may be used. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
 "ai_pcc_consent_title" = "Používať Private Cloud Compute?";
 
-/* Message of the Private Cloud Compute consent question */
+/* Message of the Private Cloud Compute consent question. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
 "ai_pcc_consent_message" = "AI názvy a pomoc pri písaní môžu pre lepšie výsledky využívať Private Cloud Compute od Applu. Text poznámky sa potom odošle na spracovanie na servery Applu a neukladá sa. Ak odmietnete, použije sa iba model v zariadení. Kedykoľvek to môžete zmeniť v Nastaveniach.";
 
 /* Button that allows Private Cloud Compute */
@@ -220,29 +220,29 @@
 /* Button that declines Private Cloud Compute and keeps AI on device */
 "ai_pcc_consent_deny_button" = "Iba v zariadení";
 
-/* Section header for the Apple Intelligence settings */
+/* Section header for the Apple Intelligence settings. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
 "ai_settings_section_title" = "Apple Intelligence";
 
-/* Label for the Private Cloud Compute toggle in settings */
+/* Label for the Private Cloud Compute toggle in settings. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
 "ai_pcc_toggle_label" = "Používať Private Cloud Compute";
 
-/* Footer explaining the Private Cloud Compute toggle in settings */
+/* Footer explaining the Private Cloud Compute toggle in settings. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
 "ai_pcc_settings_message" = "Ak je zapnuté, AI názvy a pomoc pri písaní využívajú Private Cloud Compute od Applu. Text poznámky sa odošle na spracovanie na servery Applu a neukladá sa. Ak je vypnuté alebo servery nie sú dostupné, použije sa model v zariadení.";
 
-/* Title of the alert shown when the daily Private Cloud Compute limit is reached. Private Cloud Compute is an Apple product name. */
+/* Title of the alert shown when the daily Private Cloud Compute limit is reached. Private Cloud Compute is an Apple product name. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
 "ai_pcc_quota_title" = "Dosiahnutý limit Private Cloud Compute";
 
-/* Message when the daily Private Cloud Compute limit was reached and the on-device model answered instead */
+/* Message when the daily Private Cloud Compute limit was reached and the on-device model answered instead. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
 "ai_pcc_quota_fallback_message" = "Dosiahli ste denný limit Private Cloud Compute, preto túto požiadavku spracoval model v zariadení.";
 
 /* Button that shows the system's options for raising the daily Private Cloud Compute limit */
 "ai_pcc_quota_options_button" = "Zobraziť možnosti";
 
-/* Short note in the editor footer saying AI requests go to Private Cloud Compute */
+/* Short note in the editor footer saying AI requests go to Private Cloud Compute. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
 "ai_pcc_footer_label" = "AI cez Private Cloud Compute";
 
-/* Tooltip and accessibility hint for the Private Cloud Compute note in the editor footer */
+/* Tooltip and accessibility hint for the Private Cloud Compute note in the editor footer. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
 "ai_pcc_privacy_message" = "Požiadavky AI spracúva Apple Intelligence v Private Cloud Compute. Text poznámky sa neukladá a použije sa iba na danú požiadavku.";
 
-/* Help text for the AI button when Private Cloud Compute is used */
+/* Help text for the AI button when Private Cloud Compute is used. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
 "ai_improve_pcc_help" = "Vylepšiť obsah poznámky pomocou Apple Intelligence v Private Cloud Compute";

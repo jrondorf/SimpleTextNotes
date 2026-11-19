@@ -208,10 +208,10 @@
 /* Navigation title for the settings screen */
 "settings_navigation_title" = "Ayarlar";
 
-/* Title of the one-time question asking whether Private Cloud Compute may be used */
+/* Title of the one-time question asking whether Private Cloud Compute may be used. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
 "ai_pcc_consent_title" = "Private Cloud Compute kullanılsın mı?";
 
-/* Message of the Private Cloud Compute consent question */
+/* Message of the Private Cloud Compute consent question. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
 "ai_pcc_consent_message" = "AI başlıkları ve yazma yardımı, daha iyi sonuçlar için Apple'ın Private Cloud Compute hizmetini kullanabilir. Bu durumda notunuzun metni işlenmek üzere Apple sunucularına gönderilir ve saklanmaz. Reddederseniz yalnızca cihazdaki model kullanılır. Bunu istediğiniz zaman Ayarlar'dan değiştirebilirsiniz.";
 
 /* Button that allows Private Cloud Compute */
@@ -220,29 +220,29 @@
 /* Button that declines Private Cloud Compute and keeps AI on device */
 "ai_pcc_consent_deny_button" = "Yalnızca Cihazda";
 
-/* Section header for the Apple Intelligence settings */
+/* Section header for the Apple Intelligence settings. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
 "ai_settings_section_title" = "Apple Intelligence";
 
-/* Label for the Private Cloud Compute toggle in settings */
+/* Label for the Private Cloud Compute toggle in settings. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
 "ai_pcc_toggle_label" = "Private Cloud Compute'u kullan";
 
-/* Footer explaining the Private Cloud Compute toggle in settings */
+/* Footer explaining the Private Cloud Compute toggle in settings. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
 "ai_pcc_settings_message" = "Açık olduğunda AI başlıkları ve yazma yardımı Apple'ın Private Cloud Compute hizmetini kullanır. Notunuzun metni işlenmek üzere Apple sunucularına gönderilir ve saklanmaz. Kapalı olduğunda veya sunuculara ulaşılamadığında cihazdaki model kullanılır.";
 
-/* Title of the alert shown when the daily Private Cloud Compute limit is reached. Private Cloud Compute is an Apple product name. */
+/* Title of the alert shown when the daily Private Cloud Compute limit is reached. Private Cloud Compute is an Apple product name. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
 "ai_pcc_quota_title" = "Private Cloud Compute sınırına ulaşıldı";
 
-/* Message when the daily Private Cloud Compute limit was reached and the on-device model answered instead */
+/* Message when the daily Private Cloud Compute limit was reached and the on-device model answered instead. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
 "ai_pcc_quota_fallback_message" = "Bugünkü Private Cloud Compute sınırına ulaştınız, bu nedenle bu istek cihazdaki model tarafından işlendi.";
 
 /* Button that shows the system's options for raising the daily Private Cloud Compute limit */
 "ai_pcc_quota_options_button" = "Seçenekleri Göster";
 
-/* Short note in the editor footer saying AI requests go to Private Cloud Compute */
+/* Short note in the editor footer saying AI requests go to Private Cloud Compute. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
 "ai_pcc_footer_label" = "Private Cloud Compute ile AI";
 
-/* Tooltip and accessibility hint for the Private Cloud Compute note in the editor footer */
+/* Tooltip and accessibility hint for the Private Cloud Compute note in the editor footer. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
 "ai_pcc_privacy_message" = "AI istekleri Private Cloud Compute üzerinde Apple Intelligence tarafından işlenir. Notunuzun metni saklanmaz ve yalnızca istek için kullanılır.";
 
-/* Help text for the AI button when Private Cloud Compute is used */
+/* Help text for the AI button when Private Cloud Compute is used. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
 "ai_improve_pcc_help" = "Private Cloud Compute üzerinde Apple Intelligence ile not içeriğini iyileştir";
