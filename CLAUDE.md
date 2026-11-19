@@ -28,7 +28,7 @@ SimpleTextNotes/                 # Main app target
   Views/NoteDetailView.swift     # Title + TextEditor, toolbar actions, word count, AI actions
   Views/TrashView.swift          # Trash sheet + read-only TrashedNoteDetailView
   Views/SettingsView.swift       # Editor font style/size, Private Cloud Compute toggle (iOS 27+)
-  *.lproj/Localizable.strings    # 34 languages incl. RTL (ar/he), 77 keys each (en is source)
+  *.lproj/Localizable.strings    # 34 languages incl. RTL (ar/he), 83 keys each (en is source)
   Settings.bundle/Root.plist     # iOS Settings-app mirror of the font preferences
   Assets.xcassets/               # AppIcon (iOS + mac sizes), AccentColor
   Info.plist                     # UIBackgroundModes: remote-notification
@@ -220,6 +220,17 @@ if #available(iOS 26.0, macOS 26.0, *) { /* AI code */ }
   answered), and `SettingsView` shows a toggle (only when PCC is supported) to change it later.
   PCC needs the managed entitlement `com.apple.developer.private-cloud-compute` (in both
   entitlements files) and the iOS 27 SDK to compile.
+- **PCC daily quota** (mirrors HoroDrift's drift insight). `respond` takes an
+  `onQuotaLimitReached` callback, fired on `PrivateCloudComputeLanguageModel.Error.quotaLimitReached`
+  before falling back or rethrowing. The sparkles button uses it: if the on-device model
+  answered instead it shows the `ai_pcc_quota_title` notice, otherwise the error alert; both
+  get a "Show Options" button when `canShowQuotaLimitIncreaseOptions`, which calls
+  `showQuotaLimitIncreaseOptions()` (the system's `quotaUsage.limitIncreaseSuggestion`).
+  Auto-title ignores the quota and just falls back.
+- **Where the data goes.** While PCC is in use, the `NoteDetailView` footer shows
+  `ai_pcc_footer_label` (with `ai_pcc_privacy_message` as tooltip/accessibility hint) and the
+  sparkles button's help switches to `ai_improve_pcc_help`, like the note next to HoroDrift's
+  Analyze button. `NoteDetailView` reads the consent via `@AppStorage` so both update live.
 - `TitleGenerationState` — `@Observable`, holds the in-flight `Task` objects *and* the set of
   note IDs showing the animated-dots indicator. Title-generation tasks must be stored here via
   `startTask(_:for:showIndicator:)` (never in view `@State`) so they outlive the view;
@@ -268,7 +279,7 @@ no `project.pbxproj` edit — but they only build for locales listed in the proj
 
 ## Localization
 
-- 34 languages under `SimpleTextNotes/*.lproj/Localizable.strings`, 77 keys each; `en` is the
+- 34 languages under `SimpleTextNotes/*.lproj/Localizable.strings`, 83 keys each; `en` is the
   development language and the source of truth. `SWIFT_EMIT_LOC_STRINGS = YES`. All 34 files
   currently carry an identical key set, and every key referenced from Swift exists in it —
   keep it that way. Note that the 22 translation files share a key **order** that differs from

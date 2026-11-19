@@ -228,3 +228,21 @@
 
 /* Footer explaining the Private Cloud Compute toggle in settings */
 "ai_pcc_settings_message" = "Jika aktif, judul AI dan bantuan menulis menggunakan Private Cloud Compute dari Apple. Teks catatan Anda dikirim ke server Apple untuk diproses dan tidak disimpan. Jika nonaktif, atau server tidak dapat dijangkau, model di perangkat yang digunakan.";
+
+/* Title of the alert shown when the daily Private Cloud Compute limit is reached. Private Cloud Compute is an Apple product name. */
+"ai_pcc_quota_title" = "Batas Private Cloud Compute Tercapai";
+
+/* Message when the daily Private Cloud Compute limit was reached and the on-device model answered instead */
+"ai_pcc_quota_fallback_message" = "Anda telah mencapai batas harian Private Cloud Compute, jadi permintaan ini diproses oleh model di perangkat.";
+
+/* Button that shows the system's options for raising the daily Private Cloud Compute limit */
+"ai_pcc_quota_options_button" = "Tampilkan Pilihan";
+
+/* Short note in the editor footer saying AI requests go to Private Cloud Compute */
+"ai_pcc_footer_label" = "AI melalui Private Cloud Compute";
+
+/* Tooltip and accessibility hint for the Private Cloud Compute note in the editor footer */
+"ai_pcc_privacy_message" = "Permintaan AI diproses oleh Apple Intelligence di Private Cloud Compute. Teks catatan Anda tidak disimpan dan hanya digunakan untuk permintaan tersebut.";
+
+/* Help text for the AI button when Private Cloud Compute is used */
+"ai_improve_pcc_help" = "Tingkatkan konten catatan dengan Apple Intelligence di Private Cloud Compute";

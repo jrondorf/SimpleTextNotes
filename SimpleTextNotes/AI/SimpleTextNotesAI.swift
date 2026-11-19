@@ -85,9 +85,15 @@ final class SimpleTextNotesAI {
     ///
     /// Uses Private Cloud Compute when the user consented and it is available, and falls
     /// back to the on-device model, if that is ready, when the server request fails
-    /// (offline, quota, outage).
+    /// (offline, quota, outage). `onQuotaLimitReached` runs when the failure was the daily
+    /// Private Cloud Compute limit, before falling back or rethrowing, so a caller can tell
+    /// the user and offer `showQuotaLimitIncreaseOptions()` (as HoroDrift's drift insight does).
     @MainActor
-    func respond(to prompt: String, instructions: String? = nil) async throws -> String {
+    func respond(
+        to prompt: String,
+        instructions: String? = nil,
+        onQuotaLimitReached: (@MainActor () -> Void)? = nil
+    ) async throws -> String {
         guard Self.isAvailable else {
             throw SimpleTextNotesAIError.modelUnavailable
         }
@@ -100,6 +106,9 @@ final class SimpleTextNotesAI {
                 return response.content.trimmingCharacters(in: .whitespacesAndNewlines)
             } catch {
                 try Task.checkCancellation()
+                if Self.isQuotaLimitError(error) {
+                    onQuotaLimitReached?()
+                }
                 guard Self.isOnDeviceModelAvailable else { throw error }
                 Self.logger.error("Private Cloud Compute failed, falling back to on-device model: \(error.localizedDescription, privacy: .public)")
             }
@@ -113,6 +122,43 @@ final class SimpleTextNotesAI {
 #endif
         throw SimpleTextNotesAIError.modelUnavailable
     }
+
+    // MARK: - Private Cloud Compute quota
+
+    /// Whether the system offers options for raising the daily Private Cloud Compute limit
+    /// (an iCloud+ upgrade). Check before showing a "Show Options" button.
+    @MainActor
+    static var canShowQuotaLimitIncreaseOptions: Bool {
+#if canImport(FoundationModels)
+        if #available(iOS 27.0, macOS 27.0, *) {
+            return PrivateCloudComputeLanguageModel().quotaUsage.limitIncreaseSuggestion != nil
+        }
+#endif
+        return false
+    }
+
+    /// Presents the system's options for raising the daily Private Cloud Compute limit.
+    @MainActor
+    static func showQuotaLimitIncreaseOptions() {
+#if canImport(FoundationModels)
+        if #available(iOS 27.0, macOS 27.0, *) {
+            PrivateCloudComputeLanguageModel().quotaUsage.limitIncreaseSuggestion?.show()
+        }
+#endif
+    }
+
+    private static func isQuotaLimitError(_ error: Error) -> Bool {
+#if canImport(FoundationModels)
+        if #available(iOS 27.0, macOS 27.0, *),
+           let pccError = error as? PrivateCloudComputeLanguageModel.Error,
+           case .quotaLimitReached = pccError {
+            return true
+        }
+#endif
+        return false
+    }
+
+    // MARK: - Errors
 
     func wrap(_ error: Error) -> SimpleTextNotesAIError {
         if let appError = error as? SimpleTextNotesAIError {

@@ -228,3 +228,21 @@
 
 /* Footer explaining the Private Cloud Compute toggle in settings */
 "ai_pcc_settings_message" = "כשהאפשרות מופעלת, כותרות AI ועזרה בכתיבה משתמשות ב-Private Cloud Compute של Apple. טקסט הפתק נשלח לשרתי Apple לעיבוד ואינו נשמר. כשהיא כבויה, או אם אין גישה לשרתים, ייעשה שימוש במודל שבמכשיר.";
+
+/* Title of the alert shown when the daily Private Cloud Compute limit is reached. Private Cloud Compute is an Apple product name. */
+"ai_pcc_quota_title" = "הושגה המגבלה של Private Cloud Compute";
+
+/* Message when the daily Private Cloud Compute limit was reached and the on-device model answered instead */
+"ai_pcc_quota_fallback_message" = "הושגה המגבלה היומית של Private Cloud Compute, ולכן הבקשה טופלה על ידי המודל שבמכשיר.";
+
+/* Button that shows the system's options for raising the daily Private Cloud Compute limit */
+"ai_pcc_quota_options_button" = "הצגת אפשרויות";
+
+/* Short note in the editor footer saying AI requests go to Private Cloud Compute */
+"ai_pcc_footer_label" = "AI באמצעות Private Cloud Compute";
+
+/* Tooltip and accessibility hint for the Private Cloud Compute note in the editor footer */
+"ai_pcc_privacy_message" = "בקשות AI מעובדות על ידי Apple Intelligence ב-Private Cloud Compute. טקסט הפתק אינו נשמר ומשמש רק לבקשה.";
+
+/* Help text for the AI button when Private Cloud Compute is used */
+"ai_improve_pcc_help" = "שיפור תוכן הפתק באמצעות Apple Intelligence ב-Private Cloud Compute";

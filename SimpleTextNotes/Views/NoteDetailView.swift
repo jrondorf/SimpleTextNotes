@@ -18,6 +18,12 @@ struct NoteDetailView: View {
     @State private var isGenerating: Bool = false
     @State private var showDeleteConfirmation: Bool = false
     @State private var aiError: String?
+    /// The last AI-button request hit the daily Private Cloud Compute limit.
+    @State private var pccQuotaLimitReached: Bool = false
+    /// The limit was hit but the on-device model answered instead.
+    @State private var showPCCQuotaNotice: Bool = false
+    // Read so the PCC note and the AI button update when consent changes in Settings.
+    @AppStorage(PrivateCloudComputeConsent.storageKey) private var pccConsent: PrivateCloudComputeConsent = .undecided
     @State private var timestampTask: Task<Void, Never>?
     @State private var hasPendingTimestampUpdate: Bool = false
     @AppStorage("editorFontName") private var editorFontName: String = "system"
@@ -55,6 +61,11 @@ struct NoteDetailView: View {
 
     private var characterCount: Int { note.content.count }
 
+    /// AI requests from this note go to Private Cloud Compute (consented and available).
+    private var usesPrivateCloudCompute: Bool {
+        pccConsent == .granted && SimpleTextNotesAI.isPrivateCloudComputeSupported
+    }
+
     var body: some View {
         VStack(spacing: 0) {
             TextField("note_title_placeholder", text: $note.title)
@@ -73,13 +84,17 @@ struct NoteDetailView: View {
 
             // Word / character count footer
             HStack {
+                if usesPrivateCloudCompute {
+                    privateCloudComputeNote
+                }
                 Spacer()
                 Text(String(format: String(localized: "word_count_format"), wordCount, characterCount))
                     .font(.caption2)
                     .foregroundStyle(.tertiary)
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 6)
+                    .layoutPriority(1)
             }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 6)
         }
         .navigationTitle(note.title.isEmpty ? String(localized: "untitled_note") : note.title)
         #if os(iOS)
@@ -134,7 +149,7 @@ struct NoteDetailView: View {
                         } label: {
                             Label("ai_button", systemImage: "sparkles")
                         }
-                        .help("ai_improve_help")
+                        .help(usesPrivateCloudCompute ? "ai_improve_pcc_help" : "ai_improve_help")
                     }
                 }
 
@@ -175,9 +190,20 @@ struct NoteDetailView: View {
             get: { aiError != nil },
             set: { if !$0 { aiError = nil } }
         )) {
+            if pccQuotaLimitReached && SimpleTextNotesAI.canShowQuotaLimitIncreaseOptions {
+                Button("ai_pcc_quota_options_button") { SimpleTextNotesAI.showQuotaLimitIncreaseOptions() }
+            }
             Button("ok_button", role: .cancel) { }
         } message: {
             if let msg = aiError { Text(msg) } else { Text("ai_generation_failed_message") }
+        }
+        .alert("ai_pcc_quota_title", isPresented: $showPCCQuotaNotice) {
+            if SimpleTextNotesAI.canShowQuotaLimitIncreaseOptions {
+                Button("ai_pcc_quota_options_button") { SimpleTextNotesAI.showQuotaLimitIncreaseOptions() }
+            }
+            Button("ok_button", role: .cancel) { }
+        } message: {
+            Text("ai_pcc_quota_fallback_message")
         }
         .alert("delete_note_alert_title", isPresented: $showDeleteConfirmation) {
             Button("move_to_trash_button", role: .destructive) {
@@ -197,6 +223,18 @@ struct NoteDetailView: View {
         } message: {
             Text("paste_clipboard_message")
         }
+    }
+
+    // MARK: - Private Cloud Compute note
+
+    /// Says where AI requests go, like the note next to HoroDrift's Analyze button.
+    private var privateCloudComputeNote: some View {
+        Label("ai_pcc_footer_label", systemImage: "lock.icloud")
+            .font(.caption2)
+            .foregroundStyle(.tertiary)
+            .lineLimit(1)
+            .help("ai_pcc_privacy_message")
+            .accessibilityHint(Text("ai_pcc_privacy_message"))
     }
 
     // MARK: - Modification timestamp
@@ -306,10 +344,14 @@ struct NoteDetailView: View {
             }
             undoManager?.setActionName(String(localized: "ai_button"))
 
+            pccQuotaLimitReached = false
             let generated = try await notesAI.respond(
                 to: prompt,
-                instructions: "You are a helpful writing assistant. Improve, expand, or process the given note content."
+                instructions: "You are a helpful writing assistant. Improve, expand, or process the given note content.",
+                onQuotaLimitReached: { pccQuotaLimitReached = true }
             )
+            // Reaching here after the limit means the on-device model answered instead.
+            showPCCQuotaNotice = pccQuotaLimitReached
             guard !generated.isEmpty else { return }
             note.content = "\(note.content)\n\n\(generated)"
             note.updatedAt = Date()
