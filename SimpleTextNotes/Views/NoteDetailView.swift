@@ -25,6 +25,9 @@ struct NoteDetailView: View {
     // Read so the PCC note and the AI button update when consent changes in Settings.
     @AppStorage(PrivateCloudComputeConsent.storageKey) private var pccConsent: PrivateCloudComputeConsent = .undecided
     @State private var timestampTask: Task<Void, Never>?
+    /// Word and character counts for the footer; nil until the first count finishes.
+    @State private var textCounts: NoteTextCounts?
+    @State private var countTask: Task<Void, Never>?
     @State private var hasPendingTimestampUpdate: Bool = false
     @AppStorage("editorFontName") private var editorFontName: String = "system"
     @AppStorage("editorFontSize") private var editorFontSize: Double = 16.0
@@ -51,15 +54,6 @@ struct NoteDetailView: View {
         default:           return .system(size: effectiveFontSize)
         }
     }
-
-    private var wordCount: Int {
-        note.content
-            .components(separatedBy: .whitespacesAndNewlines)
-            .filter { !$0.isEmpty }
-            .count
-    }
-
-    private var characterCount: Int { note.content.count }
 
     /// AI requests from this note go to Private Cloud Compute (consented and available).
     private var usesPrivateCloudCompute: Bool {
@@ -88,10 +82,13 @@ struct NoteDetailView: View {
                     privateCloudComputeNote
                 }
                 Spacer()
-                Text(String(format: String(localized: "word_count_format"), wordCount, characterCount))
+                Text(String(format: String(localized: "word_count_format"),
+                            textCounts?.words ?? 0, textCounts?.characters ?? 0))
                     .font(.caption2)
                     .foregroundStyle(.tertiary)
                     .layoutPriority(1)
+                    // Keep the footer's height while the first count runs, without flashing "0 words".
+                    .opacity(textCounts == nil ? 0 : 1)
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 6)
@@ -101,9 +98,15 @@ struct NoteDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
         #endif
         .onChange(of: note.title)   { scheduleTimestampUpdate() }
-        .onChange(of: note.content) { scheduleTimestampUpdate() }
+        .onChange(of: note.content) {
+            scheduleTimestampUpdate()
+            scheduleCountUpdate(after: Self.countDebounceInterval)
+        }
+        .task { scheduleCountUpdate(after: nil) }
         .onDisappear {
             commitTimestampUpdate()
+            countTask?.cancel()
+            countTask = nil
             guard note.title.isEmpty else { return }
             let noteID = note.id
             let isAvailable = SimpleTextNotesAI.isAvailable
@@ -263,6 +266,25 @@ struct NoteDetailView: View {
         note.updatedAt = Date()
     }
 
+    // MARK: - Word and character counts
+
+    private static let countDebounceInterval: Duration = .milliseconds(500)
+
+    /// Recount once typing pauses. Counting walks the whole note, so it runs off the main
+    /// actor and never inside `body`; a newer edit cancels the pending or running count.
+    private func scheduleCountUpdate(after delay: Duration?) {
+        countTask?.cancel()
+        countTask = Task { @MainActor in
+            if let delay {
+                try? await Task.sleep(for: delay)
+                guard !Task.isCancelled else { return }
+            }
+            let text = note.content
+            guard let counts = await NoteTextCounts.count(text), !Task.isCancelled else { return }
+            textCounts = counts
+        }
+    }
+
     // MARK: - Clipboard
 
     private var shareText: String {
@@ -358,5 +380,42 @@ struct NoteDetailView: View {
         } catch {
             aiError = notesAI.wrap(error).localizedDescription
         }
+    }
+}
+
+// MARK: - NoteTextCounts
+
+/// Word and character counts of a note, as shown in the editor footer.
+private struct NoteTextCounts: Equatable, Sendable {
+    let words: Int
+    let characters: Int
+
+    /// How many characters to count between cancellation checks.
+    private static let cancellationCheckInterval = 16_384
+
+    /// Counts in a single pass without allocating per word. A word is a run of characters
+    /// that are not whitespace or newlines (`Character.isWhitespace` covers both).
+    /// Returns nil if the calling task was cancelled part-way.
+    ///
+    /// `@concurrent` keeps it on the global executor, off the main actor, even if the target
+    /// later turns on main-actor default isolation or `NonisolatedNonsendingByDefault`.
+    @concurrent
+    static func count(_ text: String) async -> NoteTextCounts? {
+        var words = 0
+        var characters = 0
+        var isInWord = false
+        for character in text {
+            characters += 1
+            if character.isWhitespace {
+                isInWord = false
+            } else if !isInWord {
+                isInWord = true
+                words += 1
+            }
+            if characters % cancellationCheckInterval == 0, Task.isCancelled {
+                return nil
+            }
+        }
+        return NoteTextCounts(words: words, characters: characters)
     }
 }

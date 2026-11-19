@@ -170,6 +170,11 @@ SimpleTextNotesApp (@main)
   content `onChange` handlers call `scheduleTimestampUpdate()`, which coalesces the write for
   one second, and `onDisappear` calls `commitTimestampUpdate()` to flush it. Anything that
   mutates content programmatically (paste, AI) still stamps `updatedAt` directly.
+- The footer's word and character counts are **cached and debounced** too: `textCounts` is
+  filled by `scheduleCountUpdate(after:)` on open and 0.5 s after content stops changing, and
+  `NoteTextCounts.count(_:)` (`@concurrent`, single pass, cancellable) runs off the main actor.
+  Never compute anything proportional to the note's length inside `body` — large notes made
+  every keystroke walk the whole text twice.
 
 ### Persisted preferences (`@AppStorage`)
 

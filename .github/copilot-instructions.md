@@ -48,7 +48,7 @@ SimpleTextNotes/
 │   └── TitleGenerationState.swift # @Observable class; stores Tasks and in-progress IDs for AI title generation
 ├── Views/
 │   ├── NoteListView.swift     # List with @Query, search, sort menu, pin swipe, trash toolbar, sync indicator
-│   ├── NoteDetailView.swift   # Editor with toolbar: pin, share, AI, copy, paste, delete; word count footer
+│   ├── NoteDetailView.swift   # Editor with toolbar: pin, share, AI, copy, paste, delete; word count footer (cached, recounted off the main actor 0.5 s after typing pauses)
 │   ├── TrashView.swift        # Sheet with NavigationLink → TrashedNoteDetailView; restore / empty trash
 │   └── SettingsView.swift     # App settings sheet (font style + size)
 └── SimpleTextNotesTests/
