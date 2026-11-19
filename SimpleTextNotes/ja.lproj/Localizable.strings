@@ -76,8 +76,8 @@
 /* Extra large font size option */
 "font_size_extra_large" = "特大 (20)";
 
-/* Navigation title for the editor font settings screen */
-"editor_font_navigation_title" = "エディタフォント";
+/* Section header for the editor font settings */
+"editor_font_section_title" = "エディタフォント";
 
 /* OK button */
 "ok_button" = "OK";
@@ -204,3 +204,45 @@
 
 /* Fallback detail shown when the database error carries no description */
 "database_error_unknown_message" = "不明なエラー";
+
+/* Navigation title for the settings screen */
+"settings_navigation_title" = "設定";
+
+/* Title of the one-time question asking whether Private Cloud Compute may be used. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
+"ai_pcc_consent_title" = "Private Cloud Computeを使用しますか？";
+
+/* Message of the Private Cloud Compute consent question. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
+"ai_pcc_consent_message" = "AIによるタイトル生成と文章作成支援では、より良い結果を得るためにAppleのPrivate Cloud Computeを使用できます。その場合、メモのテキストは処理のためにAppleのサーバへ送信されますが、保存されません。許可しない場合は、デバイス上のモデルのみが使用されます。この設定は「設定」でいつでも変更できます。";
+
+/* Button that allows Private Cloud Compute */
+"ai_pcc_consent_allow_button" = "許可";
+
+/* Button that declines Private Cloud Compute and keeps AI on device */
+"ai_pcc_consent_deny_button" = "デバイス上のみ";
+
+/* Section header for the Apple Intelligence settings. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
+"ai_settings_section_title" = "Apple Intelligence";
+
+/* Label for the Private Cloud Compute toggle in settings. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
+"ai_pcc_toggle_label" = "Private Cloud Computeを使用";
+
+/* Footer explaining the Private Cloud Compute toggle in settings. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
+"ai_pcc_settings_message" = "オンにすると、AIによるタイトル生成と文章作成支援にAppleのPrivate Cloud Computeが使用されます。メモのテキストは処理のためにAppleのサーバへ送信されますが、保存されません。オフの場合やサーバに接続できない場合は、デバイス上のモデルが使用されます。";
+
+/* Title of the alert shown when the daily Private Cloud Compute limit is reached. Private Cloud Compute is an Apple product name. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
+"ai_pcc_quota_title" = "Private Cloud Computeの上限に達しました";
+
+/* Message when the daily Private Cloud Compute limit was reached and the on-device model answered instead. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
+"ai_pcc_quota_fallback_message" = "本日のPrivate Cloud Computeの上限に達したため、このリクエストはデバイス上のモデルで処理されました。";
+
+/* Button that shows the system's options for raising the daily Private Cloud Compute limit */
+"ai_pcc_quota_options_button" = "オプションを表示";
+
+/* Short note in the editor footer saying AI requests go to Private Cloud Compute. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
+"ai_pcc_footer_label" = "Private Cloud ComputeでAIを使用中";
+
+/* Tooltip and accessibility hint for the Private Cloud Compute note in the editor footer. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
+"ai_pcc_privacy_message" = "AIリクエストはPrivate Cloud Compute上のApple Intelligenceで処理されます。メモのテキストは保存されず、リクエストにのみ使用されます。";
+
+/* Help text for the AI button when Private Cloud Compute is used. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
+"ai_improve_pcc_help" = "Private Cloud Compute上のApple Intelligenceでメモの内容を改善する";

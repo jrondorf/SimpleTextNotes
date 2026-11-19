@@ -76,8 +76,8 @@
 /* Extra large font size option */
 "font_size_extra_large" = "Дуже великий (20)";
 
-/* Navigation title for the editor font settings screen */
-"editor_font_navigation_title" = "Шрифт редактора";
+/* Section header for the editor font settings */
+"editor_font_section_title" = "Шрифт редактора";
 
 /* OK button */
 "ok_button" = "OK";
@@ -204,3 +204,45 @@
 
 /* Fallback detail shown when the database error carries no description */
 "database_error_unknown_message" = "Невідома помилка";
+
+/* Navigation title for the settings screen */
+"settings_navigation_title" = "Налаштування";
+
+/* Title of the one-time question asking whether Private Cloud Compute may be used. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
+"ai_pcc_consent_title" = "Використовувати Private Cloud Compute?";
+
+/* Message of the Private Cloud Compute consent question. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
+"ai_pcc_consent_message" = "Для кращих результатів заголовки ШІ та допомога з написанням можуть використовувати Private Cloud Compute від Apple. Текст нотатки при цьому надсилається на сервери Apple для обробки й не зберігається. Якщо ви відмовитеся, використовуватиметься лише модель на пристрої. Ви можете змінити це будь-коли в Налаштуваннях.";
+
+/* Button that allows Private Cloud Compute */
+"ai_pcc_consent_allow_button" = "Дозволити";
+
+/* Button that declines Private Cloud Compute and keeps AI on device */
+"ai_pcc_consent_deny_button" = "Лише на пристрої";
+
+/* Section header for the Apple Intelligence settings. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
+"ai_settings_section_title" = "Apple Intelligence";
+
+/* Label for the Private Cloud Compute toggle in settings. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
+"ai_pcc_toggle_label" = "Використовувати Private Cloud Compute";
+
+/* Footer explaining the Private Cloud Compute toggle in settings. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
+"ai_pcc_settings_message" = "Якщо ввімкнено, заголовки ШІ та допомога з написанням використовують Private Cloud Compute від Apple. Текст нотатки надсилається на сервери Apple для обробки й не зберігається. Якщо вимкнено або сервери недоступні, використовується модель на пристрої.";
+
+/* Title of the alert shown when the daily Private Cloud Compute limit is reached. Private Cloud Compute is an Apple product name. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
+"ai_pcc_quota_title" = "Досягнуто ліміту Private Cloud Compute";
+
+/* Message when the daily Private Cloud Compute limit was reached and the on-device model answered instead. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
+"ai_pcc_quota_fallback_message" = "Ви досягли денного ліміту Private Cloud Compute, тому цей запит обробила модель на пристрої.";
+
+/* Button that shows the system's options for raising the daily Private Cloud Compute limit */
+"ai_pcc_quota_options_button" = "Показати варіанти";
+
+/* Short note in the editor footer saying AI requests go to Private Cloud Compute. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
+"ai_pcc_footer_label" = "ШІ через Private Cloud Compute";
+
+/* Tooltip and accessibility hint for the Private Cloud Compute note in the editor footer. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
+"ai_pcc_privacy_message" = "Запити ШІ обробляє Apple Intelligence у Private Cloud Compute. Текст нотатки не зберігається й використовується лише для запиту.";
+
+/* Help text for the AI button when Private Cloud Compute is used. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
+"ai_improve_pcc_help" = "Покращити вміст нотатки за допомогою Apple Intelligence у Private Cloud Compute";

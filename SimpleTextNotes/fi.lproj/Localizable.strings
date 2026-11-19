@@ -76,8 +76,8 @@
 /* Extra large font size option */
 "font_size_extra_large" = "Erittäin suuri (20)";
 
-/* Navigation title for the editor font settings screen */
-"editor_font_navigation_title" = "Editorin fontti";
+/* Section header for the editor font settings */
+"editor_font_section_title" = "Editorin fontti";
 
 /* OK button */
 "ok_button" = "OK";
@@ -204,3 +204,45 @@
 
 /* Fallback detail shown when the database error carries no description */
 "database_error_unknown_message" = "Tuntematon virhe";
+
+/* Navigation title for the settings screen */
+"settings_navigation_title" = "Asetukset";
+
+/* Title of the one-time question asking whether Private Cloud Compute may be used. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
+"ai_pcc_consent_title" = "Käytetäänkö Private Cloud Computea?";
+
+/* Message of the Private Cloud Compute consent question. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
+"ai_pcc_consent_message" = "AI-otsikot ja kirjoitusapu voivat käyttää Applen Private Cloud Computea parempien tulosten saamiseksi. Muistiinpanosi teksti lähetetään tällöin Applen palvelimille käsiteltäväksi, eikä sitä tallenneta. Jos kieltäydyt, käytetään vain laitteen omaa mallia. Voit muuttaa tätä milloin tahansa asetuksissa.";
+
+/* Button that allows Private Cloud Compute */
+"ai_pcc_consent_allow_button" = "Salli";
+
+/* Button that declines Private Cloud Compute and keeps AI on device */
+"ai_pcc_consent_deny_button" = "Vain laitteessa";
+
+/* Section header for the Apple Intelligence settings. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
+"ai_settings_section_title" = "Apple Intelligence";
+
+/* Label for the Private Cloud Compute toggle in settings. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
+"ai_pcc_toggle_label" = "Käytä Private Cloud Computea";
+
+/* Footer explaining the Private Cloud Compute toggle in settings. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
+"ai_pcc_settings_message" = "Kun tämä on päällä, AI-otsikot ja kirjoitusapu käyttävät Applen Private Cloud Computea. Muistiinpanosi teksti lähetetään Applen palvelimille käsiteltäväksi, eikä sitä tallenneta. Kun tämä on pois päältä tai palvelimiin ei saada yhteyttä, käytetään laitteen omaa mallia.";
+
+/* Title of the alert shown when the daily Private Cloud Compute limit is reached. Private Cloud Compute is an Apple product name. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
+"ai_pcc_quota_title" = "Private Cloud Computen raja saavutettu";
+
+/* Message when the daily Private Cloud Compute limit was reached and the on-device model answered instead. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
+"ai_pcc_quota_fallback_message" = "Olet saavuttanut Private Cloud Computen päivittäisen rajan, joten tämä pyyntö käsiteltiin laitteen omalla mallilla.";
+
+/* Button that shows the system's options for raising the daily Private Cloud Compute limit */
+"ai_pcc_quota_options_button" = "Näytä vaihtoehdot";
+
+/* Short note in the editor footer saying AI requests go to Private Cloud Compute. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
+"ai_pcc_footer_label" = "AI Private Cloud Computen kautta";
+
+/* Tooltip and accessibility hint for the Private Cloud Compute note in the editor footer. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
+"ai_pcc_privacy_message" = "Apple Intelligence käsittelee AI-pyynnöt Private Cloud Computessa. Muistiinpanosi tekstiä ei tallenneta, ja sitä käytetään vain pyyntöön.";
+
+/* Help text for the AI button when Private Cloud Compute is used. Apple Intelligence and Private Cloud Compute are Apple product names; do not translate them. */
+"ai_improve_pcc_help" = "Paranna muistiinpanon sisältöä Apple Intelligencellä Private Cloud Computessa";

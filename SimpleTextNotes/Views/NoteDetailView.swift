@@ -1,8 +1,5 @@
 import SwiftUI
 import SwiftData
-#if canImport(FoundationModels)
-import FoundationModels
-#endif
 #if canImport(UIKit)
 import UIKit
 #elseif canImport(AppKit)
@@ -21,7 +18,16 @@ struct NoteDetailView: View {
     @State private var isGenerating: Bool = false
     @State private var showDeleteConfirmation: Bool = false
     @State private var aiError: String?
+    /// The last AI-button request hit the daily Private Cloud Compute limit.
+    @State private var pccQuotaLimitReached: Bool = false
+    /// The limit was hit but the on-device model answered instead.
+    @State private var showPCCQuotaNotice: Bool = false
+    // Read so the PCC note and the AI button update when consent changes in Settings.
+    @AppStorage(PrivateCloudComputeConsent.storageKey) private var pccConsent: PrivateCloudComputeConsent = .undecided
     @State private var timestampTask: Task<Void, Never>?
+    /// Word and character counts for the footer; nil until the first count finishes.
+    @State private var textCounts: NoteTextCounts?
+    @State private var countTask: Task<Void, Never>?
     @State private var hasPendingTimestampUpdate: Bool = false
     @AppStorage("editorFontName") private var editorFontName: String = "system"
     @AppStorage("editorFontSize") private var editorFontSize: Double = 16.0
@@ -49,14 +55,10 @@ struct NoteDetailView: View {
         }
     }
 
-    private var wordCount: Int {
-        note.content
-            .components(separatedBy: .whitespacesAndNewlines)
-            .filter { !$0.isEmpty }
-            .count
+    /// AI requests from this note go to Private Cloud Compute (consented and available).
+    private var usesPrivateCloudCompute: Bool {
+        pccConsent == .granted && SimpleTextNotesAI.isPrivateCloudComputeSupported
     }
-
-    private var characterCount: Int { note.content.count }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -76,22 +78,35 @@ struct NoteDetailView: View {
 
             // Word / character count footer
             HStack {
+                if usesPrivateCloudCompute {
+                    privateCloudComputeNote
+                }
                 Spacer()
-                Text(String(format: String(localized: "word_count_format"), wordCount, characterCount))
+                Text(String(format: String(localized: "word_count_format"),
+                            textCounts?.words ?? 0, textCounts?.characters ?? 0))
                     .font(.caption2)
                     .foregroundStyle(.tertiary)
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 6)
+                    .layoutPriority(1)
+                    // Keep the footer's height while the first count runs, without flashing "0 words".
+                    .opacity(textCounts == nil ? 0 : 1)
             }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 6)
         }
         .navigationTitle(note.title.isEmpty ? String(localized: "untitled_note") : note.title)
         #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
         #endif
         .onChange(of: note.title)   { scheduleTimestampUpdate() }
-        .onChange(of: note.content) { scheduleTimestampUpdate() }
+        .onChange(of: note.content) {
+            scheduleTimestampUpdate()
+            scheduleCountUpdate(after: Self.countDebounceInterval)
+        }
+        .task { scheduleCountUpdate(after: nil) }
         .onDisappear {
             commitTimestampUpdate()
+            countTask?.cancel()
+            countTask = nil
             guard note.title.isEmpty else { return }
             let noteID = note.id
             let isAvailable = SimpleTextNotesAI.isAvailable
@@ -137,7 +152,7 @@ struct NoteDetailView: View {
                         } label: {
                             Label("ai_button", systemImage: "sparkles")
                         }
-                        .help("ai_improve_help")
+                        .help(usesPrivateCloudCompute ? "ai_improve_pcc_help" : "ai_improve_help")
                     }
                 }
 
@@ -178,9 +193,20 @@ struct NoteDetailView: View {
             get: { aiError != nil },
             set: { if !$0 { aiError = nil } }
         )) {
+            if pccQuotaLimitReached && SimpleTextNotesAI.canShowQuotaLimitIncreaseOptions {
+                Button("ai_pcc_quota_options_button") { SimpleTextNotesAI.showQuotaLimitIncreaseOptions() }
+            }
             Button("ok_button", role: .cancel) { }
         } message: {
             if let msg = aiError { Text(msg) } else { Text("ai_generation_failed_message") }
+        }
+        .alert("ai_pcc_quota_title", isPresented: $showPCCQuotaNotice) {
+            if SimpleTextNotesAI.canShowQuotaLimitIncreaseOptions {
+                Button("ai_pcc_quota_options_button") { SimpleTextNotesAI.showQuotaLimitIncreaseOptions() }
+            }
+            Button("ok_button", role: .cancel) { }
+        } message: {
+            Text("ai_pcc_quota_fallback_message")
         }
         .alert("delete_note_alert_title", isPresented: $showDeleteConfirmation) {
             Button("move_to_trash_button", role: .destructive) {
@@ -200,6 +226,18 @@ struct NoteDetailView: View {
         } message: {
             Text("paste_clipboard_message")
         }
+    }
+
+    // MARK: - Private Cloud Compute note
+
+    /// Says where AI requests go, like the note next to HoroDrift's Analyze button.
+    private var privateCloudComputeNote: some View {
+        Label("ai_pcc_footer_label", systemImage: "lock.icloud")
+            .font(.caption2)
+            .foregroundStyle(.tertiary)
+            .lineLimit(1)
+            .help("ai_pcc_privacy_message")
+            .accessibilityHint(Text("ai_pcc_privacy_message"))
     }
 
     // MARK: - Modification timestamp
@@ -226,6 +264,25 @@ struct NoteDetailView: View {
         hasPendingTimestampUpdate = false
         guard note.modelContext != nil else { return }
         note.updatedAt = Date()
+    }
+
+    // MARK: - Word and character counts
+
+    private static let countDebounceInterval: Duration = .milliseconds(500)
+
+    /// Recount once typing pauses. Counting walks the whole note, so it runs off the main
+    /// actor and never inside `body`; a newer edit cancels the pending or running count.
+    private func scheduleCountUpdate(after delay: Duration?) {
+        countTask?.cancel()
+        countTask = Task { @MainActor in
+            if let delay {
+                try? await Task.sleep(for: delay)
+                guard !Task.isCancelled else { return }
+            }
+            let text = note.content
+            guard let counts = await NoteTextCounts.count(text), !Task.isCancelled else { return }
+            textCounts = counts
+        }
     }
 
     // MARK: - Clipboard
@@ -278,24 +335,18 @@ struct NoteDetailView: View {
         guard note.title.isEmpty, !content.isEmpty else { return }
         guard SimpleTextNotesAI.isAvailable else { return }
 
-#if canImport(FoundationModels)
-        if #available(iOS 26.0, macOS 26.0, *) {
-            do {
-                let session = try notesAI.makeSession()
-                let truncated = String(content.prefix(Self.maxContentLengthForTitleGeneration))
-                let response = try await session.respond(
-                    to: "Generate a very short title (maximum \(Self.maxTitleLength) characters) for this note. Reply with only the title text, no quotes, no punctuation at the end, no explanation:\n\n\(truncated)"
-                )
-                let generated = response.content.trimmingCharacters(in: .whitespacesAndNewlines)
-                // Re-check after the async gap: note must still be active and untitled
-                guard !generated.isEmpty, note.title.isEmpty, note.modelContext != nil else { return }
-                note.title = String(generated.prefix(Self.maxTitleLength))
-                note.updatedAt = Date()
-            } catch {
-                // Title generation failed silently; note keeps an empty title
-            }
+        do {
+            let truncated = String(content.prefix(Self.maxContentLengthForTitleGeneration))
+            let generated = try await notesAI.respond(
+                to: "Generate a very short title (maximum \(Self.maxTitleLength) characters) for this note. Reply with only the title text, no quotes, no punctuation at the end, no explanation:\n\n\(truncated)"
+            )
+            // Re-check after the async gap: note must still be active and untitled
+            guard !generated.isEmpty, note.title.isEmpty, note.modelContext != nil else { return }
+            note.title = String(generated.prefix(Self.maxTitleLength))
+            note.updatedAt = Date()
+        } catch {
+            // Title generation failed silently; note keeps an empty title
         }
-#endif
     }
 
     @MainActor
@@ -304,29 +355,67 @@ struct NoteDetailView: View {
         isGenerating = true
         defer { isGenerating = false }
 
-#if canImport(FoundationModels)
-        if #available(iOS 26.0, macOS 26.0, *) {
-            do {
-                let session = try notesAI.makeSession(instructions: "You are a helpful writing assistant. Improve, expand, or process the given note content.")
-                let prompt = note.content.trimmingCharacters(in: .whitespacesAndNewlines)
+        do {
+            let prompt = note.content.trimmingCharacters(in: .whitespacesAndNewlines)
 
-                // Register undo before mutating content
-                let originalContent = note.content
-                undoManager?.registerUndo(withTarget: note) { note in
-                    note.content = originalContent
-                    note.updatedAt = Date()
-                }
-                undoManager?.setActionName(String(localized: "ai_button"))
-
-                let response = try await session.respond(to: prompt)
-                let generated = response.content.trimmingCharacters(in: .whitespacesAndNewlines)
-                guard !generated.isEmpty else { return }
-                note.content = "\(note.content)\n\n\(generated)"
+            // Register undo before mutating content
+            let originalContent = note.content
+            undoManager?.registerUndo(withTarget: note) { note in
+                note.content = originalContent
                 note.updatedAt = Date()
-            } catch {
-                aiError = notesAI.wrap(error).localizedDescription
+            }
+            undoManager?.setActionName(String(localized: "ai_button"))
+
+            pccQuotaLimitReached = false
+            let generated = try await notesAI.respond(
+                to: prompt,
+                instructions: "You are a helpful writing assistant. Improve, expand, or process the given note content.",
+                onQuotaLimitReached: { pccQuotaLimitReached = true }
+            )
+            // Reaching here after the limit means the on-device model answered instead.
+            showPCCQuotaNotice = pccQuotaLimitReached
+            guard !generated.isEmpty else { return }
+            note.content = "\(note.content)\n\n\(generated)"
+            note.updatedAt = Date()
+        } catch {
+            aiError = notesAI.wrap(error).localizedDescription
+        }
+    }
+}
+
+// MARK: - NoteTextCounts
+
+/// Word and character counts of a note, as shown in the editor footer.
+private struct NoteTextCounts: Equatable, Sendable {
+    let words: Int
+    let characters: Int
+
+    /// How many characters to count between cancellation checks.
+    private static let cancellationCheckInterval = 16_384
+
+    /// Counts in a single pass without allocating per word. A word is a run of characters
+    /// that are not whitespace or newlines (`Character.isWhitespace` covers both).
+    /// Returns nil if the calling task was cancelled part-way.
+    ///
+    /// `@concurrent` keeps it on the global executor, off the main actor, even if the target
+    /// later turns on main-actor default isolation or `NonisolatedNonsendingByDefault`.
+    @concurrent
+    static func count(_ text: String) async -> NoteTextCounts? {
+        var words = 0
+        var characters = 0
+        var isInWord = false
+        for character in text {
+            characters += 1
+            if character.isWhitespace {
+                isInWord = false
+            } else if !isInWord {
+                isInWord = true
+                words += 1
+            }
+            if characters % cancellationCheckInterval == 0, Task.isCancelled {
+                return nil
             }
         }
-#endif
+        return NoteTextCounts(words: words, characters: characters)
     }
 }

@@ -48,7 +48,7 @@ SimpleTextNotes/
 │   └── TitleGenerationState.swift # @Observable class; stores Tasks and in-progress IDs for AI title generation
 ├── Views/
 │   ├── NoteListView.swift     # List with @Query, search, sort menu, pin swipe, trash toolbar, sync indicator
-│   ├── NoteDetailView.swift   # Editor with toolbar: pin, share, AI, copy, paste, delete; word count footer
+│   ├── NoteDetailView.swift   # Editor with toolbar: pin, share, AI, copy, paste, delete; word count footer (cached, recounted off the main actor 0.5 s after typing pauses)
 │   ├── TrashView.swift        # Sheet with NavigationLink → TrashedNoteDetailView; restore / empty trash
 │   └── SettingsView.swift     # App settings sheet (font style + size)
 └── SimpleTextNotesTests/
@@ -141,7 +141,8 @@ The app integrates Apple Intelligence via `FoundationModels` (iOS 26 / macOS 26+
 
 - **`SimpleTextNotesAI`** — `@Observable` class injected via the environment from `ContentView` (not instantiated per-view):
   - `isAvailable: Bool` — static guard checked before rendering any AI UI
-  - `makeSession(instructions:)` — creates a `LanguageModelSession`
+  - `respond(to:instructions:)` — runs a prompt and returns the trimmed text; sessions are built privately inside this class
+  - Private Cloud Compute (iOS 27+): `respond` uses `PrivateCloudComputeLanguageModel` only when the user consented (`@AppStorage("aiPrivateCloudComputeConsent")`, `PrivateCloudComputeConsent` = `undecided`/`granted`/`denied`) and `isPrivateCloudComputeSupported`; otherwise, or when a PCC request fails, it falls back to the on-device model if that is ready. `isAvailable` is true when either path works (`isOnDeviceModelAvailable` or consented PCC). On `PrivateCloudComputeLanguageModel.Error.quotaLimitReached`, `respond` calls its `onQuotaLimitReached` callback; the sparkles button then shows a notice or error with a "Show Options" button (`showQuotaLimitIncreaseOptions()`). While PCC is in use, the editor footer shows a "AI via Private Cloud Compute" note. `ContentView` asks once via an alert while consent is `undecided`; `SettingsView` has a toggle to change it. Requires the `com.apple.developer.private-cloud-compute` entitlement in both entitlements files.
   - `wrap(_:)` — normalizes errors into `SimpleTextNotesAIError` (`.modelUnavailable` / `.generationFailed`)
 - **`TitleGenerationState`** — `@Observable` class injected via the environment; stores both in-progress IDs (for the animated dots indicator) **and** the `Task` objects (so tasks survive the view lifecycle). Use `startTask(_:for:showIndicator:)` / `markDone(_:)` / `cancelTask(for:)`.
 - **AI button in `NoteDetailView`** — only rendered when `SimpleTextNotesAI.isAvailable`; uses `note.content` as the prompt; shows an informational alert if content is empty; appends generated output; shows an error alert on failure; registers an **undo operation** via `@Environment(\.undoManager)` before mutating content
@@ -244,7 +245,7 @@ Tests live in `SimpleTextNotesTests/SimpleTextNotesTests.swift` and use XCTest w
 
 ## Localization
 
-- 34 languages live in `SimpleTextNotes/*.lproj/Localizable.strings`, 69 keys each. `en` is the
+- 34 languages live in `SimpleTextNotes/*.lproj/Localizable.strings`, 83 keys each. `en` is the
   development language and the source of truth; every other file must carry the identical key set.
 - The share extension has its own separate table under `ShareExtension/*.lproj`, 34 locales with
   11 `share_*` keys, resolved against the appex bundle. Keys do not cross between the two tables.
