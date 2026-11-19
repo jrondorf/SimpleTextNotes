@@ -203,15 +203,18 @@ if #available(iOS 26.0, macOS 26.0, *) { /* AI code */ }
 ```
 
 - `SimpleTextNotesAI` — `@Observable`, injected from `ContentView`. `isAvailable` (static)
-  gates all AI UI; `respond(to:instructions:)` runs a prompt and returns trimmed text;
+  gates all AI UI and is true when the on-device model (`isOnDeviceModelAvailable`) or
+  consented Private Cloud Compute is ready; `respond(to:instructions:)` runs a prompt and returns trimmed text;
   `wrap(_:)` normalizes errors to `SimpleTextNotesAIError`. **Never construct
   `LanguageModelSession` directly** (sessions are built privately inside `SimpleTextNotesAI`)
   and never instantiate `SimpleTextNotesAI` inside a view — read it from
   `@Environment(SimpleTextNotesAI.self)`. Views don't import `FoundationModels` at all.
 - **Private Cloud Compute (iOS 27+).** `respond` uses `PrivateCloudComputeLanguageModel` only
   when `usesPrivateCloudCompute` is true: the user granted consent *and*
-  `isPrivateCloudComputeSupported` (iOS 27 + the PCC model reports available). Otherwise — and
-  whenever a PCC request fails (offline, quota, outage) — it uses the on-device model. Consent
+  `isPrivateCloudComputeSupported` (iOS 27 + `PrivateCloudComputeLanguageModel().isAvailable`,
+  the same check as HoroDrift's `HoroDriftAI.isAvailable`, independent of the on-device model). Otherwise — and
+  whenever a PCC request fails (offline, quota, outage) — it uses the on-device model if that
+  is ready, and otherwise surfaces the PCC error. Consent
   is the `PrivateCloudComputeConsent` enum in `@AppStorage("aiPrivateCloudComputeConsent")`:
   `ContentView` asks once via an alert at launch while it is `undecided` (on-device only until
   answered), and `SettingsView` shows a toggle (only when PCC is supported) to change it later.

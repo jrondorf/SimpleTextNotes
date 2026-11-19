@@ -48,9 +48,14 @@ enum PrivateCloudComputeConsent: String {
 final class SimpleTextNotesAI {
     private static let logger = Logger(subsystem: "de.futural.simpletextnotes", category: "AI")
 
-    /// Gates all AI UI. Apple Intelligence must be enabled on the device; Private Cloud
-    /// Compute has the same requirement, so the on-device check covers both paths.
+    /// Gates all AI UI: true when at least one model this app may use is ready — the
+    /// on-device model, or Private Cloud Compute once the user has consented.
     static var isAvailable: Bool {
+        isOnDeviceModelAvailable || usesPrivateCloudCompute
+    }
+
+    /// The on-device system model (iOS 26+, Apple Intelligence enabled, assets downloaded).
+    static var isOnDeviceModelAvailable: Bool {
 #if canImport(FoundationModels)
         if #available(iOS 26.0, macOS 26.0, *) {
             return SystemLanguageModel.default.isAvailable
@@ -60,11 +65,12 @@ final class SimpleTextNotesAI {
     }
 
     /// True when the OS ships Apple's server model (iOS 27+) and this device and app may use it.
-    /// Gates the consent question and the Settings toggle.
+    /// Gates the consent question and the Settings toggle. Same check as HoroDrift's
+    /// `HoroDriftAI.isAvailable`; deliberately independent of the on-device model.
     static var isPrivateCloudComputeSupported: Bool {
 #if canImport(FoundationModels)
         if #available(iOS 27.0, macOS 27.0, *) {
-            return isAvailable && PrivateCloudComputeLanguageModel().isAvailable
+            return PrivateCloudComputeLanguageModel().isAvailable
         }
 #endif
         return false
@@ -78,7 +84,8 @@ final class SimpleTextNotesAI {
     /// Runs a single prompt and returns the trimmed text response.
     ///
     /// Uses Private Cloud Compute when the user consented and it is available, and falls
-    /// back to the on-device model if the server request fails (offline, quota, outage).
+    /// back to the on-device model, if that is ready, when the server request fails
+    /// (offline, quota, outage).
     @MainActor
     func respond(to prompt: String, instructions: String? = nil) async throws -> String {
         guard Self.isAvailable else {
@@ -93,11 +100,12 @@ final class SimpleTextNotesAI {
                 return response.content.trimmingCharacters(in: .whitespacesAndNewlines)
             } catch {
                 try Task.checkCancellation()
+                guard Self.isOnDeviceModelAvailable else { throw error }
                 Self.logger.error("Private Cloud Compute failed, falling back to on-device model: \(error.localizedDescription, privacy: .public)")
             }
         }
 
-        if #available(iOS 26.0, macOS 26.0, *) {
+        if #available(iOS 26.0, macOS 26.0, *), Self.isOnDeviceModelAvailable {
             let session = Self.makeOnDeviceSession(instructions: instructions)
             let response = try await session.respond(to: prompt)
             return response.content.trimmingCharacters(in: .whitespacesAndNewlines)
